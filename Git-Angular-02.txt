@@ -1,0 +1,22 @@
+
+
+--> 2017-04-20: Create a new branch from angular-02 (master) in Github
+
+$ git checkout -b movie-module
+Switched to a new branch 'movie-module'
+
+git status
+
+git add .
+
+liu@DellSmall MINGW64 /c/Github/angular-02 (movie-module)
+$ git commit -m "Separated Movies module"
+
+
+liu@DellSmall MINGW64 /c/Github/angular-02 (movie-module)
+$ git push origin movie-module
+
+
+
+
+
