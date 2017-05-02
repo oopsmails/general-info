@@ -77,6 +77,13 @@ db.users.find( { qty: { $gt: 4 } } )
 --> drop one document
 db.users.deleteOne( { "_id" : ObjectId("5852db9fc251b61e4492095e") } );
 
+--> drop all document in collection
+db.users.deleteMany({})
+db.collection.remove()
+
+--> remove by condition
+db.users.deleteMany({ status : "A" })
+
 --> solving "unique not working problem"
 db.users.drop()
 db.users.reIndex()
