@@ -1,0 +1,231 @@
+-------------------- install nvm
+
+https://github.com/coreybutler/nvm-windows
+
+nvm setup.exe
+
+C:\nvm
+
+symlink 
+
+C:\nodejs
+
+The following will be added in Environment Variables,
+NVM_HOME
+NVM_SYMLINK
+
+
+-- to check
+nvm version
+
+1.1.3
+
+
+C:\Users\liu>nvm install 6.10.1
+
+C:\Users\liu>nvm use 6.10.1
+
+
+-- check in DOS commond
+C:\Users\liu>npm version
+{ npm: '3.10.10',
+  ares: '1.10.1-DEV',
+  http_parser: '2.7.0',
+  icu: '58.2',
+  modules: '48',
+  node: '6.10.1',
+  openssl: '1.0.2k',
+  uv: '1.9.1',
+  v8: '5.1.281.95',
+  zlib: '1.2.8' }
+
+C:\Users\liu>nvm version
+1.1.3
+
+C:\Users\liu>node -v
+v6.10.1
+
+
+---------------------------------------------
+
+-- install angular cli
+
+C:\Angulalr4
+
+npm install -g @angular/cli
+
+ng new anuglar4v01
+
+cd anuglar4v01
+
+ng serve
+
+
+--> check
+ng -v
+
+--> ng serve --host 0.0.0.0 --port 4201
+
+---------------------------------------------
+--> bootstrap
+
+npm install --save bootstrap
+
+go to .angular-cli.json
+
+add:
+
+"styles": [
+  "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "styles.css"
+],
+
+---------------------------------------------
+--> new component:
+
+C:\Github\angular-02\src\app> ng generate component server
+
+ng g c server
+
+---------------------------------------------
+--> selector: could be also used like CSS attribute, class
+selector: 'app-servers',
+  // selector: '[app-servers]',
+  // selector: '.app-servers',
+
+---------------------------------------------
+--> Understanding Databinding
+From Typescript to Template (Html):
+String interpolation: {{data}}
+Property binding: [property] = "data"
+
+From Template (Html) to Typescript
+Event binding: (event) = "expression"
+
+Two-Way-Binding:
+[{ngModel}] = "data"
+
+---------------------------------------------
+
+Structural directives: ngIf
+Attribute directives: ngStyle, ngClass
+
+
+---------------------------------------------
+
+--> Routing 
+
+app.module.ts
+import { RouterModule } from '@angular/router'
+
+imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    RouterModule.forRoot([
+      {
+        path: 'movies',
+        component: MoviesListComponent
+      },
+      {
+        path: 'characters',
+        component: CharactersListComponent
+      }
+    ])
+  ],
+------
+<a routerLink="/movies">Movies</a>
+<a routerLink="/characters">Characters</a>
+
+<router-outlet></router-outlet>
+
+---------------------------------------------
+
+--> Service
+ng g class movie => just create a class
+
+ng g service movies
+
+getMovies() method in service, using Promise, and it has to be defined in a lifecycle event hook.
+Then it will be fired when appropriate ... init() lifecycle even hook will be used. 
+
+
+
+---------------------------------------------
+
+--> Modules:
+
+see oopsmails/angular-02, branch movie-module
+
+
+---------------------------------------------
+--> Styling with Material 2
+2:09:00
+
+---------------------------------------------
+
+--> ngrx store
+
+npm install --save @ngrx/core
+npm install --save @ngrx/store
+
+Install @ngrx/core and @ngrx/store from npm:
+npm install @ngrx/core @ngrx/store --save
+
+
+=> for ngrx
+
+1. npm install @ngrx/core @ngrx/store --save
+
+2. make reducer and action
+
+3. add store in app.module.ts
+imports: [
+...
+StoreModule.provideStore({ customers: customerReducer })
+]
+
+4. subscribe up store in Components
+ngOnInit() and unsubscribe in ngOnDestroy
+
+5. to get/load initial list state, 
+call REST service in ngOnInit()
+
+6. get/load list in Service and use subscribe (action ->) to update Store
+this will initialize the list to be shown in the page through Store!
+
+
+all ok:
+return { ...state, customers: action.payload };
+return { ...state, ...action.payload };
+return Object.assign({}, state, action.payload);
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Problem: The REST ws returning a List, this is not recognized by *ngFor
+showing error "Cannot find a differ supporting object '[object Object]'"
+
+Solution: write a @Pipe for this!
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+
+
+
