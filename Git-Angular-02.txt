@@ -23,4 +23,121 @@ $ git push origin movie-module
 
 git commit -m "npm install --save @angular/material hammerjs"
 
+===========================
+
+https://www.youtube.com/watch?v=c5NF4gqUlxg
+
+git pull, from master
+
+git branch, show branches
+
+git branch feature1
+
+git branch, show banches
+
+git checkout feature, switch to feature1 branch
+
+--> make changes
+
+git status
+
+git add -A
+
+git commit -m "add new feature 1"
+
+git branch, show branches
+
+git checkout master
+
+git pull
+--> there are changes by others
+
+git checkout feature1
+
+git merge master
+--> CONFILICT ... merge failed
+
+==> check the confilict files ... 
+<<<<<<<<< HEAD 
+
+....  --> my changes
+
+
+>>>>>>>>>>>>>> master
+
+...........  --> changes from others
+
+--> merge it ...
+
+
+
+git status
+git add -A
+
+git commit 
+
+--> like vi here
+:wq
+
+git push
+--> git push --set-upstream origin feature1
+
+
+==> go to github,
+
+feature1 has latest ...
+
+in github, feature1 
+
+green button, Create pull request
+
+==> 
+
+hey @someone, check this out, code review
+
+green button, Send pull request
+
+
+--> after several rounds ...
+
+==> green button, Merge pull request
+
+Confirm merge
+
+==> check and view in master
+==> delete feature1 branch
+
+
+==> git checkout master
+
+git pull
+
+--------------------------------------
+
+git branch news
+
+git checkout news
+
+git status
+
+git add -A
+
+git commit -m "..."
+
+
+git push --set-upstream origin news
+
+
+Create pull request
+
+another commit ...
+
+
+
+
+
+
+
+
+
 
