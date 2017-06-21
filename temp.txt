@@ -1,0 +1,388 @@
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.Map;
+
+import javax.inject.Singleton;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.ext.Providers;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.eclipse.persistence.jaxb.BeanValidationMode;
+import org.eclipse.persistence.jaxb.MarshallerProperties;
+import org.eclipse.persistence.jaxb.UnmarshallerProperties;
+import org.glassfish.hk2.api.Factory;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.jaxb.internal.AbstractRootElementJaxbProvider;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.DeploymentContext;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.inmemory.InMemoryTestContainerFactory;
+import org.glassfish.jersey.test.spi.TestContainer;
+import org.glassfish.jersey.test.spi.TestContainerException;
+import org.glassfish.jersey.test.spi.TestContainerFactory;
+import org.junit.After;
+import org.junit.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.util.StringUtils;
+
+
+
+public abstract class AbstractRestResourceTest extends JerseyTest {
+
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
+
+	MockHttpServletRequest request;
+	
+	Factory<HttpServletRequest> servletRequestFactory = new Factory<HttpServletRequest>() {
+		@Override
+		public HttpServletRequest provide() {
+			return getRequest();
+		}
+
+		@Override
+		public void dispose(HttpServletRequest instance) {
+			// empty
+		}
+	};
+
+	HttpServletRequest getRequest() {
+		return request;
+	}
+	
+	@Before
+	public void init() {
+		String url = System.getProperty("url");
+		if (!StringUtils.hasText(url)) {
+			CapturingDaoAspect.setShortCircuit(false);
+		}
+	}
+	
+	@After
+	public void deinit() {
+		final String url = System.getProperty("url");
+		if (!StringUtils.hasText(url)) {
+			CapturingDaoAspect.setShortCircuit(true);
+		}
+	}
+	
+	
+	@Override
+	protected void configureClient(ClientConfig config) {
+		config.property(MarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+		config.property(UnmarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+		
+		config.register(NonValidatingXmlProvider.class);
+	}
+	
+	
+	@Produces("application/xml")
+	@Consumes("application/xml")
+	@Singleton
+	public static class NonValidatingXmlProvider extends AbstractRootElementJaxbProvider {
+
+		public NonValidatingXmlProvider(@Context Factory<SAXParserFactory> spf, @Context Providers ps) {
+	        super(ps, MediaType.APPLICATION_XML_TYPE);
+	    }
+		
+		@Override
+		protected void writeTo(Object t, MediaType mediaType, Charset c, Marshaller m, OutputStream entityStream) throws JAXBException {
+			if(m.getClass().getName().startsWith("org.eclipse")) {
+				m.setProperty(MarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+			}
+			super.writeTo(t, mediaType, c, m, entityStream);
+		}
+		
+	    @Override
+	    protected Object readFrom(Class<Object> type, MediaType mediaType, Unmarshaller u, InputStream entityStream) throws JAXBException {
+			if(u.getClass().getName().startsWith("org.eclipse")) {
+				u.setProperty(UnmarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+			}
+	    	return super.readFrom(type, mediaType, u, entityStream);
+	    }
+		
+	}
+	
+	@Override
+	protected Application configure() {
+		ResourceConfig config = new XxxRestResourceConfig();
+		config.property("contextConfigLocation", "classpath:applicationContext-wealthservice-test.xml");
+		
+		config.register(new AbstractBinder() {
+			@Override
+			protected void configure() {
+				bindFactory(servletRequestFactory).to(HttpServletRequest.class);
+			}
+		});
+		
+		return config;
+	}
+
+	@Override
+	// If running against external container pass URL via 'url' system property
+	// e.g.: -Durl=http://localhost:8080/wealthservice-rest/api
+	protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+		final String url = System.getProperty("url");
+		if (!StringUtils.hasText(url)) {
+			System.out.println("Using InMemoryContainer");
+			return new InMemoryTestContainerFactory();
+		}
+		System.out.println("Using external container at "+url);
+		return new TestContainerFactory() {
+			@Override
+			public TestContainer create(URI baseUri, DeploymentContext deploymentContext) {
+				return new TestContainer() {
+					@Override
+					public void stop() {
+						//
+					}
+					
+					@Override
+					public void start() {
+						//
+					}
+					
+					@Override
+					public ClientConfig getClientConfig() {
+						ClientConfig clientConfig = new ClientConfig();
+						// clientConfig.property(ClientProperties.PROXY_URI, "http://localhost:8089");
+						// clientConfig.connectorProvider(new ApacheConnectorProvider());						
+						return clientConfig;
+					}
+					
+					@Override
+					public URI getBaseUri() {
+						return URI.create(url);
+					}
+				};
+			}
+		};
+	}
+
+	
+	/**
+	 * Proxy method to populate MockHttpServletRequest
+	 */
+	public WebTarget webTarget(String path) {
+		request = new MockHttpServletRequest();
+		return (WebTarget) Proxy.newProxyInstance(getClass().getClassLoader(), //
+				new Class[] { WebTarget.class }, //
+				new WebTargetHandler(target(path), path));
+	}
+	
+
+	class WebTargetHandler implements InvocationHandler {
+		private final Object target;
+		private final String path;
+
+		WebTargetHandler(Object target, String path) {
+			this.target = target;
+			this.path = path;
+		}
+
+		@Override
+		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+			String methodName = method.getName();
+			if("queryParam".equals(methodName)) {
+				Object value = args[1];
+				if(value instanceof String) {
+					request.addParameter((String) args[0], (String) args[1]);
+				} else if(value instanceof Object[]) {
+					Object[] arr = (Object[]) value;
+					String[] vals = new String[arr.length];
+					for (int i = 0; i < arr.length; i++) {
+						vals[i] = (String) arr[i];
+					}
+					request.addParameter((String) args[0], vals);
+				}
+				
+				// re-wrap return value into a proxy
+				return Proxy.newProxyInstance(getClass().getClassLoader(), //
+						new Class[] { WebTarget.class }, //
+						new WebTargetHandler(method.invoke(target, args), path));
+
+			} else if("path".equals(methodName)) {
+				String newPath = path;
+				String arg = (String) args[0];
+				if(!path.endsWith("/") && !arg.startsWith("/")) {
+					newPath += "/";
+				}
+				newPath += arg;
+				return Proxy.newProxyInstance(getClass().getClassLoader(), //
+						new Class[] { WebTarget.class }, //
+						new WebTargetHandler(method.invoke(target, args), newPath));
+				
+			} else if("request".equals(methodName)) {
+				if(args != null && args.length > 0) {
+					StringBuilder query = new StringBuilder();
+					boolean first = true;
+					for (Map.Entry<String, String[]> e : request.getParameterMap().entrySet()) {
+						String key = e.getKey();
+						String[] values = e.getValue();
+						if (values == null || values.length == 0) {
+							if(!first) query.append("&");
+							query.append(URLEncoder.encode(key, "UTF-8")).append("=");
+							first = false;
+						} else {
+							for (String value : values) {
+								if(!first) query.append("&");
+								query.append(URLEncoder.encode(key, "UTF-8")).append("=").append(URLEncoder.encode(value, "UTF-8"));
+								first = false;
+							}
+						}
+					}
+					request.setQueryString(query.toString());
+					
+					if(args[0] instanceof String[]) {
+						for (String type : (String[]) args[0]) {
+							request.addHeader(HttpHeaders.ACCEPT, type);
+						}
+					} else if(args[0] instanceof MediaType[]) {
+						for (MediaType type : (MediaType[]) args[0]) {
+							request.addHeader(HttpHeaders.ACCEPT, type.getType());
+						}
+					}
+					
+					request.setPathInfo(path);
+				}
+				
+				final Invocation.Builder builder = (Invocation.Builder) method.invoke(target, args);
+				return Proxy.newProxyInstance(getClass().getClassLoader(), new Class[] {Invocation.Builder.class}, //
+						new InvocationHandler() {
+							@Override
+							public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+								if("header".equals(method.getName())) {
+									request.addHeader((String) args[0], args[1]);
+									method.invoke(builder, args);
+									return proxy;  // return proxy
+								}
+								
+								return method.invoke(builder, args);
+							}
+						});
+			}
+
+			return method.invoke(target, args);
+		}
+	}
+	
+}
+
+
+
+
+
+
+======================================
+
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.validation.ParameterNameProvider;
+import javax.validation.Validation;
+import javax.ws.rs.container.ResourceContext;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.ext.ContextResolver;
+
+import org.eclipse.persistence.jaxb.BeanValidationMode;
+import org.eclipse.persistence.jaxb.JAXBContextProperties;
+import org.eclipse.persistence.jaxb.MarshallerProperties;
+import org.eclipse.persistence.jaxb.UnmarshallerProperties;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.message.GZipEncoder;
+import org.glassfish.jersey.message.filtering.EntityFilteringFeature;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
+import org.glassfish.jersey.server.filter.EncodingFilter;
+import org.glassfish.jersey.server.validation.ValidationConfig;
+import org.glassfish.jersey.server.validation.internal.InjectingConstraintValidatorFactory;
+
+
+/**
+ * Registers the components to be used by the JAX-RS application
+ * 
+ * @author zliu
+ */
+public class XxxRestResourceConfig extends ResourceConfig {
+
+	public XxxRestResourceConfig() {
+		register(EntityFilteringFeature.class);
+		register(ValidationConfigurationContextResolver.class);
+		
+		register(MultiExceptionMapper.class);
+		register(ParamExceptionMapper.class);
+		register(RuntimeExceptionMapper.class);
+		
+		EncodingFilter.enableFor(this, GZipEncoder.class);
+		
+		packages("com.xxx.restresource");
+		packages("com.xxx.converters");
+		
+		register(MultiPartFeature.class);
+		
+		register(KycMoxyFeature.class);
+		register(KycMoxyJsonProvider.class);
+		register(KycXmlProvider.class);
+		
+		property(JAXBContextProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+
+		property(MarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+		property(UnmarshallerProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
+		
+		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, false);
+		
+		// request/response logging is done via RequestLoggingFilter
+		//register(LoggingFilter.class);
+
+		// validate responses without failure
+		register(ResponseValidationFilter.class);
+		
+		property(ServerProperties.TRACING, "ALL");
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
