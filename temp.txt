@@ -342,9 +342,9 @@ public class XxxRestResourceConfig extends ResourceConfig {
 		
 		register(MultiPartFeature.class);
 		
-		register(KycMoxyFeature.class);
-		register(KycMoxyJsonProvider.class);
-		register(KycXmlProvider.class);
+		register(XxxMoxyFeature.class);
+		register(XxxMoxyJsonProvider.class);
+		register(XxxXmlProvider.class);
 		
 		property(JAXBContextProperties.BEAN_VALIDATION_MODE, BeanValidationMode.NONE);
 
@@ -362,6 +362,230 @@ public class XxxRestResourceConfig extends ResourceConfig {
 		property(ServerProperties.TRACING, "ALL");
 	}
 	
+=========================================
+
+
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
+import XxxType;
+import XxxServiceUtil;
+
+@Component
+public class CitizenTypeConverter implements Converter<String, XxxType> {
+
+	@Override
+	public XxxType convert(String source) {
+		return XxxServiceUtil.getCitizenType(source);
+	}
+
+}
+-----------------------
+
+@XmlType(name = "XxxType")
+@XmlEnum
+public enum XxxType {
+
+    CAN,
+    US,
+    DUAL,
+    OTHR;
+
+    public String value() {
+        return name();
+    }
+
+    public static XxxType fromValue(String v) {
+        return valueOf(v);
+    }
+
+}
+
+-----------------------
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ws.rs.ext.ParamConverter;
+import javax.ws.rs.ext.ParamConverterProvider;
+import javax.ws.rs.ext.Provider;
+
+
+@Provider
+public class EnumTypeConverterProvider implements ParamConverterProvider {
+
+	static final Method valueOfMethod;
+	
+	static final Map<Class<?>, Object> DEFAULTS = new HashMap<>();
+	
+	static {
+		try {
+			valueOfMethod = Enum.class.getDeclaredMethod("valueOf", Class.class, String.class);
+		} catch (NoSuchMethodException ex) {
+			throw new RuntimeException(ex); 
+		}
+		
+		DEFAULTS.put(XxxType.class, XxxType.OTHR);
+	}
+	
+	@Override
+	public <T> ParamConverter<T> getConverter(final Class<T> rawType, Type genericType, Annotation[] annotations) {
+		if(Enum.class.isAssignableFrom(rawType) //
+				&& rawType.getPackage().getName().startsWith("com.schema.xsd.domain")) {
+			
+			return new ParamConverter<T>() {
+				@Override
+				public T fromString(String value) {
+					return value == null ? null : (T) get(rawType, value);
+				}
+
+				@SuppressWarnings("unchecked")
+				private T get(Class<T> type, String name) {
+				    try {
+				    	// NOTE: have to call fromValue() to handle correctly Enums generated from our schema
+				    	try {
+							return (T) type.getMethod("fromValue", String.class).invoke(null, name);
+						} catch (ReflectiveOperationException | SecurityException ex) {
+							// fallback to normal enum processing
+					        return (T) valueOfMethod.invoke(null, name);
+						}
+				    } catch (IllegalArgumentException | ReflectiveOperationException ex) {
+				        T defaultValue = (T) DEFAULTS.get(type);
+						if(defaultValue != null) {
+							return defaultValue;
+						}
+						throw new RuntimeException("Invalid enum value [" + name + "]");
+				    }
+				}
+
+				@Override
+				public String toString(T value) {
+					try {
+						return (String) rawType.getDeclaredMethod("value").invoke(value);
+					} catch (ReflectiveOperationException ex) {
+						throw new RuntimeException(ex);
+					}
+				}
+			};
+		}
+		return null;
+	}
+
+}
+
+-----------------------
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.ws.rs.ext.ParamConverter;
+import javax.ws.rs.ext.ParamConverterProvider;
+import javax.ws.rs.ext.Provider;
+
+@Provider
+public class DateTypeConverterProvider implements ParamConverterProvider {
+
+	static final ThreadLocal<SimpleDateFormat> DF = new ThreadLocal<SimpleDateFormat>() {
+		@Override
+		protected SimpleDateFormat initialValue() {
+			return new SimpleDateFormat("yyyy-MM-dd");
+		}
+	};
+	
+	@Override
+	public <T> ParamConverter<T> getConverter(Class<T> rawType, Type genericType, Annotation[] annotations) {
+		if(Date.class.isAssignableFrom(rawType)) {
+			return new ParamConverter<T>() {
+				@SuppressWarnings("unchecked")
+				@Override
+				public T fromString(String value) {
+					try {
+						return value == null ? null : (T) DF.get().parse(value);
+					} catch (ParseException ex) {
+						throw new RuntimeException(ex);
+					}
+				}
+
+				@Override
+				public String toString(T value) {
+					return DF.get().format((Date) value);
+				}
+			};
+		}
+		return null;
+	}
+
+}
+
+-----------------------
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.convert.support.DefaultConversionService;
+import org.springframework.stereotype.Component;
+
+@Component
+public class XxxConversionService extends DefaultConversionService implements ApplicationContextAware, InitializingBean {
+
+	private ApplicationContext applicationContext;
+
+	@Override
+	public void afterPropertiesSet() {
+		for (Converter<?, ?> converter : applicationContext.getBeansOfType(Converter.class).values()) {
+			addConverter(converter);
+		}
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
+	
+}
+
+-----------------------
+
+
+
+
+
+
+
+
+
+
+-----------------------
+
+
+
+
+
+-----------------------
+
+
+
+
+
+-----------------------
+
+
+
+
+
+
+
+
+
+-----------------------
 
 
 
@@ -374,15 +598,5 @@ public class XxxRestResourceConfig extends ResourceConfig {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+-----------------------
 
