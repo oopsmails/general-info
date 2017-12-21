@@ -133,7 +133,94 @@ Create pull request
 another commit ...
 
 
+-----------------------------------------------------
 
+
+==> Git stash
+https://git-scm.com/book/en/v1/Git-Tools-Stashing
+https://www.atlassian.com/git/tutorials/git-stash
+
+
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+        .......
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a1e17dc..7f3ca55
+
+$ git stash
+Saved working directory and index state WIP on develop ....
+
+$ git status
+On branch develop
+Your branch is behind 'origin/develop' by 83 commits, and can be fast-forwarded.
+.........
+
+$ git pull
+Updating a1e17dc..7f3ca55
+......
+
+$ git stash list
+stash@{0}: WIP on develop ......
+
+
+$ git stash show
+ ...........
+ 3 files changed, 78 insertions(+)
+
+$ git stash pop
+Auto-merging ......
+CONFLICT (content): Merge conflict in file1...
+Auto-merging file2
+Auto-merging file3
+
+$ git status
+On branch develop
+Your branch is up-to-date with 'origin/develop'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   file2
+        modified:   file3
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   file1 <----------------------------- here
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+..................
+
+
+--> manually merge the file, also can use vs code to merge
+
+
+$ git reset
+Unstaged changes after reset:
+M       lib/sandbox/app/app.module.ts
+M       lib/sandbox/app/components-examples.component.html
+M       lib/sandbox/app/components-examples.component.ts
+
+
+--> cleaning stash
+
+git stash drop stash@{0}
+
+git stash clear
+
+
+----------------------------------------------
+--> git stash apply
+You can reapply the one you just stashed by using the command shown in the help 
+output of the original stash command: git stash apply. If you want to apply one 
+of the older stashes, you can specify it by naming it, like this: 
+git stash apply stash@{2}. 
+If you don’t specify a stash, Git assumes the most recent stash and tries to apply it
+
+------------------------------------------------
 
 
 
