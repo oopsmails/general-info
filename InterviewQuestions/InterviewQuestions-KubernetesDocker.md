@@ -6,9 +6,9 @@ Many thanks to who has shared these!!!
 
 - https://containerjournal.com/2019/01/14/kubernetes-vs-docker-a-primer/ 
 
-![VMWare and Docker](https://bdlguu0syu1idj5d2b4m53mv-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/KubernetesDockerpic1.png)
+![VMWare and Docker](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/HypervisorVsDocker.png)
 
-![Kubernetes Structure](https://bdlguu0syu1idj5d2b4m53mv-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/KubernetesDockerpic2.png)
+![Kubernetes Structure](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/InterviewQuestions-KubernetesDocker.md)
 
 
 
