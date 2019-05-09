@@ -149,7 +149,7 @@ Answer: As soon as a promise is made, the execution takes place. However, this i
 
 Answer: You can draw some like this:
 
-![Overview-of-Angular-architecture](https://hackr.io/blog/wp-content/uploads/2018/11/Overview-of-Angular-architecture.png)
+![Overview-of-Angular-architecture](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/Overview-of-Angular-architecture.png)
 
 
 - Question: What is AOT (Ahead-Of-Time) Compilation?

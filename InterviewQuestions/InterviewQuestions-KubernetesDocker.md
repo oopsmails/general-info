@@ -8,7 +8,7 @@ Many thanks to who has shared these!!!
 
 ![VMWare and Docker](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/HypervisorVsDocker.png)
 
-![Kubernetes Structure](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/InterviewQuestions-KubernetesDocker.md)
+![Kubernetes Structure](https://github.com/oopsmails/general-info/blob/master/InterviewQuestions/Kubernetes-Structure.png)
 
 
 
