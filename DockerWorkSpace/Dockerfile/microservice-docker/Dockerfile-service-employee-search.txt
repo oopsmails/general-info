@@ -1,0 +1,7 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+RUN apk --no-cache add netcat-openbsd
+COPY files/microservice-docker-service-employee-search-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-service-employee-search.jar
+COPY files/employeeSearch-entrypoint.sh /usr/bin/microservice-docker/
+RUN chmod 755 /usr/bin/microservice-docker/employeeSearch-entrypoint.sh
+EXPOSE 8080

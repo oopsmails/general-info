@@ -1,0 +1,8 @@
+FROM alpine:edge
+MAINTAINER oopsmails.com
+RUN apk add --no-cache bash
+RUN apk add --no-cache curl
+RUN apk add --no-cache openjdk8
+RUN apk add --no-cache netcat-openbsd
+COPY files/UnlimitedJCEPolicyJDK8/* \
+  /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/

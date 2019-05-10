@@ -1,0 +1,227 @@
+
+
+Docker: https://docker-curriculum.com/
+
+====> Docker for Windows 10 or Docker Toolbox ...
+--> Windows 10 Home, can only use Docker Toolbox
+
+
+====> 
+
+C:\Users\liu>docker run hello-world
+docker: error during connect: Post http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.37/containers/create: open //./pipe/docker_engine: The system cannot find the file specified. In the default daemon configuration on Windows, the docker client must be run elevated to connect. This error may also indicate that the docker daemon is not running.
+See 'docker run --help'.
+
+C:\Users\liu>docker version
+Client:
+ Version:       18.03.0-ce
+ API version:   1.37
+ Go version:    go1.9.4
+ Git commit:    0520e24302
+ Built: Fri Mar 23 08:31:36 2018
+ OS/Arch:       windows/amd64
+ Experimental:  false
+ Orchestrator:  swarm
+error during connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.37/version: open //./pipe/docker_engine: The system cannot find the file specified. In the default daemon configuration on Windows, the docker client must be run elevated to connect. This error may also indicate that the docker daemon is not running.
+
+--> 
+Start, Docker Quickstart Terminal, then
+
+Creating client certificate: C:\Users\liu\.docker\machine\certs\cert.pem
+
+
+Start interactive shell
+
+liu@DellSmall MINGW64 /c/Github
+$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+ca4f61b1923c: Pull complete
+Digest: sha256:97ce6fa4b6cdc0790cda65fe7290b74cfebd9fa0c9b8c38e979330d547d22ce1
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+ 
+ 
+====> Always use "Docker Quickstart Terminal"!
+
+docker pull busybox
+
+docker run busybox echo "hello from busybox"
+
+docker ps -a
+
+---
+docker images
+
+docker ps -a
+
+if want to stop, then, docker stop 34ecf6688e50
+
+docker rm 305297d7a235 ff0a5c3750b9
+
+docker rm $(docker ps -a -q -f status=exited)
+
+
+
+docker images
+
+--> delete images
+
+pre-condition:
+-- stop all: 
+docker rm $(docker ps -a -q -f status=exited)
+-- or stop the deleting one
+docker ps -a
+docker stop 3dd652dcb472
+
+-- list
+$ docker images
+REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+mongo                     latest              5b1317f8158f        2 weeks ago         366MB
+busybox                   latest              f6e427c148a7        4 weeks ago         1.15MB
+hello-world               latest              f2a91732366c        4 months ago        1.85kB
+prakhar1989/static-site   latest              f01030e1dcf3        2 years ago         134MB
+
+-- delete all
+docker image prune -a
+
+
+-- delete by IMAGE ID
+docker rmi f6e427c148a7
+
+-- delete by REPOSITORY name
+docker rmi hello-world
+
+
+-----
+
+Error:
+docker quick start terminal, hangs waiting for an ip
+
+Solution:
+- Oracle VM VirtualBox Manager, default, Machine -> Close -> Power off
+- Open Docker Quickstart Terminal, will be ok now and Oracle VM, showing default is ON now.
+
+
+
+
+
+
+
+---
+
+====> example:
+docker run prakhar1989/static-site
+
+docker run -d -P --name static-site prakhar1989/static-site
+
+docker port static-site
+
+
+docker run -p 8888:80 prakhar1989/static-site
+--> 192.168.99.100:8888
+
+
+
+======================================================================
+
+====> run MongoDB
+
+docker run -p 27017:27017 mongo
+--> will generate, ~/data, /c/Users/liu/data
+
+
+-d: run as a daemon
+docker run -d -p 27017:27017 mongo
+
+
+
+mkdir ~/data
+sudo docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+
+
+https://www.thachmai.info/2015/04/30/running-mongodb-container/
+
+DOCKER RUN command syntax
+The docker run -d -p 27017:27107 -v ~/data:/data/db mongo does 3 main things:
+
+-d tells docker to run the container as a daemon, which is the mode that'll you want to use for server containers.
+-p 27017:27107 maps the port 27017 of the container to the port 27017 of the host. The syntax is -p HOST_PORT:CONTAINER_PORT.
+-v ~/data:/data/db maps the /data/db directory of the container to the ~/data directory on the host. This is called a data volume, the principal mechanism to import and export data with your docker container.
+How do you know which port(s) the container expose and which directory the container uses to store data? What I did was simply reading the Dockerfile. Look for the VOLUME command to know what directory the container uses for its data. The EXPOSE command tells you which network port(s) the container listens on.
+
+
+====> run MySql
+
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+
+docker run --name albert-mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql:latest
+
+
+the MySQL container starts in detached / background mode because we started the container with the -d flag. As previously covered, this means the running container won't take over the current terminal session.
+
+
+
+
+
+docker stop {container id}
+docker rm {container id}
+docker volume rm crv_mysql
+
+
+
+
+- Pulling the image
+docker pull mysql/mysql-server:latest
+
+- Deploying the container
+docker run --name=mysql01 -d mysql/mysql-server:latest
+
+- The MySQL password
+docker logs mysql01
+
+- Logging into the MySQL Server
+docker exec -it mysql01 mysql -uroot -p
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
+
+
+
+
+
+docker rm -f test-mysql
+docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=mypassword" --publish 6603:3306 mysql
+
+
+
+
+
+
+
+
+
+
+
+
+
+

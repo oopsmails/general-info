@@ -1,0 +1,159 @@
+
+
+docker pull mysql/mysql-server:latest
+
+docker run --name=mysql01 -d mysql/mysql-server:latest
+
+docker logs mysql01
+
+winpty docker exec -it mysql01 mysql -uroot -p
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'test123';
+
+
+
+docker run --name mysql01 -e MYSQL_ROOT_PASSWORD=test123 -d mysql/mysql-server:latest
+
+--> using above, cannot connect .... 
+
+
+The --mount command has been covered in a previous video. Here we mount the local volume crv_mysql as the path /var/lib/mysql inside the running container. Any data we now add to our devdb database should be preserved even if the container itself is removed.
+
+
+
+docker volume create dvol_mysql
+
+docker run \
+    --env-file /d/Dockerfile/env/run-mysql-env.txt \
+    --mount type=volume,src=dvol_mysql,dst=/var/lib/mysql \
+    -p 3306:3306 \
+    -d \
+    mysql/mysql-server:latest
+
+
+--
+
+--> OK!!!, not saving data <--------------------- see the one with saving data!!!!
+docker run --env-file /d/Dockerfile/env/run-mysql-env.txt --mount type=volume,src=dvol_mysql,dst=//d/DockerVB/MySql -p 3306:3306 -d mysql/mysql-server:latest
+
+
+
+docker run --env-file //d/Dockerfile/env/run-mysql-env.txt --mount type=volume,src=dvol_mysql,dst=//d/DockerVB/MySql -p 3306:3306 -d mysql/mysql-server:latest
+
+
+
+--> not working in git bash, but ok with command, still not saving.
+docker run --env-file D:/Dockerfile/env/run-mysql-env.txt --mount type=volume,src=dvol_mysql,dst=/D:/DockerVB/MySql -p 3306:3306 -d mysql/mysql-server:latest
+
+
+
+
+
+docker run -d \
+--name mysql01 \
+--env-file /d/Dockerfile/env/run-mysql-env.txt \
+-v dvol_mysql:/mysql \
+-p 3306:3306 \
+mysql/mysql-server:latest
+
+
+--> ok, but not saving
+
+docker run -d \
+--name mysql01 \
+--env-file /d/Dockerfile/env/run-mysql-env.txt \
+-v dvol_mysql:/mysql \
+-p 3306:3306 \
+mysql/mysql-server:latest
+--ignore-db-dir=lost+found
+
+
+
+--> ok, but not saving
+
+winpty docker run -it --name mysql01 --env-file /d/Dockerfile/env/run-mysql-env.txt -v dvol_mysql://d/DockerVB/MySql -p 3306:3306 mysql/mysql-server:latest --ignore-db-dir lost+found
+
+
+--> ok, but not saving
+docker run \
+--name mysql01 \
+--env-file /d/Dockerfile/env/run-mysql-env.txt \
+-v //d/DockerVB/MySql:/var/lib/mysql \
+-p 3306:3306 \
+mysql/mysql-server:latest
+
+
+--> Working and Saving data !!!!!!!!!!!!!!!!!!!!!! <---------------------------------------- should be used!!!!!!!!!
+
+--> Key point, create volume first and target is "//var/lib/mysql", "//" is for Windows and this path is MySql default, NOT volume storage path!
+
+docker volume create dvol_mysql
+
+docker run -d \
+--name mysql01 \
+--env-file /c/Dockerfile/env/run-mysql-env.txt \
+--mount type=volume,source=dvol_mysql,target=//var/lib/mysql \
+-p 3306:3306 \
+mysql/mysql-server:latest
+
+
+
+winpty docker exec -it acee87697e22 bash
+
+docker run -d --name nginx -v /usr/share/nginx/html nginx
+
+
+docker volume inspect dvol_mysql
+
+
+
+--> after setting "Shared Folder" in the settings menu of "Oracle VM VirtualBox Manager", /DockerVB/MySql exists.
+docker run --env-file /d/Dockerfile/env/run-mysql-env.txt --mount type=volume,src=dvol_mysql,dst=/DockerVB/MySql -p 3306:3306 -d mysql/mysql-server:latest
+
+
+
+jdbc:mysql://192.168.99.100:3306/devdb
+
+dbuser/test123
+
+
+=========================================================
+
+==> Error:
+$ docker pull mysql/mysql-server:latest
+Error response from daemon: Get https://registry-1.docker.io/v2/mysql/mysql-server/manifests/latest: Get https://auth.docker.io/token?scope=repository%3Amysql%2Fmysql-server%3Apull&service=registry.docker.io: remote error: tls: handshake failure
+
+
+https://registry-1.docker.io/v2/mysql/mysql-server/manifests/latest
+
+curl -v https://registry-1.docker.io/v2
+
+* successfully set certificate verify locations:
+*   CAfile: C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+  CApath: none
+* TLSv1.2 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+
+
+Solution:
+internet is not stable, ok after restart laptop. ???
+
+ERR_SSL_VERSION_OR_CIPHER_MISMATCH: maybe Delete Browser Cache and Cookies.
+
+
+
+
+==> Error:
+
+2018-04-10T15:29:55.573177Z 0 [ERROR] Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!
+
+Solution:
+image damaged! delete old image and pull again!
+
+
+
+
+
+
+
+

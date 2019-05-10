@@ -1,0 +1,7 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+COPY files/microservice-docker-zuul-server-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-zuul-server.jar
+ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": {"defaultZone": "http://microservicedocker-eurekaserver:9091/eureka/"}}}, "spring": {"cloud": {"config": {"uri": "http://microservicedocker-configserver:9090"}}}}'
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-zuul-server.jar"]
+EXPOSE 8084

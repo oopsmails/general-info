@@ -1,0 +1,11 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+RUN apk --no-cache add netcat-openbsd
+COPY files/microservice-docker-service-employee-dashboard-1.0-SNAPSHOT.jar  /opt/lib/microservice-docker/microservice-docker-service-employee-dashboard.jar
+COPY files/employeeDashboard-entrypoint.sh /opt/bin/microservice-docker/
+RUN chmod 755 /opt/bin/microservice-docker/employeeDashboard-entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-service-employee-dashboard.jar"]
+
+EXPOSE 8081

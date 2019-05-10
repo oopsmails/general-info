@@ -1,0 +1,7 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+COPY files/microservice-docker-eureka-server-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-eureka-server.jar
+ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": {"defaultZone": "http://microservicedocker-eurekaserver:9091/eureka/"}}}'
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-eureka-server.jar"]
+EXPOSE 9091

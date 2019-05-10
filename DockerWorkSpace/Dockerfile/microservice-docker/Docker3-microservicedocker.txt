@@ -1,0 +1,344 @@
+<parent>
+		<artifactId>microservice-docker</artifactId>
+		<groupId>com.oopsmails.spring.cloud</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+---
+microservice-docker-config-server
+
+com.oopsmails.spring.cloud.microservicedocker.configserver
+
+MicroserviceDockerConfigServerApplication
+
+http://localhost:9090/service-employee-dashboard/development
+http://localhost:9090/service-employee-dashboard/default
+
+---
+
+microservice-docker-eureka-server
+
+com.oopsmails.spring.cloud.microservicedocker.eurekaserver
+
+MicroserviceDockerEurekaServerApplication
+
+http://localhost:9091/
+
+2018-04-04 17:11:14.716  INFO 10028 --- [on(4)-127.0.0.1] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://localhost:8888
+2018-04-04 17:11:15.714  WARN 10028 --- [on(4)-127.0.0.1] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/EmployeeEurekaServer/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+
+
+
+---
+
+microservice-docker-service-employee-search
+
+com.oopsmails.spring.cloud.microservicedocker.service.employeesearch
+
+MicroserviceDockerServiceEmployeeSearchApplication 
+
+spring.application.name=service-employee-search
+
+--> 404: not found, go through eureka, 
+http://localhost:8080/service-employee-search/employee/find/1
+
+--> ok
+http://localhost:8080/employee/find/1
+
+
+---
+
+microservice-docker-service-employee-dashboard
+
+com.oopsmails.spring.cloud.microservicedocker.service.employeedashboard
+
+MicroserviceDockerServiceEmployeeDashboardApplication 
+
+spring.application.name=service-employee-dashboard
+
+--> 404: not found, go through eureka, 
+http://localhost:8082/service-employee-dashboard/feign/1
+http://localhost:8082/service-employee-dashboard/dashboard/feign/1
+
+--> ok
+http://localhost:8082/dashboard/feign/1
+
+
+
+---
+
+microservice-docker-zuul-server
+
+com.oopsmails.spring.cloud.microservicedocker.zuulserver
+
+MicroserviceDockerZuulServerApplication
+
+zuul.routes.employeeui.serviceId=service-employee-dashboard
+
+http://localhost:8084/employeeui/dashboard/feign/1
+
+===========================================
+
+Docker
+
+copy *server-1.0-SNAPSHOT.jar *server.jar
+
+docker build --file=Dockerfile-configserver.txt --tag=microservicedocker-configserver:latest --no-cache --force-rm .
+
+--> after failed build run, to delete <none> images
+docker rmi $(docker images -f "dangling=true" -q)
+
+docker volume create --name=microservice-docker-config-repo
+
+docker run -d --name=microservicedocker-configserver --publish=9090:9090 \
+     --volume=microservice-docker-config-repo:/var/lib/microservice-docker/config-repo \
+     microservicedocker-configserver:latest
+--
+
+http://192.168.99.100:9090/service-employee-dashboard/default
+
+
+-----------------------------------
+
+
+docker build --file=Dockerfile-eurekaserver.txt --tag=microservicedocker-eurekaserver:latest --no-cache --rm=true .
+
+docker run --name=microservicedocker-eurekaserver --publish=9091:9091 microservicedocker-eurekaserver:latest
+
+http://192.168.99.100:9091
+
+
+-----------------------------------
+
+docker build --file=Dockerfile-service-employee-search.txt --tag=microservicedocker-service-employeesearch:latest --no-cache --rm=true .
+
+docker run --name=microservicedocker-service-employeesearch --publish=8080:8080 microservicedocker-service-employeesearch:latest
+
+http://192.168.99.100:8080/employee/find/1
+
+
+
+
+
+Note:
+
+1. The container starts and dies immidiately! And, no log in "docker logs $container_id"
+
+Without ENTRYPOINT ["/opt/bin/microservice-docker/employeeSearch-entrypoint.sh"] in Dockerfile-service-employee-search.txt
+then, after starting, it will down automatically!
+
+The Dokerfile is not with that because Dockerfile-service-employee-search will be run in docker compose!
+If we want to run it in a separate container, then there has to be an entrypoint, otherwise, container will be down after executing all commands.
+
+2. Error in shell script, nc -z config-server 9090, for example
+Error: nc: getaddrinfo: Name does not resolve
+
+This is once again because the shell script is only for running docker compose, when config-server 9090 is really available.
+If we want to run it in a separate container, need to use "nc -z 192.168.99.100 9091".
+Of course, there are many other changes needed if running in separate container, e.g, eureka-server name ..., this is solved by same "networks"
+
+3. Debugging container dies, without no log ...
+
+--> for testing, e.g, put following in Dockerfile
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-version"]
+
+--> or, put following in Dockerfile to make container running without dying, then use "winpty docker exec -it c654e69fa431 bash" to check if everything is working fine, including nc command, file structure, etc.
+
+COPY files/microservice-docker-eureka-server-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-eureka-server.jar
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-eureka-server.jar"]
+
+4. Error, eureka showing a service registered as unknown
+
+Missing spring.application.name, or missing bootstrap.yml file, or having two in both application.yml and bootstrap.yml
+
+5. standard_init_linux.go:190: exec user process caused "no such file or directory"
+
+Note the shell script should be Unix, i.e, LF instead of CRLF
+
+
+-----------------------------------
+
+docker-compose config
+
+docker-compose up --build
+
+docker-compose down
+
+docker-compose restart microservicedocker-service-employeesearch
+docker-compose restart microservicedocker-eurekaserver
+
+
+
+docker-compose stop microservicedocker-service-employeesearch
+docker-compose stop microservicedocker-service-employeedashboard
+
+
+docker-compose start microservicedocker-service-employeesearch
+
+
+-----------------------------------
+
+
+
+-----------------------------------
+
+
+
+docker events & --> to see container events
+docker logs $container_id --> to read container logs
+docker inspect $container_id --> to view details on the state
+
+
+winpty docker exec -it ad4b700d418a ls --> working!!!!!!!!!!!
+winpty docker exec -it 34e489fcd8e9 bash --> working!!!!!!!!!!! after add bash into alpine image
+winpty docker exec -it 8144d72a486e /bin/sh --> 
+
+
+
+
+
+
+
+====================================== "http://config-server:9090" =================
+
+may need to change to 
+
+
+microservicedocker-configserver
+
+
+
+
+
+docker rmi microservicedocker-service-employeedashboard
+docker rmi microservicedocker-zuulserver
+docker rmi microservicedocker-eurekaserver
+docker rmi microservicedocker-configserver
+docker rmi microservicedocker-service-employeesearch
+
+docker images -a
+
+
+
+
+http://192.168.99.100:9090/service-employee-dashboard/default
+
+
+docker logs 7af463132773 > log.zuul.txt
+docker logs e83a1db7e825 > log.employee-dashboard.txt
+docker logs 34e489fcd8e9 > log.employee-search.txt
+docker logs 79ece5fcbfc6 > log.eureka.txt
+docker logs 9d825ef1560c > log.config.txt
+
+
+======================================================
+find . -name "curl*"
+
+/usr/bin/curl
+
+
+curl http://localhost:9090
+curl http://localhost:9091/eureka
+
+
+curl http://192.168.99.100:9091/eureka > eureka.html
+
+curl -v http://192.168.99.100:9091/eureka --> show headers
+
+
+curl –-header “X-CustomHeader: GeekFlare” http://yoururl.com
+curl --insecure https://yoururl.com --> Connect HTTPS/SSL URL and ignore any SSL certificate error
+
+curl -v http://$(docker-machine ip default):9091/eureka
+
+
+==> 
+docker compose localhost
+
+
+in yml,
+
+"127.0.0.1:5000:5000"
+
+
+curl -v http://microservicedocker-eurekaserver:9091/eureka
+
+curl -v http://microservicedocker-eurekaserver:9091 --> OK
+
+curl -v http://microservicedocker-service-employeesearch:8080/employee/find/1
+
+
+curl -v http://192.168.99.100:8080/employee/find/1
+curl -v http://microservicedocker-service-employeesearch:8080/employee/find/1
+
+
+
+
+curl -v http://192.168.99.100:8082/dashboard/feign/1
+
+curl -v http://192.168.99.100:8081/dashboard/feign/1
+curl http://root:s3cr3t@localhost:8888/config-client/development/master
+
+curl -X POST http://localhost:8080/refresh
+curl -X POST http://localhost:9090/refresh
+
+
+curl -X "GET" "http://localhost:8888/myapp/default" -H "X-Config-Token: yourtoken"
+
+===================================
+
+http://192.168.99.100:9090/service-employee-dashboard/default
+
+http://192.168.99.100:9091/eureka --> not working, ???
+http://192.168.99.100:9091
+
+http://192.168.99.100:8080/employee/find/1
+
+http://192.168.99.100:8081/dashboard/feign/1
+
+http://192.168.99.100:8084/employeeui/dashboard/feign/1
+
+--> All OK!!!
+
+docker-compose up --build > docker-compose.log
+tail -f docker-compose.log
+
+
+
+
+service-employee-search.properties
+service-employee-search-development.properties
+
+development
+
+
+http://localhost:8085/employee/find/1
+http://localhost:8082/dashboard/feign/1
+http://localhost:8084/employeeui/dashboard/feign/1
+http://localhost:9091/
+http://localhost:9090/service-employee-dashboard/development
+http://localhost:9090/service-employee-search/development
+
+
+
+
+http://192.168.99.100:9090/service-employee-dashboard/default
+http://192.168.99.100:9091/
+http://192.168.99.100:8080/employee/findall
+http://192.168.99.100:8081/dashboard/feign/2
+http://192.168.99.100:8084/employeeui/dashboard/feign/1
+http://192.168.99.100:8080/configserver/msg
+http://192.168.99.100:8081/configserver/msg
+
+
+
+
+
+
+
+
+
+
+

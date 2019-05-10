@@ -1,0 +1,6 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+COPY files/microservice-docker-zuul-server-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-zuul-server.jar
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-zuul-server.jar"]
+EXPOSE 8084

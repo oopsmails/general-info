@@ -1,0 +1,98 @@
+version: '2.2'
+services:
+    microservicedocker-configserver:
+        container_name: microservicedocker-configserver
+        build:
+            context: .
+            dockerfile: Dockerfile-configserver.txt
+        image: microservicedocker-configserver:latest
+        expose:
+            - 9090
+        ports:
+            - 9090:9090
+        networks:
+            - emp-network
+        volumes:
+            - microservice-docker-config-repo:/var/lib/microservice-docker/config-repo
+    microservicedocker-eurekaserver:
+        container_name: microservicedocker-eurekaserver
+        build:
+            context: .
+            dockerfile: Dockerfile-eurekaserver.txt
+        image: microservicedocker-eurekaserver:latest
+        expose:
+            - 9091
+        ports:
+            - 9091:9091
+        networks:
+            - emp-network
+    microservicedocker-service-employeesearch:
+        container_name: microservicedocker-service-employeesearch
+        build:
+            context: .
+            dockerfile: Dockerfile-service-employee-search.txt
+        image: microservicedocker-service-employeesearch:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"server": {"port": 8080}, "eureka": {"client": {"serviceUrl": {"defaultZone": "http://microservicedocker-eurekaserver:9091/eureka/"}}}, "spring": {"cloud": {"config": {"uri": "http://microservicedocker-configserver:9090"}}}}'
+        expose:
+            - 8080
+        ports:
+            - 8080:8080
+        networks:
+            - emp-network
+        links:
+            - microservicedocker-configserver:microservicedocker-configserver
+            - microservicedocker-eurekaserver:microservicedocker-eurekaserver
+        depends_on:
+            - microservicedocker-configserver
+            - microservicedocker-eurekaserver
+        logging:
+            driver: json-file
+    microservicedocker-service-employeedashboard:
+        container_name: microservicedocker-service-employeedashboard
+        build:
+            context: .
+            dockerfile: Dockerfile-service-employee-dashboard.txt
+        image: microservicedocker-service-employeedashboard:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"server": {"port": 8081}, "eureka": {"client": {"serviceUrl": {"defaultZone": "http://microservicedocker-eurekaserver:9091/eureka/"}}}, "spring": {"cloud": {"config": {"uri": "http://microservicedocker-configserver:9090"}}}}'
+        expose:
+            - 8081
+        ports:
+            - 8081:8081
+        networks:
+            - emp-network
+        links:
+            - microservicedocker-configserver:microservicedocker-configserver
+            - microservicedocker-eurekaserver:microservicedocker-eurekaserver
+        depends_on:
+            - microservicedocker-configserver
+            - microservicedocker-eurekaserver
+        logging:
+            driver: json-file
+    microservicedocker-zuulserver:
+        container_name: microservicedocker-zuulserver
+        build:
+            context: .
+            dockerfile: Dockerfile-zuulserver.txt
+        image: microservicedocker-zuulserver:latest
+        expose:
+            - 8084
+        ports:
+            - 8084:8084
+        networks:
+            - emp-network
+        links:
+            - microservicedocker-eurekaserver:microservicedocker-eurekaserver
+        depends_on:
+            - microservicedocker-eurekaserver
+        logging:
+            driver: json-file
+networks:
+    emp-network:
+        driver: bridge
+volumes:
+     microservice-docker-config-repo:
+        external: true
+
+

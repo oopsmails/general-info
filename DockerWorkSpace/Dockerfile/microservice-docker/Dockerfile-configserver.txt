@@ -1,0 +1,12 @@
+FROM alpine-java:base
+MAINTAINER oopsmails.com
+COPY files/microservice-docker-config-server-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-config-server.jar
+COPY files/config-repo /var/lib/microservice-docker/config-repo
+
+ENV SPRING_APPLICATION_JSON='{"management": {"security": {"enabled": false}}, "spring": {"profiles": {"active": "native"}, "cloud": {"config": {"server": \
+	{"native": {"searchLocations": "/var/lib/microservice-docker/config-repo"}}}}}}'
+
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-config-server.jar"]
+VOLUME /var/lib/microservice-docker/config-repo
+EXPOSE 9090
