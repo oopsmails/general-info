@@ -6,9 +6,23 @@ COPY files/spring-cloud-microservices-eurekaserver-1.0-SNAPSHOT.jar /opt/lib/mic
 COPY files/entrypoint-eurekaserver.sh /usr/bin/microservice-docker/
 
 # ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": {"defaultZone": "http://microservicedocker-eurekaserver:8761/eureka/"}}}, "spring": {"cloud": {"config": {"uri": "http://microservicedocker-configserver:8888"}}}}'
-ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": \ 
-    {"defaultZone": "http://microservicedocker-eurekaserver:8761/eureka/"}}}, \
-    "spring": {"cloud": {"config": {"uri": "http://microservicedocker-configserver:8888"}}}}'
+ENV SPRING_APPLICATION_JSON=' \
+{ \
+    "spring": \
+    { \
+        "application": \
+        { \
+            "name": "discovery-service" \
+        }, \
+        "cloud": \
+        { \
+            "config": \
+            { \
+                "uri": "http://microservicedocker-configserver:8888" \
+            } \
+        } \
+    } \
+}'
 
 ENTRYPOINT ["/usr/bin/java"]
 

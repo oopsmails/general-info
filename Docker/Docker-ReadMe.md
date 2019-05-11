@@ -19,7 +19,7 @@ https://medium.com/@lhartikk/development-environment-in-spring-boot-with-docker-
 docker build -t oopsmails/backendmock .  
 
 - docker run  
-docker run -p externalport:internalport oopsmails/backendmock  
+docker run -p externalport:internalport oopsmails/backendmock --name oopsmails/backendmock  
 docker run -p 49080:29080 oopsmails/backendmock
 
 docker run -p 49080:29080 dockerbootdemo
