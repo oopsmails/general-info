@@ -112,7 +112,7 @@ More information: RFC 6749 — Authorization Code Grant.
 #### Sequence diagram:
 Authorization Code Grant Flow
 
-![Authorization Code Grant Flow](http://www.bubblecode.net/wp-content/uploads/2013/03/auth_code_flow.png)
+![Authorization Code Grant Flow](https://github.com/oopsmails/general-info/blob/master/OAuth2/auth_code_flow.png)
 
 ### Implicit Grant
 
@@ -144,7 +144,7 @@ More information: RFC 6749 — Implicit Grant.
 Sequence diagram:
 Implicit Grant Flow
 
-![Implicit Grant Flow](http://www.websequencediagrams.com/index.php?png=msc4EnD5B)
+![Implicit Grant Flow](https://github.com/oopsmails/general-info/blob/master/OAuth2/implicit_flow.png)
 
 ### Resource Owner Password Credentials Grant
 
@@ -171,7 +171,7 @@ More information: RFC 6749 — Resource Owner Password Credentials Grant.
 Sequence diagram:
 Resource Owner Password Credentials Grant Flow
 
-![Resource Owner Password Credentials Grant Flow](http://www.bubblecode.net/wp-content/uploads/2013/03/implicit_flow.png)
+![Resource Owner Password Credentials Grant Flow](https://github.com/oopsmails/general-info/blob/master/OAuth2/password.png)
 
 ### Client Credentials Grant
 
@@ -193,7 +193,7 @@ More information: RFC 6749 — Client Credentials Grant.
 
 #### Sequence diagram:
 Client Credentials Grant Flow
-![Client Credentials Grant Flow](http://www.bubblecode.net/wp-content/uploads/2013/03/client_credentials_flow.png)
+![Client Credentials Grant Flow](https://github.com/oopsmails/general-info/blob/master/OAuth2/client_credentials_flow.png)
 
 ## Access token usage
 The access token can be sent in several ways to the resource server.
@@ -253,7 +253,7 @@ This technique allows the attacker to cheat by hiding the authorization page in 
 Example:
 OAuth2 Clickjacking
 
-![OAuth2 Clickjacking](imgLink)
+![OAuth2 Clickjacking](https://github.com/oopsmails/general-info/blob/master/OAuth2/oauth2_clickjacking.png)
 
 Workaround:
 To avoid this, it is necessary that the authorization server returns a header named X-Frame-Options on the authorization page with the value DENY or SAMEORIGIN. This prevents the authorization page to be displayed in an iframe (DENY) or requires consistency between the domain name of the main page and the domain name specified in the iframe “src” attribute (SAMEORIGIN).
