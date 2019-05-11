@@ -95,4 +95,33 @@ To find Configuration Server:
 
 
 
+### Only run Zuul Server docker image, OK
+
+#### Build
+`docker build -f Dockerfile-authserver.txt -t microservicedocker-authserver .`  
+
+#### Run
+
+Using:  
+`docker run -d --name microservicedocker-authserver --link microservicedocker-configserver:microservicedocker-configserver --link microservicedocker-eurekaserver:microservicedocker-eurekaserver -p 7777:7777 microservicedocker-authserver`
+
+#### Verify
+
+http://192.168.99.100:8761/  
+
+#### Explain  
+
+Similar to Zuul Server 
+
+
+
+
+
+
+
+
+
+microservicedocker-authserver
+
+
 
