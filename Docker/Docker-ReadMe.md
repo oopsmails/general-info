@@ -27,6 +27,7 @@ docker run -p 49080:29080 dockerbootdemo
 - run background  
 docker run -d -p 49080:29080 dockerbootdemo  
 docker run -d -p 49080:29080 oopsmails/backendmock  
+docker run -d -p 49080:29080 oopsmails/backendmock --name oopsmails/backendmock  
 
 39080/tcp, 0.0.0.0:49080->29080/tcp:  
 
