@@ -1,0 +1,59 @@
+version: '2.2'
+services:
+    microservicedocker-configserver:
+        container_name: microservicedocker-configserver
+        build:
+            context: .
+            dockerfile: Dockerfile-configserver.txt
+        image: microservicedocker-configserver:latest
+        expose:
+            - 8888
+        ports:
+            - 8888:8888
+        networks:
+            - emp-network
+        volumes:
+            - microservice-docker-config-repo:/var/lib/microservice-docker/config-repo
+    microservicedocker-eurekaserver:
+        container_name: microservicedocker-eurekaserver
+        build:
+            context: .
+            dockerfile: Dockerfile-eurekaserver.txt
+        image: microservicedocker-eurekaserver:latest
+        expose:
+            - 8761
+        ports:
+            - 8761:8761
+        networks:
+            - emp-network
+        links:
+            - microservicedocker-configserver:microservicedocker-configserver
+        depends_on:
+            - microservicedocker-configserver
+    microservicedocker-zuulserver:
+        container_name: microservicedocker-zuulserver
+        build:
+            context: .
+            dockerfile: Dockerfile-zuulserver.txt
+        image: microservicedocker-zuulserver:latest
+        expose:
+            - 9999
+        ports:
+            - 9999:9999
+        networks:
+            - emp-network
+        links:
+            - microservicedocker-configserver:microservicedocker-configserver
+            - microservicedocker-eurekaserver:microservicedocker-eurekaserver
+        depends_on:
+            - microservicedocker-eurekaserver
+        logging:
+            driver: json-file
+networks:
+    emp-network:
+        driver: bridge
+volumes:
+     microservice-docker-config-repo:
+        external: true
+
+

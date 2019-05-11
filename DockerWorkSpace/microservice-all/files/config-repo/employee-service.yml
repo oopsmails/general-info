@@ -1,0 +1,18 @@
+server:
+  port: 18084
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+logging:
+  pattern:
+    console: "[%d{MM-dd-yyyy HH:mm:ss,SSS zZ}] [%t] [category=%.50c{3}; prio=%-4p CorrelationId=%X{CorrelationId};] [UserId=%X{UserId}; ] msg=%m%n"
