@@ -1,0 +1,30 @@
+FROM java:8
+
+MAINTAINER oopsmails.com
+
+COPY files/spring-cloud-microservices-employeeservice-1.0-SNAPSHOT.jar /opt/lib/microservice-docker/microservice-docker-service-employee.jar
+
+ENV SPRING_APPLICATION_JSON=' \
+{ \
+    "spring": \
+    { \
+        "application": \
+        { \
+            "name": "employee-service" \
+        }, \
+        "cloud": \
+        { \
+            "config": \
+            { \
+                "uri": "http://microservicedocker-configserver:8888" \
+            } \
+        } \
+    } \
+}'
+
+
+ENTRYPOINT ["/usr/bin/java"]
+
+CMD ["-jar", "/opt/lib/microservice-docker/microservice-docker-service-employee.jar"]
+
+EXPOSE 18084
