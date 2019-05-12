@@ -2,6 +2,13 @@ server:
   port: 7777
 #  context-path: /uaa
 
+spring:
+  application:
+    name: auth-server
+  cloud:
+    config:
+      uri: http://microservicedocker-authserver:8888
+
 eureka:
   client:
     serviceUrl:

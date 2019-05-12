@@ -10,6 +10,22 @@ docker run -d -p
 docker push  
 docker rm  
 docker rmi  
+docker volume prune  
+- Command for restarting all running docker containers?  
+Just run
+
+`docker restart $(docker ps -q)`
+
+Update
+
+For Docker 1.13.1 use `docker restart $(docker ps -a -q)` as in answer lower.
+
+- One liner to stop / remove all of Docker containers:
+```
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+```
+
 
 ### Docker Spring Boot
 

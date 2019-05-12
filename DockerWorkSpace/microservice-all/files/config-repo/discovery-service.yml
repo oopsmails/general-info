@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: microservicedocker-eurekaserver
   server:
     enableSelfPreservation: false
   client:

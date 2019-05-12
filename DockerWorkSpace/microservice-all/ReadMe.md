@@ -46,7 +46,7 @@ in **Dockerfile-configserver.txt**
 `docker build -f Dockerfile-eurekaserver.txt -t microservicedocker-eurekaserver .`  
 
 #### Run
-Not using:  
+---Not using:  
 `docker run -d --name microservicedocker-eurekaserver -p 8761:8761 microservicedocker-eurekaserver`
 
 Using:  
@@ -130,10 +130,67 @@ Using:
 http://192.168.99.100:8761/  
 
 
+## Problem:
+
+### Exception in Zuul server,
+Caused by: java.net.UnknownHostException: da2a0f28cab8: Name or service not known
+
+For example: da2a0f28cab8 is the hostname of auth-server,
+
+Eureca server: 
+
+AUTH-SERVER	n/a (1)	(1)	UP (1) - da2a0f28cab8:auth-server:7777
+
+#### Run in same container:
 
 
+docker run -it -d shykes/pybuilder /bin/bash
 
-microservice-docker-service-employee
+
+docker logs --follow microservicedocker-configserver
+docker logs --follow microservicedocker-eurekaserver
+docker logs --follow microservicedocker-authserver
+docker logs --follow microservicedocker-zuulserver
+docker logs --follow microservicedocker-service-employee
+
+
+# To Be Continued ...
+
+Currently, when frontend click "Login", zuul log, seeing error,
+
+Caused by: java.lang.RuntimeException: java.net.UnknownHostException: fcebb375324f: Name or service not known
+
+Need to, 
+
+- https://stackoverflow.com/questions/44689202/springboot-client-unable-register-with-eureka-using-docker-container-id
+
+- Know how to access Virtual Box, volume ... if can vi those yml files, then don't need to rebuild all the time. Currently, 
+
+```
+$ docker volume inspect ba6e04748d95fdd093af33c961f5edea5c31805be4c4eb8940b2ebb77f355335
+[
+    {
+        "CreatedAt": "2019-05-12T20:24:57Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/mnt/sda1/var/lib/docker/volumes/ba6e04748d95fdd093af33c961f5edea5c31805be4c4eb8940b2ebb77f355335/_data",
+        "Name": "ba6e04748d95fdd093af33c961f5edea5c31805be4c4eb8940b2ebb77f355335",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+Permission denied on "/mnt/sda1/var/lib/docker", current user, docker. How to get root and chmod.
+
+- Start Oracle Virtual Box, 
+`docker restart $(docker ps -a -q)` to start all containers ...
+
+- https://medium.com/@madhupathy/simplified-microservices-building-with-spring-cloud-netflix-oss-eureka-zuul-hystrix-ribbon-2faa9046d054
+
+- docker start config_server_container_id, then eureka, then zuul, then auth, then employee
+
+- 2019-05-12 21:25:46.619 ERROR 1 --- [tbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_DISCOVERY-SERVICE/f9d30cea1b13:discovery-service - was unable to send heartbeat!
+
 
 
 
