@@ -32,7 +32,18 @@ docker rm $(docker ps -a -q)
 https://medium.com/@lhartikk/development-environment-in-spring-boot-with-docker-734ad6c50b34  
 
 - docker build
-docker build -t oopsmails/backendmock .  
+docker build -t oopsmails/backendmock . 
+
+**Using Java or Maven from Host Machine**
+
+In Dockerfile:  
+```
+ENV JAVA_HOME="//c/'Program Files'/Java/jdk1.8.0_121"
+
+ENV MAVEN_HOME="//c/Software/Java/apache-maven-3.6.1"
+```
+
+Then for example, in Jenkins configuration, using "$JAVA_HOME" and "MAVEN_HOME"
 
 - docker run  
 docker run -p externalport:internalport oopsmails/backendmock --name oopsmails/backendmock  
