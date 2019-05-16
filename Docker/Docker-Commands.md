@@ -14,3 +14,4 @@
 1. kill all running containers with docker kill $(docker ps -q)
 1. delete all stopped containers with docker rm $(docker ps -a -q)
 1. delete all images with docker rmi $(docker images -q)
+
