@@ -30,4 +30,5 @@ mvn*
 
 logs/
 .history
-
+.vscode
+DockerWorkSpace/microservice-all/files/*.jar
