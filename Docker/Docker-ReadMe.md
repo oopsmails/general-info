@@ -26,6 +26,37 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 ```
 
+`docker rm $(docker ps -a -f status=exited -q)`
+
+- To delete all containers including its volumes use,
+
+`docker rm -vf $(docker ps -a -q)`
+
+- To delete all the images,
+
+`docker rmi -f $(docker images -a -q)`
+
+- Remove all unused images, not just dangling ones. Add -f option to force.
+
+`docker image prune -a`
+
+
+#### Prune commands:
+
+- The official command to remove all unused data (including volumes without containers) will be with docker 1.13
+
+`docker system prune`  
+
+- If you want to limit to volumes alone, removing only unused volumes:
+
+`docker volume list` -- list first  
+
+`docker volume prune`
+
+- You also have `docker image prune` or docker `container prune`
+
+
+
 
 ### Docker Spring Boot
 
