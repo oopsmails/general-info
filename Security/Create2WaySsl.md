@@ -178,7 +178,7 @@ keytool -importkeystore -srckeystore C:\Temp\Transfer\nt-gateway.jks -destkeysto
 
 https://localhost:9001/nt-gw/data
 https://localhost:9001/nt-gw/ms-data
-https://localhost:9001/nt-ms/data
+https://localhost:9002/nt-ms/data
 
 ## Debugging
 
