@@ -1,9 +1,5 @@
 
-# Run simple nodejs restful api application using Kubernates, local dev machine
-
-https://www.youtube.com/watch?v=DwlIn9zOcfc
-
-https://www.youtube.com/watch?v=CsWoMpK3EtE&pbjreload=10 : make local docker run reloadabe, nodemon
+# Run simple nodejs restful api application using Kubernetes, local dev machine
 
 ## Build sample nodejs app to be used
 
@@ -38,6 +34,8 @@ docker push oopsmails/nodejs-simple-rest:v1
 
 ## Start "minikube"
 
+** Don't start through VM, instead need to run following by command line.
+
 minikube start
 minikube ip
 kubectl version
@@ -66,6 +64,7 @@ $ kubectl version
 Client Version: version.Info{Major:"1", Minor:"14", GitVersion:"v1.14.0", GitCommit:"641856db18352033a0d96dbc99153fa3b27298e5", GitTreeState:"clean", BuildDate:"2019-03-25T15:53:57Z", GoVersion:"go1.12.1", Compiler:"gc", Platform:"windows/amd64"}
 Server Version: version.Info{Major:"1", Minor:"14", GitVersion:"v1.14.3", GitCommit:"5e53fd6bc17c0dec8434817e69b04a25d8ae0ff0", GitTreeState:"clean", BuildDate:"2019-06-06T01:36:19Z", GoVersion:"go1.12.5", Compiler:"gc", Platform:"linux/amd64"}
 
+** minikube dashboard &: need to be run with Docer Terminal (or Git Bash?) to make & working at background, ie., & will not work with windows command line.
 
 $ minikube dashboard &
 [1] 32608
@@ -97,7 +96,7 @@ the "Cluster IP" can be found by `kubectl get svc`
 
 curl get http://10.103.84.70:3000/api 
 
-see Temp-201908-TryKubernates-CurlViaKernal.png
+see Temp-201908-TryKubernetes-CurlViaKernal.png
 
 
 ## Build image v2.0, make changes
@@ -133,7 +132,7 @@ $ kubectl rollout status deployment.extensions/nodejs-simple-rest-deployment
 deployment "nodejs-simple-rest-deployment" successfully rolled out
 
 
-## Kubernates using local docker images
+## Kubernetes using local docker images
 
 https://stackoverflow.com/questions/42564058/how-to-use-local-docker-images-with-minikube
 
@@ -223,4 +222,17 @@ kubectl logs nodejs-simple-rest-deployment-77678bf459-6c2mr
 ===================================
 
 gcloud container clusters create cluster1 --zone=us-central1-f
+
+
+
+==================================================
+
+
+- Thanks to:
+
+https://www.youtube.com/watch?v=DwlIn9zOcfc
+
+https://www.youtube.com/watch?v=CsWoMpK3EtE&pbjreload=10 : make local docker run reloadabe, nodemon
+
+
 
