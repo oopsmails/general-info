@@ -86,10 +86,33 @@ kubectl apply -f nodejs-simple-rest-service.yaml
 
 ## Testing:
 
+- URL:
 $ minikube service nodejs-simple-rest-service --url
 http://192.168.99.101:30100
 
 http://192.168.99.101:30100/api -> working!
+
+
+Also, can go Dashboard, Service, View ymal, 
+
+```
+... ...
+
+"spec": {
+"ports": [
+    {
+    "name": "nodejs-simple-rest-port",
+    "protocol": "TCP",
+    "port": 3000,
+    "targetPort": 3000,
+    "nodePort": 30100
+    }
+],
+"selector": {
+    "app": "nodejs-simple-rest"
+},
+... ...
+```
 
 - Also, can use Virtual Box Manager, preview, command line, Curl, to debug if image is updated.
 the "Cluster IP" can be found by `kubectl get svc`
