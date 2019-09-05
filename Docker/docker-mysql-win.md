@@ -9,7 +9,7 @@ docker pull mysql/mysql-server:latest
 
 ## Step 2: Start running a docker container from MySQL image
 
-- print the logs of mysql1
+- print the logs of mysql
 docker logs mysql1
 
 docker volume create --name=mysqldb
@@ -20,6 +20,13 @@ docker run - name=mysql1 -e MYSQL_ROOT_HOST=% -p 3306:3306 -d mysql/mysql-serv
 
 docker run --name mysqldb -p 3306:3306 -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
+docker run --name mysqldb -p 3306:3306 -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
+
+- Can use intellij datasource to test
+
+jdbc:mysql://192.168.99.100:3306
+
+root/root
 
 Ref: 
 
