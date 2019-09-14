@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <localRepository>/c/cust-repo</localRepository>
+
+  <mirrors>
+    <mirror>
+      <id>centralmirror</id>
+      <name>Apache maven central mirror Spain</name>
+      <url>http://downloads.centralmirror.com/public/maven</url>
+      <mirrorOf>maven_central</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>jcg_mirror</id>
+      <name>Java Code Gueeks Mirror Spain</name>
+      <url>http://downloads.jcgmirror.com/public/jcg</url>
+      <mirrorOf>javacodegeeks_repo</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+
+    <profile>
+      <id>myprofile</id>
+      <repositories>
+        <repository>
+          <id>astrogrid</id>
+          <name>astrogrid repo</name>
+          <url>http://www.astrogrid.org/maven2/</url>
+        </repository>
+      </repositories>
+    </profile>
+
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>myprofile</activeProfile>
+  </activeProfiles>
+
+  <repositories>
+
+    <repository>
+      <id>astrogrid</id>
+      <name>astrogrid</name>
+      <url>http://www.astrogrid.org/maven2/</url>
+    </repository>
+
+  </repositories>
+
+</settings>
