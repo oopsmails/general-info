@@ -53,7 +53,7 @@ or: paste using the middle mouse button
 Use: Command-c and Comment-v
 
 
-====> Create a “Copy Path” Service for the Right-Click Menu
+====> Previous Mojave version: Create a “Copy Path” Service for the Right-Click Menu
 
 http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 
@@ -61,6 +61,14 @@ http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 - Use the search function to look for “Copy to Clipboard” and drag that into the right side panel of the Service
 - Set ‘Service receives selected’ to “files or folders” and ‘in’ to “Finder” as shown in the screen shot below
 - Save the Service with a name like “Copy Path”
+
+====> Mojave: "Copy file path" command in Finder context menu
+
+All you need to do to copy any items path name directly to the clipboard from anywhere in the file system:
+
+- Navigate to the file or folder you wish to copy the path for Right-click (or Control+Click, or a Two-Finger click on trackpads) on the file or folder in the Mac Finder
+- While in the right-click menu, hold down the OPTION key to reveal the “Copy (item name) as Pathname” option, it replaces the standard Copy option Once selected, the file or folders path is now in the clipboard, ready to be pasted anywhere
+The copied pathname is always the complete path, it’s not relative.
 
 
 ====> Using an Automator App to Create a Blank Text File in Any Folder
