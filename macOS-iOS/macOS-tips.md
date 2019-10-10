@@ -139,6 +139,8 @@ Since the release of macOS Sierra, when in Finder, it is now possible to use the
 
 CMD + SHIFT 
 
+CMD + SHIFT + . // to toggle in Mojave
+
 ====> Terminal: Copy and Paste
 
 In Terminal, select something and then within the same Terminal window
