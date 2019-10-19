@@ -318,7 +318,34 @@ Set your window how you would like it,Go to Window > Save Windows as Group... En
 One way to do it isSet your window how you would like it,Go to Window > Save Windows as Group... 
 
 Enter a name next to Save As:Check "Use window group when Terminal starts"Click SaveHowever, after you have launched Terminal, if you chose Terminal > New Window you will still have to resize the window. This is most useful if you want to have multiple terminal windows open at launch.If you go to Terminal > Preferences > Profiles you can create a (or edit an existing) profile for a terminal window by column and row size which is available at the end of the terminal window title bar (Your screenshot shows a window 80 columns wide and 24 rows tall)You can then set that profile to the default by pushing the default button (if the default button is ghosted out that group is already the default): 
-====> 
+
+
+====> windows keyboard on mac
+
+http://osxdaily.com/2018/01/31/use-windows-pc-keyboard-mac-remap-option-command-keys/
+
+Keyboard:
+
+Click the dropdown next to “OPTION Key” and select “Command”
+Click the dropdown next to “COMMAND Key” and select “Option”
+
+Then, use Alt+Shift+., to toggle Show/Hide Hidden Files
+
+====> Find your IP Address via the Mac OS X Terminal
+
+ifconfig |grep inet
+
+====> file sharing:
+
+Choose Apple menu > System Preferences, then click Sharing.
+
+Select the File Sharing checkbox.
+
+smb://192.168.62.128
+afp://192.168.62.128
+
+====> 
+
 
 
 -------------------
