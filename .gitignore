@@ -32,3 +32,6 @@ logs/
 .history
 .vscode
 DockerWorkSpace/microservice-all/files/*.jar
+
+.DS_Store
+

@@ -23,3 +23,7 @@ replace macOS 10.13.vmdk(12xxx KB), with the downloaded image file (6.x GB).
 - Start the VM.
 
 
+- Update to Catalina
+
+https://techsviewer.com/how-to-install-macos-10-15-catalina-on-vmware-on-windows-pc/
+
