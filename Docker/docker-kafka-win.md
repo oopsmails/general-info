@@ -18,6 +18,13 @@ docker run --name kafka -p 2181:2181 -p 3030:3030 -p 9081-9083:8081-8083 -p 9581
 
 http://192.168.99.100:3030/
 
+- if MacOS,
+
+ifconfig |grep inet
+
+http://192.168.232.128:3030/
+
+
 ### Testing: Also see C:\Github\springboot2-app-all\springboot2-app-all-kafka\KafkaSetup.md
 
 cd C:\Software\kafka_2.11-2.1.0\bin\windows
