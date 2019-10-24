@@ -7,7 +7,15 @@ https://iteritory.com/kafka-docker-image-installation-usage-tutorial-windows/
 
 ### Run kafka docker, image from landoop/fast-data-dev:latest
 
-docker run --name kafka -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.99.100:9092 landoop/fast-data-dev:latest
+`docker run --name kafka -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.99.100:9092 landoop/fast-data-dev:latest`
+
+- run in detached mode:
+
+`docker run --name kafka -d -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.99.100:9092 landoop/fast-data-dev:latest`
+
+- re-run by name
+
+`docker start kafka`
 
 - change port because 8082 is in use
 
