@@ -13,6 +13,12 @@ http://localhost:3000/api
 
 C:\GithubStaging> docker build --rm -f nodejs-simple-rest/Dockerfile -t nodejs-simple-rest:v1 nodejs-simple-rest
 
+- MacOS:
+
+cd /Users/albert/Documents/docker/staging
+
+docker build --rm -f /Users/albert/Documents/github/nodejs-simple-rest/Dockerfile -t nodejs-simple-rest:v1 /Users/albert/Documents/github/nodejs-simple-rest
+
 ## Run the image locally to test.
 
 docker run --rm --name nodejs-simple-rest -d -p 3000:3000 nodejs-simple-rest:v1
@@ -20,6 +26,11 @@ docker run --rm --name nodejs-simple-rest -d -p 3000:3000 nodejs-simple-rest:v1
 This is running on local "default" VM, not "minikube", so it is "192.168.99.100", not "192.168.99.101" yet.
 
 http://192.168.99.100:3000/api
+
+
+- MacOS:
+
+http://192.168.232.128:3000/api
 
 
 ## Tag the image before uploading, here to DockerHub
@@ -32,7 +43,9 @@ docker login
 
 docker push oopsmails/nodejs-simple-rest:v1
 
-## Start "minikube"
+
+
+## Windows 10 Home: Using Docker Toolbox, πStart "minikube"
 
 ** Don't start through VM, instead need to run following by command line.
 
