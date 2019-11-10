@@ -51,21 +51,21 @@ Follow these steps on your terminal in the Ionic project directory.
 
 First remove what you tried to install
 
-ionic plugin remove phonegap-plugin-push
+`ionic plugin remove phonegap-plugin-push`
 Next install cocoapods
 
-sudo gem install cocoapods
+`sudo gem install cocoapods`
 Then you need to sync the cocoapods repo
 
-pod setup # (run as normal user not as root)
+`pod setup` # (run as normal user not as root)
 This may take a while
 
 Finally install push
 
-ionic plugin add phonegap-plugin-push --variable SENDER_ID="XXXXXXX"
+`ionic plugin add phonegap-plugin-push --variable SENDER_ID="XXXXXXX"`
 
 - ?? 
-ionic plugin add phonegap-plugin-push --variable SENDER_ID="oopsmails@gmail.com"
+`ionic plugin add phonegap-plugin-push --variable SENDER_ID="oopsmails@gmail.com"`
 
 ```
 Alberts-Mac:angular-ionic-recipe albert$ 

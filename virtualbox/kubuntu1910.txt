@@ -1,0 +1,57 @@
+
+# Oracle Virtual Box: Kubuntu 19.10
+
+## Create a new virtual machine, ubuntu
+
+## download vdi, https://www.osboxes.org/kubuntu/
+
+K1910-VB-64bit.7z
+
+Kubuntu 19.10 (64bit).vdi
+
+## Shared folder
+
+- normal settings ...
+
+- install Guest Additions
+
+For recent guest OSs
+In the guest virtual machine, choose Devices -> Install Guest Additions from the menubar of VirtualBox.
+
+If cannot run, then run autorun.sh
+
+- Then will see the shared folder, but it is locked, i.e, don't have permission to r/w, because owner is root, group is vboxsf
+
+drwxrwx--- 1 root  vboxsf  160 Nov  9 20:43 vb-shared
+
+- Need root user, in order to add the current user "admin" to the group vboxsf
+
+Boot into recovery mode
+
+Boot, and after the BIOS screen, hold down the left Shift key.
+In the menu use down-arrow to select the entry marked "recovery mode" and then Enter.
+Use the arrow keys to select root and then Enter.
+In the root prompt, remount the filesystem with write permissions:
+
+**, not need this, mount -o remount,rw /
+Use the `passwd root` command to set the password
+
+Reboot
+
+- add current user "admin" to vboxsf group
+
+`su root`
+
+password as root
+
+usermod -a -G admin vb-shared
+
+- logout and login again, now the shared folder is accessible.
+
+
+
+
+
+
+
+
