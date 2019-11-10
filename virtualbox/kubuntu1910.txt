@@ -44,7 +44,7 @@ Reboot
 
 password as root
 
-usermod -a -G admin vb-shared
+usermod -a -G vboxsf admin
 
 - logout and login again, now the shared folder is accessible.
 
