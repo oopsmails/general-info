@@ -12,6 +12,12 @@
 
 - git config --global core.autocrlf true
 
+## keyboard
+
+Windows logo key -> Command
+Alt -> Option
+Ctrl -> Control
+
 ## install Nodejs
 
 ### mac npm install angular cli permission denied

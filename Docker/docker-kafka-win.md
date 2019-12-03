@@ -154,11 +154,18 @@ In my case I was receiving that while trying to connect to my Kafka container, I
 
 - if MacOS,
 
-`ifconfig |grep inet`
+`ifconfig | grep inet`
 
-`docker run --name kafka -d -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.232.128:9092 landoop/fast-data-dev:latest`
+inet 192.168.136.128 netmask 0xffffff00 broadcast 192.168.136.255
 
-http://192.168.232.128:3030/
+- use the ip here as "KAFKA_ADVERTISED_LISTENERS"
+
+`docker run --name kafka -d -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.136.128:9092 landoop/fast-data-dev:latest`
+
+
+http://192.168.136.128:3030/
+
+
 
 
 
