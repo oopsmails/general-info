@@ -161,4 +161,16 @@ In my case I was receiving that while trying to connect to my Kafka container, I
 http://192.168.232.128:3030/
 
 
+127.0.0.1
+
+docker run --name kafka -d -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092 landoop/fast-data-dev:latest
+
+
+
+docker inspect <containerNameOrId> | grep '"IPAddress"' | head -n 1
+
+docker inspect kafka | grep '"IPAddress"' | head -n 1
+
+--> "IPAddress": "172.17.0.2",
+
 

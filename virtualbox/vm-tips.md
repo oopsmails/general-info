@@ -3,6 +3,8 @@
 
 VBoxManage internalcommands sethduuid "/home/user/VirtualBox VMs/drupal/drupal.vhd"
 
+VBoxManage internalcommands sethduuid "/Users/user/Documents/vbs/bmo-olb-ws/bmo-olb-ws.vdi"
+
 - if machine uuid also "in use"
 
 run VBoxManage internalcommands sethduuid "VDI/VMDK file" twice (the first time is just to conveniently generate an UUID, you could use any other UUID generation method instead)
