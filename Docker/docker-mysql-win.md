@@ -18,7 +18,7 @@ docker volume create --name=mysqldb
 
 docker run - name=mysql1 -e MYSQL_ROOT_HOST=% -p 3306:3306 -d mysql/mysql-server
 
-docker run --name mysqldb -p 3306:3306 -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+docker run --name mysqldb -p 3306:3306 -d -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
 docker run --name mysqldb -p 3306:3306 -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
 
