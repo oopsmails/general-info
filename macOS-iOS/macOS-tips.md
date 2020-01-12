@@ -252,6 +252,31 @@ java version "1.8.0_144"
 
 Of course, setting JAVA_HOME manually works too!
 
+# macOS, change java jdk at system level
+
+https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x
+
+This answer is an attempt to address: how to control java version system-wide (not just in currently running shell) when several versions of JDK are installed for development purposes on macOS El Capitan or newer (Sierra, High Sierra, Mojave). As far as I can tell, none of the current answers do that (*).
+
+As a developer, I use several JDKs, and I want to switch from one to the other easily. Usually I have the latest stable one for general use, and others for tests. But I don't want the system (e.g. when I start my IDE) to use the latest "early access" version I have for now. I want to control system's default, and that should be latest stable.
+
+The following approach works with Java 7 to 12 at least (early access at the time of this writing), with Oracle JDK or OpenJDK (including builds by AdoptOpenJDK produced after mid-October 2018).
+
+Solution without 3rd party tools:
+leave all JDKs at their default location, under /Library/Java/JavaVirtualMachines. The system will pick the highest version by default.
+To exclude a JDK from being picked by default, rename its Contents/Info.plist to Info.plist.disabled. That JDK can still be used when $JAVA_HOME points to it, or explicitly referenced in a script or configuration. It will simply be ignored by system's java command.
+System launcher will use the JDK with highest version among those that have an Info.plist file.
+
+When working in a shell with alternate JDK, pick your method among existing answers (jenv, or custom aliases/scripts around /usr/libexec/java_home, etc).
+
+# Find eclipse.ini on macOS
+
+Go to "Application", right click on "Eclipse", "Show package content", 
+
+/Applications/Eclipse-neon.app/Contents/Eclipse/eclipse.ini
+
+
+
 
 ====> Hide and Minimize All Mac Windows with Command + Option + H + M
 

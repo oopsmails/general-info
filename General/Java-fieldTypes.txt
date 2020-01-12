@@ -1,0 +1,16 @@
+
+You can just use
+
+boolean.class
+byte.class
+char.class
+short.class
+int.class
+long.class
+float.class
+double.class
+void.class
+
+
+
+
