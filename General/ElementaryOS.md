@@ -4,7 +4,10 @@
 
 ### chrome keyring popup
 
-rm ~/.local/share/keyrings/login.keyring
+-- rm ~/.local/share/keyrings/login.keyring
+
+rm ~/.local/share/keyrings/*
+Now open Chrome, if it asks you for your password, do not enter one choose Continue each time and ignore any warning.
 
 ### elementary os open folder double click
 
@@ -21,5 +24,12 @@ root@xxvm:/var/ibm/InstallationManager/uninstall# ./uninstall
 Gtk-Message: 22:36:41.944: Failed to load module "pantheon-filechooser-module"
 
 
-### 
+### Change user name
 sudo usermod -l newUsername oldUsername
+
+
+### Git configure global user name and passowrd
+
+git config --global user.name "your username"
+
+git config --global user.password "your password"
