@@ -151,7 +151,7 @@ Untracked files:
 
 **manually merge the file, also can use vs code to merge**  
 
-- git reset
+- git reset -----------------------------------> to mark as merged !!!!!!!!!!!!!
 
 Unstaged changes after reset:  
 M       file1  
@@ -224,7 +224,32 @@ should be all green now!
 
 
 
+### git: change comments of (last) commit
 
+
+https://stackoverflow.com/questions/14381044/how-do-i-change-a-git-commit-message-in-bitbucket
+
+git rebase -i HEAD~X (X=No of commit messages you want to change)
+Above command will open git file in editor. There replace text 'pick' with 'reword' and save the file.
+It will open editor for every commit one by one, there you again change the commit message.
+At the end: git push -f
+
+
+
+git rebase -i HEAD~ c4c08cebf9c
+
+
+ALERTS-1594: CS to BOS error code mapping
+
+
+git push origin HEAD:feature/ALERTS-1594-cs-to-bos-error-code-mapping --force
+
+
+--
+If it is the most recent commit, you can simply do this:
+
+git commit --amend -m "ALERTS-1594: CS to BOS error code mapping" (amend message)
+git push --progress origin --force (force push)
 
 
 
