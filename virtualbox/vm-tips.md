@@ -19,6 +19,7 @@ my hint: need to change the uuid(s) in VirtualBox.xml
 
 C:\Users\<username>\.VirtualBox\VirtualBox.xml
 
+- error: virtualbox memory could not be written
 
-
+You can test this by disabling 3D acceleration for a while. 
 
