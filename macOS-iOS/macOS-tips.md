@@ -1,47 +1,45 @@
-====> add path
-/Users/admin/.bash_profile
+## Bash profile:
 
-/Users/admin/Documents/Albert
-/Users/admin/Documents/Albert
-/Users/admin/Documents/Albert/github/general-info-master
+add path
+Sample /Users/albert/.bash_profile
 
-echo "$PATH"
-OR
-printf "%s\n" $PATH
+```
+export PATH="$PATH:/Users/albert/Documents"
+export PATH="$PATH:/Users/albert/Documents/albert"
+export PATH="$PATH:/Users/albert/Documents/programs"
 
 
-====> Java
+export JAVA_HOME_8=$(/usr/libexec/java_home -v1.8)
+export JAVA_HOME_11=$(/usr/libexec/java_home -v11)
+export JAVA_HOME_14=$(/usr/libexec/java_home -v14)
+
+alias java8='export JAVA_HOME=$JAVA_HOME_8'
+alias java11='export JAVA_HOME=$JAVA_HOME_11'
+alias java14='export JAVA_HOME=$JAVA_HOME_14'
+
+java11
+```
+
+## Java location
 /Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 
 
-====> Quick Lock Screen
+## Quick Lock Screen
 Control+Command+Q
 
 
-====> MacOS screen capture
+## MacOS screen capture
 
-A.    Entire screen:
-
-To capture the entire screen, press Command-Shift-3. The screen shot will be automatically saved as a PNG file on your desktop with the filename starting with “Picture” followed by a number, example Picture 1, Picture 2, and so on.
-To copy the entire screen, press Command-Control-Shift-3. The screen shot will be placed on your clipboard for you to paste into another program like PowerPoint, Word, Photoshop, etc.
-
-B.     Portion of the screen:
-
-To capture a portion of the screen, press Command-Shift-4. A cross-hair cursor will appear and you can click and drag to select the area you wish to capture. When you release the mouse button, the screen shot will be automatically saved as a PNG file on your desktop following the same naming convention as explained on the first tip above.
-To copy a portion of the screen to the clipboard, press Command-Control-Shift-4.  A cross-hair cursor will appear and you can click and drag to select the area you wish to capture. When you release the mouse button, you can paste the screen shot to another application.
-
-C.    Specific application window:
-
-To capture a specific application window, press and hold Command-Shift-4 then tap on the Spacebar. The cursor will change to a camera, and you can move it around the screen. As you move the cursor over an application window, the window will be highlighted. The entire window does not need to be visible for you to capture it. When you have the cursor over a window you want to capture, just click the mouse button and the screen shot will be saved as a PNG file on your desktop.
-To copy a specific application window, press and hold Command-Control-Shift-4 then tap on the Spacebar. The cursor will change to a camera, which you can move around the screen. As you move the cursor over an application window, the window will be highlighted. The entire window does not need to be visible for you to capture it. When you have the cursor over a window you want to capture, just click the mouse button and you can paste the screen shot into another application.
+Command-Shift-3: whole screen
+Command-Shift-4: area
 
 
-====> The Quickest Way to Show/Hide Hidden Files
+## The Quickest Way to Show/Hide Hidden Files
 Since the release of macOS Sierra, when in Finder, it is now possible to use the shortcut:
 
-CMD + SHIFT 
+CMD + SHIFT + .
 
-====> Terminal:
+## Terminal:
 
 In Terminal, select something and then within the same Terminal window
 
@@ -49,11 +47,10 @@ paste using Shift-Command-V
 
 or: paste using the middle mouse button
 
-
 Use: Command-c and Comment-v
 
 
-====> Previous Mojave version: Create a “Copy Path” Service for the Right-Click Menu
+## Previous Mojave version: Create a “Copy Path” Service for the Right-Click Menu
 
 http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 
@@ -62,7 +59,7 @@ http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 - Set ‘Service receives selected’ to “files or folders” and ‘in’ to “Finder” as shown in the screen shot below
 - Save the Service with a name like “Copy Path”
 
-====> Mojave: "Copy file path" command in Finder context menu
+## Mojave: "Copy file path" command in Finder context menu
 
 All you need to do to copy any items path name directly to the clipboard from anywhere in the file system:
 
@@ -71,7 +68,7 @@ All you need to do to copy any items path name directly to the clipboard from an
 The copied pathname is always the complete path, it’s not relative.
 
 
-====> Using an Automator App to Create a Blank Text File in Any Folder
+## Using an Automator App to Create a Blank Text File in Any Folder
 
 https://www.maketecheasier.com/create-blank-text-file-mac/
 
@@ -80,9 +77,7 @@ https://apple.stackexchange.com/questions/84309/how-to-create-a-text-file-in-a-f
 
 
 
-
-
-====> If I created a service using Automator, how can I delete it if I no longer want it?
+## If I created a service using Automator, how can I delete it if I no longer want it?
 
 In the Finder, press ⌘⇧G to Go to Folder.
 
@@ -96,7 +91,7 @@ Drag it to the Trash
 
 ==================
 
-====> add path
+## add path
 /Users/admin/.bash_profile
 
 /Users/admin/Documents/Albert
@@ -108,40 +103,22 @@ OR
 printf "%s\n" $PATH
 
 
-====> Java
+## Java
 /Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 
 
-====> Quick Lock Screen
+## Quick Lock Screen
 Control+Command+Q
 
 
-====> MacOS screen capture
-
-A.    Entire screen:
-
-To capture the entire screen, press Command-Shift-3. The screen shot will be automatically saved as a PNG file on your desktop with the filename starting with “Picture” followed by a number, example Picture 1, Picture 2, and so on.
-To copy the entire screen, press Command-Control-Shift-3. The screen shot will be placed on your clipboard for you to paste into another program like PowerPoint, Word, Photoshop, etc.
-
-B.     Portion of the screen:
-
-To capture a portion of the screen, press Command-Shift-4. A cross-hair cursor will appear and you can click and drag to select the area you wish to capture. When you release the mouse button, the screen shot will be automatically saved as a PNG file on your desktop following the same naming convention as explained on the first tip above.
-To copy a portion of the screen to the clipboard, press Command-Control-Shift-4.  A cross-hair cursor will appear and you can click and drag to select the area you wish to capture. When you release the mouse button, you can paste the screen shot to another application.
-
-C.    Specific application window:
-
-To capture a specific application window, press and hold Command-Shift-4 then tap on the Spacebar. The cursor will change to a camera, and you can move it around the screen. As you move the cursor over an application window, the window will be highlighted. The entire window does not need to be visible for you to capture it. When you have the cursor over a window you want to capture, just click the mouse button and the screen shot will be saved as a PNG file on your desktop.
-To copy a specific application window, press and hold Command-Control-Shift-4 then tap on the Spacebar. The cursor will change to a camera, which you can move around the screen. As you move the cursor over an application window, the window will be highlighted. The entire window does not need to be visible for you to capture it. When you have the cursor over a window you want to capture, just click the mouse button and you can paste the screen shot into another application.
-
-
-====> The Quickest Way to Show/Hide Hidden Files
+## The Quickest Way to Show/Hide Hidden Files
 Since the release of macOS Sierra, when in Finder, it is now possible to use the shortcut:
 
 CMD + SHIFT 
 
 CMD + SHIFT + . // to toggle in Mojave
 
-====> Terminal: Copy and Paste
+## Terminal: Copy and Paste
 
 In Terminal, select something and then within the same Terminal window
 
@@ -149,19 +126,17 @@ paste using Shift-Command-V
 
 or: paste using the middle mouse button
 
-
 Use: Command-c and Comment-v
-====> Terminal: customerize
+
+
+## Terminal: customerize
 macos terminal default window size
 https://apple.stackexchange.com/questions/173753/how-can-i-set-the-default-width-height-and-position-of-my-mac-terminal-app
 
-
-Set your window how you would like it,Go to Window > Save Windows as Group... Enter a name next to Save As:Check "Use window group when Terminal starts"Click Save
-One way to do it isSet your window how you would like it,Go to Window > Save Windows as Group... Enter a name next to Save As:Check "Use window group when Terminal starts"Click SaveHowever, after you have launched Terminal, if you chose Terminal > New Window you will still have to resize the window. This is most useful if you want to have multiple terminal windows open at launch.If you go to Terminal > Preferences > Profiles you can create a (or edit an existing) profile for a terminal window by column and row size which is available at the end of the terminal window title bar (Your screenshot shows a window 80 columns wide and 24 rows tall)You can then set that profile to the default by pushing the default button (if the default button is ghosted out that group is already the default): 
-====> 
+Terminal > Preferences > Profiles
 
 
-====> Create a “Copy Path” Service for the Right-Click Menu
+## Create a “Copy Path” Service for the Right-Click Menu
 
 http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 
@@ -171,7 +146,7 @@ http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/
 - Save the Service with a name like “Copy Path”
 
 
-====> Using an Automator App to Create a Blank Text File in Any Folder
+## Using an Automator App to Create a Blank Text File in Any Folder
 
 https://www.maketecheasier.com/create-blank-text-file-mac/
 
@@ -180,9 +155,7 @@ https://apple.stackexchange.com/questions/84309/how-to-create-a-text-file-in-a-f
 
 
 
-
-
-====> If I created a service using Automator, how can I delete it if I no longer want it?
+## If I created a service using Automator, how can I delete it if I no longer want it?
 
 In the Finder, press ⌘⇧G to Go to Folder.
 
@@ -196,7 +169,7 @@ Drag it to the Trash
 
 ===============================
 
-====> when npm install, get "xcode-select: error: tool 'xcodebuild' requires Xcode"
+## when npm install, get "xcode-select: error: tool 'xcodebuild' requires Xcode"
 
 Xcode->Preferences->Locations->command line tools
 
@@ -204,9 +177,20 @@ screenshot
 
 Select the option: Xcode 8.x
 
+## macos terminal using zsh not bash
 
-====> How do I install Java on Mac OSX allowing version switching?
+### show shells
 
+cat /etc/shells
+
+### switching
+
+chsh -s /bin/bash
+
+
+## How do I install Java on Mac OSX allowing version switching?
+
+### old:
 https://stackoverflow.com/questions/52524112/how-do-i-install-java-on-mac-osx-allowing-version-switching
 
 note: These solutions work for various versions of Java including Java 11 and the new Java 12, and for any other previous Java version covered by the listed version managers. This includes alternative JDK's from OpenJDK, Oracle, IBM, Azul, Amazon Correto, Graal and more. Easily work with Java 7, Java 8, Java 9, Java 10, Java 11, Java 12, and even early access Java 13!
@@ -220,7 +204,55 @@ Download OpenJDK for Mac OSX from http://jdk.java.net/
 Unarchive the OpenJDK tar, and place the resulting folder (i.e. jdk-12.jdk) into your /Library/Java/JavaVirtualMachines/ folder since this is the standard and expected location of JDK installs. You can also install anywhere you want in reality.
 
 
---> Switching versions manually
+### new:
+
+https://mkyong.com/java/how-to-install-java-on-mac-osx/
+
+Install Homebrew and update it.
+
+$ brew update
+1.2 Add adoptopenjdk/openjdk.
+
+$ brew tap adoptopenjdk/openjdk
+1.3 Find all available JDK.
+
+$ brew search jdk
+
+
+brew cask install adoptopenjdk8
+brew cask install adoptopenjdk9
+brew cask install adoptopenjdk10
+brew cask install adoptopenjdk11
+brew cask install adoptopenjdk12
+brew cask install adoptopenjdk13
+This example will install Java 8 and 11 for testing.
+
+$ brew cask install adoptopenjdk8
+$ brew cask install adoptopenjdk11
+1.5 Where Java is installed? /usr/libexec/java_home -V
+
+$ /usr/libexec/java_home -V
+
+1.6 Test it, by default, Mac takes the highest version.
+
+$ java -version
+
+$ vim ~/.bash_profile
+~/.bash_profile
+export JAVA_HOME_8=$(/usr/libexec/java_home -v1.8)
+export JAVA_HOME_11=$(/usr/libexec/java_home -v11)
+export JAVA_HOME_14=$(/usr/libexec/java_home -v14)
+
+```
+albert@Alberts-iMac JavaVirtualMachines % /usr/libexec/java_home -V
+Matching Java Virtual Machines (3):
+    14.0.1, x86_64:	"OpenJDK 14.0.1"	/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+    11.0.7, x86_64:	"AdoptOpenJDK 11"	/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+    1.8.0_252, x86_64:	"AdoptOpenJDK 8"	/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+```
+
+
+### Switching versions manually
 The Java executable is a wrapper that will use whatever JDK is configured in JAVA_HOME, so you can change that to also change which JDK is in use.
 
 For example, if you installed or untar'd JDK 12 to /Library/Java/JavaVirtualMachines/jdk-12.jdk if it is the highest version number it should already be the default, if not you could simply set:
@@ -242,7 +274,7 @@ alias java10='export JAVA_HOME=$JAVA_10_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
 alias java12='export JAVA_HOME=$JAVA_12_HOME'
 
-# default to Java 12
+### default to Java 12
 java12
 Then to change versions, just use the alias.
 
@@ -252,7 +284,7 @@ java version "1.8.0_144"
 
 Of course, setting JAVA_HOME manually works too!
 
-# macOS, change java jdk at system level
+### macOS, change java jdk at system level
 
 https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x
 
@@ -269,40 +301,19 @@ System launcher will use the JDK with highest version among those that have an I
 
 When working in a shell with alternate JDK, pick your method among existing answers (jenv, or custom aliases/scripts around /usr/libexec/java_home, etc).
 
-# Find eclipse.ini on macOS
+## Find eclipse.ini on macOS
 
 Go to "Application", right click on "Eclipse", "Show package content", 
 
 /Applications/Eclipse-neon.app/Contents/Eclipse/eclipse.ini
 
 
-
-
-====> Hide and Minimize All Mac Windows with Command + Option + H + M
+## Hide and Minimize All Mac Windows with Command + Option + H + M
 
 To minimize the current window, press Command-M. To minimize all windows of the app in focus, press Command-Option-M. Or you can press Command-H which hides the application. Command-H will minimize your apps one by one, but it won't work on the last open one.
 
 
----------------------
-used tar.gz
-----
-export PATH=$PATH:/Users/admin/Documents/Albert
-export PATH=$PATH:/Users/admin/Documents/programs
-alias xcode="open -a Xcode"
-
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
-export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
-
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java9='export JAVA_HOME=$JAVA_9_HOME'
-alias java12='export JAVA_HOME=$JAVA_12_HOME'
-
-# default to Java 8
-java8
-
---------------------
---> When using java12<lombok.version>1.18.4</lombok.version>
+## When using java12<lombok.version>1.18.4</lombok.version>
 ---------------------
 https://elm.cangdu.org/v1/captchas
 
@@ -334,18 +345,8 @@ Press these three keys together: Option, Command, and Esc (Escape).
 
 -----------------
 
-====> Terminal: customerize
-macos terminal default window size
-https://apple.stackexchange.com/questions/173753/how-can-i-set-the-default-width-height-and-position-of-my-mac-terminal-app
 
-
-Set your window how you would like it,Go to Window > Save Windows as Group... Enter a name next to Save As:Check "Use window group when Terminal starts"Click Save
-One way to do it isSet your window how you would like it,Go to Window > Save Windows as Group... 
-
-Enter a name next to Save As:Check "Use window group when Terminal starts"Click SaveHowever, after you have launched Terminal, if you chose Terminal > New Window you will still have to resize the window. This is most useful if you want to have multiple terminal windows open at launch.If you go to Terminal > Preferences > Profiles you can create a (or edit an existing) profile for a terminal window by column and row size which is available at the end of the terminal window title bar (Your screenshot shows a window 80 columns wide and 24 rows tall)You can then set that profile to the default by pushing the default button (if the default button is ghosted out that group is already the default): 
-
-
-====> windows keyboard on mac
+## windows keyboard on mac
 
 http://osxdaily.com/2018/01/31/use-windows-pc-keyboard-mac-remap-option-command-keys/
 
@@ -356,11 +357,11 @@ Click the dropdown next to “COMMAND Key” and select “Option”
 
 Then, use Alt+Shift+., to toggle Show/Hide Hidden Files
 
-====> Find your IP Address via the Mac OS X Terminal
+## Find your IP Address via the Mac OS X Terminal
 
 ifconfig |grep inet
 
-====> file sharing:
+## file sharing:
 
 Choose Apple menu > System Preferences, then click Sharing.
 
@@ -369,9 +370,7 @@ Select the File Sharing checkbox.
 smb://192.168.62.128
 afp://192.168.62.128
 
-====> 
-
-
+## 
 
 -------------------
 google map api angular example
