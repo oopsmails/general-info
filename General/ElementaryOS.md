@@ -14,6 +14,7 @@ sudo apt install openjdk-8-jdk
 
 sudo apt install openjdk-14-jdk
 
+
 sudo update-alternatives --config java # This can switch around versions
 
 
@@ -44,10 +45,7 @@ sudo apt update
 sudo apt install oracle-java11-installer
 
 
-## Terminal, .profile file
-
-
-
+## Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
 
 
 PATH="$HOME/Documents:$PATH"
@@ -64,7 +62,11 @@ alias java14='export JAVA_HOME=$JAVA_HOME_14'
 
 
 
+## Enable snaps on elementary OS and install LibreOffic
 
+sudo apt update
+sudo apt install snapd
+sudo snap install libreoffice
 
 
 ## Other Small Tips
@@ -95,6 +97,13 @@ Gtk-Message: 22:36:41.944: Failed to load module "pantheon-filechooser-module"
 ### Change user name
 sudo usermod -l newUsername oldUsername
 
+### Add user to group
+
+```
+groups
+
+sudo usermod -a -G vboxsf albert
+```
 
 ### Git configure global user name and passowrd
 
@@ -103,6 +112,11 @@ git config --global user.name "your username"
 git config --global user.password "your password"
 
 
+### elementary os dock settings
+
+open Terminal,
+
+`plank --preferences`
 
 
 
