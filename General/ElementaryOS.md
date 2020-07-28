@@ -119,5 +119,24 @@ open Terminal,
 `plank --preferences`
 
 
+### elementary os remove doclets
 
+just drag it to somewhere else.
+
+#### How to delete group in Linux
+
+- Delete a group named sales that exist on Linux, run: 
+`sudo groupdel sales`
+
+- Another option to remove a group called ftpuser in Linux, 
+
+`sudo delgroup ftpusers`
+
+To view all group names on Linux, run: 
+
+`cat /etc/group`
+
+Print the groups a user say albert is in: 
+
+`groups albert`
 
