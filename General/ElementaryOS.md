@@ -68,6 +68,121 @@ sudo apt update
 sudo apt install snapd
 sudo snap install libreoffice
 
+## Enable snaps on elementary OS and install Postman
+
+sudo apt update
+sudo apt install snapd
+sudo snap install postman
+
+## Install npm and nvm
+
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+
+### Installing Node.js and npm from NodeSource
+
+#### The command will add the NodeSource signing key to your system, create an apt sources repository file, install all necessary packages and refresh the apt cache.
+
+If you need to install another version, for example 14.x, just change setup_12.x with setup_14.x
+
+`curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
+
+#### Once the NodeSource repository is enabled, install Node.js and npm by typing:
+
+`sudo apt install nodejs`
+
+#### Verify that the Node.js and npm were successfully installed by printing their versions:
+
+`node --version`
+
+`npm --version`
+
+
+### Installing Node.js and npm using NVM
+
+#### Installing NVM (Node Version Manager) script
+To download and install the nvm script run:
+
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+
+The command above will clone the NVM repository from Github to the ~/.nvm directory
+
+#### => Close and reopen your terminal to start using nvm or run the following to use it now:
+
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+
+As the output above says, you should either close and reopen the terminal or run the commands to add the path to nvm script to the current shell session. You can do whatever is easier for you.
+
+Once the script is in your PATH, verify that nvm was properly installed by typing:
+
+`nvm --version`
+
+#### Installing Node.js and npm
+Now that the nvm is installed you can install the latest available version of Node.js, by typing:
+
+`nvm install node`
+
+`node --version`
+
+#### Let’s install two more versions, the latest LTS version and version 8.10.0
+
+`nvm install --lts`
+
+`nvm install 8.10.0`
+
+#### To list installed Node.js versions type:
+
+`nvm ls`
+
+#### You can change the currently active version with:
+
+`nvm use 10.16.3`
+
+Now using node v10.16.3 (npm v6.9.0)
+
+#### If you want to change the default Node.js version use the following command:
+
+`nvm alias default 10.16.3`
+
+### Install Node.js and npm from the Ubuntu repository
+
+Node.js and npm packages are available from the default Ubuntu 18.04 repositories.
+
+At the time of writing, the version included in the Ubuntu repositories is v8.10.0 which is the previous TLS version.
+
+To install nodejs and npm run the following commands:
+
+`sudo apt update`
+
+`sudo apt install nodejs npm`
+
+The Node.js executable from the Ubuntu repositories is named nodejs instead of node because of a conflict with another package.
+
+Verify the installation by executing:
+
+`nodejs --version`
+
+v8.10.0
+
+### Install development tools
+
+To be able to compile and install native add-ons from npm you need to install the development tools.
+
+The following command will install all the necessary packages including the GCC compilers :
+
+`sudo apt install build-essential`
+
+
+### Uninstall Node.js
+If for some reasons you want to uninstall Node.js and npm packages, you can use the following command:
+
+`sudo apt remove nodejs npm`
+
+
 
 ## Other Small Tips
 
