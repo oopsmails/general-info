@@ -1,6 +1,8 @@
 
 # ElementaryOS Tips
 
+albert/albertalbert, root/albert, inituser/inituser
+
 ## Java
 
 ### OpenJDK:
@@ -247,11 +249,24 @@ just drag it to somewhere else.
 
 `sudo delgroup ftpusers`
 
-To view all group names on Linux, run: 
+- To view all group names on Linux, run: 
 
 `cat /etc/group`
 
-Print the groups a user say albert is in: 
+- Print the groups a user say albert is in: 
 
 `groups albert`
+
+- When adding a user to a group, it can be done with:
+
+`usermod -a -G group user`
+
+or
+
+`gpasswd -a user group`
+
+- Remove a user from a group
+
+`gpasswd -d user group`
+
 
