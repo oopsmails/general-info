@@ -212,6 +212,43 @@ If for some reasons you want to uninstall Node.js and npm packages, you can use 
 
 see /Docker/docker-install-ElementaryOS.md
 
+### Install DBeaver
+
+```
+sudo apt update
+sudo apt install snapd
+sudo snap install dbeaver-ce
+```
+
+## Running Apps
+
+
+### Docker:
+
+#### MySQL
+
+`docker run --name mysqldb -p 3306:3306 -v mysqldb:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest`
+
+##### Try to connect with DBeaver
+
+
+##### error: dbeaver unable to load authentication plugin 'caching_sha2_password'. dbeaver
+
+- This error comes up when the tool being used is not compatible with MySQL8, try updating to the latest version of MySQL Workbench for MySQL8
+
+##### error: dbeaver community mysql8 Public Key Retrieval is not allowed
+
+- Open "Connectioin Setting", "SSL", and then make sure "Allow Public Key Retrieval" checkbox is checked.
+
+##### error: the trustAnchors parameter must be non-empty
+
+- Open "Connectioin Setting", "SSL", and then disable "certificate validation" fixed the problem 
+
+
+
+
+
+
 
 ## Other Small Tips
 
