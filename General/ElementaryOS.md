@@ -63,18 +63,42 @@ alias java11='export JAVA_HOME=$JAVA_HOME_11'
 alias java14='export JAVA_HOME=$JAVA_HOME_14'
 
 
+## Elementary OS version
+
+`lsb_release -a`
+
+```
+albert@eosvm:~/Documents/github/general-info$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	elementary
+Description:	elementary OS 5.1 Hera
+Release:	5.1
+Codename:	hera
+
+albert@eosvm:~/Documents/github/general-info$ lsb_release -au
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.3 LTS
+Release:	18.04
+Codename:	bionic
+```
+
 
 ## Enable snaps on elementary OS and install LibreOffic
 
+```
 sudo apt update
 sudo apt install snapd
 sudo snap install libreoffice
+```
 
 ## Enable snaps on elementary OS and install Postman
 
+```
 sudo apt update
 sudo apt install snapd
 sudo snap install postman
+```
 
 ## Install npm and nvm
 
@@ -184,6 +208,9 @@ If for some reasons you want to uninstall Node.js and npm packages, you can use 
 
 `sudo apt remove nodejs npm`
 
+### Install Docker CE
+
+see /Docker/docker-install-ElementaryOS.md
 
 
 ## Other Small Tips
