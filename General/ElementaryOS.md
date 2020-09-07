@@ -245,12 +245,66 @@ sudo snap install dbeaver-ce
 - Open "Connectioin Setting", "SSL", and then disable "certificate validation" fixed the problem 
 
 
+#### Kafka
+
+- check ip addr
+
+`ifconfig | grep inet`
+
+```
+albert@eosvm:~$ ifconfig |grep inet
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:7ff:fe0c:2d7  prefixlen 64  scopeid 0x20<link>
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::1baa:969d:605f:7901  prefixlen 64  scopeid 0x20<link>
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        inet6 fe80::f01c:37ff:fece:1c69  prefixlen 64  scopeid 0x20<link>
+```
+
+
+
+- run in detached mode:
+
+`docker run --name kafka -d -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.17.255.255:9092 landoop/fast-data-dev:latest`
+
+- re-run by name
+
+`docker start kafka`
+
+- stop container
+
+`docker stop kafka`
+
+#### mongodb
+
+- Proceed to download the latest official Docker image for the MongoDB database:
+sudo docker pull mongo
+
+To download a specific version of MongoDB, use the same command appended with the version tag. For example:
+sudo docker pull mongo:4.2.2
+
+- mkdir 
+
++
+
 
 
 
 
 
 ## Other Small Tips
+
+### enable ifconfig
+
+```
+albert@eosvm:~$ ifconfig | grep inet
+
+Command 'ifconfig' not found, but can be installed with:
+
+sudo apt install net-tools
+```
+
 
 
 ### chrome keyring popup
@@ -263,6 +317,14 @@ Now open Chrome, if it asks you for your password, do not enter one choose Conti
 ### elementary os open folder double click
 
 gsettings set io.elementary.files.preferences single-click false
+
+### elementary os address bar show full path
+
+`gsettings set org.gnome.nautilus.preferences always-use-location-entry true`
+
+or
+
+`dconf write /org/gnome/nautilus/preferences/always-use-location-entry true`
 
 ## Find application information (location and execution name) in AppEditor
 
