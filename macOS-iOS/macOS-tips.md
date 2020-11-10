@@ -33,6 +33,10 @@ Control+Command+Q
 Command-Shift-3: whole screen
 Command-Shift-4: area
 
+## How to Fix NET::ERR_CERT_DATE_INVALID Error in Google Chrome?
+
+Time Zone and Date, Time not set properly!
+
 
 ## The Quickest Way to Show/Hide Hidden Files
 Since the release of macOS Sierra, when in Finder, it is now possible to use the shortcut:
