@@ -3,6 +3,27 @@
 
 albert/albertalbert, root/albert, inituser/inituser
 
+## Software installation
+
+### Option 1
+
+sudo apt-get update
+sudo apt install code
+sudo apt remove code
+
+### Option 2, snap is always a good choice
+
+sudo apt-get update
+sudo apt install snapd
+sudo snap install code --classic
+sudo snap remove code
+
+### Options 3
+
+Just download zip or tar
+
+
+
 ## Java
 
 ### OpenJDK:
@@ -394,5 +415,18 @@ or
 - Remove a user from a group
 
 `gpasswd -d user group`
+
+
+
+## Other Softwares
+
+### shotcut
+
+sudo apt update
+sudo apt install snapd
+
+sudo snap install shotcut --classic
+
+
 
 
