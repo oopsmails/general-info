@@ -25,7 +25,7 @@ You can test this by disabling 3D acceleration for a while.
 
 - VirtualBox doesn't have Devices menu
 
-You need to exit from scale mode (Right Ctrl + C). Then 'Devices' menu will appear.
+You need to exit from scale mode (Right Ctrl + C, or maybe right Alt if there is no right Ctrl + C). Then 'Devices' menu will appear.
 
 - Cannot start guest after Windows 10 update
 
