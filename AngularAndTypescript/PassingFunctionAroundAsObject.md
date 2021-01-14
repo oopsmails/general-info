@@ -93,6 +93,52 @@ Note:
 - Typescript no Map key with object, just string and number
 - Record is also not applicable in this case
 
+### further improvements:
+
+- DefType as Enum
+
+
+export enum DefType {
+  DDD = 'FundsWithdrawal',
+  EEE = 'CreditCardApproachingLimit',
+  FFF = 'CreditCardDeclinedTransaction',
+  UNDEFINED = 'UNDEFINED'
+}
+
+- If need to pass parameters into the Function
+
+
+- in Component, declare the mapping
+
+```
+  BUTTON_LABEL_CLICKFUNCTION_MAP = [
+    {
+      'abcType': AbcType.AAA,
+      'defType': DefType.DDD,
+      'buttonLabel': 'KEY.AAA.DDD.IN.EN.FR.JSON.VIEW.DETAILS',
+      'onClick': (param1, param2) => {this.showAaaDddDetails(param1, param2)}
+    },
+    {
+      'abcType': AbcType.BBB,
+      'defType': DefType.EEE,
+      'buttonLabel': 'KEY.BBB.EEE.IN.EN.FR.JSON.VIEW.DETAILS',
+      'onClick': (param1, param2) => {this.showBbbEeeDetailsparam1, param2()}
+    }
+  ];
+
+```
+
+- in Component, do
+
+```
+  onButtonClick() {
+    this.buttonLabelNav.buttonFun(this.param1, this.param2); // <------------------- key point is adding () after the field name to call as a Function!!!!!
+  }
+```
+
+
+
+
 
 
 ## Readings & References
