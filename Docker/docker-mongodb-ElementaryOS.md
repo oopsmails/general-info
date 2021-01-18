@@ -39,14 +39,30 @@ List of Docker images confirms that MongoDB is available in the local repository
 
 By default, **MongoDB stores data in the /data/db directory within the Docker container**. To remedy this, mount a directory from the underlying host system to the container running the MongoDB database. **This way, data is stored on your host system and is not going to be erased if a container instance fails.**
 
-- Create a /mongodata directory on the host system:
+### Create a /mongodata directory on the host system:
 
-`sudo mkdir -p /mongodata` ----> [2]
+- v0
+`sudo mkdir -p /mongodata`
+
+- v1, working well ----> [2]
+
+```
+sudo chmod 777 -R /dockerdata
+cd dockerdata
+sudo mkdir mongodb
+chmod 777 -R mongodb
+```
 
 - Start the Docker container with the run command using the mongo image. The /data/db directory in the container is mounted as /mongodata on the host. Additionally, this command changes the name of the container to mongodb:
 
+- This is original v0
+`sudo docker run -it -v /home/albert/dockerdata/mongodata:/data/db --name mongodb -d mongo` 
 
-`sudo docker run -it -v mongodata:/data/db --name mongodb -d mongo` ----> [3]
+- v1, not working well, may caused by dir permission problem
+`docker run -it -v /home/albert/dockerdata/mongodata:/data/db -p 27017:27017 --name mongodb -d mongo:4.2.2`
+
+- v2, working
+`docker run -it -v /dockerdata/mongodb:/data/db -p 27017:27017 --name mongodb -d mongo:4.2.2` ----> [3]
 
 -it – Provides an interactive shell to the Docker container.
 
@@ -86,6 +102,7 @@ The container is currently running in detached mode.
 Connect to the container using the interactive terminal instead:
 
 `sudo docker exec -it mongodb bash`
+`docker exec -it mongodb bash` ----> [4]
 
 
 # Start the MongoDB shell by typing mongo in the interactive terminal.
@@ -94,14 +111,20 @@ Connect to the container using the interactive terminal instead:
 The image confirms we have access to the MongoDB shell.
 The MongoDB shell launches and the prompt is ready to accept your commands.
 
-Instead of just typing mongo, you can additionally define a specific host and port by typing:
-mongo -host localhost -port 27017  
+Instead of just typing *mongo*, you can additionally define a specific host and port by typing:
+
+`mongo -host localhost -port 27017 ` 
+
+*connecting to: mongodb://127.0.0.1:27017/list?compressors=disabled&gssapiServiceName=mongodb*
+
 With the MongoDB shell, you can now create a database, add collections or manage individual documents.
 
 How to Exit MongoDB and Interactive Shell
+
 Type exit to leave the MongoDB shell and then exit once again to leave the Interactive shell.
 
 Steps to exit mongo bash and Docker interactive shell.
+
 As an alternative, you can type quit() or use Ctrl-C to exit the shell.
 
 # Stopping and Restarting MongoDB Database
