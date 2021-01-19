@@ -12,6 +12,23 @@
 
 - git config --global core.autocrlf true
 
+- git remember new user/pass
+
+```
+git pull
+
+fatal: Authentication failed for 'https://.....git/'
+
+git config --global credential.helper store
+
+git pull
+
+Username for 'https://.....git/': oopsmails
+
+Password for 'https://.....git/': 
+
+```
+
 ## keyboard
 
 Windows logo key -> Command
