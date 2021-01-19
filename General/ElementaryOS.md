@@ -371,10 +371,22 @@ sudo usermod -a -G vboxsf albert
 
 ### Git configure global user name and passowrd
 
-git config --global user.name "your username"
+git config --global user.name "your username" <---- add to ~/.gitconfig, this is useful for commit in vscode
 
 git config --global user.password "your password"
 
+
+
+
+```
+$ git config credential.helper store
+$ git push http://example.com/repo.git
+Username: <type your username>
+Password: <type your password>
+[several days later]
+$ git push http://example.com/repo.git
+
+```
 
 ### elementary os dock settings
 
