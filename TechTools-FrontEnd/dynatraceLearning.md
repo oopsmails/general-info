@@ -18,6 +18,7 @@ For real user monitoring, Dynatrace OneAgent injects a JavaScript tag into the H
 
 DynatraceAction
 
+GlobalErrorHandler
 
 ### import DynatraceAction in component to trace
 
