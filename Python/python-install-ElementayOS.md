@@ -1,6 +1,19 @@
 
 # Python installation on ElementaryOS
 
+## Check it First!
+
+- To list the installed packages related to Python:
+
+`apt list --installed | grep python`
+
+
+- Let’s have a look at where the system binaries have been installed:
+
+`ls -l /usr/bin/*python*`
+
+
+
 ## Using Virtual Env
 
 - https://docs.python.org/3/tutorial/venv.html
@@ -36,5 +49,42 @@ In this article and the below video I show you how to install Python 3.7 the eas
 7. type and run: sudo apt install python3.7
 
 You now have Python 3.7 installed
+
+`sudo apt install python3.8`
+
+
+- https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/
+
+
+## PyCharm
+
+https://snapcraft.io/install/pycharm-community/elementary
+
+### Enable snaps on elementary OS and install PyCharm CE
+Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully.
+
+Snaps are discoverable and installable from the Snap Store, an app store with an audience of millions.
+
+
+### Enable snapd
+Snap can be installed on elementary OS from the command line. Open Terminal from the Applications launcher and type the following:
+
+```
+sudo apt update
+sudo apt install snapd
+
+```
+
+Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
+
+### Install PyCharm CE
+
+To install PyCharm CE, simply use the following command:
+
+`sudo snap install pycharm-community --classic`
+
+
+
+
 
 
