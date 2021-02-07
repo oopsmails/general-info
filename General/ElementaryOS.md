@@ -439,6 +439,27 @@ sudo apt install snapd
 
 sudo snap install shotcut --classic
 
+### Spring Tool Suite: icon not showing correctly
+
+- go to /home/[user]/.local/share/applications
+
+- edit or add sts.desktop
+
+```
+[Desktop Entry]
+Type=Application
+Name=SpringToolSuite4
+Icon=/home/albert/Documents/programs/sts-4.7.0.RELEASE/icon.xpm <----------------- make sure this is correct!
+Exec=/home/albert/Documents/programs/sts-4.7.0.RELEASE/SpringToolSuite4
+X-GNOME-FullName[en_CA]=SpringToolSuite4
+Comment[en_CA]=Spring Tool Suite
+NoDisplay=false
+Path=
+Terminal=false
+X-GNOME-UsesNotifications=false
+Categories=Development;
+```
+
 
 
 
