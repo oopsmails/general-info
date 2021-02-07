@@ -14,6 +14,35 @@ Then, copy the line (key) to Git repo user settings ....
 
 git config --global user.email oopsmails@gmail.com
 
+## Set git to use stored username and password
+
+- For local commits
+
+git config --global user.name myusername
+git config --global user.email myemail@gmail.com
+
+- Store credentials forever
+
+WARNING: If you use credential.helper store from the answer, your password is going to be stored completely unencrypted ("as is") at ~/.git-credentials. Please consult the comments section below or the answers from the "Linked" section, especially if your employer has zero tolerance for security issues
+
+Permanently authenticating with Git repositories
+Run following command to enable credential caching:
+
+```
+$ git config credential.helper store
+$ git push https://github.com/repo.git
+
+Username for 'https://github.com': <USERNAME>
+Password for 'https://USERNAME@github.com': <PASSWORD>
+```
+
+Use should also specify caching expire
+
+git config --global credential.helper "cache --timeout 7200"
+
+After enabling credential caching, it will be cached for 7200 seconds (2 hour).
+
+
 ## git exclude local file, but not through .gitignore
 
 From the relevant Git documentation:
