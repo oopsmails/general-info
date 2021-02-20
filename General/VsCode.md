@@ -7,5 +7,18 @@ Click on the gear icon on the bottom-left corner of the window, select Settings 
 
 It explains (below or above the setting, depending if you use the new Settings manager or edit the settings.json file):
 
-### 
+### Sort order in Open Editors
+
+Settings, search "explorer", 
+
+Explorer > Open Editors: Sort Order
+
+from the drop down, choose alphabetical
+
+### open new windows with same size
+
+"window.newWindowDimensions": "inherit"
+
+
+
 
