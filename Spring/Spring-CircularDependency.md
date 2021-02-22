@@ -29,6 +29,7 @@ It can happen in Spring when using constructor injection; if you use other types
 3. A Quick Example
 Let’s define two beans that depend on one another (via constructor injection):
 
+```
 @Component
 public class CircularDependencyA {
  
@@ -49,14 +50,20 @@ public class CircularDependencyB {
         this.circA = circA;
     }
 }
+
+```
 Now we can write a Configuration class for the tests, let’s call it TestConfig, that specifies the base package to scan for components. Let’s assume our beans are defined in package “com.baeldung.circulardependency”:
 
+```
 @Configuration
 @ComponentScan(basePackages = { "com.baeldung.circulardependency" })
 public class TestConfig {
 }
+
+```
 And finally we can write a JUnit test to check the circular dependency. The test can be empty, since the circular dependency will be detected during the context loading.
 
+```
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestConfig.class })
 public class CircularDependencyTest {
@@ -66,26 +73,30 @@ public class CircularDependencyTest {
         // Empty test; we just want the context to load
     }
 }
-If you try to run this test, you will get the following exception:
 
+```
+
+If you try to run this test, you will get the following exception:
+```
 BeanCurrentlyInCreationException: Error creating bean with name 'circularDependencyA':
 Requested bean is currently in creation: Is there an unresolvable circular reference?
+```
+
 4. The Workarounds
 We will show some of the most popular ways to deal with this problem.
 
 
-
-
-4.1. Redesign
+- 4.1. Redesign
 When you have a circular dependency, it’s likely you have a design problem and the responsibilities are not well separated. You should try to redesign the components properly so their hierarchy is well designed and there is no need for circular dependencies.
 
 If you cannot redesign the components (there can be many possible reasons for that: legacy code, code that has already been tested and cannot be modified, not enough time or resources for a complete redesign…), there are some workarounds to try.
 
-4.2. Use @Lazy
+- 4.2. Use @Lazy
 A simple way to break the cycle is saying Spring to initialize one of the beans lazily. That is: instead of fully initializing the bean, it will create a proxy to inject it into the other bean. The injected bean will only be fully created when it’s first needed.
 
 To try this with our code, you can change the CircularDependencyA to the following:
 
+```
 @Component
 public class CircularDependencyA {
  
@@ -96,15 +107,19 @@ public class CircularDependencyA {
         this.circB = circB;
     }
 }
+
+```
 If you run the test now, you will see that the error does not happen this time.
 
-4.3. Use Setter/Field Injection
-One of the most popular workarounds, and also what Spring documentation proposes, is using setter injection.
+- 4.3. Use Setter/Field Injection
+
+**One of the most popular workarounds**, and also what Spring documentation proposes, is using **setter injection**.
 
 Simply put if you change the ways your beans are wired to use setter injection (or field injection) instead of constructor injection – that does address the problem. This way Spring creates the beans, but the dependencies are not injected until they are needed.
 
 Let's do that – let's change our classes to use setter injections and will add another field (message) to CircularDependencyB so we can make a proper unit test:
 
+```
 @Component
 public class CircularDependencyA {
  
@@ -119,6 +134,7 @@ public class CircularDependencyA {
         return circB;
     }
 }
+
 @Component
 public class CircularDependencyB {
  
@@ -135,8 +151,11 @@ public class CircularDependencyB {
         return message;
     }
 }
+```
+
 Now we have to make some changes to our unit test:
 
+```
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestConfig.class })
 public class CircularDependencyTest {
@@ -161,20 +180,22 @@ public class CircularDependencyTest {
         Assert.assertEquals("Hi!", circA.getCircB().getMessage());
     }
 }
+```
+
 The following explains the annotations seen above:
 
 @Bean: To tell Spring framework that these methods must be used to retrieve an implementation of the beans to inject.
 
 @Test: The test will get CircularDependencyA bean from the context and assert that its CircularDependencyB has been injected properly, checking the value of its message property.
 
-4.4. Use @PostConstruct
+- 4.4. Use @PostConstruct
 Another way to break the cycle is injecting a dependency using @Autowired on one of the beans, and then use a method annotated with @PostConstruct to set the other dependency.
-
 
 
 
 Our beans could have the following code:
 
+```
 @Component
 public class CircularDependencyA {
  
@@ -190,6 +211,7 @@ public class CircularDependencyA {
         return circB;
     }
 }
+
 @Component
 public class CircularDependencyB {
  
@@ -205,13 +227,18 @@ public class CircularDependencyB {
         return message;
     }
 }
+
+```
+
 And we can run the same test we previously had, so we check that the circular dependency exception is still not being thrown and that the dependencies are properly injected.
 
-4.5. Implement ApplicationContextAware and InitializingBean
+- 4.5. Implement ApplicationContextAware and InitializingBean
+
 If one of the beans implements ApplicationContextAware, the bean has access to Spring context and can extract the other bean from there. Implementing InitializingBean we indicate that this bean has to do some actions after all its properties have been set; in this case, we want to manually set our dependency.
 
 The code of our beans would be:
 
+```
 @Component
 public class CircularDependencyA implements ApplicationContextAware, InitializingBean {
  
@@ -233,6 +260,7 @@ public class CircularDependencyA implements ApplicationContextAware, Initializin
         context = ctx;
     }
 }
+
 @Component
 public class CircularDependencyB {
  
@@ -249,7 +277,11 @@ public class CircularDependencyB {
         return message;
     }
 }
+```
+
 Again, we can run the previous test and see that the exception is not thrown and that the test is working as expected.
+
+
 
 5. In Conclusion
 There are many ways to deal with circular dependencies in Spring. The first thing to consider is to redesign your beans so there is no need for circular dependencies: they are usually a symptom of a design that can be improved.

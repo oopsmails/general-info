@@ -3,7 +3,7 @@
 
 VBoxManage internalcommands sethduuid "/home/user/VirtualBox VMs/drupal/drupal.vhd"
 
-VBoxManage internalcommands sethduuid "/Users/user/Documents/vbs/bmo-olb-ws/bmo-olb-ws.vdi"
+VBoxManage internalcommands sethduuid "/Users/user/Documents/vbs/xxxx-ws/xxxx-ws.vdi"
 
 - if machine uuid also "in use"
 

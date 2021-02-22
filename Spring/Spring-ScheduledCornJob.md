@@ -3,6 +3,8 @@
 ## spring after application start
 
 
+### Can use @PostConstruct
+
 - Below you can find the example patterns from the spring forum:
 
 The pattern is:
@@ -62,7 +64,41 @@ At minute 0 past every 12th hour
 
 ```
 
-- if using SpringBoot
+### Another way, initialDelay and MAX_VALUE
+
+
+```
+// Setup
+@Service
+@Configuration
+@EnableScheduling
+
+
+// 
+/*
+	* 
+	*Scheduled cron job to run everyday at 12:00 am
+	*/	
+@Scheduled(cron = "0 0 0 * * ?")
+public void execute() {
+	this.processGetClientInfo(header, true);	
+}
+
+/*
+	* 
+	*Scheduled job to run once at server startup
+	*/
+@Scheduled(fixedDelay = Long.MAX_VALUE, initialDelay = 0)
+public void runOnceOnStartup() {
+	this.processGetClientInfo(header, true);
+}
+
+.....
+
+```
+
+
+## if using SpringBoot
 
 ```
 @EventListener(ApplicationReadyEvent.class)
