@@ -14,7 +14,7 @@ public class MainMouseEvents {
             e.printStackTrace();
         }
 
-        klick(1, 1100, 30);
+        klick(1, 1100, 30000); // in ms!
     }
 
     public static void klick(int x, int y, int delay) {
