@@ -13,12 +13,13 @@ public class MainMouseEvents {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-
-        klick(1, 1100, 30000); // in ms!
+        while (true) {
+            klick(650, 550, 30000); // in ms!
+        }
     }
 
     public static void klick(int x, int y, int delay) {
-        robot.mouseMove(x, y);
+        // robot.mouseMove(x, y);
         robot.delay(delay);
         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
