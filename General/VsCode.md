@@ -29,3 +29,25 @@ Settings, search "title", Windows: Title, change to "activeEditorLong"
 
 "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}"
 
+### Terminal: Select Default Shell
+
+Terminal, drop down, "Select Default Shell"
+
+or, Settings, search "default shell",
+
+```
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "window.openFoldersInNewWindow": "on",
+    "extensions.ignoreRecommendations": true,
+    "window.newWindowDimensions": "inherit",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe", <-------- here
+    "explorer.openEditors.sortOrder": "alphabetical",
+    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+    "terminal.integrated.shell.osx": ""
+}
+
+```
+
+
+
