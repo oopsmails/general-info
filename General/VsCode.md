@@ -15,10 +15,17 @@ Explorer > Open Editors: Sort Order
 
 from the drop down, choose alphabetical
 
+"explorer.openEditors.sortOrder": "alphabetical"
+
 ### open new windows with same size
+
+Settings, search "New Window Dimensions", change to "inherit"
 
 "window.newWindowDimensions": "inherit"
 
+### Show full path on the title bar
 
+Settings, search "title", Windows: Title, change to "activeEditorLong"
 
+"window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}"
 
