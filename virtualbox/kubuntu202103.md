@@ -1,6 +1,10 @@
 
 # Kubuntu: 202103
 
+## Change hostname
+
+`sudo hostnamectl set-hostname kubntu20`
+
 ## Install Softwares
 
 - Chrome
@@ -21,4 +25,12 @@ check /etc/apt/apt.conf, if there is Acquire proxy, comment those out.
 ## Install Docker CE
 
 - see github/general-info/virtualbox/kubuntu202103-installDockerCE.md
+
+## Install docker-compose
+
+`sudo apt  install docker-compose`
+
+## Run Docker Kafka
+
+docker-compose -f /home/albert/Documents/sharing/docker-compose-wurstmeister.yaml up -d
 
