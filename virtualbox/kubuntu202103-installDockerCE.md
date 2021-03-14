@@ -51,9 +51,18 @@ sudo apt install docker-ce
 
 `sudo usermod -aG docker $USER`
 
-Note
+or 
 
-After entering the usermod command, you will need to close your SSH session and open a new one for this change to take effect.
+```
+su root
+usermod -aG docker albert
+```
+
+Note:
+
+- After entering the usermod command, you will need to close your SSH session and open a new one for this change to take effect.
+
+- May need restart vm
 
 
 ### Check that the installation was successful by running the built-in “Hello World” program:

@@ -32,6 +32,8 @@ usermod -a -G vboxsf admin
 
 `sudo hostnamectl set-hostname kubntu20`
 
+## sudo apt update
+
 
 ## Install Softwares
 
@@ -41,17 +43,9 @@ usermod -a -G vboxsf admin
 
 ### vs code
 
-## apt update
+- Download deb, save file and double click to run
 
-- Problem:
-
-Err:1 http://packages.microsoft.com/repos/code stable InRelease
-  Could not connect to 127.0.0.1:3128 (127.0.0.1). - connect (111: Connection refused)
-Err:2 http://ca.archive.ubuntu.com/ubuntu focal InRelease
-
-Solution:
-
-check /etc/apt/apt.conf, if there is Acquire proxy, comment those out.
+- Config: title: long, open new: window size inherit, folder in new window, explorer sort: alphabetical
 
 ## Install Docker CE
 
