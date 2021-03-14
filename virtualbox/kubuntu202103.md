@@ -1,14 +1,45 @@
 
 # Kubuntu: 202103
 
+## Change root password
+
+## Setup Display
+
+- if problem, see github/general-info/virtualbox/kubuntu202103-ProblemAndFix.md
+
+## Add Shared folder
+
+- add as following, make it permenent
+
+C:\sharing
+
+sharing
+
+/home/albert/Documents/sharing
+
+- add current user "admin" to vboxsf group
+
+`su root`
+
+password as root
+
+usermod -a -G vboxsf admin
+
+- logout and login again, now the shared folder is accessible.
+
+
 ## Change hostname
 
 `sudo hostnamectl set-hostname kubntu20`
 
+
 ## Install Softwares
 
-- Chrome
-- vs code
+### Chrome
+
+- Download deb, save file and double click to run
+
+### vs code
 
 ## apt update
 
