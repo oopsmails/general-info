@@ -1,20 +1,27 @@
 
+
+# Hibernate Tutorial
+
+- Reference:
+
 https://www.youtube.com/watch?v=Yv2xctJxE-w&list=PL4AFF701184976B25
 
 
+## Introduction:
+
 Hibernate:
 
+```
 @ElementCollection + @JoinTable(name, joinColumns=@JoinColumn(name))
 @Embeddedable
 @Embedded
 
 @EmbeddedId
 
-
 @Id
-@
+```
 
-#### Hibernate Tutorial 11 - Configuring Collections and Adding Keys
+## Hibernate Tutorial 11 - Configuring Collections and Adding Keys
 ==> @CollectionId not in JPA, 
 
 --> not working?
@@ -38,16 +45,16 @@ private Collection<FileAttachment> images = new ArrayList<FileAttachment>();
 private List<FileAttachment> images
 
 
-#### Hibernate Tutorial 12 - Proxy Objects and Eager and Lazy Fetch Types
+## Hibernate Tutorial 12 - Proxy Objects and Eager and Lazy Fetch Types
 
 
-#### Hibernate Tutorial 13 - One To One Mapping
+## Hibernate Tutorial 13 - One To One Mapping
 
 @OneToOne
 @JoinColumn(name="vehicle_id")
 private Vehicle vehicle;
 
-#### Hibernate Tutorial 14 - One To Many Mapping
+## Hibernate Tutorial 14 - One To Many Mapping
 
 in UserDetails class
 
@@ -81,7 +88,7 @@ in UserDetails class
 private Collection<Vehicle> vehicleList = new ArrayList<>();
 
 
-#### Hibernate Tutorial 15 - mappedBy and Many To Many Mapping
+## Hibernate Tutorial 15 - mappedBy and Many To Many Mapping
 
 --> two mapping tables, if no "mappedBy" configuration
 
@@ -100,7 +107,7 @@ in Vehicle class
 private Collection<UserDetails> userList = new ArrayList<>();
 
 
-#### Hibernate Tutorial 16 - CascadeTypes and Other Things
+## Hibernate Tutorial 16 - CascadeTypes and Other Things
 
 @ManyToOne
 @NotFound(action=NotFoundAction.IGNORE) --> hibernate annotation!
@@ -134,14 +141,14 @@ CascadeType.ALL
 no use session.save(user), instead, use session.persis(user)
 
 
-#### Hibernate Tutorial 17 - Implementing Inheritance
+## Hibernate Tutorial 17 - Implementing Inheritance
 
 by default, subclasses, will be saved in the same table as super class ... 
 but automatically adds "DTYPE", populated by superclass name and subclass names
 and fields from subclasses are all added as columns.
 
 
-#### Hibernate Tutorial 18 - Implementing Inheritance - Single Table Strategy
+## Hibernate Tutorial 18 - Implementing Inheritance - Single Table Strategy
 --> SINGLE_TABLE
 superclass:
 
@@ -158,7 +165,7 @@ subclass:
 
 => not recommanded ..., least normalized
 
-#### Hibernate Tutorial 19 - Implementing Inheritance With Table Per Class Strategy
+## Hibernate Tutorial 19 - Implementing Inheritance With Table Per Class Strategy
 
 --> TABLE_PER_CLASS
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -167,17 +174,17 @@ Three tables, with ID is in sequence ...
 
 => slightly normalized, but repeating columns
 
-#### Hibernate Tutorial 20 - Implementing Inheritance With Joined Strategy
+## Hibernate Tutorial 20 - Implementing Inheritance With Joined Strategy
 --> JOINED
 @Inheritance(strategy=InheritanceType.JOINED)
 
 
-#### Hibernate Tutorial 21 - CRUD Operations
+## Hibernate Tutorial 21 - CRUD Operations
 
 session.delete(user);
 session.update(user);
 
-#### Hibernate Tutorial 22 - Transient, Persistent and Detached Objects
+## Hibernate Tutorial 22 - Transient, Persistent and Detached Objects
 there are 3 object states!
 
 before session, i.setUserName("..") is Transient. This means, if there is an update in session, then 
@@ -210,11 +217,11 @@ user.setUserName("4") <-- not hibernate tracked ...
 
 
 
-#### Hibernate Tutorial 23 - Understanding State Changes
+## Hibernate Tutorial 23 - Understanding State Changes
 
 after session.delete(), the object back to Transient state
 
-#### Hibernate Tutorial 24 - Persisting Detached Objects
+## Hibernate Tutorial 24 - Persisting Detached Objects
 
 DB fatch 
 
@@ -227,13 +234,13 @@ DB update <-- need to Persist Detached Object
 --> select before update, update only if there is any change
 
 
-#### Hibernate Tutorial 25 - Introducing HQL and the Query Object
+## Hibernate Tutorial 25 - Introducing HQL and the Query Object
 
 --> org.hibernate.Query here!?
 Query query = session.createQuery("from UserDetails where userId > 5");
 List<UserDetails> users = (List<UserDetails>)query.list();
 
-#### Hibernate Tutorial 26 - Select and Pagination in HQL
+## Hibernate Tutorial 26 - Select and Pagination in HQL
 
 Query query = session.createQuery("select userName from UserDetails where userId > 5");
 
@@ -254,7 +261,7 @@ query.setMaxResult(4);
 
 
 
-#### Hibernate Tutorial 27 - Understanding Parameter Binding and SQL Injection
+## Hibernate Tutorial 27 - Understanding Parameter Binding and SQL Injection
 
 String minUserId = "5";
 Query query = session.createQuery("select map(userId, userName) from UserDetails where userId > " + minUserId); <-- could result SQL Injection on String
@@ -277,7 +284,7 @@ Query query = session.createQuery("from UserDetails where userId > :userId and u
 query.setInteger("userId", Integer.parseInt(minUserId));
 query.setString("userName", userName);
 
-#### Hibernate Tutorial 28 - Named Queries
+## Hibernate Tutorial 28 - Named Queries
 
 @Entity
 @NamedQuery(name="UserDetails.byId", query="from UserDetails where userId = ?")
@@ -293,14 +300,14 @@ List<UserDetails> users = (List<UserDetails>)query.list(); <-- still a List here
 
 
 
-#### Hibernate Tutorial 29 - Introduction to Criteria API
+## Hibernate Tutorial 29 - Introduction to Criteria API
 
 - org.hibernate.Criteria
 Criteria criteria = session.createCriteria(UserDetails.class);
 criteria.add(Restrictions.eq("userName", "User 10"));
 List<UserDetails> users = (List<UserDetails>)criteria.list();
 
-#### Hibernate Tutorial 30 - Understanding Restrictions
+## Hibernate Tutorial 30 - Understanding Restrictions
 
 chaining ...
 
@@ -317,7 +324,7 @@ criteria.add(Restrictions.or(
 ));
 
 
-#### Hibernate Tutorial 31 - Projections and Query By Example
+## Hibernate Tutorial 31 - Projections and Query By Example
 
 -- Projections
 Criteria criteria = session.createCriteria(UserDetails.class);
@@ -346,26 +353,37 @@ exampleUser.setUserName("User 1%");
 Example example = Example.create(exampleUser).enableLike(); <-- enable like
 Criteria criteria = session.createCriteria(UserDetails.class).add(example);
 
-#### Hibernate Tutorial 32 - Cacheing in Hibernate
+## Hibernate Tutorial 32 - Cacheing in Hibernate
 
-- First Level Cache - Session: update and select twice, hibernate smart enough to run once
-- Second Level Cache - Session should not be there for long time ...
+- First Level Cache - **Session**: update and select twice, hibernate smart enough to run once
+- Second Level Cache - Since session should not be there for long time, so, need second level cache, like, Ehcache ... 
 	- Across sessions in an application
 	- Across applicaitons, diff sessions and diff applicaitons
 	- Across clusters, problem with application not using hibernate, etc. invalid cache, dirty data
----- 
+ 
 
+
+
+1. Only one query run, session cache, first level cache
+```
 UserDetails user = (UserDetails)session.get(UserDetails.class, 1);
 ...  .... ...
 UserDetails user2 = (UserDetails)session.get(UserDetails.class, 1);
-1. --> then only one query run, session cache, first level cache
+```
 
+
+2. One select and one update ... no second select, because cached in session, even with an *update* in the middle
+
+
+```
 UserDetails user = (UserDetails)session.get(UserDetails.class, 1);
 user.setUserName("updated ...");
 UserDetails user2 = (UserDetails)session.get(UserDetails.class, 1);
-2. --> then only one select and one update ... no second select, because cached in session
+```
 
+3. Then two select queries runs, this can be solved by cache ... second level cache !!!!
 
+```
 SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 Session session = sessionFactory.openSession();
 session.befinTransaction();
@@ -373,7 +391,7 @@ session.befinTransaction();
 UserDetails user = (UserDetails)session.get(UserDetails.class, 1);
 
 session.getTransaction().commit();
-session.close()
+session.close() <---------------------- session closed, second select will go to database!
 
 Session session2 = sessionFactory.openSession();
 session2.befinTransaction();
@@ -382,11 +400,9 @@ UserDetails user2 = (UserDetails)session.get(UserDetails.class, 1);
 
 session2.getTransaction().commit();
 session2.close()
+```
 
-3. --> then two select queries runs, this can be solved by cache ... second level cache !!!!
-
-
-#### Hibernate Tutorial 33 - Configuring Second Level Cache
+## Hibernate Tutorial 33 - Configuring Second Level Cache
 
 1. hibernate.cfg.xml
 --> 
@@ -437,7 +453,7 @@ session2.close()
 
 ---------------
 
-#### Hibernate Tutorial 34 - Using Query Cache
+## Hibernate Tutorial 34 - Using Query Cache
 
 --> Query Cache should be used carefully ... because it may end with all over places in application.
 
@@ -471,6 +487,6 @@ query.setCacheable(true);
 query2.setCacheable(true); <-- also needed, because this means setCacheable() checking cache first.
 
 
-#### 
+## 
 
 
