@@ -197,6 +197,36 @@ git stash clear
 
 (use "git rest HEAD <-file-> ..." to unstage)
 
+
+## git pull, conflict ...
+
+Don't follow other answers
+Well, you can follow them :). But I don't think that doing a commit and then resetting the branch to remove that commit and similar workarounds suggested in other answers are the clean way to solve this issue.
+
+Clean solution
+The following solution seems to be much cleaner to me and it's also suggested by the Git itself — try to execute git status in the repository with a conflict:
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+So let's do what Git suggests (without doing any useless commits):
+
+Manually (or using some merge tool, see below) resolve the conflict(s).
+Use git reset to mark conflict(s) as resolved and unstage the changes. You can execute it without any parameters and Git will remove everything from the index. You don't have to execute git add before.
+Finally, remove the stash with git stash drop, because Git doesn't do that on conflict.
+Translated to the command-line:
+
+```
+$ git stash pop
+
+# ...resolve conflict(s)
+
+$ git reset
+
+$ git stash drop
+```
+
+
 ## Cherry picking
 
 **bugfix** branch is from production repo branch and then fixed a bug
