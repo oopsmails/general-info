@@ -1,5 +1,17 @@
 # Install MacOS Catalina on Virtual Box
 
+# 20210327: Reload on Lenovo Small
+
+- import Appliance from backup, D:\MacOS.ova
+- Run those commands
+- Key board not working, solved by 
+    - open settings
+    - user interface
+    - input drop down
+    - uncheck and check again the keyboard checkbox
+    - click OK
+
+
 https://techsviewer.com/install-macos-10-15-catalina-on-virtualbox-on-windows-pc/
 
 C:\Program Files\Oracle\VirtualBox\VBoxManage.exe
