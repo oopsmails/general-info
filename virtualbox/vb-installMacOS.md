@@ -28,6 +28,7 @@
 
 ## Install from Beginning
 
+### Ref 1
 
 https://techsviewer.com/install-macos-10-15-catalina-on-virtualbox-on-windows-pc/
 
@@ -40,6 +41,73 @@ VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemVers
 VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Iloveapple"
 VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+
+
+### Ref 2
+
+
+************************************************************************************************************************************************
+
+                            LINUX NOX
+
+************************************************************************************************************************************************
+******Follow this links to download MAC OS virtual disk image*******
+
+************************************************************************************************
+*                                                                                              *
+* 1.https://www.intoguide.com/download-macos-catalina-iso-file-latest-version/                 *
+* 2.https://www.intoguide.com/download-macos-10-15-catalina-vmdk-files-virtual-machine-image/  *
+* 3.https://techsviewer.com/category/mac/                                                      *
+*                                                                                              *
+* 4.Subscribe LINUX NOX :-                                                                     *
+*   https://www.youtube.com/channel/UClBS00lvW8g7IBN-0fBC6qQ                                   *
+*                                                                                              *
+************************************************************************************************
+
+
+====> Steps,
+
+
+https://www.youtube.com/watch?v=Eb7R-dxznrg
+
+
+VBoxManage.exe modifyvm "Mac OS" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "Mac OS" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac11,3"
+VBoxManage setextradata "Mac OS" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "Mac OS" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Iloveapple"
+VBoxManage setextradata "Mac OS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "Mac OS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+
+
+- Create New VM "Mac OS"
+- From existing Hard Drive, pointing to the downloaded "macOS Catalina Virtual Disk Image.vmdk"
+- Configure System, memory, CPU, Display, etc.
+- Run cmd, as Administrater, and then run the commands above
+- Start the VM
+
+====> Mouse:
+
+https://www.wikigain.com/fix-mouse-keyboard-stuck-macos-mojave-virtualbox/
+
+Open VirtualBox then go to the VM (macOS Mojave) Settings and from the USB tab, select USB 3.0 (xHCI) Controller. Next, click on Add button then list your mouse and keyboard under USB Device Filters.
+
+
+====> Display:
+
+VBoxManage setextradata "Mac OS" VBoxInternal2/EfiGraphicsResolution 1920x1080
+
+
+
+
+***********> Mac OS.ova, can be imported!!!
+
+
+smb://192.168.56.1
+
+
+
+macos word alternative
+
 
 
 ### Make a Catalina Bootable Installer Image
