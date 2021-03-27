@@ -1,15 +1,32 @@
 # Install MacOS Catalina on Virtual Box
 
-# 20210327: Reload on Lenovo Small
+## 20210327: Reload on Lenovo Small, Cataline
 
+### Import from backup
 - import Appliance from backup, D:\MacOS.ova
 - Run those commands
+
+
+### Problems Resolved
+
 - Key board not working, solved by 
     - open settings
     - user interface
     - input drop down
     - uncheck and check again the keyboard checkbox
     - click OK
+
+- Chrome icon changed, solved by
+    - Open Finder, go to Applications, locate Google Chrome, then right click and choose Get Info. enter image description here
+    - Click on the icon at the top left enter image description here
+    - Press Cmd+C and then Cmd+V (Copy then Paste), it may ask your pw to make changes.
+    - Exit get info window, and restart google chrome. It should be back to normal.
+
+- Shared folder problem
+    - Looks like have to use Finders :: Go :: Connect to Server, even installed Guest, /Volumes/VBox_GAs_6.1.18/VBoxDarwinAdditions.pkg
+
+
+## Install from Beginning
 
 
 https://techsviewer.com/install-macos-10-15-catalina-on-virtualbox-on-windows-pc/
@@ -25,7 +42,7 @@ VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "o
 VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
 
 
-## Make a Catalina Bootable Installer Image
+### Make a Catalina Bootable Installer Image
 
 https://techsviewer.com/how-to-download-full-macos-catalina-installer-and-mojave/
 
@@ -60,7 +77,7 @@ created: /Users/albert/Desktop/Catalina.cdr
 Alberts-Mac:ionic-loginsignup albert$ mv ~/Desktop/Catalina.cdr ~/Desktop/Catalina.iso
 
 
-## 
+## Other
 
 After using Dist Utility, Erase ...
 
