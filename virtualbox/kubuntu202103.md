@@ -47,13 +47,15 @@ usermod -a -G vboxsf admin
 
 - Config: title: long, open new: window size inherit, folder in new window, explorer sort: alphabetical
 
+- see General\VsCode.md
+
 ## Install Docker CE
 
 - see github/general-info/virtualbox/kubuntu202103-installDockerCE.md
 
 ## Install docker-compose
 
-`sudo apt  install docker-compose`
+`sudo apt install docker-compose`
 
 ## Run Docker Kafka
 

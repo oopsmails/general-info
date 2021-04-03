@@ -1,7 +1,7 @@
 
 # Kubuntu: 202103
 
-## Display only 800*600
+## Display only 800*600, need to 1640*864
 
 ### install Extension Guest
 
@@ -15,7 +15,7 @@ sudo ./VBoxLinuxAdditions.run
 
 - Task bar is at wrong place, i.e, not at the bottom ... try Full Screen and the Scaled mode
 
-- Selected VBoxSVGA instead of VMSVGA
+- Selected VBoxSVGA instead of VMSVGA, even could showing with error, just change it!!!
 
 - Switch around view :: Scaled mode and Auto resize guest ...
 

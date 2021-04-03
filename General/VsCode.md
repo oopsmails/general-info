@@ -29,6 +29,10 @@ Settings, search "title", Windows: Title, change to "activeEditorLong"
 
 "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}"
 
+### Crash report
+
+Settings, search "telemetry"
+
 ### Terminal: Select Default Shell
 
 Terminal, drop down, "Select Default Shell"
