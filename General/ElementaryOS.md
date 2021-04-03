@@ -379,7 +379,7 @@ git config --global user.password "your password"
 
 
 ```
-$ git config credential.helper store
+$ git config credential.helper store   <---- this is good
 $ git push http://example.com/repo.git
 Username: <type your username>
 Password: <type your password>
