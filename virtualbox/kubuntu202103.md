@@ -1,6 +1,10 @@
 
 # Kubuntu: 202103
 
+## WebSphere location
+
+/opt/ibm/WebSphere/AppServer/
+
 ## Change root password
 
 ## Setup Display
