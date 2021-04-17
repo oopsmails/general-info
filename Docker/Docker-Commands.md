@@ -49,6 +49,14 @@ docker rm
 docker rmi  
 docker volume prune  
 
+docker container exec -it my_mysql /bin/bash
+docker container exec -it wiremock-docker_wiremock_1 /bin/bash
+
+docker-compose up
+docker-compose start
+docker-compose down
+docker-compose stop
+
 ```
 
 
