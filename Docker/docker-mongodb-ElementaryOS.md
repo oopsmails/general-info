@@ -42,6 +42,7 @@ By default, **MongoDB stores data in the /data/db directory within the Docker co
 ### Create a /mongodata directory on the host system:
 
 - v0
+
 `sudo mkdir -p /mongodata`
 
 - v1, working well ----> [2]
@@ -56,12 +57,15 @@ chmod 777 -R mongodb
 - Start the Docker container with the run command using the mongo image. The /data/db directory in the container is mounted as /mongodata on the host. Additionally, this command changes the name of the container to mongodb:
 
 - This is original v0
+
 `sudo docker run -it -v /home/albert/dockerdata/mongodata:/data/db --name mongodb -d mongo` 
 
 - v1, not working well, may caused by dir permission problem
+
 `docker run -it -v /home/albert/dockerdata/mongodata:/data/db -p 27017:27017 --name mongodb -d mongo:4.2.2`
 
 - v2, working
+
 `docker run -it -v /dockerdata/mongodb:/data/db -p 27017:27017 --name mongodb -d mongo:4.2.2` ----> [3]
 
 -it – Provides an interactive shell to the Docker container.
