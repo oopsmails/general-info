@@ -71,6 +71,21 @@ docker rm $(docker ps -a -q)
 
 docker rmi $(docker images -q)
 
+- view logs
+
+
+# -t display timestamp 
+# -f track display log 
+# --tail the last line number, default all 
+# --since specify the start time, such as: 30m "2020-05-22" 
+
+docker logs -t -f [CONTAINER ID]/ [NAMES]
+docker logs -t -f --tail=100 --since=30m [CONTAINER ID]/ [NAMES]
+docker logs -t -f --tail=100 --since= " 2020-05-22 " [cONTAINER ID] / [NAMES]
+
+- view details of the container 
+Docker Inspect [cONTAINER ID] / [NAMES]
+
 ```
 
 
