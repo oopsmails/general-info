@@ -1,0 +1,161 @@
+==> Git stash
+https://git-scm.com/book/en/v1/Git-Tools-Stashing
+https://www.atlassian.com/git/tutorials/git-stash
+
+
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+        .......
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a1e17dc..7f3ca55
+
+$ git stash
+Saved working directory and index state WIP on develop ....
+
+$ git status
+On branch develop
+Your branch is behind 'origin/develop' by 83 commits, and can be fast-forwarded.
+.........
+
+$ git pull
+Updating a1e17dc..7f3ca55
+......
+
+$ git stash list
+stash@{0}: WIP on develop ......
+
+
+$ git stash show
+ ...........
+ 3 files changed, 78 insertions(+)
+
+$ git stash pop
+Auto-merging ......
+CONFLICT (content): Merge conflict in file1...
+Auto-merging file2
+Auto-merging file3
+
+$ git status
+On branch develop
+Your branch is up-to-date with 'origin/develop'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   file2
+        modified:   file3
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   file1 <----------------------------- here
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+..................
+
+
+--> manually merge the file, also can use vs code to merge
+
+
+$ git reset
+Unstaged changes after reset:
+M       lib/sandbox/app/app.module.ts
+M       lib/sandbox/app/components-examples.component.html
+M       lib/sandbox/app/components-examples.component.ts
+
+
+--> cleaning stash
+
+git stash drop stash@{0}
+
+git stash clear
+
+
+----------------------------------------------
+--> git stash apply
+You can reapply the one you just stashed by using the command shown in the help output of the original stash command: git stash apply. If you want to apply one of the older stashes, you can specify it by naming it, like this: git stash apply stash@{2}. If you don’t specify a stash, Git assumes the most recent stash and tries to apply it
+
+
+----------------------------------------------
+
+
+$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+--> 
+
+git branch --set-upstream-to=origin/master
+
+--------------------------------------------------------
+
+====> git uncommit
+
+
+If you aren't totally sure what you mean by "uncommit" and don't know if you want to use git reset, please see "Revert to a previous Git commit".
+
+If you're trying to understand git reset better, please see "Can you explain what "git reset" does in plain English?".
+
+If you know you want to use git reset, it still depends what you mean by "uncommit". If all you want to do is undo the act of committing, leaving everything else intact, use:
+
+git reset --soft HEAD^
+If you want to undo the act of committing and everything you'd staged, but leave the work tree (your files intact):
+
+git reset HEAD^
+And if you actually want to completely undo it, throwing away all uncommitted changes, resetting everything to the previous commit (as the original question asked):
+
+git reset --hard HEAD^
+The original question also asked it's HEAD^ not HEAD. HEAD refers to the current commit - generally, the tip of the currently checked-out branch. The ^ is a notation which can be attached to any commit specifier, and means "the commit before". So, HEAD^ is the commit before the current one, just as master^ is the commit before the tip of the master branch.
+
+Here's the portion of the git-rev-parse documentation describing all of the ways to specify commits (^ is just a basic one among many).
+
+shareeditflag
+edited May 23 '17 at 12:18
+
+Community♦
+11
+answered May 17 '10 at 0:52
+
+Cascabel
+296k54307284
+5
+@inger: True enough, I suppose, but in my mind, the question the OP meant to ask was "what do HEAD and HEAD^ mean?" – Cascabel Mar 2 '11 at 15:32
+14
+perfect, and thanks for mentioning --soft, that's just what I wanted to do – Bogatyr Jul 13 '11 at 11:27
+36
+upvote
+flag
+@Jefromi: every answer in this question is totally wrong to emphasize --hard, the --soft, is necessary for it to be "uncommit last commit", a --hard will not only uncommit but also destroy your commit. I nearly destroyed a whole day's of work since I didn't recheck what --hard meant assuming 70+ answer wouldn't be wrong. Fortunately reflog saved my day, but it wouldn't have to be that way. – Lie Ryan Apr 7 '12 at 4:27 
+
+
+
+https://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists
+
+====================
+git config core.autocrlf false
+
+git config --global core.autocrlf false
+
+
+undo commit:
+
+git reset HEAD^
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,399 @@
+liu@DellSmall MINGW64 /
+$ dir
+bin  dev  git-bash.exe  LICENSE.txt  proc               tmp           unins000.exe  usr
+cmd  etc  git-cmd.exe   mingw64      ReleaseNotes.html  unins000.dat  unins000.msg
+
+liu@DellSmall MINGW64 /
+$ cd C:\GitHub
+
+liu@DellSmall MINGW64 /c/GitHub
+$ dir
+create-react-app-login
+
+liu@DellSmall MINGW64 /c/GitHub
+$ git status
+fatal: Not a git repository (or any of the parent directories): .git
+
+liu@DellSmall MINGW64 /c/GitHub
+$ cd create-react-app-login/
+
+liu@DellSmall MINGW64 /c/GitHub/create-react-app-login (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+
+liu@DellSmall MINGW64 /c/GitHub/create-react-app-login (master)
+$ git pull
+Already up-to-date.
+
+liu@DellSmall MINGW64 /c/GitHub/create-react-app-login (master)
+$ cd ..
+
+liu@DellSmall MINGW64 /c/GitHub
+$ dir
+create-react-app-login
+
+liu@DellSmall MINGW64 /c/GitHub
+$
+
+liu@DellSmall MINGW64 /c/GitHub
+$
+
+liu@DellSmall MINGW64 /c/GitHub
+$
+
+liu@DellSmall MINGW64 /c/GitHub
+$ eval `ssh-agent -s`
+Agent pid 1516
+
+liu@DellSmall MINGW64 /c/GitHub
+$ ssh-add
+
+liu@DellSmall MINGW64 /c/GitHub
+$ dir
+agular2-first  create-react-app-login
+
+liu@DellSmall MINGW64 /c/GitHub
+$
+
+liu@DellSmall MINGW64 /c/GitHub
+$
+
+liu@DellSmall MINGW64 /c/GitHub
+$ cd agular2-first/
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ dir
+README.md
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .editorconfig
+        .gitignore
+        angular-cli.json
+        e2e/
+        karma.conf.js
+        package.json
+        protractor.conf.js
+        src/
+        tslint.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ git add .
+warning: CRLF will be replaced by LF in src/app/component/basic/authors.component.ts.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/app/component/basic/courses.component.ts.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/app/directive/basic/auto-grow.directive.ts.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/app/service/basic/author.service.ts.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/app/service/basic/course.service.ts.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/app/service/http/http.test.service.ts.
+The file will have its original line endings in your working directory.
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ git commit -m "first commit"
+[master 0ecc921] first commit
+ 34 files changed, 721 insertions(+), 3 deletions(-)
+ create mode 100644 .editorconfig
+ create mode 100644 .gitignore
+ rewrite README.md (98%)
+ create mode 100644 angular-cli.json
+ create mode 100644 e2e/app.e2e-spec.ts
+ create mode 100644 e2e/app.po.ts
+ create mode 100644 e2e/tsconfig.json
+ create mode 100644 karma.conf.js
+ create mode 100644 package.json
+ create mode 100644 protractor.conf.js
+ create mode 100644 src/app/app.component.css
+ create mode 100644 src/app/app.component.html
+ create mode 100644 src/app/app.component.spec.ts
+ create mode 100644 src/app/app.component.ts
+ create mode 100644 src/app/app.module.ts
+ create mode 100644 src/app/component/basic/authors.component.ts
+ create mode 100644 src/app/component/basic/courses.component.ts
+ create mode 100644 src/app/directive/basic/auto-grow.directive.ts
+ create mode 100644 src/app/index.ts
+ create mode 100644 src/app/service/basic/author.service.ts
+ create mode 100644 src/app/service/basic/course.service.ts
+ create mode 100644 src/app/service/hero.service.ts
+ create mode 100644 src/app/service/http/http.test.service.ts
+ create mode 100644 src/environments/environment.prod.ts
+ create mode 100644 src/environments/environment.ts
+ create mode 100644 src/favicon.ico
+ create mode 100644 src/index.html
+ create mode 100644 src/main.ts
+ create mode 100644 src/polyfills.ts
+ create mode 100644 src/styles.css
+ create mode 100644 src/test.ts
+ create mode 100644 src/tsconfig.json
+ create mode 100644 src/typings.d.ts
+ create mode 100644 tslint.json
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ git push
+Counting objects: 47, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (43/43), done.
+Writing objects: 100% (47/47), 11.57 KiB | 0 bytes/s, done.
+Total 47 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/oopsmails/agular2-first.git
+   172e97c..0ecc921  master -> master
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$
+
+liu@DellSmall MINGW64 /c/GitHub/agular2-first (master)
+$ cd ..
+
+liu@DellSmall MINGW64 /c/GitHub
+$ dir
+agular2-first  angular-02  create-react-app-login
+
+liu@DellSmall MINGW64 /c/GitHub
+$ cd angular-02/
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02
+$ git init
+Initialized empty Git repository in C:/Github/angular-02/.git/
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git remote add angular-02 https://github.com/oopsmails/agular-02.git
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push angular-02
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream angular-02 master
+
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push --set-upstream angular-02 master
+error: src refspec master does not match any.
+error: failed to push some refs to 'https://github.com/oopsmails/agular-02.git'
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git remote add angular-02 https://github.com/oopsmails
+fatal: remote angular-02 already exists.
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git add .
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git commit
+[master (root-commit) 603742b] init repo
+ 1 file changed, 34 insertions(+)
+ create mode 100644 .gitignore
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git remote add origin git@github.com:oopsmails/angular-02
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push -u origin master
+The authenticity of host 'github.com (192.30.253.112)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? y
+Please type 'yes' or 'no': yes
+Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git remote -v
+angular-02      https://github.com/oopsmails/agular-02.git (fetch)
+angular-02      https://github.com/oopsmails/agular-02.git (push)
+origin  git@github.com:oopsmails/angular-02 (fetch)
+origin  git@github.com:oopsmails/angular-02 (push)
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push origin master
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh -vT git@github.com
+OpenSSH_7.3p1, OpenSSL 1.0.2k  26 Jan 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Connecting to github.com [192.30.253.113] port 22.
+debug1: Connection established.
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_rsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /c/Users/liu/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.3
+debug1: Remote protocol version 2.0, remote software version libssh-0.7.0
+debug1: no match: libssh-0.7.0
+debug1: Authenticating to github.com:22 as 'git'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256@libssh.org
+debug1: kex: host key algorithm: ssh-rsa
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: Server host key: ssh-rsa SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+debug1: Host 'github.com' is known and matches the RSA host key.
+debug1: Found key in /c/Users/liu/.ssh/known_hosts:1
+Warning: Permanently added the RSA host key for IP address '192.30.253.113' to the list of known hosts.
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS received
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey
+debug1: Next authentication method: publickey
+debug1: Trying private key: /c/Users/liu/.ssh/id_rsa
+debug1: Trying private key: /c/Users/liu/.ssh/id_dsa
+debug1: Trying private key: /c/Users/liu/.ssh/id_ecdsa
+debug1: Trying private key: /c/Users/liu/.ssh/id_ed25519
+debug1: No more authentication methods to try.
+Permission denied (publickey).
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh -T git@github.com
+Permission denied (publickey).
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ eval "$(ssh-agent -s)"
+Agent pid 11484
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh -T git@github.com
+Permission denied (publickey).
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-add -l
+The agent has no identities.
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-keygen -t rsa -b 4096 -C "oopsmails@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/liu/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+
+
+oopsmails github
+
+
+Your identification has been saved in /c/Users/liu/.ssh/id_rsa.
+Your public key has been saved in /c/Users/liu/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:Oe20/aUeFKfIKbhJ3tYr004UaOiTD+8wc/DNf2Uc5vU oopsmails@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|                 |
+|         . .     |
+|        . o . . .|
+|       . * . + *.|
+|        S + = =.+|
+|       o # O . .E|
+|        B X.* ..o|
+|         Bo..+ +.|
+|          .+o.=. |
++----[SHA256]-----+
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-add ~/.ssh/id_rsa
+Enter passphrase for /c/Users/liu/.ssh/id_rsa:
+Identity added: /c/Users/liu/.ssh/id_rsa (/c/Users/liu/.ssh/id_rsa)
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh -T git@github.com
+Permission denied (publickey).
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-add -l
+4096 SHA256:Oe20/aUeFKfIKbhJ3tYr004UaOiTD+8wc/DNf2Uc5vU /c/Users/liu/.ssh/id_rsa (RSA)
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh -T git@github.com
+Permission denied (publickey).
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCm82Q29Jhmm2QcW8xdjzwfvqRtT9DNiJbjaXpvjG9X9Q5MpEQnr+Jy21HFPINIT5NTlL73wtMjx907HVu2xjKRT5yzHTcJJJmuZt1jb0R9/btYYitil4dwkytXrw1DTQLCc3a7sRUCYbCqv/8e39Z/qmekwejBZLY2jq8ZKa1iPzzV1fykwvoioosj3UD1IOP+AKxWp1s9BQsCkhp6STpyhFLW185y4yyijGXDSyMAnZwsSfkmuS+6UGTM3/gjfhFSKGE/D4xPLRprjBz6/aJ/nzcRzPFZcZNfvIp336kpAbgl07gUyhSv5yEFizcvo21PsnuGMiVxAQNJqhOyK96L liu@DellSmall
+bash: ssh-rsa: command not found
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$

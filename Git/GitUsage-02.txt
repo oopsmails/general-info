@@ -1,0 +1,953 @@
+
+Problem: Error when cloning in GitHub GUI
+GitHub.IO.ProcessException: Could not open a connection to your authentication agent.
+
+Solution:
+Run following Git Bash, then re-open GitHub GUI
+
+liu@DellSmall MINGW64 /c/GitHub
+$ eval `ssh-agent -s`
+Agent pid 1516
+
+liu@DellSmall MINGW64 /c/GitHub
+$ ssh-add
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+-- git clone
+
+Public:
+git clone https://github.com/oopsmails/agular2-first.git
+
+Private:
+git clone http://username@github.com/oopsmails/agular2-first.git
+
+
+git clone https://github.com/oopsmails/angular-01-v2Beta.git
+git clone https://github.com/oopsmails/angular-02.git
+
+git status
+git add .
+git commit -m "first commit"
+git push origin master
+
+-----------------------------------------------------------------------
+
+Setting up new repo:
+
+[4:49]  
+git remote remove origin
+[4:50]  
+git remote add origin ssh://gituser@github.abc.com:3333/oopsmails/agular2-first.git
+
+
+and before pushing 
+git branch --set-upstream-to origin/master master
+
+
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+
+--> General pull/push
+
+git clone https://github.com/oopsmails/agular2-first.git
+
+$ git add .
+
+$ git status
+
+$ git pull origin master
+remote: Counting objects: 43, done.
+.......
+
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+
+
+$ git push origin master
+Counting objects: 23, done.
+Delta compression using up to 4 threads.
+
+-----------------------------------------------------------------------
+
+--> check uncommits ... after merge
+
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+
+--> check logcal to branch what to commit
+git log origin/master..HEAD
+
+
+--> can check what is new in branch
+git diff origin/master..HEAD
+
+
+--> git diff --name-status branch [newbranch]
+--> give a list of changed files!
+git diff --name-status origin/master..HEAD
+
+--> git add .
+
+git add --interactive
+
+git add -A --> stages All
+git add . --> stages new and modified, without deleted
+git add -u --> stages modified and deleted, without new
+
+git reset --> to undo git add
+
+-->
+git commit -m "............."
+
+-->
+git pull origin master
+
+-->
+git push origin master
+
+
+-----------------------------------------------------------------------
+
+--> delete uncommits ...
+
+git reset --hard origin/master
+If your excess commits are only visible to you, you can just do git reset --hard origin/<branch_name> to move back to where the origin is.
+
+
+$ git reset --hard origin/master
+HEAD is now at 27e58c2 New types and interfaces for client; Renaming model module to common
+
+
+?? git revert
+Doing a git revert makes new commits to remove old commits in a way that keeps everyone's history same.
+
+
+-----------------------------------------------------------------------
+
+
+Git: Merge a Remote branch locally
+
+
+You can reference those remote tracking branches with the name of their remote.
+
+If you want to merge one of those remote branches on your local branch:
+
+git checkout master
+git merge origin/aRemoteBranch
+
+
+
+If you want to merge one of your local branch on one of those remote branch, you need to create a local 
+branch on top of said remote branch first:
+
+git checkout -b myBranch origin/aBranch
+git merge aLocalBranch
+
+No: "If you want to merge one of your local branch on one of those remote branch": I am merging "aLocalBranch" to "myBranch", with "myBranch" representing a remote branch origin/aBranch
+
+
+-----------------------------------------------------------------------
+
+-- If referential integrity has been broken:
+git config --get remote.origin.url
+
+-- If referential integrity is intact:
+git remote show origin
+
+-----------------------------------------------------------------------
+
+-- why still showing "up-to-date" even there is a new change in git repo?
+
+You have to call 
+git fetch
+to get updates from remote repo to your local repo but without changing your current branch position. 
+After that 
+git status
+will show proper results.
+
+
+
+-----------------------------------------------------------------------
+
+## local branch, remote branch and remote master ...
+
+-- First, you must create your branch locally
+git checkout -b your_branch
+
+-- After that, you can work locally in your branch, when you are ready to share the branch, push it. 
+The next command push the branch to the remote repository origin and tracks it
+
+git push -u origin your_branch
+
+-- Teammates can reach your branch, by doing:
+git fetch
+git checkout origin/your_branch
+
+
+
+git checkout master
+git pull origin master
+git merge your_branch
+git push origin master
+
+
+
+-----------------------------------------------------------------------
+--Switched to a new branch 'office_test'
+
+$ git checkout -b office_test
+M       package.json
+
+$ git checkout master
+M       package.json
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+$ git pull origin master
+From https://xxxxxxxxxxxxxxxxxxx
+ * branch            master     -> FETCH_HEAD
+
+error: Your local changes to the following files would be overwritten by merge:
+        package.json
+Please commit your changes or stash them before you merge.
+Aborting
+
+$ git checkout -b office_test
+fatal: A branch named 'office_test' already exists.
+
+$ git checkout office_test
+M       package.json
+Switched to branch 'office_test'
+
+$ git push -u origin office_test
+Logon failed, use ctrl+c to cancel basic credential prompt.
+Username for 'https://github.com/':
+
+
+-----------------------------------------------------------------------
+
+
+--> How to pull when having local changes!
+
+git stash
+git pull
+git stash pop
+
+(
+git stash , git pull , 
+git stash apply
+
+git stash drop, Once you merge the changes successfully
+)
+
+
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.
+
+
+$ git stash
+Saved working directory and index state WIP on master: cfd9d9e update tests to match new urls for your information section
+HEAD is now at cfd9d9e update tests to match new urls for your information section
+
+
+$ git pull
+Updating cfd9d9e..ae9317b
+Fast-forward
+................
+ 
+ 14 files changed, 50 insertions(+), 24 deletions(-)
+
+
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .......
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+$ git stash pop
+Removing client/npm-shrinkwrap.json
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+.......
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .....
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (a076d30ebb3b8dd5fe74182e7c6da2461b1665a3)
+
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        .......
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ..............
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+===============
+--> git merge after git stash pop
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        ...........
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   ...........
+
+
+
+Following solution seems to be much cleaner to me and it's also suggested by the Git itself - execute git status in the repository with a conflict:
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+Let's do what Git suggests without doing any commit:
+
+Manually (or using some GUI merge tool) resolve the conflict(s).
+Use git reset to mark conflict(s) as resolved and unstage the changes. You can execute it without any parameters and Git will remove everything from the index. You don't have to execute git add before.
+Finally, remove the stash with git stash drop, because Git doesn't do that on conflict.
+So:
+
+$ git stash pop
+
+# ...manually resolve conflict(s) --> here, can open git extension, to use KDiff3 to merge.
+
+$ git reset
+
+$ git stash drop
+Note: adding files to the index after a conflict is resolved is on purpose. 
+This way you can differentiate the changes from the previous stash and changes you made 
+after the conflict was resolved. If you don't like it, you can always use git reset to 
+remove everything from the index.
+
+Another note: I highly recommend using any of 3-way merge tools for solving conflicts, 
+e.g. KDiff3. It usually solves majority of conflicts automatically itself.
+
+
+
+
+-----------------------------------------------------------------------
+#### Git setting for "Dealing with line endings"
+
+https://help.github.com/articles/dealing-with-line-endings/#platform-windows
+
+Settings should be set as, this is especially important on Windows:
+git config --global core.autocrlf true
+git config --global core.filemode true
+
+
+-----------------------------------------------------------------------
+
+git remote set-url origin git://new.url.here
+
+
+-----------------------------------------------------------------------
+
+--> overwrite all local changes
+git reset --hard
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+
+==> git branch!
+
+--------------------------- $ git status
+On branch master
+Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        ..........................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .......................................
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+--------------------------- $ git stash
+Saved working directory and index state WIP on master: c070310 Clean up and fix const issue with phantom
+HEAD is now at c070310 Clean up and fix const issue with phantom
+
+
+--------------------------- $ git status
+On branch master
+Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ...........................
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+--------------------------- $ git pull
+Updating c070310..356a628
+Fast-forward
+ .......................
+ 6 files changed, 58 insertions(+), 12 deletions(-)
+
+
+--------------------------- $ git stash pop
+Removing server/src/service/routes/application/applicationType.ts
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        .........................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .............................
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (8aefa239364894635ca3c7cb3aa94ac13af2bcdf)
+
+
+--------------------------- $ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        .........................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .......................
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+--------------------------- $ git checkout -b feature-parksave
+M       ..
+M       .
+D       .............
+Switched to a new branch 'feature-parksave'
+
+
+--------------------------- $ git status
+On branch feature-parksave
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        ......................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .............................
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+--------------------------- $ git add -A
+
+
+--------------------------- $ git status
+On branch feature-parksave
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        ..........................
+
+
+--------------------------- $ git commit -m "park and save kyc service proof of concept"
+[feature-parksave d329ceb] park and save kyc service proof of concept
+ 13 files changed, 304 insertions(+), 193 deletions(-)
+ create mode 100644 c...............
+ create mode 100644 ......................
+ delete mode 100644 ..................
+ rewrite ........................
+ create mode 100644 ....................
+
+
+--------------------------- $ git push origin feature-parksave
+Counting objects: 25, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (25/25), done.
+Writing objects: 100% (25/25), 4.33 KiB | 0 bytes/s, done.
+Total 25 (delta 11), reused 0 (delta 0)
+remote:
+remote: Create pull request for feature-parksave:
+remote:   http://..................
+remote:
+To http://........................
+ * [new branch]      feature-parksave -> feature-parksave
+
+
+--------------------------- $ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+
+--------------------------- 
+==> git commit merging stage
+
+--------------------------- $ git status
+On branch master
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   ......................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ..................................
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+--------------------------- $ git add server/src/postman/ico-kycService.postman_collection.json
+warning: LF will be replaced by CRLF in server/src/postman/ico-kycService.postman_collection.json.
+The file will have its original line endings in your working directory.
+
+
+--------------------------- $ git commit -m "park and save"
+[master 2ef678a] park and save
+ 1 file changed, 1459 insertions(+), 145 deletions(-)
+
+
+--------------------------- $ git pull
+"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor: C:/Program Files (x86)/GitExtensions/GitExtensions.exe: Permission denied
+error: There was a problem with the editor '"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor'.
+Not committing merge; use 'git commit' to complete the merge.
+
+
+--------------------------- $ git push
+To http://xxxxxxxxxxxxxxxxxxxxxxxxx
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'http://sxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+
+--------------------------- $ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+        .........................
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ..........................
+
+
+--------------------------- $ git merge --abort
+
+
+--------------------------- $ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ......................
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+--------------------------- $ git pull origin master
+From http://........................
+ * branch            master     -> FETCH_HEAD
+"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor: C:/Program Files (x86)/GitExtensions/GitExtensions.exe: Permission denied
+error: There was a problem with the editor '"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor'.
+Not committing merge; use 'git commit' to complete the merge.
+
+
+--------------------------- $ git merge --abort
+
+
+--------------------------- $ git pull origin master
+From http://b.....................................
+ * branch            master     -> FETCH_HEAD
+"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor: C:/Program Files (x86)/GitExtensions/GitExtensions.exe: Permission denied
+error: There was a problem with the editor '"C:/Program Files (x86)/GitExtensions/GitExtensions.exe" fileeditor'.
+Not committing merge; use 'git commit' to complete the merge.
+
+
+=================> open git bash, run as administrator!!!!
+
+--------------------------- $ git merge --abort
+
+$ git pull
+Merge made by the 'recursive' strategy.
+ ..................                        |   2 +-
+ 3 files changed, 236 insertions(+), 1 deletion(-)
+ create mode 100644 tests-ui/src/admin/pages/IRLAdminPage.ts
+ create mode 100644 tests-ui/src/admin/specs/login/Login.spec.ts
+
+
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        temp/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+$ git push
+Counting objects: 8, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 12.95 KiB | 0 bytes/s, done.
+Total 8 (delta 5), reused 0 (delta 0)
+To http://........................
+   d09e5ac..96d8498  master -> master
+
+$
+
+-----------------------------------------------------------------------
+
+
+Delete the branch, then re-create it:
+
+$ git branch -D phobos
+$ git checkout --track -b phobos origin/phobos
+
+
+
+-----------------------------------------------------------------------
+
+Undo a commit and redo
+
+$ git commit -m "Something terribly misguided"              (1)
+$ git reset HEAD~                                           (2)
+<< edit files as necessary >>                               (3)
+$ git add ...                                               (4)
+$ git commit -c ORIG_HEAD                                   (5)
+This is what you want to undo
+This leaves your working tree (the state of your files on disk) unchanged but undoes the commit and leaves the changes you committed unstaged (so they'll appear as "Changes not staged for commit" in git status and you'll need to add them again before committing). If you only want to add more changes to the previous commit, or change the commit message1, you could use git reset --soft HEAD~ instead, which is like git reset HEAD~ but leaves your existing changes staged.
+Make corrections to working tree files.
+git add anything that you want to include in your new commit.
+Commit the changes, reusing the old commit message. reset copied the old head to .git/ORIG_HEAD; commit with -c ORIG_HEAD will open an editor, which initially contains the log message from the old commit and allows you to edit it. If you do not need to edit the message, you could use the -C option.
+
+
+-----------------------------------------------------------------------
+
+
+You could checkout 'master' with both directories;
+
+git rm -r one-of-the-directories
+git commit -m "Remove duplicated directory"
+git push origin <your-git-branch> (typically 'master', but not always)
+Remove directory from git but NOT local
+
+As mentioned in the comments, what you usually want to do is remove this directory from git but not delete it entirely from the filesystem (local)
+
+In that case use:
+
+git rm -r --cached myFolder
+
+then still need commit and push.
+
+
+/.settings
+/.classpath
+/.project
+
+liu@DellSmall MINGW64 /c/Github/spring-boot-101/springboot101 (master)
+$ git rm -r --cached .settings
+$ git rm --cached .project
+$ git rm --cached .classpath
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    .settings/org.eclipse.core.resources.prefs
+        deleted:    .settings/org.eclipse.jdt.core.prefs
+        deleted:    .settings/org.eclipse.m2e.core.prefs
+
+
+liu@DellSmall MINGW64 /c/Github/spring-boot-101/springboot101 (master)
+$ git commit -m "remove romote .settings"
+$ git push
+
+
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+
+--> Postponed because of complexity ...
+
+Branching Strategy
+
+Simple branching solution for developers when developing new features.
+1. Create feature branch from master branch using naming convention feature-{JIRA-CODE}-{descriptor}
+$ git checkout master
+$ git pull origin master
+$ git checkout -b feature-welcome
+
+2. Once your feature is complete rebase the latest from master onto your feature branch and fix any conflicts that occur.
+$ git checkout master
+$ git pull origin master
+$ git checkout feature-welcome
+$ git rebase master
+
+3. Run both lint and tests and ensure you fix any errors that occur.
+For Client:
+$ npm run lint
+$ npm run test:all
+
+For Server:
+$ npm run lint
+$ npm run test
+
+4. Push feature branch to BitBucket.
+$ git push origin feature-welcome
+
+5. In BitBucket create a Pull Request(PR) and assign at minimum one developer as reviewer.
+6. Once PR is approved merge it and then delete the feature branch using the BitBucket UI.
+Tips:
+Regulary rebase your feature branch with master to avoid large conflicts.
+For small changes a quick conversation is sometimes easier than official approval process.
+
+
+
+-----------------------------------------------------------------------
+
+
+--> trying to create repo on local and push to GitHub, FAILED ..... see: C:\Liu\TechDoc\GitHub-TryToCreateRepoFromLocal-Failed.txt
+
+Open Git Bash.
+
+Paste the text below, substituting in your GitHub email address.
+
+ssh-keygen -t rsa -b 4096 -C "oopsmails@gmail.com"
+This creates a new ssh key, using the provided email as a label.
+
+Generating public/private rsa key pair.
+When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+ Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
+At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+
+
+oopsmails github
+
+$ ssh-keygen -t rsa -b 4096 -C "oopsmails@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/liu/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/liu/.ssh/id_rsa.
+Your public key has been saved in /c/Users/liu/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:Oe20/aUeFKfIKbhJ3tYr004UaOiTD+8wc/DNf2Uc5vU oopsmails@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|                 |
+|         . .     |
+|        . o . . .|
+|       . * . + *.|
+|        S + = =.+|
+|       o # O . .E|
+|        B X.* ..o|
+|         Bo..+ +.|
+|          .+o.=. |
++----[SHA256]-----+
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ ssh-add ~/.ssh/id_rsa
+Enter passphrase for /c/Users/liu/.ssh/id_rsa:
+Identity added: /c/Users/liu/.ssh/id_rsa (/c/Users/liu/.ssh/id_rsa)
+
+
+$ ssh-add -l
+4096 SHA256:Oe20/aUeFKfIKbhJ3tYr004UaOiTD+8wc/DNf2Uc5vU /c/Users/liu/.ssh/id_rsa (RSA)
+
+
+
+
+
+
+
+
+
+
+A new repo from an existing project
+Go into the directory containing the project.
+Type git init .
+Type git add to add all of the relevant files.
+You'll probably want to create a .gitignore file right away, to indicate all of the files you don't want to track. Use git add .gitignore , too.
+Type git commit .
+
+
+$ cd angular-02/
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02
+$ git init
+Initialized empty Git repository in C:/Github/angular-02/.git/
+
+liu@DellSmall MINGW64 /c/GitHub/angular-02 (master)
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+---
+
+
+
+
+
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
