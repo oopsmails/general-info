@@ -6,6 +6,10 @@
 github="/c/sharing/github"
 githubother="/c/sharing/github-other"
 
+# git bash run open new terminal
+alias newterm='start "" "C:\Program Files\Git\git-bash.exe"'
+#alias newterm3='start "" "C:\Program Files\Git\git-bash.exe" && start "" "C:\Program Files\Git\git-bash.exe" && start "" "C:\Program Files\Git\git-bash.exe"'
+
 ##
 if test "$1" = "github"
 then
@@ -53,6 +57,12 @@ elif test "$1" = "keeplive"
 then
 	# cd /c/sharing/
 	java -cp /c/sharing MainMouseEvents
+##
+
+## run in new terminal
+elif test "$1" = "newterm"
+then
+	newterm -c another-script.sh
 ##
 
 ##
