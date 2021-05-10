@@ -7,6 +7,8 @@ base="/home/albert/Documents"
 github="$base/github"
 githubother="$base/github-other"
 
+timestamp="$(date +%F)-$(date +%T)-$(date +%p)"
+
 ##############################
 # git bash run open new terminal
 
@@ -49,7 +51,6 @@ then
 	cd /c/sharing/
 ##
 
-
 ## ------------------------ special cases ----------------------------
 
 ##
@@ -87,6 +88,16 @@ then
 	gnome-terminal --tab -e "bash -c \"apropos editor; exec bash\""
 ##
 
+##
+elif test "$1" = "test2"
+then
+	cd /c/sharing/
+	LOG_FILE="/c/temp/logs"
+	ls -l 2>$1 | tee "$LOG_FILE/$timestamp testLog.log"
+	wait
+	pwd
+##
+
 
 
 ##
@@ -95,6 +106,7 @@ then
 	cd /home/albert/Documents/programs
 	./nosqlbooster4mongo-6.2.8.AppImage &
 ##
+
 
 
 ##

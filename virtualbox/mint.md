@@ -32,3 +32,31 @@ rm ~/.local/share/keyrings/login.keyring
 
 Now open Chrome, if it asks you for your password, do not enter one choose Continue each time and ignore any warning.
 
+### vscode
+
+### intellij
+
+```
+cd Downloads
+tar xvf 
+sudo mv idea-IC-201.8538.32 /opt/idea
+/opt/idea/bin/idea.sh
+```
+
+```
+sudo snap install intellij-idea-community --classic
+
+or
+
+$
+sudo snap install intellij-idea-community --classic --edge
+
+```
+
+
+### java
+
+- sudo apt update
+- sudo apt install default-jdk
+- ... update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+
