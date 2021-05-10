@@ -13,6 +13,12 @@
     - Start with Recovery mode, then root terminal, run *passwd* to change root password
 
 
+## Problem and Fix
+
+### Resolution cannot keep after logout or restart
+
+- Make sure VirtualBox Guest Additions is installed
+- Switch around Full screen and make sure Auto-resize guest display is checked.
 
 ## Install
 

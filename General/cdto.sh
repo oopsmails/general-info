@@ -3,12 +3,27 @@
 
 #### define path locally
 
-github="/c/sharing/github"
-githubother="/c/sharing/github-other"
+base="/home/albert/Documents"
+github="$base/github"
+githubother="$base/github-other"
 
+##############################
 # git bash run open new terminal
-alias newterm='start "" "C:\Program Files\Git\git-bash.exe"'
+
+# https://askubuntu.com/questions/484993/run-command-on-anothernew-terminal-window
+# xterm -hold -e 'apropos editor' & 
+# Note the -hold. Most terminals will exit after running the command you feed them.
+
+# xterm -e 'apropos editor | less' & 
+
+# gnome-terminal -e "bash -c \"apropos editor; exec bash\""
+##############################
+
+# alias newterm='start "" "C:\Program Files\Git\git-bash.exe"' # windows
+
 #alias newterm3='start "" "C:\Program Files\Git\git-bash.exe" && start "" "C:\Program Files\Git\git-bash.exe" && start "" "C:\Program Files\Git\git-bash.exe"'
+
+alias newterm='gnome-terminal --tab' # Linux
 
 ##
 if test "$1" = "github"
@@ -64,6 +79,15 @@ elif test "$1" = "newterm"
 then
 	newterm -c another-script.sh
 ##
+
+## Linux open in new terminal tab and run command
+elif test "$1" = "test"
+then
+	# gnome-terminal -e "bash -c \"apropos editor; exec bash\""
+	gnome-terminal --tab -e "bash -c \"apropos editor; exec bash\""
+##
+
+
 
 ##
 elif test "$1" = "nosqlbooster"
