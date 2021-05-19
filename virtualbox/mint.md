@@ -59,7 +59,7 @@ sudo apt install snapd
 
 Either restart your machine, or log out and in again, to complete the installation.
 
-### intellij
+### intellij: Option 3 used, i.e, installed from Software Manager
 
 - Option 1
 
@@ -81,10 +81,18 @@ sudo snap install intellij-idea-community --classic --edge
 
 - Option 3: install from Software Manager
 
-
 ### java
 
 - sudo apt update
 - sudo apt install default-jdk
 - ... update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+
+### Meld: for like WinMerge or BeyondCompare
+
+- installed from Software Manager
+
+
+
+
+
 
