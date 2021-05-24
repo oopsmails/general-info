@@ -59,6 +59,17 @@ sudo apt install snapd
 
 Either restart your machine, or log out and in again, to complete the installation.
 
+### Git
+
+- Installed from Software Manager
+
+- NOT used following
+
+```
+sudo apt update
+sudo apt install git
+```
+
 ### intellij: Option 3 used, i.e, installed from Software Manager
 
 - Option 1
