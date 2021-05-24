@@ -52,5 +52,28 @@ Unfortunately, this utility is not included with VMware Player. There are method
 
 ## /etc/hosts file
 
+## How to Increase Disk Size of Your Existing Virtual Machines in VirtualBox
 
+- using cmd
+
+VBoxManage.exe modifyhd "C:\vb-repo\mint20\mint20.vdi" --resize 102400
+
+VBoxManage.exe modifyhd "C:\vb-repo\mint20\mint20-disk001.vdi" --resize 102400
+
+- Use disk manage app, GParted Live ISO, to resize disk under linux.
+
+see, https://www.pragmaticlinux.com/2020/09/how-to-increase-the-disk-size-in-a-virtualbox-virtual-machine/
+
+
+
+- The following does NOT work!
+
+How to Increase Disk Size of Your Existing Virtual Machines in VirtualBox
+
+Last updated April 17, 2021 By Dimitrios 
+
+Method 1: Using the Virtual Media Manager in VirtualBox
+VirtualBox 6 added a graphical option for resizing virtual disks. You can find it at the file tab of VirtualBox home page.
+
+Go to File->Virtual Media Manager, properties. Then, increase the size
 

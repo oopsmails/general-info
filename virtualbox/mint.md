@@ -70,9 +70,9 @@ sudo apt update
 sudo apt install git
 ```
 
-### intellij: Option 3 used, i.e, installed from Software Manager
+### intellij: see mint-issues.md for more
 
-- Option 1
+- Option 1: finally used.
 
 ```
 cd Downloads
@@ -92,15 +92,91 @@ sudo snap install intellij-idea-community --classic --edge
 
 - Option 3: install from Software Manager
 
+**DONOT use Software Manager to install intellij**, it is a flatpack version. Cannot find jdk and even use /var/run/host/usr/lib/jvm/java-11-openjdk, may end up with network issues.
+
 ### java
 
-- sudo apt update
-- sudo apt install default-jdk
+- Software Manager, search jdk, install Default-jdk
+
+- Did not use below
+
+```
+sudo apt update
+sudo apt install default-jdk
 - ... update-alternatives: using /usr/lib/jvm/java-11-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+```
 
 ### Meld: for like WinMerge or BeyondCompare
 
 - installed from Software Manager
+
+### Docker:
+
+- Ref: 
+
+https://linuxhint.com/install_docker_linux_mint/
+
+- Cannot install from Software Manager, search Docker, the download is with error
+
+- Linux mint 20 is based on Ubuntu Focal
+
+- Installation
+
+    - At first, it’s STRONGLY recommended to make sure that there’s no version of Docker installed previously.
+
+    sudo apt remove docker docker-engine docker.io containerd runc
+
+    - Make sure that APT cache is up-to-date.
+
+    sudo apt update
+
+    - By default, APT doesn’t use HTTPS. Install the following packages that will allow APT to use a repository over HTTPS.
+
+    sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
+
+    - For enabling the Docker repo, the official Docker key is important. Time to add the official GPG key of Docker into the APT keyring.
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    - Even after the successful addition of the key, it’s safe to verify the key. Run the following command –
+
+    sudo apt-key fingerprint 0EBFCD88
+
+    - In the case of Docker, there are 3 different repositories – “stable” (recommended for everyone), “nightly” or “test”. Let’s configure the “stable” repo.
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" <------------------------ 20210521, this is used, 
+
+    - Once the repositories have been added, it’s necessary to refresh the APT cache again.
+
+    sudo apt update
+
+    - Finally, install the latest version of Docker CE and containerd.
+
+    sudo apt install docker-ce docker-ce-cli containerd.io
+
+    - install docker-compose
+
+    sudo apt install docker-compose
+
+
+- Or, may download all and install
+
+    - Go to
+
+    https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/
+
+
+    - download the latest versions of containerd and docker-ce-cli or docker-ce.
+
+    cd ~/Downloads/
+    sudo apt install ./*.deb
 
 
 
