@@ -98,6 +98,11 @@ then
 	pwd
 ##
 
+##
+elif test "$1" = "gitpull"
+then
+	. gitpull-all.sh "$2"
+##
 
 
 ##

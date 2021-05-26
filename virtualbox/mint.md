@@ -179,6 +179,23 @@ https://linuxhint.com/install_docker_linux_mint/
     sudo apt install ./*.deb
 
 
+### nvm, node, npm
+
+- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+
+- close terminal and reopen
+
+nvm --version
+
+- install latest node
+
+nvm install node
+node -v
+
+- install LTS
+
+nvm install --lts
+
 
 
 
