@@ -1,3 +1,6 @@
+# intellij 
+
+## important settings
 
 Settings 
 :: Editor
@@ -16,10 +19,20 @@ Settings
 
 --
 
+## Tricks
+
+### When running applications, error: Command line is too long
+
+- Need change Run configuration
+
+*In Intellij, go to "edit configurations" (at the top of the main window), in the configuration tab that comes up in the line "shorten command line" select option "classpath file"/"@argFiles (Java 9+)", last option in the drop down menu. Fixed it for me.*
+
+Ref: https://stackoverflow.com/questions/6381213/idea-10-5-command-line-is-too-long
+
+- For me, the very last option works, "classpath file -java ......."
 
 
-
-====> intellij shortcuts
+## intellij shortcuts on Mac
 
 Double ⇧
 Search Everywhere
