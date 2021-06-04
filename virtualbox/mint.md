@@ -13,12 +13,42 @@
     - Start with Recovery mode, then root terminal, run *passwd* to change root password
 
 
-## Problem and Fix
+## Before Backup
 
 ### Resolution cannot keep after logout or restart
 
 - Make sure VirtualBox Guest Additions is installed
 - Switch around Full screen and make sure Auto-resize guest display is checked.
+
+### Display only 800*600, need to 1640*864
+
+### install Extension Guest
+
+- insert Guest, settings, Storage, select the Guest iso. Guest iso is there after installing Extension on Host.
+
+- run inside linux mint
+
+sudo ./VBoxLinuxAdditions.run
+
+### Add Shared folder
+
+- add as following, make it permenent
+
+C:\sharing
+
+sharing
+
+/home/albert/Documents/sharing
+
+### Add user to group
+
+```
+groups
+
+sudo usermod -a -G vboxsf albert
+```
+
+### Install Chrome, import Favorites and make a BK
 
 ## Install
 
