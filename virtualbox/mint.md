@@ -46,11 +46,12 @@ sharing
 groups
 
 sudo usermod -a -G vboxsf albert
+sudo usermod -a -G root albert
 ```
 
 ### Install Chrome, import Favorites and make a BK
 
-## Install
+## Install Softwares
 
 ### Chorme
 
@@ -62,39 +63,56 @@ rm ~/.local/share/keyrings/login.keyring
 
 Now open Chrome, if it asks you for your password, do not enter one choose Continue each time and ignore any warning.
 
-### vscode
-
-### Enable snapd
+### Enable snapd and install vscode
 
 - Ref:
-https://snapcraft.io/install/intellij-idea-community/mint
+https://snapcraft.io/install/code/mint
 
-- Snap is available for Linux Mint 18.2 (Sonya), Linux Mint 18.3 (Sylvia), Linux Mint 19 (Tara), Linux Mint 19.1 (Tessa) and the latest release, Linux Mint 20 (Ulyana). You can find out which version of Linux Mint you’re running by opening System info from the Preferences menu.
-
-On Linux Mint 20, /etc/apt/preferences.d/nosnap.pref needs to be removed before Snap can be installed. This can be accomplished from the command line:
+- Commands
 
 ```
 sudo rm /etc/apt/preferences.d/nosnap.pref
 sudo apt update
-```
 
-- To install snap from the Software Manager application, search for snapd and click Install.
-
-- Alternatively, snapd can be installed from the command line:
-
-```
-sudo apt update
 sudo apt install snapd
+sudo snap install code --classic
+
+-- to remove
+sudo snap remove code
 ```
 
-Either restart your machine, or log out and in again, to complete the installation.
+- vs code
+
+    - run, in Terminal, just type code
+    - in panel, right click, "Create shortcut"
+    - click Menu, search code, then add to panel, but the icon might not be correct
+    - fix icon, open /home/albert/.local/share/applications/Code --No-Sandbox.cinnamon-generated.desktop
+    - add "Icon=/snap/code/65/snap/gui/com.visualstudio.code.png" after "Exec=/snap/code/65/usr/share/code/code --no-sandbox"
+
+
+
+### Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
+
+
+PATH="$HOME/Documents:$PATH"
+PATH="$HOME/Documents/sharing:$PATH"
+PATH="$HOME/Documents/programs:$PATH"
+
+export JAVA_HOME_8=$(/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -v1.8)
+export JAVA_HOME_11=$(/usr/lib/jvm/java-11-openjdk-amd64/bin/java -v11)
+export JAVA_HOME_14=$(/usr/lib/jvm/java-14-openjdk-amd64/bin/java -v14)
+
+alias java8='export JAVA_HOME=$JAVA_HOME_8'
+alias java11='export JAVA_HOME=$JAVA_HOME_11'
+alias java14='export JAVA_HOME=$JAVA_HOME_14'
+
 
 ### Git
 
 - Installed from Software Manager
 
 - NOT used following
-
+git
 ```
 sudo apt update
 sudo apt install git
