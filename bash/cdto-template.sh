@@ -47,7 +47,7 @@ then
 ##
 elif test "$1" = "usingwait"
 then
-	cd /c/sharing/
+	cd $sharing
 	wait
 	pwd
 ##
@@ -55,15 +55,15 @@ then
 ##
 elif test "$1" = "keeplivepy"
 then
-	cd /home/albert/Documents/programs
+	cd $programs
 	python3 keepLiveByMouseMoving.py
 ##
 
 ##
 elif test "$1" = "keeplive"
 then
-	# cd /c/sharing/
-	java -cp /c/sharing MainMouseEvents
+	cd $sharing
+	java -cp $sharing MainMouseEvents
 ##
 
 ## run in new terminal
@@ -82,8 +82,8 @@ then
 ##
 elif test "$1" = "test2"
 then
-	cd /c/sharing/
-	LOG_FILE="/c/temp/logs"
+	cd $sharing
+	LOG_FILE="$sharing/logs"
 	ls -l 2>$1 | tee "$LOG_FILE/$timestamp testLog.log"
 	wait
 	pwd
@@ -99,12 +99,12 @@ then
 ##
 elif test "$1" = "nosqlbooster"
 then
-	cd /home/albert/Documents/programs
+	cd $programs
 	./nosqlbooster4mongo-6.2.8.AppImage &
 ##
 
 ##
 else
-	echo "Path Not Defined in /c\sharing\cdto.sh"
+	echo "Path Not Defined in cdto.sh"
 fi
 ##
