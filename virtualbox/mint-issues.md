@@ -22,6 +22,16 @@ You can try installing IntelliJ IDEA from here and see if it works better. .tar.
 
 unzip to /programs, start intellij, go, Tools -> Create Desktop Entry
 
+- More: still need to install OpenJDK
+
+```
+sudo apt update
+
+sudo apt install default-jdk # This will install OpenJDK 11
+
+```
+
+
 ## Docker user
 
 albert@albert-mint:~/Documents/github/springboot-dev-repo/spring-boot-kafka-ms-email-files$ docker-compose up
