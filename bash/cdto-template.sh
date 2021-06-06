@@ -1,0 +1,110 @@
+#echo $1
+
+#### define path locally
+
+base="/home/albert/Documents"
+github="$base/github"
+githubother="$base/github-other"
+sharing="$base/sharing"
+programs="$base/programs"
+
+timestamp="$(date +%F)-$(date +%T)-$(date +%p)"
+
+alias newterm='gnome-terminal --tab' # Linux
+
+##
+if test "$1" = "github"
+then
+	cd $github
+##
+
+##
+elif test "$1" = "githubother"
+then
+	cd $githubother
+##
+
+##
+elif test "$1" = "sharing"
+then
+	cd $sharing
+##
+
+##
+elif test "$1" = "programs"
+then
+	cd $programs
+##
+
+##
+elif test "$1" = "generalinfo"
+then
+	cd $github/general-info/
+##
+
+## ------------------------ special cases ----------------------------
+
+##
+elif test "$1" = "usingwait"
+then
+	cd /c/sharing/
+	wait
+	pwd
+##
+
+##
+elif test "$1" = "keeplivepy"
+then
+	cd /home/albert/Documents/programs
+	python3 keepLiveByMouseMoving.py
+##
+
+##
+elif test "$1" = "keeplive"
+then
+	# cd /c/sharing/
+	java -cp /c/sharing MainMouseEvents
+##
+
+## run in new terminal
+elif test "$1" = "newterm"
+then
+	newterm -c another-script.sh
+##
+
+## Linux open in new terminal tab and run command
+elif test "$1" = "test"
+then
+	# gnome-terminal -e "bash -c \"apropos editor; exec bash\""
+	gnome-terminal --tab -e "bash -c \"apropos editor; exec bash\""
+##
+
+##
+elif test "$1" = "test2"
+then
+	cd /c/sharing/
+	LOG_FILE="/c/temp/logs"
+	ls -l 2>$1 | tee "$LOG_FILE/$timestamp testLog.log"
+	wait
+	pwd
+##
+
+##
+elif test "$1" = "gitpull"
+then
+	. gitpull-all.sh "$2"
+##
+
+
+##
+elif test "$1" = "nosqlbooster"
+then
+	cd /home/albert/Documents/programs
+	./nosqlbooster4mongo-6.2.8.AppImage &
+##
+
+##
+else
+	echo "Path Not Defined in /c\sharing\cdto.sh"
+fi
+##
