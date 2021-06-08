@@ -13,6 +13,12 @@
 
 `Set<String> set = people.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::new));`
 
+### JsonUtils jsonToObject unescapeJson
+- Using org.apache.commons.text.StringEscapeUtils
+
+employeeJsonStr = employeeJsonStr.replaceAll("\u200b", ""); // replace all Zero Width Spaces
+Employee employee = JsonUtils.jsonToObject(StringEscapeUtils.unescapeJson(employeeJsonStr), Employee.class);
+
 
 
 
