@@ -1,4 +1,23 @@
-
+- [MintOS](#mintos)
+  - [General](#general)
+  - [Before Backup](#before-backup)
+    - [Resolution cannot keep after logout or restart](#resolution-cannot-keep-after-logout-or-restart)
+    - [Display only 800*600, need to 1640*864](#display-only-800600-need-to-1640864)
+    - [install Extension Guest](#install-extension-guest)
+    - [Add Shared folder](#add-shared-folder)
+    - [Add user to group](#add-user-to-group)
+    - [Install Chrome, import Favorites and make a BK](#install-chrome-import-favorites-and-make-a-bk)
+  - [Install Softwares](#install-softwares)
+    - [Chorme](#chorme)
+    - [Enable snapd and install vscode](#enable-snapd-and-install-vscode)
+    - [OpenJDK:](#openjdk)
+    - [Git](#git)
+    - [intellij: see mint-issues.md for more](#intellij-see-mint-issuesmd-for-more)
+    - [java](#java)
+    - [Meld: for like WinMerge or BeyondCompare](#meld-for-like-winmerge-or-beyondcompare)
+    - [Docker:](#docker)
+    - [nvm, node, npm](#nvm-node-npm)
+  - [Other](#other)
 # MintOS
 
 ## General

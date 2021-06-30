@@ -35,3 +35,7 @@ DockerWorkSpace/microservice-all/files/*.jar
 
 .DS_Store
 
+.index/
+.niogit/
+.niogit-caseapp/
+
