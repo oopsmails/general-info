@@ -4,10 +4,12 @@
   - [Intros](#intros)
   - [Start](#start)
     - [Login](#login)
+  - [Learning Notes](#learning-notes)
     - [Create Space, Project](#create-space-project)
     - [Create new Business Process](#create-new-business-process)
     - [Create new Data Object, as jBPM internal](#create-new-data-object-as-jbpm-internal)
     - [jBPM: using external model JARs](#jbpm-using-external-model-jars)
+    - [jBPM Gateways](#jbpm-gateways)
 
 
 # Learning jBPM
@@ -47,6 +49,8 @@ http://localhost:8080/business-central
 
 wbadmin/wbadmin
 
+## Learning Notes
+
 ### Create Space, Project
 create project
 
@@ -65,6 +69,10 @@ Version
 
 
 ### Create new Business Process
+
+- Ref:
+
+https://www.youtube.com/watch?v=sJ9YUzz2PGA
 
 - Project, Settings, Deployments
 
@@ -107,6 +115,10 @@ scriptTaskExample
 
 ### Create new Data Object, as jBPM internal
 
+- Ref:
+
+https://www.youtube.com/watch?v=y1WQINvbnAM
+
 - Employee
 
 com.oopsmails.jbpm.printdto.model.Employee
@@ -131,6 +143,10 @@ System.out.println("Employee name is:::"+empLocal.getName());
 
 ### jBPM: using external model JARs
 
+- Ref:
+
+https://www.youtube.com/watch?v=y1WQINvbnAM
+
 - import Artifacts
 
 ![jbpm-04-printEmployee-externalArtifacts](jbpm-04-printEmployee-externalArtifacts)
@@ -143,7 +159,7 @@ com.oopsmails.jbpm.employee.model.Employee
 
 add dependency employee-model
 
-com.oopsmails.jbpm.employee.model.Employee empLocal = (com.oopsmails.jbpm.employee.model.Employee)kcontext.getVariable("emp");
+com.oopsmails.jbpm.employee.model.Employee empLocal = (com.oopsmails.jbpm.employee.model.Employee)kcontext.getVariable("employee");
 System.out.println("Employee(Externam JAR) name is:::"+empLocal.getName());
 
 
@@ -157,6 +173,36 @@ com.oopsmails.jbpm.printdto.model
 
 file:///home/albert/repositories/kie/global/com/oopsmails/jbpm
 
+
+business process: bpmn, printExternalEmployeeModel
+src/main/resources/com/oopsmails/jbpm/print_dto/printExternalEmployeeModel.bpmn
+
+**Note:** 
+Package still useing: com.oopsmails.jbpm.print_dto, ???, maybe can use other customerized ....
+
+Process Variables: Don't reuse "emp" because it is already used by that internal print Asset.
+employee - com.oopsmails.jbpm.employee.model.Employee
+
+
+```
+
+08:35:27,549 WARN  [org.appformer.maven.integration.MavenRepository] (default task-12) Unable to resolve artifact: null:null:null
+08:35:43,533 WARN  [org.guvnor.m2repo.backend.server.M2RepoServiceImpl] (default task-12) The url null is not valid. Using the default.
+08:35:43,533 ERROR [org.guvnor.m2repo.backend.server.M2RepoServiceImpl] (default task-12) The property org.appformer.m2repo.url is not correctly set. The workbench will use a direct file path to the m2 repository and this should only be used when test the workbench.
+08:35:43,614 INFO  [org.guvnor.m2repo.backend.server.repositories.FileSystemArtifactRepository] (default task-12) Maven Repository root set to: repositories/kie/global/
+```
+
+### jBPM Gateways
+
+- Ref:
+
+https://www.youtube.com/watch?v=hAVGpiYn_hc
+
+jBPM Gateways | Parallel Gateway | Inclusive Gateway | Exclusive Gateway | Unit 3 | KIE TUTORIALS
+
+1. Parallel Gateway Example - It will activate           all outgoing nodes in parallel way
+2. Inclusive Gateway Example - It will wait until all incoming nodes are completed
+3. Exclusive Gateway Example - It will activate outgoing node based on condition
 
 
 
