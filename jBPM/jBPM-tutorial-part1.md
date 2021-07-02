@@ -10,8 +10,10 @@
     - [Unit 2: Create new Data Object, as jBPM internal](#unit-2-create-new-data-object-as-jbpm-internal)
     - [Unit 2: jBPM: using external model JARs](#unit-2-jbpm-using-external-model-jars)
     - [Unit 3: jBPM Gateways](#unit-3-jbpm-gateways)
-    - [Unit 4: jBPM Subprocess](#unit-4-jbpm-subprocess)
+    - [TBC Unit 4: jBPM Subprocess](#tbc-unit-4-jbpm-subprocess)
     - [Unit 5: jBPM Rest Service Task](#unit-5-jbpm-rest-service-task)
+    - [TBC Unit 6: jBPM SOAP Service Task](#tbc-unit-6-jbpm-soap-service-task)
+    - [Unit 7: jBPM Documents, Swagger API](#unit-7-jbpm-documents-swagger-api)
 
 
 # Learning jBPM
@@ -212,7 +214,7 @@ jBPM Gateways | Parallel Gateway | Inclusive Gateway | Exclusive Gateway | Unit 
 2. Inclusive Gateway Example - It will wait until all incoming nodes are completed
 3. Exclusive Gateway Example - It will activate outgoing node based on condition
 
-### Unit 4: jBPM Subprocess
+### TBC Unit 4: jBPM Subprocess
 
 - Ref:
 
@@ -255,6 +257,50 @@ type: MVEL ... ???
 
 - RESTWorkItemHandler, executeWorkItem() method, is actually a REST service call using HttpClient.
 
+### TBC Unit 6: jBPM SOAP Service Task
+
+- Ref
+
+https://www.youtube.com/watch?v=A5rvLNmeRB4  
+ 
+jBPM WebService Task | jBPM SOAP WebService Example | jBPM 7 Tutorial | Unit 6 | KIE TUTORIALS
+
+### Unit 7: jBPM Documents, Swagger API
+
+- Ref
+
+https://www.youtube.com/watch?v=LtbnP9t6R2I
+
+jBPM Documents | JBPM 7 Documents Swagger API | unit 7 | #KIE TUTORIALS
+
+- Content
+
+This video covers how to save document as process varaible  
+
+- Single
+new org.jbpm.document.marshalling.DocumentMarshallingStrategy();
+org.jbpm.document.Document
+-------DocumentStorageServiceImpl.class
+
+- Multiple
+new org.jbpm.document.marshalling.DocumentCollectionImplMarshallingStrategy(new org.jbpm.document.marshalling.DocumentMarshallingStrategy());
+org.jbpm.document.DocumentCollection
+
+- Custom
+new org.jbpm.integration.cmis.impl.OpenCMISPlaceholderResolverStrategy();
+
+- Set marshalling strategy
+
+Project, Settings, Deployments, Marshalling Strategy, Add Marshalling Strategy
+Name: new org.jbpm.document.marshalling.DocumentMarshallingStrategy();
+
+folder: ??? jbpm/bin/.doc ???
+
+- KIE server swagger
+
+http://localhost:8080/kie-server/docs/
+
+Search "Documents", can view all docs
 
 
 
