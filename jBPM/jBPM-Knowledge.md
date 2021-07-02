@@ -6,10 +6,12 @@
     - [Login](#login)
   - [Learning Notes](#learning-notes)
     - [Create Space, Project](#create-space-project)
-    - [Create new Business Process](#create-new-business-process)
-    - [Create new Data Object, as jBPM internal](#create-new-data-object-as-jbpm-internal)
-    - [jBPM: using external model JARs](#jbpm-using-external-model-jars)
-    - [jBPM Gateways](#jbpm-gateways)
+    - [Unit 1: Create new Business Process](#unit-1-create-new-business-process)
+    - [Unit 2: Create new Data Object, as jBPM internal](#unit-2-create-new-data-object-as-jbpm-internal)
+    - [Unit 2: jBPM: using external model JARs](#unit-2-jbpm-using-external-model-jars)
+    - [Unit 3: jBPM Gateways](#unit-3-jbpm-gateways)
+    - [Unit 4: jBPM Subprocess](#unit-4-jbpm-subprocess)
+    - [Unit 5: jBPM Rest Service Task](#unit-5-jbpm-rest-service-task)
 
 
 # Learning jBPM
@@ -68,11 +70,13 @@ Version
 1.0.0-SNAPSHOT
 
 
-### Create new Business Process
+### Unit 1: Create new Business Process
 
 - Ref:
 
 https://www.youtube.com/watch?v=sJ9YUzz2PGA
+
+jBPM tutorial | JBPM Introduction | JBPM Setup | Script Task Example | Unit 1 | KIE TUTORIALS
 
 - Project, Settings, Deployments
 
@@ -113,11 +117,13 @@ scriptTaskExample
 - Menu, Manage, Execution Errors
 
 
-### Create new Data Object, as jBPM internal
+### Unit 2: Create new Data Object, as jBPM internal
 
 - Ref:
 
 https://www.youtube.com/watch?v=y1WQINvbnAM
+
+jBPM Data Object | jBPM Tutorial | External Data Object As Maven Dependency | Unit 2 | KIE TUTORIALS
 
 - Employee
 
@@ -141,11 +147,13 @@ System.out.println("Employee name is:::"+empLocal.getName());
 14:13:19,564 INFO  [stdout] (default task-51) Employee name is:::Albert
 ```
 
-### jBPM: using external model JARs
+### Unit 2: jBPM: using external model JARs
 
 - Ref:
 
 https://www.youtube.com/watch?v=y1WQINvbnAM
+
+jBPM Data Object | jBPM Tutorial | External Data Object As Maven Dependency | Unit 2 | KIE TUTORIALS
 
 - import Artifacts
 
@@ -192,7 +200,7 @@ employee - com.oopsmails.jbpm.employee.model.Employee
 08:35:43,614 INFO  [org.guvnor.m2repo.backend.server.repositories.FileSystemArtifactRepository] (default task-12) Maven Repository root set to: repositories/kie/global/
 ```
 
-### jBPM Gateways
+### Unit 3: jBPM Gateways
 
 - Ref:
 
@@ -203,6 +211,49 @@ jBPM Gateways | Parallel Gateway | Inclusive Gateway | Exclusive Gateway | Unit 
 1. Parallel Gateway Example - It will activate           all outgoing nodes in parallel way
 2. Inclusive Gateway Example - It will wait until all incoming nodes are completed
 3. Exclusive Gateway Example - It will activate outgoing node based on condition
+
+### Unit 4: jBPM Subprocess
+
+- Ref:
+
+https://www.youtube.com/watch?v=8bqkGhkbHZQ
+
+JBPM Subprocess | Reusable subprocess | Multiinstance subprocess | Unit 4 | KIE TUTORIALS
+
+
+
+### Unit 5: jBPM Rest Service Task
+
+https://www.youtube.com/watch?v=Zxyy-kThLWE
+
+jBPM Rest Service Task | jBPM 7 tutorial | Unit 5 | KIE TUTORIALS
+
+
+- Terms
+
+Service Task, is also called Work Item Definitions, or Work Item Handler
+
+- 6:54 of 13:49
+
+Take google Rest example, see
+https://github.com/kietutorials/jbpm-examples/blob/master/unit5-REST_SERVICETASK/src/main/resources/com/kie_space/unit5_rest_servicetask/Rest_Service_Task_Example.bpmn  
+
+GET  
+
+https://jsonplaceholder.typicode.com/todos/1  
+
+- 9:59 of 13:49
+
+To register RESTWorkItemHandler
+
+Project, Settings, Deployments, Work item handlers, Add Work Item Handler
+
+
+Name: Reat
+Value: new org.jbpm.process.workitem.rest.RESTWorkItemHandler()
+type: MVEL ... ???
+
+- RESTWorkItemHandler, executeWorkItem() method, is actually a REST service call using HttpClient.
 
 
 
