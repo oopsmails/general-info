@@ -210,7 +210,7 @@ https://www.youtube.com/watch?v=hAVGpiYn_hc
 
 jBPM Gateways | Parallel Gateway | Inclusive Gateway | Exclusive Gateway | Unit 3 | KIE TUTORIALS
 
-1. Parallel Gateway Example - It will activate           all outgoing nodes in parallel way
+1. Parallel Gateway Example - It will activate all outgoing nodes in parallel way
 2. Inclusive Gateway Example - It will wait until all incoming nodes are completed
 3. Exclusive Gateway Example - It will activate outgoing node based on condition
 
