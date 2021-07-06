@@ -1,3 +1,13 @@
+- [JUnit Examples](#junit-examples)
+  - [mockito mock test consumer method](#mockito-mock-test-consumer-method)
+    - [Using ArgumentCaptor](#using-argumentcaptor)
+    - [Using mock](#using-mock)
+  - [Setting private field value during Unit Test](#setting-private-field-value-during-unit-test)
+    - [Using org.springframework.test.util.ReflectionTestUtils](#using-orgspringframeworktestutilreflectiontestutils)
+    - [Using Java reflection, Java 8 and before](#using-java-reflection-java-8-and-before)
+    - [Java 8, sun.misc.Unsafe](#java-8-sunmiscunsafe)
+    - [Java 9, using Unsafe](#java-9-using-unsafe)
+
 # JUnit Examples
 
 ## mockito mock test consumer method
@@ -91,4 +101,135 @@ public class TestAppTest {
 
 ```
 
+
+
+
+
+
+
+
+## Setting private field value during Unit Test
+
+- Powermock is not a choice because additional lib needed.
+
+### Using org.springframework.test.util.ReflectionTestUtils
+
+- e.g
+
+`ReflectionTestUtils.setField(SomeClass.class, "CONST", "newValue");`
+
+- This CANNOT set static field
+
+### Using Java reflection, Java 8 and before
+
+- Ref:
+
+https://blog.sebastian-daschner.com/entries/changing_private_static_final_field  
+
+https://stackoverflow.com/questions/51521837/spring-reflectiontestutils-does-not-set-static-final-field
+
+- Note: 
+  
+  - Cannot change a compile-period constant. Such as below, because it will be inline when compile.
+  - Only for Java 8 and before.
+
+`public static final String HW = "Hello World"`
+
+- e.g, can even change *private static final* field
+
+```
+
+public class Knowledge {
+
+    private static final Integer ANSWER = 42;
+
+    public String askQuestion(String question) {
+        return "The answer to '" + question + "' is: " + ANSWER;
+    }
+
+}
+We now want to change the answer for testing purposes:
+
+public class KnowledgeTest {
+
+    @Test
+    public void testAskQuestion() throws Exception {
+        Knowledge knowledge = new Knowledge();
+
+        String answer = knowledge.askQuestion("question?");
+        assertThat(answer, is("The answer to 'question?' is: 42"));
+
+        setFinalStaticField(Knowledge.class, "ANSWER", 41);
+
+        answer = knowledge.askQuestion("question?");
+        assertThat(answer, is("The answer to 'question?' is: 41"));
+    }
+
+    private static void setFinalStaticField(Class<?> clazz, String fieldName, Object value)
+            throws ReflectiveOperationException {
+
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);
+
+        Field modifiers = Field.class.getDeclaredField("modifiers");
+        modifiers.setAccessible(true);
+        modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        field.set(null, value);
+    }
+
+    private static void setStaticField(Class<?> clazz, String fieldName, Object value)
+            throws ReflectiveOperationException {
+
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);
+
+        Field modifiers = Field.class.getDeclaredField("modifiers");
+        modifiers.setAccessible(true);
+        // modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        field.set(null, value);
+    }
+
+}
+```
+
+```
+
+static void setFinalStatic(Field field, Object newValue) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+    field.setAccessible(true);
+
+    Field modifiersField = Field.class.getDeclaredField("modifiers");
+    modifiersField.setAccessible(true);
+    modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+    field.set(null, newValue);
+  }
+
+```
+
+### Java 8, sun.misc.Unsafe
+
+```
+import java.lang.reflect.Field;
+
+import sun.misc.Unsafe;
+
+public class Test {
+
+  public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+    System.out.println("before");
+    Field theUnsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+    theUnsafeField.setAccessible(true);
+
+    Unsafe unsafe = (Unsafe) theUnsafeField.get(null);
+    unsafe.getByte(new Object(), 4);
+    System.out.println("after");
+  }
+}
+```
+
+### Java 9, using Unsafe
+
+See, java9-UsingUnsafe.md
 
