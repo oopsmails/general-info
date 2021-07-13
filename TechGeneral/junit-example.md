@@ -7,6 +7,7 @@
     - [Using Java reflection, Java 8 and before](#using-java-reflection-java-8-and-before)
     - [Java 8, sun.misc.Unsafe](#java-8-sunmiscunsafe)
     - [Java 9, using Unsafe](#java-9-using-unsafe)
+  - [@ConditionalOnProperty and Testing](#conditionalonproperty-and-testing)
 
 # JUnit Examples
 
@@ -233,3 +234,63 @@ public class Test {
 
 See, java9-UsingUnsafe.md
 
+
+## @ConditionalOnProperty and Testing
+
+- Ref:
+
+https://www.baeldung.com/spring-conditionalonproperty
+
+In short, the @ConditionalOnProperty enables bean registration only if an environment property is present and has a specific value. By default, the specified property must be defined and not equal to false.  
+
+- Example, note the *withPropertyValues* and *withUserConfiguration*
+
+```
+@Bean(name = "emailNotification")
+@ConditionalOnProperty(prefix = "notification", name = "service")
+public NotificationSender notificationSender() {
+    return new EmailNotification();
+}
+
+public class EmailNotification implements NotificationSender {
+    @Override
+    public String send(String message) {
+        return "Email Notification: " + message;
+    }
+}
+
+@Bean(name = "smsNotification")
+@ConditionalOnProperty(prefix = "notification", name = "service", havingValue = "sms")
+public NotificationSender notificationSender2() {
+    return new SmsNotification();
+}
+
+package com.baeldung.conditionalonproperty;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+
+import com.baeldung.conditionalonproperty.config.NotificationConfig;
+import com.baeldung.conditionalonproperty.service.EmailNotification;
+import com.baeldung.conditionalonproperty.service.NotificationSender;
+
+public class NotificationUnitTest {
+
+    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+
+    @Test
+    public void whenValueSetToEmail_thenCreateEmailNotification() {
+        this.contextRunner.withPropertyValues("notification.service=email")
+            .withUserConfiguration(NotificationConfig.class)
+            .run(context -> {
+                assertThat(context).hasBean("emailNotification");
+                NotificationSender notificationSender = context.getBean(EmailNotification.class);
+                assertThat(notificationSender.send("Hello From Baeldung!")).isEqualTo("Email Notification: Hello From Baeldung!");
+                assertThat(context).doesNotHaveBean("smsNotification");
+            });
+    }
+}
+
+```

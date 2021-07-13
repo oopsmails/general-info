@@ -32,6 +32,19 @@ Ref: https://stackoverflow.com/questions/6381213/idea-10-5-command-line-is-too-l
 - For me, the very last option works, "classpath file -java ......."
 
 
+### intellij server's certificate is not trusted
+
+
+To get rid of the pop up message go to below location and click on Accept non-trusted certificates automatically.
+
+File | Settings | Tools | Server Certificates for Windows and Linux
+IntelliJ IDEA | Preferences | Tools | Server Certificates for macOS           
+
+
+### intellij keep more files open
+
+Settings | Editor | General | Editor Tabs | Tab limit ...
+
 ## intellij shortcuts on Mac
 
 Double ⇧
