@@ -20,6 +20,14 @@
 - Make sure VirtualBox Guest Additions is installed
 - Switch around Full screen and make sure Auto-resize guest display is checked.
 
+### ubuntu show full path in address bar
+
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+
+- off,
+
+gsettings set org.gnome.nautilus.preferences always-use-location-entry false
+
 ## Install
 
 ### Chorme
@@ -31,6 +39,10 @@
 rm ~/.local/share/keyrings/login.keyring
 
 Now open Chrome, if it asks you for your password, do not enter one choose Continue each time and ignore any warning.
+
+- if certificate error or connect not secure ...
+
+run `google-chrome --ignore-certificates-error`
 
 ### Terminal
 
