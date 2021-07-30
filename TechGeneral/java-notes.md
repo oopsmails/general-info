@@ -19,6 +19,13 @@
 employeeJsonStr = employeeJsonStr.replaceAll("\u200b", ""); // replace all Zero Width Spaces
 Employee employee = JsonUtils.jsonToObject(StringEscapeUtils.unescapeJson(employeeJsonStr), Employee.class);
 
+### JsonUtils Paths.get(ClassLoader.getSystemResources(filepath).toURI())
+
+readFileAsString(filepath)
+
+Path path = Paths.get(ClassLoader.getSystemResources(filepath).toURI());
+return new String(Files.readAllBytes(path));
+
 ### BigDecimal: valueOf is preferred
 
 1. new BigDecimal(d)

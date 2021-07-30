@@ -45,6 +45,11 @@ IntelliJ IDEA | Preferences | Tools | Server Certificates for macOS
 
 Settings | Editor | General | Editor Tabs | Tab limit ...
 
+### Find usage without Test
+
+Find Usage, Settings (Ctrl+Alt+Shift+F7), Scope, ..., + scope, WithoutTest, Pattern, "!test:*.*&&!test:*"
+
+
 ## intellij shortcuts on Mac
 
 Double ⇧
