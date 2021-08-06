@@ -20,6 +20,20 @@ Icon=/icon/path/icon.png
 Type=Application
 ```
 
+To disable the errors windows related with certificates you can start Chrome from console and use this option: --ignore-certificate-errors.
+
+```
+[Desktop Entry]
+Name=chrome
+Exec=/usr/bin/google-chrome-stable --ignore-certificate-errors --incognito %u
+NoDisplay=true
+Terminal=false
+Icon=google-chrome
+Type=Application
+MimeType=application/pdf;text/html;text/xml;application/xhtml_xml;image/webp;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;  
+Action=new-window;new-private-window;
+```
+
 You can add entries like MimeType (complete-list) and Encoding (eg: UTF-8) optionally. For the app category (eg: Categories:Network;WebBrowser;IDE) check the short list below:  
 
 AudioVideo, Audio, Video, Development, Education, Game, Graphics, Network, Office, Science, Settings, System, Utility  

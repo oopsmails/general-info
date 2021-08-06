@@ -45,6 +45,8 @@ IntelliJ IDEA | Preferences | Tools | Server Certificates for macOS
 
 Settings | Editor | General | Editor Tabs | Tab limit ...
 
+Sort order, Open most recent when closing current tab ...
+
 ### Find usage without Test
 
 Find Usage, Settings (Ctrl+Alt+Shift+F7), Scope, ..., + scope, WithoutTest, Pattern, "!test:*.*&&!test:*"
