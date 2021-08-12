@@ -103,4 +103,50 @@ alias java8='export JAVA_HOME=$JAVA_HOME_8'
 alias java11='export JAVA_HOME=$JAVA_HOME_11'
 alias java14='export JAVA_HOME=$JAVA_HOME_14'
 
+### nvm
+
+- ref:
+
+https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
+
+`sudo apt install curl` 
+`curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash `
+
+The nvm installer script creates environment entry to login script of the current user. You can either logout and login again to load the environment or execute the below command to do the same.
+
+`source ~/.profile`
+
+`nvm install node`
+To install a specific version of node:
+
+`nvm install 12.18.`3
+
+You can use the following command to list installed versions of node for the current user.
+
+`nvm ls`
+
+With this command, you can find the available node.js version for the installation.
+
+`nvm ls-remote`
+
+You can also select a different version for the current session. The selected version will be the currently active version for the current shell only.
+
+`nvm use 12.18.3`
+
+To find the default Node version set for the current user, type:
+
+`nvm run default --version`
+
+You can run a Node script with the desired version of node.js using the below command:
+
+`nvm exec 12.18.3 server.js`
+
+
+
+
+
+
+
+
+
 
