@@ -51,6 +51,10 @@ Sort order, Open most recent when closing current tab ...
 
 Find Usage, Settings (Ctrl+Alt+Shift+F7), Scope, ..., + scope, WithoutTest, Pattern, "!test:*.*&&!test:*"
 
+### How to rename a project in "Recent Projects" list in the startup popup
+
+File > Project Structure > Project > Project Name
+
 
 ## intellij shortcuts on Mac
 
