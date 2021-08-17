@@ -109,12 +109,22 @@ alias java14='export JAVA_HOME=$JAVA_HOME_14'
 
 https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
 
-`sudo apt install curl` 
+`sudo apt install curl`
+
+- This is NOT working, see ElementaryOS.md, 
+
+Using: 
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+
+not use!
 `curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash `
 
 The nvm installer script creates environment entry to login script of the current user. You can either logout and login again to load the environment or execute the below command to do the same.
 
 `source ~/.profile`
+
+actually,
+`source ~/.bashrc`
 
 `nvm install node`
 To install a specific version of node:
