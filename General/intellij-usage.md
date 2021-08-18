@@ -29,6 +29,10 @@ Settings
 
 Ref: https://stackoverflow.com/questions/6381213/idea-10-5-command-line-is-too-long
 
+- New version
+
+*In Intellij, go to "edit configurations", select the configuration, the "Modify options", check "Shorten command line"*
+
 - For me, the very last option works, "classpath file -java ......."
 
 
