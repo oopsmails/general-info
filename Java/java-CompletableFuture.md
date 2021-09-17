@@ -5,6 +5,46 @@
 
 https://medium.com/swlh/completablefuture-a-simplified-guide-to-async-programming-41cecb162308
 
+https://levelup.gitconnected.com/completablefuture-a-new-era-of-asynchronous-programming-86c2fe23e246
+
+## Concepts
+
+- runAsync() vs supplyAsync()
+
+runAsync() returning nothing, while supplyAsync() has return
+
+- Function<T, R> vs Consumer<T>
+
+Function<T, R> returning R, while Consumer<T> has no return
+
+- thenApply() vs thenAccept()
+
+thenApply() takes Function<T, R>, which has a return, while thenAccept() takes Consumer<T>, has no return
+
+- thenRun()
+
+thenRun() method is also used as callback function which does not return anything but executes the logic written inside this block. thenAccept() and thenRun()methods are consumers and are often used as the last callback in the callback chain.
+While thenAccept() has access to the result of the CompletableFuture on which it is attached, thenRun() doesn’t even have access to the Future’s result. It takes a Runnable and returns CompletableFuture<Void>.
+
+- Asynchronous Callback
+
+In the above examples, the task inside thenApply() is executed in the same thread where the supplyAsync() task is executed, or in the main thread if the supplyAsync() task completes immediately. If we want to increase the parallelism of our program furthermore and want to run the callback task on a separate thread — asynchronous callbacks are the solution.
+We can use thenApplyAsync() callback in place of thenApply(), then this task will be executed in a different thread obtained from ForkJoinPool.commonPool().
+We could also pass an Executor to the thenApplyAsync() callback, then the task will be executed in a thread obtained from the Executor’s thread pool.
+
+- Combining CompletableFutures together
+
+    - Combine dependent completableFutures using thenCompose()
+    If our callback function returns a CompletableFuture, and we want a flattened result from the CompletableFuture chain, we need to use thenCompose().
+
+    - Combine independent completableFutures using thenCombine()
+    While thenCompose() is used to combine two CompletableFutures where one future is dependent on the other, thenCombine() is used when we want two Futures to run independently and do something after both are complete. The callback function passed to thenCombine() will be called when both the CompletableFutures are complete.
+
+    - Combine n number of completableFutures together
+    CompletableFuture.allOf() is used in scenarios when we have a List of independent completableFutures and we want to run in parallel and do something after all of them are complete.
+    CompletableFuture.anyOf() as the name suggests, returns a new CompletableFuture which is completed when any of the given CompletableFutures completes, with the same result.
+
+
 ## Chaining multiple CompletableFutures: Non-Blocking
 
 1. View the movie list and select a particular movie
