@@ -45,6 +45,12 @@ then
 ## ------------------------ special cases ----------------------------
 
 ##
+elif test "$1" = "kafka"
+then
+	. kafka.sh "$2"
+##
+
+##
 elif test "$1" = "usingwait"
 then
 	cd $sharing

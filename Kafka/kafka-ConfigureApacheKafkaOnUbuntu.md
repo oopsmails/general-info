@@ -32,6 +32,8 @@ changed this to
 
 `listeners=PLAINTEXT://127.0.0.1:9092`
 
+**in my case, using hostname, albert**, not 127.0.0.1 or ip.
+
 Ref: https://stackoverflow.com/questions/46158296/kafka-broker-not-available-at-starting/47619310
 
 bin/kafka-console-producer.sh  --broker-list PLAINTEXT://192.168.1.220:9092  --topic test
