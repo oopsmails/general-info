@@ -32,11 +32,24 @@ changed this to
 
 `listeners=PLAINTEXT://127.0.0.1:9092`
 
-**in my case, using hostname, albert**, not 127.0.0.1 or ip.
+**in my case, localhost**, not hostname, e.g, albert, 127.0.0.1 or ip.
 
 Ref: https://stackoverflow.com/questions/46158296/kafka-broker-not-available-at-starting/47619310
 
 bin/kafka-console-producer.sh  --broker-list PLAINTEXT://192.168.1.220:9092  --topic test
+
+- Run my application to verify
+
+Do NOT use, spring-boot-kafka-admin/src/main/java/com/oopsmails/springboot/kafka/admin/KafkaApplication.java
+
+Use, spring-boot-kafka-docker/src/main/java/com/oopsmails/springboot/kafka/SpringKafkaDockerApplication.java
+
+in spring-boot-kafka-docker/src/main/resources/application.yaml,
+
+bootstrapAddress, has to be changed to the same as in kafka-server/config/server.properties
+
+Otherwise, error "kafka could not be established. broker may not be available"
+
 
 ## Defining other terms you will encounter
 - Topic: 
