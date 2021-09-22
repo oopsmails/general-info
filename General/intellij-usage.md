@@ -59,6 +59,10 @@ Find Usage, Settings (Ctrl+Alt+Shift+F7), Scope, ..., + scope, WithoutTest, Patt
 
 File > Project Structure > Project > Project Name
 
+### Always show full path in window header
+
+File > Settings > Appearance & Behavior > Appearance > check box, Always show full path in window header
+
 
 ## intellij shortcuts on Mac
 
