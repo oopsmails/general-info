@@ -116,4 +116,53 @@ albert sudo docker
 The rest of this article assumes you are running the docker command as a user in the docker group. If you choose not to, please prepend the commands with sudo.
 
 
+**May only work after restart !!!**
+
+## docker-compose
+
+https://phoenixnap.com/kb/install-docker-compose-on-ubuntu-20-04
+
+### Download and install
+
+```
+sudo apt update
+
+sudo apt upgrade
+
+sudo apt install curl
+
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+#The command instructs the system to save the file in the /usr/local/bin/ directory, under the name docker-compose.
+
+```
+
+Change File Permission
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo docker–compose --version
+
+
+Note: If the command docker-compose fails after installation, check your path. You can also create a symbolic link to /usr/bin or any other directory in your path.
+
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+
+### Uninstall Docker Compose on Ubuntu
+
+sudo rm /usr/local/bin/docker-compose
+
+sudo apt remove docker-compose
+
+sudo apt autoremove
+
+
+
+
+
+
+
+
 
