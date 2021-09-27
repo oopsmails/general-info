@@ -138,7 +138,7 @@ actually,
 `nvm install node`
 To install a specific version of node:
 
-`nvm install 12.18.`3
+`nvm install 12.18.3`
 
 You can use the following command to list installed versions of node for the current user.
 
@@ -160,12 +160,85 @@ You can run a Node script with the desired version of node.js using the below co
 
 `nvm exec 12.18.3 server.js`
 
+### Postman
+
+https://www.how2shout.com/linux/how-to-install-postman-on-ubuntu-20-04-lts-linux/
+
+- Using snap. Used for my Ubuntu20
+
+`sudo snap install postman`
+
+then go "Show Applications" and "Add to Favorites"
+
+- Not using snap
+
+Here we will see the steps to install Postman on Ubuntu 20.04 or 18.04 LTS Linux operating system. You can also use this guide for Linux Mint, CentOS, RHEL, Debian, and other Linux distros.
+
+  - Download and install
+  
+  wget https://dl.pstmn.io/download/latest/linux64
+
+  sudo tar -xvf linux64 -C /usr/bin
+
+  export PATH=$PATH:/usr/bin/Postman
+
+  run as "Postman"
+
+  - Create Desktop & Launcher Shortcut
+
+  sudo nano /usr/share/applications/Postman.desktop
+
+  ```
+  [Desktop Entry]
+  Name=Postman API Tool
+  GenericName=Postman
+  Comment=Testing API
+  Exec=/usr/bin/Postman/Postman
+  Terminal=false
+  X-MultipleArgs=false
+  Type=Application
+  Icon=/usr/bin/Postman/app/resources/app/assets/icon.png
+  StartupWMClass=Postman
+  StartupNotify=true
+
+  ```
+
+  - Save the file with Ctrl + O and Enter and close editor with Ctrl + X.
+
+  - Copy the created shortcut to desktop as well:
+
+  cp /usr/share/applications/Postman.desktop ~/Desktop/
+
+  - Allow launching
+
+  Right-click on the created shortcut of Postman on Desktop and select the “Allow launching” option.
+
+### intellij
+
+https://linuxconfig.org/how-to-install-intellij-idea-on-ubuntu-20-04-linux-desktop
+
+```
+$ sudo snap install intellij-idea-community --classic <-------------------- Used for my Ubuntu20
+OR
+$ sudo snap install intellij-idea-ultimate --classic
+OR
+$ sudo snap install intellij-idea-educational --classic
 
 
+$ intellij-idea-community <-------------------- Used for my Ubuntu20
+OR
+$ intellij-idea-ultimate
+OR
+$ intellij-idea-educational
+
+```
+then go "Show Applications" and "Add to Favorites"
 
 
+### Docker
 
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
-
+see ubuntu20-installDocker.md
 
 
