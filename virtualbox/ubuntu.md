@@ -19,6 +19,7 @@
 
 - Make sure VirtualBox Guest Additions is installed
 - Switch around Full screen and make sure Auto-resize guest display is checked.
+- VirtualBox Guest Additions, may see some "errors", like, cannot change kernal etc., it is actually just warnings, can just ignore and go on.
 
 ### ubuntu show full path in address bar
 
@@ -58,6 +59,7 @@ sharing
 ### vs code
 
 - download and installed
+- sudo apt install ./code_1.60.2-1632313585_amd64.deb
 - Sync-ed using Github
 
 ### bash profile, Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
@@ -71,6 +73,13 @@ PATH="$HOME/Documents/programs:$PATH"
 - install openjdk, 
 
 ```
+
+sudo apt install default-jre              # version 2:1.11-72, or
+sudo apt install openjdk-11-jre-headless  # version 11.0.11+9-0ubuntu2~20.04
+sudo apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
+sudo apt install openjdk-8-jre-headless   # version 8u292-b10-0ubuntu1~20.04
+sudo apt install openjdk-13-jre-headless  # version 13.0.7+5-0ubuntu1~20.04
+
 sudo apt update
 
 sudo apt install default-jdk # This will install OpenJDK 11

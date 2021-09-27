@@ -3,10 +3,11 @@
 #### define path locally
 
 base="/home/albert/Documents"
-github="$base/github"
-githubother="$base/github-other"
 sharing="$base/sharing"
 programs="$base/programs"
+
+github="$sharing/github"
+githubother="$sharing/github-other"
 
 timestamp="$(date +%F)-$(date +%T)-$(date +%p)"
 
