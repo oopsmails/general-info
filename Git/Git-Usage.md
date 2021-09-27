@@ -43,6 +43,21 @@ git config --global credential.helper "cache --timeout 7200"
 After enabling credential caching, it will be cached for 7200 seconds (2 hour).
 
 
+## git ignore crlf
+
+```
+Global approach
+
+Configure Git line endings handling on Linux or OS X:
+
+git config --global core.autocrlf input
+
+Configure Git line endings handling on Windows:
+
+git config --global core.autocrlf true
+
+```
+
 ## git exclude local file, but not through .gitignore
 
 From the relevant Git documentation:
