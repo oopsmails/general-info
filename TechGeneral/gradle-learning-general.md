@@ -30,5 +30,12 @@ include 'sub-project-1', 'sub-project-2'
 ```
 
 
+## Error and Fix
+
+- Could not find method runtime() for arguments [org.springframework.boot:spring-boot-devtools]
+
+in build.gradle. change runtime to runtimeOnly
+
+
 
 
