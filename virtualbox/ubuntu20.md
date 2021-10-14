@@ -104,13 +104,11 @@ sudo apt remove openjdk-14-jdk
 
 - add to bash profile
 
-export JAVA_HOME_8=$(/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -v1.8)
-export JAVA_HOME_11=$(/usr/lib/jvm/java-11-openjdk-amd64/bin/java -v11)
-export JAVA_HOME_14=$(/usr/lib/jvm/java-14-openjdk-amd64/bin/java -v14)
-
-alias java8='export JAVA_HOME=$JAVA_HOME_8'
-alias java11='export JAVA_HOME=$JAVA_HOME_11'
-alias java14='export JAVA_HOME=$JAVA_HOME_14'
+```
+# Java Alias
+alias java8='source /opt/java/switch/java8.sh'
+alias java11='source /opt/java/switch/java11.sh'
+```
 
 ### nvm
 
