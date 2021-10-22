@@ -34,6 +34,8 @@ We’ll launch the broker in KRaft mode, which means that it runs without ZooKee
 ./bin/kafka-topics --bootstrap-server :9092 --delete --topic test.dlq <-------- use this
 ./bin/kafka-topics --bootstrap-server :9092 --delete --topic test.retry <-------- use this
 
+./bin/kafka-topics --bootstrap-server :9092 --delete --topic person_topic
+
 ### Describe topics
 ./bin/kafka-topics --bootstrap-server :9092 --describe --topic test <-------- use this
 
@@ -60,6 +62,40 @@ We’ll launch the broker in KRaft mode, which means that it runs without ZooKee
 ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties
 
 schema-registry.properties, change `listeners=http://localhost:8081`, may need to change other App ports.
+
+curl --silent -X GET http://localhost:8081/subjects/ | jq .
+
+curl --silent -X GET http://localhost:8081/subjects/person_topic-value/versions/latest | jq .
+
+- Disable auto schema registration
+props.put(AbstractKafkaAvroSerDeConfig.AUTO_REGISTER_SCHEMAS, false);
+
+- To manually register the schema outside of the application, you can use Control Center.
+
+- If you prefer to connect directly to the REST endpoint in Schema Registry, then to define a schema for a new subject for the topic test, run the command below.
+
+```
+curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
+  --data '{"schema": "{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"}]}"}' \
+  http://localhost:8081/subjects/test-value/versions
+  
+```
+
+
+In this sample output, it creates a schema with id of 1.:
+
+{"id":1}
+
+
+- Delete Schema
+
+```
+curl -X DELETE http://localhost:8081/subjects/Kafka-value/versions/1
+
+curl -X DELETE -u <schema-registry-api-key>:<schema-registry-api-secret> <schema-registry-url>/subjects/<my-existing-subject>?permanent=true  
+
+curl -X DELETE -u <schema-registry-api-key>:<schema-registry-api-secret> <schema-registry-url>/subjects/my-existing-subject
+```
 
 
 ## Testing Observation
