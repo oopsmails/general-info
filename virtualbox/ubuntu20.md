@@ -29,6 +29,8 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 gsettings set org.gnome.nautilus.preferences always-use-location-entry false
 
+- if off, use Ctrl + L to swith to address for copying
+
 ## Install
 
 ### Chorme
