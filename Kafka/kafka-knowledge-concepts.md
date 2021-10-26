@@ -2,7 +2,9 @@
 # Kafka Knowledges
 
 
-## Consumer groupId
+## Consumer
+
+### groupId
 
 - Ref:
 
@@ -19,6 +21,9 @@ If all the consumer instances have different consumer groups, then each record w
 
 The group.id is a string that uniquely identifies the group of consumer processes to which this consumer belongs
 
+### Global Message Identifier
+
+topic name + partition number + offset
 
 
 
