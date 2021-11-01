@@ -204,6 +204,7 @@ Here we will see the steps to install Postman on Ubuntu 20.04 or 18.04 LTS Linux
   ```
 
   - Save the file with Ctrl + O and Enter and close editor with Ctrl + X.
+  - (MAY) already be able to see it in "Show Applications", bottom left conver ..., and then right click the icon and "Add Favorite"
 
   - Copy the created shortcut to desktop as well:
 
