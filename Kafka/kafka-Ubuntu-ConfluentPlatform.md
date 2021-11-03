@@ -15,6 +15,10 @@ curl -O http://packages.confluent.io/archive/6.2/confluent-community-6.2.0.tar.g
 
 cd $programs/confluent-6.2.1
 
+- akhq 
+
+https://github.com/tchiotludo/akhq/releases
+
 ## Start the Kafka broker
 We’ll launch the broker in KRaft mode, which means that it runs without ZooKeeper. Run this command first to configure the storage.
 
