@@ -6,25 +6,38 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 
 ## Step 1 — Installing Docker
 
+**Note**: may try apt-get in future
+
 - First, update your existing list of packages:
 
 `sudo apt update`
+
+`sudo apt-get update -y` 
  
 - Next, install a few prerequisite packages which let apt use packages over HTTPS:
 
 `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+
+`sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common `
+
  
 - Then add the GPG key for the official Docker repository to your system:
 
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+
  
 - Add the Docker repository to APT sources:
 
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"`
+
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+
  
 - Next, update the package database with the Docker packages from the newly added repo:
 
 `sudo apt update`
+
+`sudo apt-get update -y`
  
 - Make sure you are about to install from the Docker repo instead of the default Ubuntu repo:
 
@@ -47,6 +60,9 @@ Notice that docker-ce is not installed, but the candidate for installation is fr
 - Finally, install Docker:
 
 `sudo apt install docker-ce`
+
+`sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+`
  
 Docker should now be installed, the daemon started, and the process enabled to start on boot. 
 
@@ -71,7 +87,13 @@ TriggeredBy: ● docker.socket
 ```
 Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the Docker client. We’ll explore how to use the docker command later in this tutorial.
 
+- Start and Enable Docker Daemon Service
 
+```
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+
+```
 ## Step 2 — Executing the Docker Command Without Sudo (Optional)
 
 By default, the docker command can only be run the root user or by a user in the docker group, which is automatically created during Docker’s installation process. If you attempt to run the docker command without prefixing it with sudo or without being in the docker group, you’ll get an output like this:
@@ -136,6 +158,10 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 
 #The command instructs the system to save the file in the /usr/local/bin/ directory, under the name docker-compose.
 
+- try in future
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+
 ```
 
 Change File Permission
@@ -148,7 +174,6 @@ sudo docker–compose --version
 Note: If the command docker-compose fails after installation, check your path. You can also create a symbolic link to /usr/bin or any other directory in your path.
 
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
 
 ### Uninstall Docker Compose on Ubuntu
 

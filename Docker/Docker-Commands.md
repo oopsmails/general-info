@@ -1,3 +1,83 @@
+# Docker Useful Hacks: Cheat Sheet For Beginners to Expert
+
+https://scriptcrunch.com/docker-useful-hacks/
+
+## Docker Useful Hacks
+
+- Run docker without sudo
+
+`usermod -aG docker ${USER}  `
+
+Execute the following command if you do not want to restart the terminal
+
+`newgrp docker`
+
+- Connecting to Docker Container
+
+```
+docker exec -it  <container-name>  bash
+docker exec -it  <container-name>  sh
+```
+
+- Remove Unused Docker Objects
+
+The best way to remove all stopped, dangling and unused networks is through prune command.
+
+docker system prune
+
+You can remove all unused docker volumes using volume prune command.
+
+docker system prune --volumes
+
+- Stopping all containers at once
+
+docker stop $(docker ps -a -q)
+
+To forcefully stop,
+
+docker stop -f $(docker ps -a -q)
+
+- Removing all containers at once
+
+docker rm $(docker ps -a -q)
+
+To forcefully remove,
+
+docker rm -f $(docker ps -a -q)
+
+
+- Removing all docker images at once
+
+docker rmi $(docker images -q)
+
+To forcefully remove,
+
+docker rmi -f $(docker images -q)
+
+
+- Assign a name to the container
+
+`docker run -d --name <name-of-container> ubuntu/apache`
+
+
+- List all running containers
+
+docker ps
+
+- List all containers
+
+docker ps -a
+
+- List all images
+
+docker images
+
+- Remove unwanted/intermediate/untagged images
+
+Most of the times while building new images, there is a possibility of untagged, intermediate images that might eat up your disk space as well as increases your images list. To clean up those images, you can use the following command.
+
+`docker rmi $(docker images --filter "dangling=true" -q --no-trunc)`
+
 
 ## https://medium.com/the-code-review/top-10-docker-commands-you-cant-live-without-54fb6377f481
 
