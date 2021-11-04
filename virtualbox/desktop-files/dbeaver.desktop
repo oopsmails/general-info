@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DBeaver
+GenericName=DBeaver Community
+Comment=DBeaver Community
+Exec=/home/albert/Documents/programs/dbeaver/dbeaver %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/albert/Documents/programs/dbeaver/dbeaver.png
+
+
