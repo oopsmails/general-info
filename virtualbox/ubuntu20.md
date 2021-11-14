@@ -249,4 +249,9 @@ Use existing
 
 - installed from Software Manager
 
+## Tips
+
+- if using vpn, then Network, Bridged Adapter might be a good choice.
+- if using port forwarding, then switch to NAT.
+
 
