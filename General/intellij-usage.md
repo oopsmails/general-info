@@ -19,6 +19,13 @@ Settings
 
 --
 
+- Editable test console
+Help :::> Edit custom VM options
+
+```
+-Deditable.java.test.console=true
+```
+
 ## Tricks
 
 ### When running applications, error: Command line is too long
@@ -63,6 +70,19 @@ File > Project Structure > Project > Project Name
 
 File > Settings > Appearance & Behavior > Appearance > check box, Always show full path in window header
 
+
+## intellij shortcuts
+
+- Previous, Next cursor location
+
+File :::> Settings :::> Keymap
+Search "Navigate", set key shortcuts to previous cursor location.
+
+Normally, Ctrl + Alt + Left/Right
+
+- Previous, Next change
+
+Search "previous change"
 
 ## intellij shortcuts on Mac
 
