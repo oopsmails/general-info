@@ -12,6 +12,9 @@
     - During boot, press and hold Shift (for BIOS) or ESC (for UEFI). In my case, it is Shift.
     - Start with Recovery mode, then root terminal, run *passwd* to change root password
 
+- multiple workspaces
+
+If you are using the default Ubuntu Gnome desktop, simply click on the "Activities" button in the top left, and then mouse over to the right edge of your screen. You will see all active workspaces plus one empty one. To create new workspaces simply drag a window to an empty one, or to the space between two existing workspaces, and a new workspace will be created. There will always been one empty workspace more than the ones you are actively using. Or, using Ctrl + Alt + UP/DOWN to navigate around.
 
 ## Problem and Fix
 

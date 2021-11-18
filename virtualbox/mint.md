@@ -31,6 +31,9 @@
     - During boot, press and hold Shift (for BIOS) or ESC (for UEFI). In my case, it is Shift.
     - Start with Recovery mode, then root terminal, run *passwd* to change root password
 
+- multiple workspaces
+
+Ctrl + Alt + Left/Right/Up
 
 ## Before Backup
 
