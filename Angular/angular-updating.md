@@ -51,4 +51,29 @@ npm config set python /c/programs/python310/python.exe
 Install all the required tools and configurations using Microsoft's windows-build-tools by running `npm install -g windows-build-tools` from an elevated PowerShell (run as Administrator).
 
 
+#### angular Error: Cannot find module 'node-sass'
 
+```
+------ DO NOT use this with Node 16, use sass instead of node-sass, seee next Error
+
+-- npm install --save-dev node-sass
+
+npm uninstall node-sass
+npm install node-sass@4.14.1
+
+see https://stackoverflow.com/questions/67891774/node-sass-version-6-0-0-is-incompatible-with-4-0-0-5-0-0-in-react-js  
+
+```
+
+#### angular Error: Node Sass version 6.0.1 is incompatible with ^4.0.0.
+
+https://stackoverflow.com/questions/67891774/node-sass-version-6-0-0-is-incompatible-with-4-0-0-5-0-0-in-react-js  
+
+You could try uninstalling node-sass and replacing it with sass. That did it for me.
+
+```
+npm un node-sass
+npm i -D sass
+```
+
+#### 
