@@ -110,3 +110,35 @@ for local development add the switch in package.json
 
 "postinstall": "echo this is example for windows && (cd api && npm install); (cd web && npm install); (cd shared && npm install)",
 
+
+#### Could not resolve dependency: npm ERR! peer @angular/compiler@"11.2.8"
+
+In addition to using the npm install --save --legacy-peer-deps command line option, this can also be set more permanently as a config option: `npm config set legacy-peer-deps true`.
+
+If above approach does not work try removing the node_modules folder and package-lock.json file and run command npm install.
+
+e.g,
+
+npm install @ngrx/store @ngrx/effects @ngrx/entity @ngrx/store-devtools --save --legacy-peer-deps
+
+#### Data path "" must NOT have additional properties(es5BrowserSupport).
+
+es5BrowserSupport add additional polyfill
+
+Solution 1
+
+For option es5BrowserSupport your @angular/cli required minimum version 7.3 and @angular-devkit/build-angular required minimum version 0.13 .
+
+Check your @angular/cli version. if is less than 7.3 then run following command
+
+ng update @angular/cli
+
+Check your @angular-devkit/build-angular version. if is less than 0.13 then run following command
+
+ng update @angular-devkit/build-angular
+
+Solution 2
+
+Also you can edit angular.json file and find "es5BrowserSupport": true and comment it. It will also work without updating dependency
+
+
