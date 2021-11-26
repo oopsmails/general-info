@@ -141,4 +141,35 @@ Solution 2
 
 Also you can edit angular.json file and find "es5BrowserSupport": true and comment it. It will also work without updating dependency
 
+#### Property 'addAll' does not exist on type 'EntityAdapter ...
+
+fix(angular): replace addAll with setAll #3699
+
+#### error TS2305: Module '"@angular/platform-browser"' has no exported member 'DOCUMENT'.
+
+import {DOCUMENT} from '@angular/common';
+
+
+#### error TS2339: Property 'URL' does not exist on type 'Window'.
+
+- temp solution for now, will fix later
+
+```
+@Inject(WINDOW) private window: Window
+change to:
+@Inject(WINDOW) private window: any) {
+```
+
+#### error TS2339: Property 'throw' does not exist on type 'typeof Observable'.
+
+```
+return Observable.throw(new NotFoundError());
+change to:
+return  throwError(() => new AppError(error));
+```
+
+#### error TS2339: Property 'forRoot' does not exist on type 'typeof NgbModule'.
+
+
+
 
