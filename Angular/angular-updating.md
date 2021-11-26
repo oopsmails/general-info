@@ -170,6 +170,14 @@ return  throwError(() => new AppError(error));
 
 #### error TS2339: Property 'forRoot' does not exist on type 'typeof NgbModule'.
 
+```
+NgbModule.forRoot().ngModule
+NgbModule.forRoot()
 
+all change to:
+
+NgbModule
+
+```
 
 
