@@ -76,4 +76,37 @@ npm un node-sass
 npm i -D sass
 ```
 
-#### 
+
+ #### Error message "error:0308010C:digital envelope routines::unsupported"
+
+- Solution 1:
+
+Always use LTS for real applications, it fixed the issue
+
+```
+nvm install 16.13.0
+nvm use 16.13.0
+```
+
+- Solution 2: didn't try
+
+I found the commands below on GitHub:
+
+For Windows, use the below command in cmd:
+
+`set NODE_OPTIONS=--openssl-legacy-provider`
+
+For Unix, use:
+
+`export NODE_OPTIONS=--openssl-legacy-provider`
+
+I faced this issue in Docker build, and I have added this line in the Docker file:
+
+`RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn install --production --ignore-scripts --prefer-offline`
+
+for local development add the switch in package.json
+
+#### package.json scripts windows???
+
+"postinstall": "echo this is example for windows && (cd api && npm install); (cd web && npm install); (cd shared && npm install)",
+
