@@ -50,7 +50,12 @@ Ctrl + Alt + Left/Right/Up
 
 - run inside linux mint
 
+cd /media/albert/VBox_ ...
 sudo ./VBoxLinuxAdditions.run
+
+- for Display, after installing Guest Addition, need to change VB setting from Menu, View, select only "Auto-resize Guest Display"
+
+Otherwise, display may not be kept after restarting!
 
 ### Add Shared folder
 
