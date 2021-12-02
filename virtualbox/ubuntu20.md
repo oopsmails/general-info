@@ -257,4 +257,18 @@ Use existing
 - if using vpn, then Network, Bridged Adapter might be a good choice.
 - if using port forwarding, then switch to NAT.
 
+### Monitor startup apps
+
+- list any services launched at startup by opening Terminal and running the command:
+
+service --status-all 
+- To stop a running service, enter the command:
+
+- sudo service <name> stop
+To remove an existing program from Ubuntu open Terminal and run:
+
+- sudo apt-get remove <program name>
+
+
+
 
