@@ -1,6 +1,43 @@
 
 # Ubuntu
 
+## VB create ubuntu
+
+- Download ubuntu iso image
+https://ubuntu.com/download/desktop
+
+
+- Create Virtual Machine in VB
+
+As linux ubuntu 64 bits  
+Change the vdi location!!! 
+Insert in iso  
+Enable 3D accelerate  
+
+- Start and install ubuntu
+- install updates and VB Guest Addition, restart
+- Hotkey, right ctrl + home, select "Scaled Mode", also, make sure Menu is showing
+- View, make sure Auto-resize guest display is checked. Then, test around display by resizing window.
+- Restart, to change root password. Shift ??+ Esc, recovery mode, advanced options, drop root ..., passwd ...
+- Restart, terminal, 150x40
+- Make a snapshot and realy to install softwares
+- Shared Folder: 
+
+```
+C:\sharing
+sharing
+/home/albert/Documents/sharing
+
+initially, showing owner as root
+
+groups
+
+sudo usermod -a -G vboxsf albert
+sudo usermod -a -G root albert
+
+restart vm
+```
+
 ## General
 
 - hotkey, right ctrl
@@ -57,7 +94,7 @@ open the terminal, select Edit->Profile Preferences -> General tab and change th
 ### Shared Folder
 
 - Need to insert Guest Additional CD, then install it. Otherwise, there is no content
-c:\sharing
+C:\sharing
 sharing
 /home/albert/Documents/sharing
 
