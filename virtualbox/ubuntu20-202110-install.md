@@ -127,8 +127,9 @@ sudo apt update
 sudo apt install default-jdk # This will install OpenJDK 11
 
 sudo apt install openjdk-8-jdk
-
-sudo apt install openjdk-14-jdk
+sudo apt install openjdk-8-jre-headless
+sudo apt install openjdk-11-jdk
+sudo apt install openjdk-11-jre-headless
 
 
 sudo update-alternatives --config java # This can switch around versions
@@ -148,8 +149,8 @@ sudo apt remove openjdk-14-jdk
 
 ```
 # Java Alias
-alias java8='source /opt/java/switch/java8.sh'
-alias java11='source /opt/java/switch/java11.sh'
+alias java8='source /home/albert/Documents/programs/java8.sh'
+alias java11='source /home/albert/Documents/programs/java11.sh'
 ```
 
 ### nvm

@@ -97,34 +97,31 @@ git --version
 - download and installed
 - sudo apt install ./code_1.60.2-1632313585_amd64.deb
 - Sync-ed using Github
+- If after opening general-info, seeing all file as "modified" in VS Code git, then run `git config --global core.autocrlf input` and should be fine after restart
 
-### bash profile, Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
+### bash profile, Terminal, $HOME/.bashrc
 
 PATH="$HOME/Documents:$PATH"
-PATH="$HOME/Documents/sharing:$PATH"
 PATH="$HOME/Documents/programs:$PATH"
+PATH="$HOME/Documents/sharing:$PATH"
 
 ### java
 
 - install openjdk, 
+openjdk-headless (like jre) < openjdk < openjdk-devel
 
 ```
-
-sudo apt install default-jre              # version 2:1.11-72, or
-sudo apt install openjdk-11-jre-headless  # version 11.0.11+9-0ubuntu2~20.04
-sudo apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
-sudo apt install openjdk-8-jre-headless   # version 8u292-b10-0ubuntu1~20.04
-sudo apt install openjdk-13-jre-headless  # version 13.0.7+5-0ubuntu1~20.04
-
 sudo apt update
 
-sudo apt install default-jdk # This will install OpenJDK 11
+## sudo apt install default-jdk # This will install OpenJDK 11
 
+sudo apt install openjdk-11-jdk
 sudo apt install openjdk-8-jdk
 
-sudo apt install openjdk-14-jdk
+sudo apt install openjdk-14-jdk // not available
+sudo apt install openjdk-15-jdk // not available
 
-
+update-java-alternatives --list
 sudo update-alternatives --config java # This can switch around versions
 
 
@@ -132,7 +129,6 @@ sudo update-alternatives --config java # This can switch around versions
   1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      1111      manual mode
 * 2            /usr/lib/jvm/java-14-oracle/bin/java             1091      manual mode
   3            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1081      manual mode
-
 
 ```
 
@@ -142,57 +138,50 @@ sudo apt remove openjdk-14-jdk
 
 ```
 # Java Alias
-alias java8='source /opt/java/switch/java8.sh'
-alias java11='source /opt/java/switch/java11.sh'
+alias java8='source /home/albert/Documents/programs/java8.sh'
+alias java11='source /home/albert/Documents/programs/java11.sh'
 ```
 
-### nvm
+- Notes
+  - scripts need with LF, not CRLF
+  - update-java-alternatives might not work anymore, use update-alternatives
+  - use *-set instead* of *-config java* in scripts to avoid using *echo*
+  - java version names need to be complaint to *update-java-alternatives --list*
+  - java 8 is actually pointing to jre?? use is anyways.
+
+### nvm adn node
 
 - ref:
 
 https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
 
-`sudo apt install curl`
+```
+sudo apt install curl`
 
-- This is NOT working, see ElementaryOS.md, 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
-Using: 
-`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+source ~/.bashrc
 
-not use!
-`curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash `
+-- nvm install node
 
-The nvm installer script creates environment entry to login script of the current user. You can either logout and login again to load the environment or execute the below command to do the same.
+nvm install v16.13.1
 
-`source ~/.profile`
 
-actually,
-`source ~/.bashrc`
+nvm ls
 
-`nvm install node`
-To install a specific version of node:
+nvm ls-remote
 
-`nvm install 12.18.3`
-
-You can use the following command to list installed versions of node for the current user.
-
-`nvm ls`
-
-With this command, you can find the available node.js version for the installation.
-
-`nvm ls-remote`
-
-You can also select a different version for the current session. The selected version will be the currently active version for the current shell only.
-
-`nvm use 12.18.3`
+nvm use v16.13.1
 
 To find the default Node version set for the current user, type:
 
-`nvm run default --version`
+nvm run default --version
 
 You can run a Node script with the desired version of node.js using the below command:
 
-`nvm exec 12.18.3 server.js`
+nvm exec v16.13.1 server.js
+
+```
 
 ### Postman
 
@@ -287,6 +276,16 @@ Use existing
 
 - if using vpn, then Network, Bridged Adapter might be a good choice.
 - if using port forwarding, then switch to NAT.
+- File, add root directory in Bookmark, Other Location, in address bar, "Computer", drop down, add to Bookmarks.
+
+### keytool
+
+```
+cd /usr/lib/jvm/java-1.11.0-openjdk-amd64/bin
+
+sudo keytool -import -file "/home/<path-to-certs>/certs/abcd.crt" -alias "policyabcd" -keystore "/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/security/cacerts"
+```
+
 
 ### Monitor startup apps
 
