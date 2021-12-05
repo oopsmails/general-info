@@ -185,81 +185,31 @@ nvm exec v16.13.1 server.js
 
 ### Postman
 
-https://www.how2shout.com/linux/how-to-install-postman-on-ubuntu-20-04-lts-linux/
+- install using "Ubuntu Software"
+- "Show Applications", search postman, right click to add to Favorite
+- if cannot import from *sharing* folder, then just copy the file, *Spring-boot-mock-backend.postman_collection.json* to */home/albert/Documents/dev*, then should be ok. May be due to CRLF/LF.
+- create Desktop shortcut, and right click "Allow Lauching"
 
-- Using snap. Used for my Ubuntu20
+```
+~/Desktop/postman.desktop
 
-`sudo snap install postman`
+[Desktop Entry]
+Name=postman
+Name=Postman
+Exec=/snap/bin/postman
+Icon=/snap/postman/149/usr/share/postman/icons/icon_128x128.png
+Categories=Utility
+Terminal=false
+Type=Application
 
-then go "Show Applications" and "Add to Favorites"
-
-- Not using snap
-
-Here we will see the steps to install Postman on Ubuntu 20.04 or 18.04 LTS Linux operating system. You can also use this guide for Linux Mint, CentOS, RHEL, Debian, and other Linux distros.
-
-  - Download and install
-  
-  wget https://dl.pstmn.io/download/latest/linux64
-
-  sudo tar -xvf linux64 -C /usr/bin
-
-  export PATH=$PATH:/usr/bin/Postman
-
-  run as "Postman"
-
-  - Create Desktop & Launcher Shortcut
-
-  sudo nano /usr/share/applications/Postman.desktop
-
-  ```
-  [Desktop Entry]
-  Name=Postman API Tool
-  GenericName=Postman
-  Comment=Testing API
-  Exec=/usr/bin/Postman/Postman
-  Terminal=false
-  X-MultipleArgs=false
-  Type=Application
-  Icon=/usr/bin/Postman/app/resources/app/assets/icon.png
-  StartupWMClass=Postman
-  StartupNotify=true
-
-  ```
-
-  - Save the file with Ctrl + O and Enter and close editor with Ctrl + X.
-  - (MAY) already be able to see it in "Show Applications", bottom left conver ..., and then right click the icon and "Add Favorite"
-
-  - Copy the created shortcut to desktop as well:
-
-  cp /usr/share/applications/Postman.desktop ~/Desktop/
-
-  - Allow launching
-
-  Right-click on the created shortcut of Postman on Desktop and select the “Allow launching” option.
+```
 
 ### intellij
 
-https://linuxconfig.org/how-to-install-intellij-idea-on-ubuntu-20-04-linux-desktop
+- install using "Ubuntu Software"
+- "Show Applications", search postman, right click to add to Favorite
 
-```
-$ sudo snap install intellij-idea-community --classic <-------------------- Used for my Ubuntu20
-OR
-$ sudo snap install intellij-idea-ultimate --classic
-OR
-$ sudo snap install intellij-idea-educational --classic
-
-
-$ intellij-idea-community <-------------------- Used for my Ubuntu20
-OR
-$ intellij-idea-ultimate
-OR
-$ intellij-idea-educational
-
-```
-then go "Show Applications" and "Add to Favorites"
-
-
-### Docker
+### Docker: 20211204 here
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
