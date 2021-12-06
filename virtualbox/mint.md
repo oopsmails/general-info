@@ -143,8 +143,6 @@ sudo update-alternatives --config java # This can switch around versions
 
 sudo apt remove openjdk-14-jdk
 
-
-
 - Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
 
 PATH="$HOME/Documents:$PATH"
@@ -158,6 +156,18 @@ export JAVA_HOME_14=$(/usr/lib/jvm/java-14-openjdk-amd64/bin/java -v14)
 alias java8='export JAVA_HOME=$JAVA_HOME_8'
 alias java11='export JAVA_HOME=$JAVA_HOME_11'
 alias java14='export JAVA_HOME=$JAVA_HOME_14'
+
+- install java 17 ?????
+
+wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
+
+sudo tar xvf openjdk-17_linux-x64_bin.tar.gz
+
+sudo mv jdk-17 /opt/
+
+export JAVA_HOME=/opt/jdk-17
+export PATH=$PATH:$JAVA_HOME/bin 
+source ~/.bashrc
 
 
 ### Git

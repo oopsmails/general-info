@@ -121,7 +121,7 @@ sudo apt install openjdk-8-jdk
 sudo apt install openjdk-14-jdk // not available
 sudo apt install openjdk-15-jdk // not available
 
-update-java-alternatives --list
+sudo update-java-alternatives --list
 sudo update-alternatives --config java # This can switch around versions
 
 
@@ -148,6 +148,23 @@ alias java11='source /home/albert/Documents/programs/java11.sh'
   - use *-set instead* of *-config java* in scripts to avoid using *echo*
   - java version names need to be complaint to *update-java-alternatives --list*
   - java 8 is actually pointing to jre?? use is anyways.
+
+
+- java 17
+
+sudo apt update
+sudo apt install openjdk-17-jdk openjdk-17-jre -y
+
+albert@albert-ubuntu20:~$ sudo update-java-alternatives --list
+java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64
+java-1.17.0-openjdk-amd64      1711       /usr/lib/jvm/java-1.17.0-openjdk-amd64
+java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
+albert@albert-ubuntu20:~$ 
+
+add alias
+source ~/.bashrc
+
+
 
 ### nvm adn node
 
