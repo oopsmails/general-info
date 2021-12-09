@@ -46,6 +46,18 @@ rm ~/.local/share/keyrings/login.keyring
 ### VS Code
 
 - Download and install, don't install from Mint Software
+
+
+### bash profile, Terminal, $HOME/.bashrc
+
+```
+# source ~/.bashrc ## for refresh without recycle terminal
+
+PATH="$HOME/Documents:$PATH"
+PATH="$HOME/Documents/programs:$PATH"
+PATH="$HOME/Documents/sharing:$PATH"
+
+```
 ### OpenJDK:
 
 ```
@@ -61,31 +73,23 @@ sudo update-alternatives --config java # This can switch around versions
 
 sudo apt remove openjdk-14-jdk
 
-- Terminal, .profile file is NOT used in Elementary OS, should be $HOME/.bashrc
+- add to bash profile
 
-PATH="$HOME/Documents:$PATH"
-PATH="$HOME/Documents/sharing:$PATH"
-PATH="$HOME/Documents/programs:$PATH"
+```
+# Java Alias
+alias java8='source /home/albert/Documents/programs/java8.sh'
+alias java11='source /home/albert/Documents/programs/java11.sh'
+alias java17='source /home/albert/Documents/programs/java17.sh'
 
-export JAVA_HOME_8=$(/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -v1.8)
-export JAVA_HOME_11=$(/usr/lib/jvm/java-11-openjdk-amd64/bin/java -v11)
-export JAVA_HOME_14=$(/usr/lib/jvm/java-14-openjdk-amd64/bin/java -v14)
+```
 
-alias java8='export JAVA_HOME=$JAVA_HOME_8'
-alias java11='export JAVA_HOME=$JAVA_HOME_11'
-alias java14='export JAVA_HOME=$JAVA_HOME_14'
+- Notes
+  - scripts need with LF, not CRLF
+  - update-java-alternatives might not work anymore, use update-alternatives
+  - use *-set instead* of *-config java* in scripts to avoid using *echo*
+  - java version names need to be complaint to *update-java-alternatives --list*
+  - java 8 is actually pointing to jre?? use is anyways.
 
-- install java 17 ?????
-
-wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
-
-sudo tar xvf openjdk-17_linux-x64_bin.tar.gz
-
-sudo mv jdk-17 /opt/
-
-export JAVA_HOME=/opt/jdk-17
-export PATH=$PATH:$JAVA_HOME/bin 
-source ~/.bashrc
 
 ### intellij: download and install
 
@@ -104,9 +108,10 @@ sudo mv idea-IC-201.8538.32 /opt/idea
 
 - install from Linux Mint Software
 
-### Docker:
+### Docker and docker-compose
 
 - install from Linux Mint Software
+- usermod -aG docker ${USER}
 
 ### nvm, node, npm
 

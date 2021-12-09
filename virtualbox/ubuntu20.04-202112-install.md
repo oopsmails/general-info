@@ -102,6 +102,8 @@ git --version
 ### bash profile, Terminal, $HOME/.bashrc
 
 ```
+# source ~/.bashrc ## for refresh without recycle terminal
+
 PATH="$HOME/Documents:$PATH"
 PATH="$HOME/Documents/programs:$PATH"
 PATH="$HOME/Documents/sharing:$PATH"

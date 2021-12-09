@@ -36,12 +36,17 @@ Username for 'https://github.com': <USERNAME>
 Password for 'https://USERNAME@github.com': <PASSWORD>
 ```
 
-Use should also specify caching expire
+- User should also specify caching expire
 
 git config --global credential.helper "cache --timeout 7200"
 
 After enabling credential caching, it will be cached for 7200 seconds (2 hour).
 
+- https://stackoverflow.com/questions/35942754/how-can-i-save-username-and-password-in-git
+
+~/.git-credentials  
+
+if password changed, then will fail, just delete *~/.git-credentials* and redo *git config credential.helper store*
 
 ## git ignore crlf
 
