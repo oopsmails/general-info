@@ -101,9 +101,12 @@ git --version
 
 ### bash profile, Terminal, $HOME/.bashrc
 
+```
 PATH="$HOME/Documents:$PATH"
 PATH="$HOME/Documents/programs:$PATH"
 PATH="$HOME/Documents/sharing:$PATH"
+
+```
 
 ### java
 
@@ -117,9 +120,6 @@ sudo apt update
 
 sudo apt install openjdk-11-jdk
 sudo apt install openjdk-8-jdk
-
-sudo apt install openjdk-14-jdk // not available
-sudo apt install openjdk-15-jdk // not available
 
 sudo update-java-alternatives --list
 sudo update-alternatives --config java # This can switch around versions
@@ -140,6 +140,8 @@ sudo apt remove openjdk-14-jdk
 # Java Alias
 alias java8='source /home/albert/Documents/programs/java8.sh'
 alias java11='source /home/albert/Documents/programs/java11.sh'
+alias java17='source /home/albert/Documents/programs/java17.sh'
+
 ```
 
 - Notes
@@ -164,9 +166,7 @@ albert@albert-ubuntu20:~$
 add alias
 source ~/.bashrc
 
-
-
-### nvm adn node
+### nvm and node
 
 - ref:
 
