@@ -67,6 +67,8 @@ sudo apt install openjdk-8-jdk
 
 sudo apt install openjdk-11-jdk
 
+sudo update-java-alternatives --list
+
 sudo update-alternatives --config java # This can switch around versions
 
 ```
