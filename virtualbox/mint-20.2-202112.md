@@ -132,6 +132,99 @@ node -v
 
 nvm install --lts
 
+### python, handling *npm i* error, python not found
+
+- check if should use *sudo*!!!
+Using *sudo* will solve some errors, like,
+
+Error: listen EACCES: permission denided ...
+
+
+```
+sudo npm i
+```
+
+- if *nvm* not available to *sudo*, error, not found
+
+Ref: https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo
+
+  - first solution, should be used
+
+```
+My solution is to create symbolic links from the versions of node and npm I'm using to /usr/local/bin:
+
+sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/node" "/usr/local/bin/node"
+sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npm" "/usr/local/bin/npm"
+This makes npm and node available to all users.
+```
+
+  - second solution
+
+```
+The fundamental reason is because nvm is not a real program. It's a bash function that gets loaded in the user's .profile, .bashrc, or ... So sudo doesn't automatically pick it up from the $PATH like most other programs.
+
+An alternative node version manager is n: https://github.com/tj/n . That is a real program, so sudo will pick it up via the $PATH without any hacks (as long as sudo has /usr/local/bin in its $PATH).
+```
+
+- check if python is installed first!!!
+
+```
+apt list --installed | grep python
+
+albert@albert-mint20:~$ python3 -V
+Python 3.8.5
+
+
+albert@albert-mint20:~$ which python
+albert@albert-mint20:~$ 
+albert@albert-mint20:~$ which python3
+/usr/bin/python3
+albert@albert-mint20:~$ which python3.8
+/usr/bin/python3.8
+
+```
+
+- Make sure you installed python on your machine.
+
+If already installed try:
+
+```
+npm config set python <python.exe path>
+
+npm config set python /c/programs/python310/python.exe
+
+npm config set python /usr/bin/python3
+```
+
+
+- install 3.9.6
+
+Ref: https://www.youtube.com/watch?v=dN2o_xKXw8M
+
+```
+Python3.9.6 Installation Steps:
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.9
+```
+
+- install 3.8, instruction from python-install-ElementaryOS.md
+
+```
+1. Open a terminal
+2. type and run: sudo apt update
+3. type and run: sudo apt install software-properties-common
+4. type and run: sudo add-apt-repository ppa:deadsnakes/ppa
+5. Press Enter to add the above repository
+6. type and run: sudo apt update
+7. type and run: sudo apt install python3.7
+
+You now have Python 3.7 installed
+
+sudo apt install python3.8
+```
+
 
 ## Other
 
