@@ -61,6 +61,37 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 
 ```
 
+- After install minikube, see k8s-mint20-minikube.md
+
+```
+
+albert@albert-mint20:~$ kubectl version -o json
+{
+  "clientVersion": {
+    "major": "1",
+    "minor": "23",
+    "gitVersion": "v1.23.0",
+    "gitCommit": "ab69524f795c42094a6630298ff53f3c3ebab7f4",
+    "gitTreeState": "clean",
+    "buildDate": "2021-12-07T18:16:20Z",
+    "goVersion": "go1.17.3",
+    "compiler": "gc",
+    "platform": "linux/amd64"
+  },
+  "serverVersion": {
+    "major": "1",
+    "minor": "22",
+    "gitVersion": "v1.22.3",
+    "gitCommit": "c92036820499fedefec0f847e2054d824aea6cd1",
+    "gitTreeState": "clean",
+    "buildDate": "2021-10-27T18:35:25Z",
+    "goVersion": "go1.16.9",
+    "compiler": "gc",
+    "platform": "linux/amd64"
+  }
+}
+```
+
 
 ### Remove Kubectl from Linux Mint 20
 

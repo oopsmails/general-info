@@ -27,7 +27,6 @@ users: null
 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
-
 sudo kubeadm init
 
 
@@ -36,7 +35,8 @@ sudo kubeadm init
 
 - Run these commands to fix it.
 
-sudo cp /etc/kubernetes/admin.conf HOME/ sudo chown (id -u):$(id -g) $HOME/admin.conf
+sudo cp /etc/kubernetes/admin.conf HOME/ 
+sudo chown (id -u):$(id -g) $HOME/admin.conf
 export KUBECONFIG=$HOME/admin.conf
 
 - Below commands solved the problem for me.
