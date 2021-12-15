@@ -104,7 +104,10 @@ Opening in existing browser session
 
 ```
 kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+The option --type=NodePort specifies the type of the Service.
 
 
 minikube image load oopsmails/mockbackend:v1
