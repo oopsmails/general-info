@@ -68,7 +68,11 @@ minikube kubectl -- get po -A
 
 ### You can also make your life easier by adding the following to your shell config:
 
+```
 alias kubectl="minikube kubectl --"
+
+kubectl version -o json
+```
 
 Initially, some services such as the storage-provisioner, may not yet be in a Running state. This is a normal condition during cluster bring-up, and will resolve itself momentarily. 
 
@@ -112,15 +116,16 @@ The option --type=NodePort specifies the type of the Service.
 
 minikube image load oopsmails/mockbackend:v1
 
+alias kubectl="minikube kubectl --"
+
 kubectl create deployment mockbackend-minikube --image=oopsmails/mockbackend:v1
-kubectl expose deployment mockbackend-minikube --type=NodePort --port=8080
+kubectl expose deployment mockbackend-minikube --type=NodePort --port=8888
 ```
 
 ### It may take a moment, but your deployment will soon show up when you run:
 
 ```
 kubectl get services hello-minikube
-
 
 kubectl get services mockbackend-minikube
 
@@ -144,8 +149,37 @@ minikube service --url mockbackend-minikube
 albert@albert-mint20:~$ minikube service --url mockbackend-minikube
 http://192.168.49.2:32504
 
+minikube service mockbackend-minikube --url
+
 ```
 
+
+```
+albert@albert-mint20:$ minikube image load oopsmails/mockbackend:v1
+albert@albert-mint20:$ alias kubectl="minikube kubectl --"
+albert@albert-mint20:$ 
+albert@albert-mint20:$ 
+albert@albert-mint20:$ kubectl create deployment mockbackend-minikube --image=oopsmails/mockbackend:v1
+deployment.apps/mockbackend-minikube created
+albert@albert-mint20:$ kubectl expose deployment mockbackend-minikube --type=NodePort --port=8888
+service/mockbackend-minikube exposed
+albert@albert-mint20:$ kubectl get services mockbackend-minikube
+NAME                   TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+mockbackend-minikube   NodePort   10.103.51.54   <none>        8888:31029/TCP   13s
+albert@albert-mint20:$ 
+albert@albert-mint20:$ minikube service mockbackend-minikube --url
+http://192.168.49.2:31029
+
+```
+
+### Postman
+
+At this point, postman
+
+GET: http://192.168.49.2:31029/backendmock/employee-api OK  
+
+
+### trouble shooting: 
 
 - redo, load image first!!!!
   
@@ -161,59 +195,7 @@ minikube stop
 
 minikube delete --all
 
-
-
 minikube start 
-
-minikube start --vm-driver=virtualbox
-
-sudo minikube start --vm-driver=virtualbox
-
-- driver none
-
-minikube start --vm-driver=none
-
-sudo minikube start --vm-driver=none
-
-```
-albert@albert-mint20:~/.kube$ minikube start --vm-driver=none
-😄  minikube v1.24.0 on Linuxmint 20.1 (vbox/amd64)
-✨  Using the none driver based on user configuration
-
-🤷  Exiting due to PROVIDER_NONE_NOT_FOUND: The 'none' provider was not found: running the 'none' driver as a regular user requires sudo permissions
-
-albert@albert-mint20:~/.kube$ sudo minikube start --vm-driver=none
-[sudo] password for albert:       
-😄  minikube v1.24.0 on Linuxmint 20.1 (vbox/amd64)
-✨  Using the none driver based on user configuration
-
-❌  Exiting due to GUEST_MISSING_CONNTRACK: Sorry, Kubernetes 1.22.3 requires conntrack to be installed in root's path
-
-
-
-```
-
-
-```
-- option 1
-Use command : sudo apt-get install -y conntrack
-then following by: sudo -E minikube start --driver=none
-it worked for me :)
-
-
-- option 2
-
-arch linux install:
-
-pacman -S conntrack-tools
-
-and run:
-
-sudo minikube start --vm-driver=none
-
-```
-
-sudo minikube start –vm-driver=virtualbox
 
 
 ### Alternatively, use kubectl to forward the port:
@@ -222,11 +204,14 @@ sudo minikube start –vm-driver=virtualbox
 kubectl port-forward service/hello-minikube 7080:8080
 
 
-kubectl port-forward service/mockbackend-minikube 7080:8080
+kubectl port-forward service/mockbackend-minikube 7080:8888
 
 ```
 
-Tada! Your application is now available at http://localhost:7080/.
+Tada! Your application is now available at http://localhost:7080/.  
+
+Yes, postman, GET, http://localhost:7080/backendmock/employee-api, working!!!!
+
 
 You should be able to see the request metadata from nginx such as the CLIENT VALUES, SERVER VALUES, HEADERS RECEIVED and the BODY in the application output. Try changing the path of the request and observe the changes in the CLIENT VALUES. Similarly, you can do a POST request to the same and observe the body show up in BODY section of the output.
 
@@ -240,7 +225,7 @@ kubectl create deployment balanced --image=k8s.gcr.io/echoserver:1.4
 kubectl expose deployment balanced --type=LoadBalancer --port=8080
 ```
 
-- In another window, start the tunnel to create a routable IP for the ‘balanced’ deployment:
+- In another window, start the tunnel to create a routable IP for the 'balanced' deployment:
 
 minikube tunnel
 
