@@ -199,7 +199,7 @@ deployment.apps/adev created
 kubectl create secret docker-registry <name> --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
 
 
-kubectl create secret docker-registry dockerhub-oopsmails --docker-server=https://hub.docker.com/ --docker-username=oopsmails --docker-password=Sndgg56sndgg --docker-email=oopsmails@gmail.com
+kubectl create secret docker-registry dockerhub-oopsmails --docker-server=https://hub.docker.com/ --docker-username=oopsmails --docker-password=xxxxxxx --docker-email=oopsmails@gmail.com
 
 
 

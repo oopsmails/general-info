@@ -37,6 +37,8 @@ http://:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/
 
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 -> error:
+
+
 ```
 Alberts-Mac:staging albert$ $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 -bash: syntax error near unexpected token `('
@@ -54,9 +56,11 @@ Data
 ca.crt:     1025 bytes
 namespace:  11 bytes
 token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZWZhdWx0LXRva2VuLWJnd21nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImRlZmF1bHQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI4NjZjYmM3NS1mNDZiLTExZTktYjI4Yi0wMjUwMDAwMDAwMDEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06ZGVmYXVsdCJ9.lxAWdt6ZYWJskPVLTrVkVrePV6FBuTh8het25DOYjPcTvhFdGskg8sz6bHzFx6HWEDPcT1727eIVM7qulkbMDWXH3lJVai8Ym1s8a8VP8Mi3Gm5A7LFjhs8E8iAijj2uHhvhutLcVyxyNNOg1oax9JQGTCgYyRSSl8T96k5Fc3BDY9OjpbvdISDzjOI6wsMukd7QH808kZBHkqkg_ZO8bRV929-5pqUMu270ko4ryojzjhbWw8v_-x072-DltZV-2RclXewiA7Tawy64AAxTE8JcVxZeqy9Kig5DX39X_FBhzzsNmvBVKpEaOD6wSmxrd8neF7svkj3YNaNeGHAhbg
+
 ```
 
 eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZWZhdWx0LXRva2VuLWJnd21nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImRlZmF1bHQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI4NjZjYmM3NS1mNDZiLTExZTktYjI4Yi0wMjUwMDAwMDAwMDEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06ZGVmYXVsdCJ9.lxAWdt6ZYWJskPVLTrVkVrePV6FBuTh8het25DOYjPcTvhFdGskg8sz6bHzFx6HWEDPcT1727eIVM7qulkbMDWXH3lJVai8Ym1s8a8VP8Mi3Gm5A7LFjhs8E8iAijj2uHhvhutLcVyxyNNOg1oax9JQGTCgYyRSSl8T96k5Fc3BDY9OjpbvdISDzjOI6wsMukd7QH808kZBHkqkg_ZO8bRV929-5pqUMu270ko4ryojzjhbWw8v_-x072-DltZV-2RclXewiA7Tawy64AAxTE8JcVxZeqy9Kig5DX39X_FBhzzsNmvBVKpEaOD6wSmxrd8neF7svkj3YNaNeGHAhbg
+
 
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 
@@ -68,6 +72,7 @@ $TOKEN=((kubectl -n kube-system describe secret default | Out-String -stream | S
 kubectl -n kube-system describe secret default | Out-String -stream | Select-String "token:"
 
 (kubectl -n kube-system describe secret default) | Select-String "token:"
+
 
 
 ## Build image v1 and deploy to Kubernetes:
