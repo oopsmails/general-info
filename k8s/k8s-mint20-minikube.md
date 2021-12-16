@@ -3,7 +3,7 @@
 
 LOG:
 
-- 20211215: tried
+- 20211215: Success!!!
 
 - Ref:
 
@@ -11,28 +11,25 @@ https://minikube.sigs.k8s.io/docs/start/
 
 ## Installation 
 
+```
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
+```
 
 ## Start your cluster
 
 From a terminal with administrator access (but not logged in as root), run:
 
+```
 minikube start
 
+```
+- default docker, see *k8s-mint20-minikube-vb.md* for using none.
+
+```
 minikube start --vm-driver="docker"
 minikube start --vm-driver="none"
-
-From what I see, you executed minikube start inside the Ubuntu VM. By default, this would try to download the minikube ISO and launch another VM (VM inside a VM) where minikube would be running.
-
-I think that this nested virtualization is causing issues with your installation. If, for some reason, minikube started with --vm-driver=none to avoid the VM inside the VM (I think this is the case, looking at the 127.0.0.1 UP), there are some features that are in beta (by the time this answer was written), which could explain the weird behaviour. Because of this, my first advice would be to execute minikube inside the Windows host so it spins up a VM inside virtualbox. Inside you could reproduce the container environment you previously had, and execute the kubectl commands from the Windows host. Most of the documentation assume this setup, so you would not see differences like 127.0.0.1 in localhost.
-
-In any case, in order to have full redirection and check if the service is running, try executing the curl command like this:
-
-    curl -L http://127.0.0.1:31209
-
-
+```
 
 ```
 albert@albert-mint20:~$ minikube start
@@ -55,10 +52,11 @@ albert@albert-mint20:~$ minikube start
 
 ```
 
-
 ## Interact with your cluster
 
 ### If you already have kubectl installed, you can now use it to access your shiny new cluster:
+
+Actually, should NOT install kubectl first because version compatibility.
 
 kubectl get po -A
 
