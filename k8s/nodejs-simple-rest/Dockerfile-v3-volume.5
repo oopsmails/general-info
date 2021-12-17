@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR /dockerv/nodejs-simple-rest
+
+EXPOSE 3000 9229
+
+CMD ["npm", "start"]
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .

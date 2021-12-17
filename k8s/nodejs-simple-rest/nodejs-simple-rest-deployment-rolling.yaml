@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-simple-rest-deployment
+  labels:
+    app: nodejs-simple-rest
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: nodejs-simple-rest
+  template:
+    metadata:
+      labels:
+        app: nodejs-simple-rest
+    spec:
+      containers:
+      - name: nodejs-simple-rest-container
+        image: oopsmails/nodejs-simple-rest:v2
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /api
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+        imagePullPolicy: Never
+

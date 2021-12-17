@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nodejs-simple-rest-service
+spec:
+  selector:
+    app: nodejs-simple-rest
+  type: LoadBalancer
+  ports:
+    - name: nodejs-simple-rest-port
+      port: 3000
+      targetPort: 3000

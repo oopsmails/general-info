@@ -1,0 +1,16 @@
+version: '2.2'
+services:
+  nodejs-simple-rest:
+    container_name: nodejsapp
+    build:
+        context: .
+        dockerfile: Dockerfile-v3-volume
+    image: nodejs-simple-rest:v3
+    expose:
+        - 9090
+    ports:
+        - 9090:9090
+    networks:
+        - emp-network
+    volumes:
+        - microservice-docker-config-repo:/var/lib/microservice-docker/config-repo

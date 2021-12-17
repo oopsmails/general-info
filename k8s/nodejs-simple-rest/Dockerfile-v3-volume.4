@@ -1,0 +1,14 @@
+FROM node:alpine
+
+# RUN mkdir -p /dockerv/nodejs-simple-rest
+
+WORKDIR /dockerv/nodejs-simple-rest
+
+COPY package*.json /dockerv/nodejs-simple-rest/
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

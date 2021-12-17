@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-simple-rest",
+  "version": "1.0.0",
+  "description": "nodejs simple restful api",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --inspect=0.0.0.0:9229 app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "simple",
+    "restful"
+  ],
+  "author": "Oopsmails",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}

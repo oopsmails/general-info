@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-simple-rest-deployment
+  labels:
+    app: nodejs-simple-rest
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-simple-rest
+  template:
+    metadata:
+      labels:
+        app: nodejs-simple-rest
+    spec:
+      containers:
+      - name: nodejs-simple-rest-container
+        image: oopsmails/nodejs-simple-rest:v1
+        ports:
+        - containerPort: 3000
+
