@@ -15,18 +15,17 @@ spec:
         app: config-mgmt
     spec:
       containers:
-      - name: config-mgmt
-        image: nfrankel/configmgmt:0.0.2-SNAPSHOT
-        command:
-          - "java"
-          - "-Dapp.env.label=Pre-production"
-          - "-Dapp.env.color=purple"
-          - "-cp"
-          - "/app/resources:/app/classes:/app/libs/*"
-          - "com.exoscale.configmgmt.demo.DemoApplication"
+        - name: config-mgmt
+          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          command:
+            - "java"
+            - "-Dapp.env.label=Pre-production"
+            - "-Dapp.env.color=purple"
+            - "-cp"
+            - "/app/resources:/app/classes:/app/libs/*"
+            - "com.exoscale.configmgmt.demo.DemoApplication"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -35,7 +34,6 @@ spec:
   selector:
     app: config-mgmt
   ports:
-  - port: 8080
-    nodePort: 30001
+    - port: 8080
+      nodePort: 30001
   type: NodePort
-

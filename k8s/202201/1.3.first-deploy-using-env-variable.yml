@@ -15,16 +15,15 @@ spec:
         app: config-mgmt
     spec:
       containers:
-      - name: config-mgmt
-        image: nfrankel/configmgmt:0.0.2-SNAPSHOT
-        env:
-        - name: app.env.label
-          value: Training
-        - name: app.env.color
-          value: blue
+        - name: config-mgmt
+          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          env:
+            - name: app.env.label
+              value: Training
+            - name: app.env.color
+              value: blue
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,7 +32,6 @@ spec:
   selector:
     app: config-mgmt
   ports:
-  - port: 8080
-    nodePort: 30001
+    - port: 8080
+      nodePort: 30001
   type: NodePort
-
