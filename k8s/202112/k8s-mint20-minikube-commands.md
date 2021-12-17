@@ -5,6 +5,8 @@ minikube start
 
 minikube dashboard
 
+minikube tunnel
+
 alias kubectl="minikube kubectl --"
 
 kubectl version -o json

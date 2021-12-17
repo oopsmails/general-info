@@ -200,7 +200,7 @@ kubectl apply -f $SRC_FOLDER/nodejs-simple-rest-deployment-rolling.yaml
 
 - Verify
 
-http://192.168.49.2:30132/api
+http://192.168.49.2:30132/api <---------------------- internal
 
 ```
 ["Apple","Banana","Cherry","Dewberry","Grape","ChangingVersion-v2"] <------------------ seeing v2 here!
@@ -220,6 +220,39 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 25%
+
+
+
+minikube tunnel
+
+change around service, to see external IP: http://10.103.204.114:3000/api <---------------------- external
+
+kubectl get svc
+
+NodePort
+LoadBalancer
+
+kubectl get pods | grep nodejs-simple-rest
+
+kubectl exec -it nodejs-simple-rest-deployment-68868b8469-977tb -- /bin/bash
+
+
+kubectl port-forward service/nodejs-simple-rest-service 5000:3000
+
+http://localhost:5000/api <---------------------- after port-forward, in virtualbox
+
+
+on host machine (windows 11), all not working!!!!
+
+http://192.168.49.1:5000/api
+http://127.0.0.1:5000/api
+http://10.0.2.15:5000/api
+http://192.168.56.1:5000/api
+
+
+even using NAT port forwarding, not working!!!!
+
+http://localhost:5000/api
 
 ```
 
