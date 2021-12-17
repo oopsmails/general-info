@@ -24,6 +24,8 @@ kubectl version -o json
 SRC_FOLDER=/home/albert/Documents/sharing/github/nodejs-simple-rest
 
 docker build --rm -f $SRC_FOLDER/Dockerfile -t oopsmails/nodejs-simple-rest:v1 $SRC_FOLDER
+
+docker inspect oopsmails/nodejs-simple-rest:v1
 ```
 
 ### Run the v1 image locally to test.

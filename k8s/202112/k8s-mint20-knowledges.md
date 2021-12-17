@@ -1,6 +1,13 @@
 
 #  Knowledges
 
+
+## Deployment vs Service
+
+One common mistake for Kubernetes newcomers is to stop there. (only have deployment.yml)
+
+Unfortunately, the containerPort exposed on the last line is only accessible from inside the cluster. As we’d like to access the application from the outside, a Service is necessary.
+
 ## NodePort vs. LoadBalancer vs. Ingress
 
 - Ref:

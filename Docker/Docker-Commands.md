@@ -57,8 +57,16 @@ docker rmi -f $(docker images -q)
 
 - Assign a name to the container
 
-`docker run -d --name <name-of-container> ubuntu/apache`
+```
+docker run -d --name <name-of-container> ubuntu/apache
 
+Spring Boot:
+
+docker run -p8080:8080 oopsmails/mockbackend:v1 --spring.profiles.active=dev
+
+docker run -p8080:8080 oopsmails/mockbackend:v1 --spring.config.location=/home/springboot/config
+
+```
 
 - List all running containers
 
@@ -71,6 +79,10 @@ docker ps -a
 - List all images
 
 docker images
+
+- To inspect image
+
+docker inspect oopsmails/mockbackend:v1
 
 - Remove unwanted/intermediate/untagged images
 
