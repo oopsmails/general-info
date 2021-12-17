@@ -23,43 +23,108 @@ kubectl version -o json
 ```
 SRC_FOLDER=/home/albert/Documents/sharing/github/nodejs-simple-rest
 
-docker build --rm -f $SRC_FOLDER/Dockerfile -t oopsmails/nodejs-simple:v1 $SRC_FOLDER
+docker build --rm -f $SRC_FOLDER/Dockerfile -t oopsmails/nodejs-simple-rest:v1 $SRC_FOLDER
 ```
 
 ### Run the v1 image locally to test.
 
 ```
-docker run --rm --name nodejs-simple -d -p 3000:3000 oopsmails/nodejs-simple:v1
+docker run --rm --name nodejs-simple-rest -d -p 3000:3000 oopsmails/nodejs-simple-rest:v1
 
 ```
 
-http://192.168.232.128:3000/api
+- run *ip addr*, get ip address
+
+```
+4: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:37:16:a2:a7 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:37ff:fe16:a2a7/64 scope link 
+       valid_lft forever preferred_lft forever
+5: br-2bdd24f433c3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:73:fc:5a:5f brd ff:ff:ff:ff:ff:ff
+    inet 192.168.49.1/24 brd 192.168.49.255 scope global br-2bdd24f433c3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:73ff:fefc:5a5f/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+- Verify: OK, seeing "v1" on the page.
+
+http://localhost:3000/api
+
+http://192.168.49.1:3000/api
+
+http://172.17.0.1:3000/api
+
+- Not OK
+
+http://192.168.49.255:3000/api
+
+- Stop docker run and make sure above NOT working anymore
+
+```
+docker stop nodejs-simple-rest
+```
 
 ### Tag the image before uploading, here to DockerHub
 
 ```
-docker tag oopsmails/nodejs-simple:v1 oopsmails/nodejs-simple:v1
+docker tag oopsmails/nodejs-simple-rest:v1 oopsmails/nodejs-simple-rest:v1
 ```
 
 ### Upload to DockerHub
 ```
 docker login 
 
-docker push oopsmails/nodejs-simple:v1
+docker push oopsmails/nodejs-simple-rest:v1
 
 ```
+Verify at dockerhub ...
 
 ### Kubernetes: Create deployment.yaml
 
-`kubectl apply -f nodejs-simple-rest-deployment.yaml`
+```
+kubectl apply -f nodejs-simple-rest-deployment.yaml
+```
+
+- Verify at minikube dashboard
+
+  - Deployment: nodejs-simple-rest-deployment
+  - Pod: 2/2, nodejs-simple-rest-deployment-544cd7c5d6-bz5j7 ...
 
 ### Kubernetes: Create service.yaml
 ```
-kubectl apply -f nodejs-simple-rest-service.yaml <---- not using nodeport
-kubectl apply -f nodejs-simple-rest-service-loadbalancer.yaml
+kubectl apply -f nodejs-simple-rest-service-nodeport.yaml <---- this is using nodeport, use this for simplicity.
+
+kubectl apply -f nodejs-simple-rest-service-loadbalancer.yaml <------------- this is using loadbalancer, can be used with *minikube tunnel* only
+
+kubectl apply -f nodejs-simple-rest-ingress.yaml <------------ need further test
 ```
 
-http://localhost:3000/api
+- When using NodePort, use following to find out url
+
+```
+minikube service nodejs-simple-rest-service --url
+```
+
+http://192.168.49.2:30132/api <--------------------------- OK, seeing seeing "v1" on the page.
+
+
+- When using loadbalancer, service will be "pending", with *EXTERNAL-IP* "pending", see k8s-mint20-TroubleShooting.md
+
+http://10.107.156.231:3000/api ---> OK, seeing "v1" on the page.
+
+http://localhost:3000/api ---> Not ok anymore.
+
+
+
+20211216: Here!
+
+kubectl delete deployment nodejs-simple-rest-deployment
+
+kubectl delete services nodejs-simple-rest-service
 
 
 ## Build image v2 and deploy to Kubernetes by using rolling technique:

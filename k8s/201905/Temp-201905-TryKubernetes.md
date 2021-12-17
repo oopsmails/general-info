@@ -186,8 +186,6 @@ docker-compose build creates the images from your docker-compose.yml file.
 docker-compose -f docker-compose.yml up
 
 
-
-
 kubectl run adev --image=angular-integration-dev:v1 --port=80 deployment "adev" created
 
 
