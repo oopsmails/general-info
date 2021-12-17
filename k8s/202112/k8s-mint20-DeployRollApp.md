@@ -97,6 +97,9 @@ kubectl apply -f nodejs-simple-rest-deployment.yaml
   - Pod: 2/2, nodejs-simple-rest-deployment-544cd7c5d6-bz5j7 ...
 
 ### Kubernetes: Create service.yaml
+
+- **NOTE: instead of use command line kubectl, we can use minikube dashboard to complete operations, i.e, create and rolling up ...**
+
 ```
 kubectl apply -f nodejs-simple-rest-service-nodeport.yaml <---- this is using nodeport, use this for simplicity.
 
@@ -130,7 +133,7 @@ kubectl exec -it nodejs-simple-rest-deployment-544cd7c5d6-929jm -- /bin/bash ???
 
 nodejs-simple-rest-deployment-544cd7c5d6-929jm
 
-20211216: Here!
+- Not going to delete deployment, but using dashboard to update Deployment by updating yaml file!!!!!
 
 kubectl delete deployment nodejs-simple-rest-deployment
 
@@ -140,47 +143,85 @@ kubectl delete services nodejs-simple-rest-service
 ## Build image v2 and deploy to Kubernetes by using rolling technique:
 
 ### make change to application and then build image v2.0
+
+Simply, change app.js, from *ChangingVersion-v1* to *ChangingVersion-v2*
+
 ```
-docker build --rm -f nodejs-simple-rest/Dockerfile -t nodejs-simple-rest:v2 nodejs-simple-rest
-docker build --rm -f /Users/albert/Documents/github/nodejs-simple-rest/Dockerfile -t nodejs-simple-rest:v2 /Users/albert/Documents/github/nodejs-simple-rest
+app.get("/api", (req, res, next) => {
+    res.json(["Apple", "Banana", "Cherry", "Dewberry", "Grape", "ChangingVersion-v2"]);  <----------- change version here.
+});
+
+```
+### build image v2
+```
+SRC_FOLDER=/home/albert/Documents/sharing/github/nodejs-simple-rest
+
+docker build --rm -f $SRC_FOLDER/Dockerfile -t oopsmails/nodejs-simple-rest:v2 $SRC_FOLDER
+
 ```
 
-### run locally for testing
-`docker run --rm --name nodejs-simple-rest -d -p 3000:3000 nodejs-simple-rest:v2`
+### Run the v2 image locally to test.
 
--> error: docker: Error response from daemon: driver failed programming external connectivity on endpoint nodejs-simple-rest (c39d6bbed984a362d7c86dacfc3731881b043ce5c107fee10cb15a125bb4fac2): Error starting userland proxy: listen tcp 0.0.0.0:3000: bind: address already in use.
+```
+- remove running v1 if existing
+docker rm -f nodejs-simple-rest
 
-because kubernetes "nodejs-simple-rest-service" service is using port 3000, delete the service to test v2, before doing that, may need to set "nodejs-simple-rest-deployment" scale as 0, otherwise, need to change port back and forth.
-Then run again.
+docker run --rm --name nodejs-simple-rest -d -p 2000:3000 oopsmails/nodejs-simple-rest:v2
 
-### tag as v2
-`docker tag nodejs-simple-rest:v2 oopsmails/nodejs-simple-rest:v2`
+- Verify: OK, seeing "v1" on the page.
 
-### push to docker hub
-`docker push oopsmails/nodejs-simple-rest:v2`
+http://localhost:2000/api
 
-### run locally (not on Kubernetes for testing purpose)
-`docker run --rm --name nodejs-simple-rest -d -p 3000:3000 oopsmails/nodejs-simple-rest:v2`
+```
 
 ### rolling up to v2 in kubernetes:
 
-- set "nodejs-simple-rest-deployment" scale as 2, 
+- Failed to pull image from local
 
-`kubectl apply -f nodejs-simple-rest-service-loadbalancer.yaml`
+Failed to pull image "oopsmails/nodejs-simple-rest:v2": rpc error: code = Unknown desc = Error response from daemon: manifest for oopsmails/nodejs-simple-rest:v2 not found: manifest unknown: manifest unknown
 
-try: http://192.168.232.128:3000/api, still showing "v1", because still using image v1
 
-- rolling up:
+- Using *minikube image load* to load images from local
 
-revise version and replicas in "nodejs-simple-rest-deployment-rolling.yaml" as necessary
+**Note: This will work ONLY if using *imagePullPolicy: Never* in *nodejs-simple-rest-deployment-rolling.yaml*, if using *Always*, then will NOT work**
 
-`kubectl apply -f nodejs-simple-rest-deployment-rolling.yaml`
+```
+docker tag oopsmails/nodejs-simple-rest:v2 oopsmails/nodejs-simple-rest:v2
 
-wait for a while, refresh dashboard to see the rolling process ....
+minikube image load <image name>
+minikube image load oopsmails/nodejs-simple-rest:v2
 
-http://192.168.232.128:3000/api
+minikube cache add oopsmails/nodejs-simple-rest:v2
 
-will see "v2"
+
+kubectl apply -f $SRC_FOLDER/nodejs-simple-rest-deployment-rolling.yaml
+
+```
+
+- Verify
+
+http://192.168.49.2:30132/api
+
+```
+["Apple","Banana","Cherry","Dewberry","Grape","ChangingVersion-v2"] <------------------ seeing v2 here!
+```
+
+
+- Test around:
+
+Modify yaml file to play around ...
+
+```
+
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+
+```
 
 
 
