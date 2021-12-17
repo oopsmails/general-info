@@ -151,5 +151,31 @@ minikube addons enable ingress <---------------------------- used for minikube, 
 kubectl get po -n ingress-nginx -o wide <----------------------------- verify
 ```
 
+## Error: Kubernetes: kubectl run: command not found
 
+I had a similar error when I was setting up Kubernetes on Linux for the first time:
+
+When I try to run the commands:
+
+kubectl cluster-info
+kubectl version
+I get the error:
+
+-bash: kubectl: command not found
+Here's how I fixed it:
+
+Download the latest Kubernetes release with the command:
+
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+Make the kubectl binary executable:
+
+chmod +x ./kubectl
+Move the binary in to your PATH:
+
+sudo mv ./kubectl /usr/local/bin/kubectl
+Test to ensure the version you installed is up-to-date:
+
+kubectl cluster-info
+kubectl version
+You can read up more about it in the Kubernetes Official Docs: Install and Set Up kubectl
 

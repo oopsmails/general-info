@@ -120,6 +120,14 @@ http://localhost:3000/api ---> Not ok anymore.
 
 
 
+kubectl get pods | grep nodejs-simple-rest
+
+kubectl logs nodejs-simple-rest-deployment-544cd7c5d6-929jm
+
+kubectl exec -it nodejs-simple-rest-deployment-544cd7c5d6-929jm -- /bin/bash ???
+
+nodejs-simple-rest-deployment-544cd7c5d6-929jm
+
 20211216: Here!
 
 kubectl delete deployment nodejs-simple-rest-deployment
