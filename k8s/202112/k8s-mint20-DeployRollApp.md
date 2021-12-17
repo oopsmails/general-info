@@ -28,8 +28,10 @@ docker build --rm -f $SRC_FOLDER/Dockerfile -t oopsmails/nodejs-simple-rest:v1 $
 
 ### Run the v1 image locally to test.
 
+**See k8s-mint20-docker-run.md** for more tested information.
+
 ```
-docker run --rm --name nodejs-simple-rest -d -p 3000:3000 oopsmails/nodejs-simple-rest:v1
+docker run --rm --name nodejs-simple-rest -d -p 2000:3000 oopsmails/nodejs-simple-rest:v1
 
 ```
 
@@ -52,15 +54,15 @@ docker run --rm --name nodejs-simple-rest -d -p 3000:3000 oopsmails/nodejs-simpl
 
 - Verify: OK, seeing "v1" on the page.
 
-http://localhost:3000/api
+http://localhost:2000/api
 
-http://192.168.49.1:3000/api
+http://192.168.49.1:2000/api
 
-http://172.17.0.1:3000/api
+http://172.17.0.1:2000/api
 
 - Not OK
 
-http://192.168.49.255:3000/api
+http://192.168.49.255:2000/api
 
 - Stop docker run and make sure above NOT working anymore
 

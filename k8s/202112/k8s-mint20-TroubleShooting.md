@@ -105,8 +105,6 @@ kubectl describe svc nodejs-simple-rest-service
 
 EXTERNAL-IP will be showing as "pending"
 
-
-
 ### Solution 1: Also working but need to run it every time.
 
 Ref: https://stackoverflow.com/questions/44110876/kubernetes-service-external-ip-pending  
@@ -153,6 +151,8 @@ kubectl get po -n ingress-nginx -o wide <----------------------------- verify
 
 ## Error: Kubernetes: kubectl run: command not found
 
+- This was actually not encountered when using *minikube kubectl*, but nice to know.
+
 I had a similar error when I was setting up Kubernetes on Linux for the first time:
 
 When I try to run the commands:
@@ -178,4 +178,54 @@ Test to ensure the version you installed is up-to-date:
 kubectl cluster-info
 kubectl version
 You can read up more about it in the Kubernetes Official Docs: Install and Set Up kubectl
+
+
+## Error: Cannot connect to container bash
+
+- minikube kubectl exec no such file or directory: unknown command terminated with exit code 126
+- **See k8s-mint20-docker-run.md** for more tested information on creating image, Dockerfile
+
+### Solution 1: preferred
+
+- if you do not want to add extra size to your image, you can use ash or sh that ships with alpine.
+
+```
+kubectl exec -it nodejs-simple-rest-deployment-544cd7c5d6-929jm -- /bin/bash // not working
+
+kubectl exec -it nodejs-simple-rest-deployment-544cd7c5d6-929jm -- /bin/sh
+kubectl exec -it nodejs-simple-rest-deployment-544cd7c5d6-929jm -- /bin/ash
+```
+
+### Solution 2: Adding bash in alpine base image, ok but still increase image size
+
+Alpine docker image doesn't have bash installed by default. You will need to add following commands to get bash:
+
+```
+RUN apk update && apk add bash
+
+```
+
+If youre using Alpine 3.3+ then you can just do
+
+```
+RUN apk add --no-cache bash
+
+```
+
+to keep docker image size small.
+
+
+### Solution 3: Not Preferred, or using *From node* but this will increase image size a lot
+
+You can't shell in because neither sh nor bash are available in the container. A lot of times these are removed for the sake of efficiency and having a minimal container image.
+
+If you'd like to shell into the container I recommend you build your own image in include bash or sh in it.
+
+You can see here that the Dockerfile builds an image that has nothing but the static binary. For that, you want to change the base image. For example:
+
+*FROM alpine*
+
+instead of:
+
+*FROM scratch*
 
