@@ -1,4 +1,7 @@
 
+
+## General Commands
+
 minikube status
 
 minikube start
@@ -62,8 +65,32 @@ kubectl exec -it mockbackend-minikube-7b4c8d789d-dpcld -- /bin/bash
 root@mockbackend-minikube-7b4c8d789d-dpcld:/tmp/logs/BackendMock# tail -f application.log 
 
 
+## Using minikube docker-env
 
+$ eval $(minikube docker-env)
 
+The command minikube docker-env returns a set of Bash environment variable exports to configure your local environment to re-use the Docker daemon inside the Minikube instance.
+
+Passing this output through eval causes bash to evaluate these exports and put them into effect.
+
+You can review the specific commands which will be executed in your shell by omitting the evaluation step and running minikube docker-env directly. However, this will not perform the configuration – the output needs to be evaluated for that.
+
+This is a workflow optimization intended to improve your experience with building and running Docker images which you can run inside the minikube environment. It is not mandatory that you re-use minikube's Docker daemon to use minikube effectively, but doing so will significantly improve the speed of your code-build-test cycle.
+
+In a normal workflow, you would have a separate Docker registry on your host machine to that in minikube, which necessitates the following process to build and run a Docker image inside minikube:
+
+1. Build the Docker image on the host machine.
+2. Re-tag the built image in your local machine's image registry with a remote registry or that of the minikube instance.
+3. Push the image to the remote registry or minikube.
+4. (If using a remote registry) Configure minikube with the appropriate permissions to pull images from the registry.
+5. Set up your deployment in minikube to use the image.
+
+By re-using the Docker registry inside Minikube, this becomes:
+
+1. Build the Docker image using Minikube's Docker instance. This pushes the image to Minikube's Docker registry.
+2. Set up your deployment in minikube to use the image.
+
+More details of the purpose can be found in the minikube docs.
 
 
 

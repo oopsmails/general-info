@@ -11,29 +11,145 @@ https://github.com/exoscale-labs/config-mgmt-springboot-kubernetes
 - To learn configMap
 
 
+## Run
+
+
+[10.96.104.89](http://10.96.104.89:8080/)  
+
+http://192.168.49.2:8080/ --> no  
+
+http://192.168.49.2:30001/ --> working  
+
+
+- Note: url not from *kubectl get svc*, but from *minikube ip*
+
+```
+albert@albert-mint20:~$ kubectl get svc
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+config-mgmt-service          NodePort    10.111.223.84    <none>        8080:30001/TCP   17m
+kubernetes                   ClusterIP   10.96.0.1        <none>        443/TCP          2d9h
+mockbackend-minikube         NodePort    10.103.51.54     <none>        8888:31029/TCP   2d9h
+nodejs-simple-rest-service   NodePort    10.103.204.114   <none>        3000:30132/TCP   39h
+```
+
+
 ## Inspect docker image
 
-docker inspect oopsmails/mockbackend:v1
+- docker inspect oopsmails/mockbackend:v1
 
+```
+"Entrypoint": [
+                "java",
+                "-jar",
+                "/spring-boot-mock-backend-1.0-SNAPSHOT.jar"
+            ],
+```
+
+
+- docker inspect configmgmt:1.0.0
+
+...
+"Entrypoint": [
+                "java",
+                "-cp",
+                "/app/resources:/app/classes:/app/libs/*",
+                "com.exoscale.configmgmt.demo.DemoApplication"
+            ],
+...
+
+
+## Run with Docker
+
+Remember that the entry point is basically baked into the image, while arguments can be overwritten - and will be appended to the entry point. Hence, just append the relevant arguments and they will either be used as is, or overwrite existing ones, which is not the case here. To activate a profile e.g. dev, :
+
+
+At this time, having *application-dev.yml* and *application-stg.yml* in src/main/resources
+
+```
+$ docker run -p8080:8080 nfrankel/configmgmt:0.0.1-SNAPSHOT --spring.profiles.active=dev
+
+
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=stg
+
+docker rmi configmgmt:1.0.0
+```
 
 ## Configuration management options with Kubernetes
 
 eval $(minikube docker-env)
 
+minikube image load configmgmt:1.0.0
 
 ## Manipulate Deployment
 
-1.first-deploy.yml, showing "production" view
+- 1.first-deploy.yml, showing "production" view, because there no *profile* set.
 
-1.1.first-deploy-using-profile.yml, showing "dev" view, because *args: ["--spring.profiles.active=dev"]* is added.
+kubectl apply -f 1.first-deploy.yml
 
-1.2.first-deploy-using-sys-properties.yml
+- 1.1.first-deploy-using-profile.yml, showing "dev" view, because *args: ["--spring.profiles.active=dev"]* is added.
 
-1.3.first-deploy-using-env-variable.yml
+kubectl apply -f 1.1.first-deploy-using-profile.yml
+
+- 1.2.first-deploy-using-sys-properties.yml, showing "Pre-production" and "purple"
+
+kubectl apply -f 1.2.first-deploy-using-sys-properties.yml
+
+```
+    spec:
+      containers:
+        - name: config-mgmt
+          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          command:
+            - "java"
+            - "-Dapp.env.label=Pre-production"
+            - "-Dapp.env.color=purple"
+            - "-cp"
+            - "/app/resources:/app/classes:/app/libs/*"
+            - "com.exoscale.configmgmt.demo.DemoApplication"
+```
+
+- 1.3.first-deploy-using-env-variable.yml, showing "Training" and "blue"
+
+kubectl apply -f 1.3.first-deploy-using-env-variable.yml
+
+```
+    spec:
+      containers:
+        - name: config-mgmt
+          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          env:
+            - name: app.env.label
+              value: Training
+            - name: app.env.color
+              value: blue
+```
 
 ## Using a dedicated configuration map
 
-2.using-configMap.yml
+- 2.using-configMap.yml
+
+
+```
+    spec:
+      containers:
+        - name: config-mgmt
+          image: configmgmt:1.0.0
+          envFrom:            # <----------------------------------- Magic happens here
+            - configMapRef:
+                name: banner-config-preprod
+          ports:
+            - containerPort: 8080
+```
+
+
+kubectl apply -f 2.using-configMap.yml
+
+http://192.168.49.2:30001/
+
+- Testing around
+
+Change *Config Maps* in dashboard, e.g, *Production, red*. But, **note, need to restart *Deploymnet* to see the change taking effect.**
 
 
 Note that while ConfigMaps can be mounted on volumes attached to Pods, Kubernetes’ handling of the structure makes it incompatible for Spring Boot applications configuration.
@@ -198,4 +314,7 @@ The complete source code for this post is available on Github.
 
 https://github.com/exoscale-labs/config-mgmt-springboot-kubernetes 
 
+
+
+kubectl exec -it config-mgmt-deploy-5777c69759-n69fw -- /bin/bash
 

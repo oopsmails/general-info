@@ -8,7 +8,7 @@ data:
   app.env.color: purple
 
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: config-mgmt-deploy
@@ -26,10 +26,10 @@ spec:
     spec:
       containers:
         - name: config-mgmt
-          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
-          envFrom: # <- Magic happens here
+          image: configmgmt:1.0.0
+          envFrom:
             - configMapRef:
-              name: banner-config-preprod
+                name: banner-config-preprod
           ports:
             - containerPort: 8080
 

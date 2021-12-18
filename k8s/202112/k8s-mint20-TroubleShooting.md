@@ -229,3 +229,10 @@ instead of:
 
 *FROM scratch*
 
+
+## Error: unknown field "name" in io.k8s.api.core.v1.EnvFromSource;
+
+name should be indented under *envFrom* 
+
+
+
