@@ -158,6 +158,29 @@ So far, this is a great way to handle configuration. But how does it handle vers
 
 ## Using volumes
 
+- kubectl apply -f 3.k8s-using-volume.yml
+
+```
+albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 3.k8s-using-volume.yml
+deployment.apps/config-mgmt-deploy configured
+configmap/clone-props created
+service/config-mgmt-service unchanged
+```
+
+http://192.168.49.2:30001/
+
+- Testing around
+
+Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to restart *Deploymnet* to see the change taking effect.**
+
+```
+{
+	"props.env": "dev",
+	"props.version": "v1.0.0"
+}
+```
+
+
 Imagine a new requirement popping-up to change the pre-production banner color from purple to red. If it were a business requirement, it would need to be versioned, with a relevant commit message. The exact same standard should apply to configuration changes as to code changes: this is one of the tenants of Infrastructure-as-Code.
 
 While there are a lot of tools dedicated to configuration management (Ansible, Puppet, Chef, etc.), it’s possible to handle the versioning of this change without any additional infrastructure component with Kubernetes. It includes two steps:

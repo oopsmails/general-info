@@ -235,4 +235,7 @@ instead of:
 name should be indented under *envFrom* 
 
 
+## Kubernetes Pod fails with CrashLoopBackOff
+
+In my case, putting wrong image name.
 
