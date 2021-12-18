@@ -30,7 +30,7 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             [
-              "git clone --branch $(props.version) https://github.com/exoscale-labs/config-mgmt-properties.git && mv config-mgmt-properties/$(props.env)/* /config",
+              "git clone --branch $(props.version) https://github.com/oopsmails/k8s-springboot-app-demo-config.git && mv config-mgmt-properties/$(props.env)/* /config",
             ]
           volumeMounts:
             - name: config
@@ -49,7 +49,7 @@ metadata:
   namespace: default
 data:
   props.version: v1.0.0
-  props.env: stg
+  props.env: dev
 ---
 apiVersion: v1
 kind: Service

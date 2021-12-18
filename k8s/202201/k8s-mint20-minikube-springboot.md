@@ -72,6 +72,10 @@ $ docker run -p8080:8080 nfrankel/configmgmt:0.0.1-SNAPSHOT --spring.profiles.ac
 docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev
 docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=stg
 
+docker run -p8080:8080 configmgmt:1.0.0 --spring.config.location=your/config/dir/
+
+-Dspring.config.location=your/config/dir/
+
 docker rmi configmgmt:1.0.0
 ```
 
@@ -157,7 +161,9 @@ So far, this is a great way to handle configuration. But how does it handle vers
 
 ## Using volumes
 
-- kubectl apply -f 3.k8s-using-volume.yml
+- kubectl apply -f 3.1.k8s-using-volume-policy-never.yml
+
+kubectl apply -f 3.k8s-using-volume.yml <----------- also ok, without never because already run *minikube image load configmgmt:1.0.0 ...*
 
 ```
 albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 3.k8s-using-volume.yml
@@ -339,4 +345,9 @@ https://github.com/exoscale-labs/config-mgmt-springboot-kubernetes
 
 
 kubectl exec -it config-mgmt-deploy-5777c69759-n69fw -- /bin/bash
+
+- when to re-apply
+
+Back-off restarting failed container
+
 
