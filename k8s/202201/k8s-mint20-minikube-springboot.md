@@ -149,8 +149,7 @@ http://192.168.49.2:30001/
 
 - Testing around
 
-Change *Config Maps* in dashboard, e.g, *Production, red*. But, **note, need to restart *Deploymnet* to see the change taking effect.**
-
+Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to delete pods (preferred because non-stop even with one pod) or restart *Deploymnet* (non-stop only if multiple pods) to see the change taking effect.**
 
 Note that while ConfigMaps can be mounted on volumes attached to Pods, Kubernetes’ handling of the structure makes it incompatible for Spring Boot applications configuration.
 
@@ -171,7 +170,7 @@ http://192.168.49.2:30001/
 
 - Testing around
 
-Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to restart *Deploymnet* to see the change taking effect.**
+Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to delete pods (preferred because non-stop even with one pod) or restart *Deploymnet* (non-stop only if multiple pods) to see the change taking effect.**
 
 ```
 {
