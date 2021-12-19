@@ -351,3 +351,27 @@ kubectl exec -it config-mgmt-deploy-5777c69759-n69fw -- /bin/bash
 Back-off restarting failed container
 
 
+- This git command is NOT working. This is the root reason of "Back-off restarting failed container"
+
+In events of Pod, actually stopped at "git clone ..."
+
+- Try this: NOT working!
+
+git clone --branch v2.0.0 https://github.com/oopsmails/k8s-springboot-app-demo-config.git
+
+- So, this is NOT working!
+
+"git clone --branch $(props.version) https://github.com/oopsmails/k8s-springboot-app-demo-config.git && mv config-mgmt-properties/$(props.env)/* /config",
+
+- Try this: working
+
+git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-v1.0.0
+
+- This is ok
+
+git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config",
+
+
+
+
+
