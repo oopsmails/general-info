@@ -39,14 +39,14 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             [
-              "git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config",
+              "git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config"
             ]
           volumeMounts:
             - name: config
               mountPath: /config
-      envFrom:
-        - configMapRef:
-            name: clone-props
+          envFrom:
+            - configMapRef:
+                name: clone-props
       volumes:
         - name: config
           emptyDir: {}
