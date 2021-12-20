@@ -1,0 +1,28 @@
+
+######################## 01 ########################
+FROM openjdk:11-slim
+COPY target/*.jar app.jar
+CMD java -jar app.jar
+
+######################## 02 ########################
+FROM adoptopenjdk/openjdk11:jdk-11.0.2.9-slim
+WORKDIR /opt
+ENV PORT 8080
+EXPOSE 8080
+COPY target/*.jar /opt/app.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar app.jar
+
+######################## 03 ########################
+# https://github.com/eugenp/tutorials/blob/master/spring-cloud/spring-cloud-kubernetes/kubernetes-minikube/demo-frontend/Dockerfile
+FROM openjdk:8-jdk-alpine
+RUN mkdir -p /usr/opt/service
+COPY target/*.jar /usr/opt/service/service.jar
+EXPOSE 8080
+ENTRYPOINT exec java -jar /usr/opt/service/service.jar
+
+
+######################## 01 ########################
+
+######################## 01 ########################
+
+######################## 01 ########################
