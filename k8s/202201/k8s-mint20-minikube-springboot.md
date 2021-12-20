@@ -371,11 +371,20 @@ git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-sp
 
 "git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config",
 
-- When having "Back-off restarting failed container" problem for some reason again
+- 1.1 When having "Back-off restarting failed container" problem for some reason again
 
 We can use *2.using-configMap.yml* to deploy again and try around.
 
 And, then, "EDIT" to change using *3.2.k8s-debugging-using-volume-policy-never.yml*, then eveything is OK again.
+
+- 1.2 When having "Back-off restarting failed container" problem for some reason again
+
+Delete Deployment, make sure pods were also deleted. Restart minikube and reploy with *3.2.k8s-debugging-using-volume-policy-never.yml*.
+
+It's like "clearing cache".?
+
+
+
 
 
 
