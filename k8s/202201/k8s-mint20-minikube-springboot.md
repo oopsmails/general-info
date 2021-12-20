@@ -353,7 +353,7 @@ Back-off restarting failed container
 
 - This git command is NOT working. This is the root reason of "Back-off restarting failed container"
 
-In events of Pod, actually stopped at "git clone ..."
+In events of Pod, actually stopped at "Started container git-clone ..."
 
 - Try this: NOT working!
 
@@ -369,9 +369,13 @@ git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-sp
 
 - This is ok
 
-git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config",
+"git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-$(props.version) && mv k8s-springboot-app-demo-config-$(props.version)/$(props.env)/* /config",
 
+- When having "Back-off restarting failed container" problem for some reason again
 
+We can use *2.using-configMap.yml* to deploy again and try around.
+
+And, then, "EDIT" to change using *3.2.k8s-debugging-using-volume-policy-never.yml*, then eveything is OK again.
 
 
 
