@@ -379,3 +379,35 @@ And, then, "EDIT" to change using *3.2.k8s-debugging-using-volume-policy-never.y
 
 
 
+```
+
+Events
+
+Successfully assigned default/config-mgmt-deploy-b4f85dd4-fddcl to minikube
+
+Container image "alpine/git:1.0.4" already present on machine
+kubelet minikube
+spec.initContainers{git-clone}
+
+Created container git-clone
+kubelet minikube
+spec.initContainers{git-clone}
+
+Started container git-clone
+kubelet minikube
+spec.initContainers{git-clone}
+
+Container image "configmgmt:1.0.0" already present on machine
+kubelet minikube
+spec.containers{config-mgmt}
+
+Created container config-mgmt
+kubelet minikube
+spec.containers{config-mgmt}
+
+Started container config-mgmt
+kubelet minikube
+spec.containers{config-mgmt}
+
+```
+
