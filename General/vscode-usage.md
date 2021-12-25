@@ -12,6 +12,8 @@ Notice how my *liveSassCompile.settings.formats* is formatted: I've written the 
 In conclusion each time you want to change the save path all you have to do is modify the settings.json file inside the .vscode folder rather than modifying the user settings which is tedious in my opinion.
 
 ```
+- Sample:
+
 {
 "liveSassCompile.settings.formats": [
     {
@@ -37,3 +39,15 @@ In conclusion each time you want to change the save path all you have to do is m
 ]
 }
 ```
+
+- Using 20211225
+
+```
+"liveSassCompile.settings.includeItems": [
+        // "~/dev/html-scss-learning/css/*.scss",
+        "/Parallax/css/*.scss",
+        "/Parallax/css/*/*.scss",
+        "~/dev/*.scss",
+    ]
+```
+
