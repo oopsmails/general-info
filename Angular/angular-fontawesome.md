@@ -10,6 +10,12 @@ https://www.npmjs.com/package/@fortawesome/angular-fontawesome
 
 check, angular 10 is with @fortawesome/angular-fontawesome, 0.7.x
 
+If version mismatch, then will get errors like,
+
+```
+node_modules/@fortawesome/angular-fontawesome/fontawesome.module.d.ts:12:21 - error TS2694: Namespace '"C:/sharing/github/angular-ngrx-store/angular-simple/node_modules/@angular/core/core"' has no exported member 'ɵɵInjectorDeclaration'.
+```
+
 ```
 npm install @fortawesome/angular-fontawesome@0.7.* <--------------------- Note Here
 
@@ -60,4 +66,17 @@ export class AppComponent {
 
 ```
 
+
+## Icon styling in Font Awesome
+
+- Ref:
+
+https://blog.logrocket.com/how-to-add-font-awesome-angular-project/
+
+Font Awesome has four different styles, and we’ll look at the free icons — minus the Pro light icons, which use the prefix 'fal' and a professional license:
+
+The solid icons use the prefix 'fas' and are imported from @fortawesome/free-regular-svg-icons
+The regular icons use the prefix 'far' and are imported from @fortawesome/free-solid-svg-icons
+The brand icons use the prefix 'fab' and are imported from @fortawesome/free-brands-svg-icons
+Moving forward, let’s look at what mor
 
