@@ -27,6 +27,8 @@ java11
 ## Quick Lock Screen
 Control+Command+Q
 
+## How do I change the direction of my mouse on my Mac?
+To change the scroll direction for your Mac's trackpad, click the Apple menu → click System Preferences → click Scroll & Zoom → toggle the Natural scroll direction on or off.
 
 ## MacOS screen capture
 
@@ -339,18 +341,18 @@ Cookie: cap=6202
 body: {}
 -----------------------
 ==> macos sleep time
-On your Mac, choose Apple menu > System Preferences, then click Energy Saver. 
+On your Mac, chooseApplemenu > System Preferences, then click Energy Saver.
 
 ==> WIFI password,
-How to show a Wi-Fi password on macOS. Step 1: Type Keychain Access into Spotlight search ( ) at the top-right menu bar. Step 2: In the sidebar, make sure you click on Passwords, then search for the network you want the password for and double click on it.
+How to show a Wi-FipasswordonmacOS. Step 1: Type Keychain Access into Spotlight search ( ) at the top-right menu bar. Step 2: In the sidebar, make sure you click onPasswords, then search for the network you want thepasswordfor and double click on it.
 
-==> macbook black dot under icon
+==>macbook black dot under icon
 Press these three keys together: Option, Command, and Esc (Escape).
 
 -----------------
 
 
-## windows keyboard on mac
+## windows keyboard on mac
 
 http://osxdaily.com/2018/01/31/use-windows-pc-keyboard-mac-remap-option-command-keys/
 
@@ -373,6 +375,10 @@ Select the File Sharing checkbox.
 
 smb://192.168.62.128
 afp://192.168.62.128
+
+In Finder menu, GO, Connect to server, 
+smb://192.168.0.16
+
 
 ## 
 
