@@ -1,6 +1,37 @@
 
 # Angular Updating
 
+## 20220117: Maintaining different versions of Node and Angular
+
+- Ref:
+
+https://dev.to/patricepeartree/how-to-run-multiple-node-and-angular-versions-simultaneously-3lfj
+
+- Using nvm control node
+- Maintain different Angular version in each individual project
+- Using following for Angular CLI
+
+```
+- Use package.json scripts
+
+The npm run-script command adds the node_modules/.bin binaries to the pre-existing shell's PATH that is then provided to the scripts. This means that scripts in package.json which execute ng will be running the locally-installed Angular CLI. If you also want to directly execute ng in the shell using this approach, you can add "ng": "ng" as a script in package.json.
+
+# serve your application with nvm and local Angular CLI
+$ nvm exec npm start
+
+# create an Angular component using local Angular CLI
+$ nvm exec npm run ng g component my-cool-component
+
+- Use node_modules/.bin/ng
+
+Run the local Angular CLI by directly executing the binaries present in the node_modules/.bin folder in a shell.
+
+# create an Angular component using local Angular CLI
+$ nvm exec ./node_modules/.bin/ng g component my-cool-component
+
+```
+
+
 
 ## 202111: /github/angular-integration
 
