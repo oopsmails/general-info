@@ -22,6 +22,54 @@ ExecStartPre=/bin/sh -c '[ "$(basename $(cat /etc/X11/default-display-manager 2>
 ExecStart=/usr/sbin/lightdm
 Restart=always
 BusName=org.freedesktop.DisplayManager
+
+- another Springboot example 1
+
+/etc/systemd/system/helloworld.service
+
+[Unit] 
+Description=Spring Boot HelloWorld 
+After=syslog.target 
+After=network.target[Service] 
+User=username 
+Type=simple  
+
+[Service] 
+ExecStart=/usr/bin/java -jar /home/linode/hello-world/build/libs/hello-world-0.0.1-SNAPSHOT.jar 
+Restart=always 
+StandardOutput=syslog 
+StandardError=syslog 
+SyslogIdentifier=helloworld  
+
+[Install] 
+WantedBy=multi-user.target
+
+- another Springboot example 2
+
+[Unit] 
+Description=Spring Boot HelloWorld 
+After=syslog.target 
+After=network.target
+After=systemd-user-session.service
+
+[Service]
+Type=idle
+User=username
+Group=users
+WorkingDir=/opt/abc
+ExecStart=/opt/abc/helloworld-boot.sh
+TimeoutSec=240 
+Restart=on-failure
+RestartSec=90
+StartLimitInterval=350
+StartLimitBurst=3 
+SyslogIdentifier=helloworld 
+StandardOutput=syslog 
+StandardError=syslog 
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 - linux systemctl vs scripts
