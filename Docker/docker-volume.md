@@ -147,6 +147,25 @@ Here, we are mounting a host folder. **The first part is the path in the host ma
 
 ```
 
+docker volume --help
+
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+
+
+# Creat a volume
+docker volume create test-vol
+# test-vol
+# Inspect a volume -------------------------
+docker inspect test-vol
+
+# Remove all volumes
+docker volume prune
+
 
 ```
 

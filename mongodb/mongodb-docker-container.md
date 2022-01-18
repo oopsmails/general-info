@@ -142,6 +142,7 @@ db.fruits.find().pretty()
 
 sudo docker logs mongodb
 
+sudo docker logs -f --tail 100 mongodb
 
 ## Advanced container usage
 
@@ -210,6 +211,86 @@ sudo docker ps -a
 ## Mongo Express
 
 Now, let’s go to the Mongo Express web interface using the server IP (http://10.10.10.60:8081).
+
+
+## How to dump & restore a MongoDB database from a docker container
+
+- Ref:
+
+https://davejansen.com/how-to-dump-restore-a-mongodb-database-from-a-docker-container/
+
+### Create a database dump
+
+We will simply dump the files to somewhere within the docker container, and then docker cp them out.
+
+```
+docker exec -i <container_name> /usr/bin/mongodump --username <username> --password <password> --authenticationDatabase admin --db <database_name> --out /dump
+
+
+docker cp <container_name>:/dump ~/Downloads/dump
+
+
+```
+
+### Restoring
+
+- Need a user, admin
+
+You can run the following in your mongodb (cli) client of choice to create a new user. A prompt will appear after running this command in which you can specify the user's password.
+
+```
+use admin
+
+db.createUser({
+    user: "username",
+	pwd: passwordPrompt(),
+	roles:[{role: "readWrite" , db:"<database_name>"}]})
+
+```
+
+- Copy dump files to container
+Just like before, we should first make the dumped database files available within the docker container.
+
+```
+docker cp ~/Downloads/dump <container_name>:/dump
+
+sudo docker cp ~/Documents/dev/elm/elm-db-bk mongodb:/elm-db-bk
+
+```
+
+- Restore
+
+Now that the dump files are available within the container, run the following command to have everything be imported.
+
+```
+docker exec -i <container_name> /usr/bin/mongorestore --username <username> --password <password> --authenticationDatabase admin --db <database_name> /dump/<database_name>
+
+sudo docker exec -i mongodb /usr/bin/mongorestore --username root --password root --authenticationDatabase admin --db elm /elm-db-bk
+
+albert@albert-mint20:~/Documents/dev$ sudo docker exec -i mongodb /usr/bin/mongorestore --username root --password root --authenticationDatabase admin --db elm /elm-db-bk
+2022-01-18T21:46:18.498+0000	The --db and --collection flags are deprecated for this use-case; please use --nsInclude instead, i.e. with --nsInclude=${DATABASE}.${COLLECTION}
+2022-01-18T21:46:18.499+0000	building a list of collections to restore from /elm-db-bk dir
+2022-01-18T21:46:18.499+0000	reading metadata for elm.orders from /elm-db-bk/orders.metadata.json
+
+... ... ...
+
+2022-01-18T21:46:21.747+0000	restoring indexes for collection elm.hongbaos from metadata
+2022-01-18T21:46:21.747+0000	index: &idx.IndexDocument{Options:primitive.M{"background":true, "name":"id_1", "ns":"elm.hongbaos", "v":1}, Key:primitive.D{primitive.E{Key:"id", Value:1}}, PartialFilterExpression:primitive.D(nil)}
+2022-01-18T21:46:21.776+0000	267535 document(s) restored successfully. 0 document(s) failed to restore.
+
+
+```
+
+- Cleaning up afterwards
+
+If you'd like to delete the dump files from either docker container after importing, you can open a shell session within the docker container like so:
+
+```
+docker exec -it <container_name> /bin/bash
+
+```
+
+Now you can delete these files by running something like *rm -rf /dump*.
 
 
 
