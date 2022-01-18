@@ -36,7 +36,7 @@ services:
       networks:
         - mongodb_network
       ports:
-        - 8081:8081
+        - 27000:8081
       healthcheck:
         test:  wget --quiet --tries=3 --spider http://admin:admin@0.0.0.0:8081 || exit 1
         interval: 60s
