@@ -16,6 +16,21 @@ Enable 3D accelerate
 
 - Start and install ubuntu
 - install updates and VB Guest Addition, restart
+
+  - if error, google "this system is currently not set up to build kernel modules. virtualbox"
+
+```
+You probably need to install these 2 packets: virtualbox-guest-utils and virtualbox-guest-dkms
+
+It will require few seconds through this terminal command:
+
+sudo apt install virtualbox-guest-utils virtualbox-guest-dkms
+Then execute again sudo ./VBoxLinuxAdditions.run as you did and it should work fine
+
+Note, if after intall, still see some error ... just ignore and restart!
+
+```
+
 - Hotkey, right ctrl + home, select "Scaled Mode", also, make sure Menu is showing
 - View, make sure Auto-resize guest display is checked. Then, test around display by resizing window.
 - Restart, to change root password. Shift ??+ Esc, recovery mode, advanced options, drop root ..., passwd ...
