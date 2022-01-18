@@ -31,6 +31,24 @@ Note, if after intall, still see some error ... just ignore and restart!
 
 ```
 
+  - if *shared folder* is fine but copy/paste is not working, then update to *VirtualBox 6.1.30 and VirtualBox 6.1.30 Guest Additions* 
+
+
+Just download and install *VirtualBox 6.1.30 and VirtualBox 6.1.30 Guest Additions*
+
+in Ubuntu, re-install VirtualBox 6.1.30 Guest Additions ...
+
+but, I think *sudo apt install virtualbox-guest-utils virtualbox-guest-dkms* is still needed!
+
+```
+
+Verifying archive integrity... All good.
+Uncompressing VirtualBox 6.1.30 Guest Additions for Linux........
+VirtualBox Guest Additions installer
+Removing installed version 6.1.18 of VirtualBox Guest Additions...
+
+``
+
 - Hotkey, right ctrl + home, select "Scaled Mode", also, make sure Menu is showing
 - View, make sure Auto-resize guest display is checked. Then, test around display by resizing window.
 - Restart, to change root password. Shift ??+ Esc, recovery mode, advanced options, drop root ..., passwd ...
