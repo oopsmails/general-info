@@ -18,6 +18,10 @@ Ubuntu - https://ubuntu.com/
 
 Rufus - https://rufus.ie/
 
+- What if rufus is not showing my External ssd???
+
+Solution: If RUFUS doesn't show your external ssd try ALT+F, below you will see  a message like "Hard disk detection" is ON/OFF.............It has stolen me a big amount of minutes
+
 ### Run after installation
 
 ```
