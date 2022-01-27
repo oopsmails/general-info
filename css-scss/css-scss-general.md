@@ -33,3 +33,10 @@ In here, the location of *<checkbox>*, is right before the *<nav>*, it is cleare
 
 ```
 
+### :focus
+
+.canbeusedmultipleclasses-italic:not(:focus) {
+  font-style: italic;
+}
+
+
