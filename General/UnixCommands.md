@@ -18,6 +18,24 @@ grep -Fxq [String] [filePath]
 
 grep -q [String] [filePath] // normally enough
 
+### Bonus: Use grep to search in file content with terminal
+
+grep -rnw '/home/albert/Documents/dev/gitlab' -e 'angular'
+
+Here is the flags used for this example:
+
+```
+-r / -R - recursive search
+-n - show line number
+-w - match the whole word
+-e - pattern. Several regex patterns can be provided
+
+-i - case insensitive search. It will slow down the process a lot
+-l (lower-case L) show only the file name of matching files
+--exclude-dir={dir1,dir2} - exclude directories from the search
+--include=\*.{py,ipynb} - search only files ending with py and ipynb
+--exclude=\*.xls - search all files except those which end with xls
+```
 
 ## Using && and ||
 
