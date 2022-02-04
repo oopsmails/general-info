@@ -3,7 +3,7 @@
 
 ## Extensions
 
-## vscode-live-sass-compiler relative path
+### vscode-live-sass-compiler relative path
 
 - **Parallax**
 
@@ -50,4 +50,13 @@ In conclusion each time you want to change the save path all you have to do is m
         "~/dev/*.scss",
     ]
 ```
+
+### Move TS
+
+- Ref:
+
+Mosh Hamedani, 6 Essential VSCode Extensions for Angular Developers
+
+- right click (can be multiple files, e.g, html, scss, ts), *Move Typescript* option
+- then input target path
 
