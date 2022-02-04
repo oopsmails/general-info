@@ -60,3 +60,8 @@ Mosh Hamedani, 6 Essential VSCode Extensions for Angular Developers
 - right click (can be multiple files, e.g, html, scss, ts), *Move Typescript* option
 - then input target path
 
+### Typescript Hero
+
+- ctrl + alt + o, will organize imports and format codes.
+
+
