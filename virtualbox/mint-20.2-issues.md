@@ -52,4 +52,12 @@ $ sudo usermod -aG docker $USER
 Log out and log back in so that your group membership is re-evaluated.
 
 
+## Create Launcher and Favorite in Panel
+
+- Desktop, right click, Create a new launcher here
+- Put Name and other ... NOTE: can change icon by clicking on the "icon" at upper left .... then select real icon
+- Launch it from Desktop launcher just created and then add in Panel. 
+
+
+
 
