@@ -47,7 +47,7 @@ Uncompressing VirtualBox 6.1.30 Guest Additions for Linux........
 VirtualBox Guest Additions installer
 Removing installed version 6.1.18 of VirtualBox Guest Additions...
 
-``
+```
 
 - Hotkey, right ctrl + home, select "Scaled Mode", also, make sure Menu is showing
 - View, make sure Auto-resize guest display is checked. Then, test around display by resizing window.
