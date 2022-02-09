@@ -153,7 +153,12 @@ Check that clipboard is shared between the host and the guest.
 
 
 
+- Here's how can automount a network drive
 
+Connect to your network drive (finder > go > connect to server)
+Enter the credentials for your login to your network drive and tick the ‘remember in keychain’
+Open system settings > users > login items
+Drag the icon for your network drive from your desktop to the startup items.
 
 
 
