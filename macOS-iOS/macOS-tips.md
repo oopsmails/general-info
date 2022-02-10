@@ -45,6 +45,10 @@ Since the release of macOS Sierra, when in Finder, it is now possible to use the
 
 CMD + SHIFT + .
 
+## Finder
+
+View, show path bar, drag and drop root folder to Favorites
+
 ## Terminal:
 
 In Terminal, select something and then within the same Terminal window
@@ -378,6 +382,10 @@ afp://192.168.62.128
 
 In Finder menu, GO, Connect to server, 
 smb://192.168.0.16
+
+## in virtual box
+
+Settings, login items, +, sharing, or drag and drop it in as login items
 
 
 ## 
