@@ -96,7 +96,9 @@ macos vscode terminal lag:
 
 Unfortunately, below not working
 
-You can fix this by removing the code signing codesign --remove-signature /Applications/Visual\ Studio\ Code.app/Contents/Frameworks/Code\ Helper\ \(Renderer\).app
+You can fix this by removing the code signing 
+
+codesign --remove-signature /Applications/Visual\ Studio\ Code.app/Contents/Frameworks/Code\ Helper\ \(Renderer\).app
 
 ```
 
