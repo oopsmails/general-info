@@ -197,6 +197,7 @@ cat /etc/shells
 
 chsh -s /bin/bash
 
+chsh -s /bin/zsh
 
 ## How do I install Java on Mac OSX allowing version switching?
 
