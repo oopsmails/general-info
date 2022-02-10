@@ -1,0 +1,54 @@
+
+
+-- if intel cpu
+
+cd "C:\Program Files\Oracle\VirtualBox\"
+
+VBoxManage.exe modifyvm "MacOS" –-cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "MacOS" VBoxInternal/Devices/efi/0/Config/DmiSystemProduct "MacBookPro15,1"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-551B86E5744E2388"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+
+
+
+-- if amd cpu
+
+cd "C:\Program Files\Oracle\VirtualBox\"
+
+VBoxManage.exe modifyvm "MacOS" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac11,3"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Iloveapple"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "MacOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+
+VBoxManage modifyvm "MacOS" –-cpu-profile "Intel Core i7-6700K"
+
+
+-- if virtualbox macos startup.nsh
+
+https://www.youtube.com/watch?v=A3z64QUTJsM
+
+Virtualbox UEFI Shell startup.nsh Error Fixed (MacOS, Linux, Windows any OS)
+
+
+Storage, add "big sur 11.1 VMDK by Techrechard.vmdk"
+
+
+Basically, go through FS0:, FS1: ... to look for boot.efi
+
+/System/Library/CoreServices/boot.efi
+
+then, just run it.
+
+
+-- to change resolution of macOS on virtual box.
+
+VBoxManage setextradata "MacOS" VBoxInternal2/EfiGraphicsResolution 1920x1080
+
+VBoxManage setextradata "MacOS" VBoxInternal2/EfiGraphicsResolution 1024x768
+
+VBoxManage setextradata "MacOS" VBoxInternal2/EfiGraphicsResolution 1280x720
+
+
