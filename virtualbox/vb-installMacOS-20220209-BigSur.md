@@ -20,6 +20,7 @@ then, just run it.
 ## Tips
 
 - Keyboard, ~, On my U.S. layout keyboard it works to use shift+\ (button next to left shift, see the screenshot)
+- Keyboard, `, just \, the button next to left shift.
 
 - Here's how can automount a network drive
 
@@ -85,6 +86,19 @@ nvm install 16.13.0
 ### Shell, use zsh
 
 touch ~/.zshrc
+
+- shell in vs code
+
+Go to Settings, search *terminal.integrated.defaultProfile*, set Osx shell as zsh from drop down
+
+```
+macos vscode terminal lag:
+
+Unfortunately, below not working
+
+You can fix this by removing the code signing codesign --remove-signature /Applications/Visual\ Studio\ Code.app/Contents/Frameworks/Code\ Helper\ \(Renderer\).app
+
+```
 
 
 
