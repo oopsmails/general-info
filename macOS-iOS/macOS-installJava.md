@@ -1,4 +1,134 @@
 
+# MacOS Install Java
+## 20220211:
+
+### Install java 1.8 and java 11
+
+```
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install OpenJDK
+
+brew search java
+
+brew install openjdk
+
+
+Verify it's installed:
+
+$(brew --prefix openjdk)/bin/java --version
+Verify it's for the arm64 hardware:
+
+file $(brew --prefix openjdk)/bin/java     
+# /opt/homebrew/opt/openjdk/bin/java: Mach-O 64-bit executable arm64
+
+
+brew install openjdk@11
+
+(brew --prefix openjdk@11)/bin/java
+
+```
+
+This also works for java 11 without any problem *brew install openjdk@11* and file $*(brew --prefix openjdk@11)/bin/java* - Apple MacBook Pro 2021 - M1 Pro (10 Cores) - using homebrew is for me the preferable option over other approaches 
+
+```
+brew install openjdk@8
+
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /usr/local/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
+
+openjdk@8 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have openjdk@8 first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/openjdk@8/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openjdk@8 you may need to set:
+  export CPPFLAGS="-I/usr/local/opt/openjdk@8/include"
+
+==> Summary
+🍺  /usr/local/Cellar/openjdk@8/1.8.0+312: 782 files, 193MB
+==> Running `brew cleanup openjdk@8`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> Caveats
+==> openjdk@8
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /usr/local/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
+
+openjdk@8 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have openjdk@8 first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/openjdk@8/bin:$PATH"' >> ~/.zshrc
+```
+
+
+```
+brew install openjdk@11
+
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+
+openjdk@11 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have openjdk@11 first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/openjdk@11/bin:$PATH"' >> ~/.zshrc
+
+```
+
+### Switch around
+
+```
+- /usr/libexec/java_home -V
+
+albert@Alberts-iMac Java % /usr/libexec/java_home -V
+Matching Java Virtual Machines (2):
+    11.0.12 (x86_64) "Homebrew" - "OpenJDK 11.0.12" /usr/local/Cellar/openjdk@11/11.0.12/libexec/openjdk.jdk/Contents/Home
+    1.8.0_312 (x86_64) "Homebrew" - "OpenJDK 8" /usr/local/Cellar/openjdk@8/1.8.0+312/libexec/openjdk.jdk/Contents/Home
+/usr/local/Cellar/openjdk@11/11.0.12/libexec/openjdk.jdk/Contents/Home
+
+- ls -lsa /Library/Java/JavaVirtualMachines
+
+albert@Alberts-iMac Java % ls -lsa /Library/Java/JavaVirtualMachines
+total 0
+0 drwxr-xr-x  4 root  wheel  128 Feb 11 11:46 .
+0 drwxr-xr-x  4 root  wheel  128 Jan  1  2020 ..
+0 lrwxr-xr-x  1 root  wheel   45 Feb 11 11:46 openjdk-11.jdk -> /usr/local/opt/openjdk@11/libexec/openjdk.jdk
+0 lrwxr-xr-x  1 root  wheel   44 Feb 11 11:33 openjdk-8.jdk -> /usr/local/opt/openjdk@8/libexec/openjdk.jdk
+
+--- /usr/libexec/java_home -v1.8
+
+source ~/.zshrc
+
+```
+
+- .zshrc function for switching around
+
+```
+
+export PATH="$PATH:/Users/albert/Documents"
+export PATH="$PATH:/Users/albert/Documents/programs"
+
+alias arun=". cdto.sh "
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+jdk() {
+      version=$1
+      unset JAVA_HOME;
+      export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+      java -version
+}
+```
+
+
+
+
+## Before 2022
 
 https://stackoverflow.com/questions/61875699/how-to-install-java-on-a-mac
 
