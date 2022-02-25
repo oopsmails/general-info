@@ -43,6 +43,24 @@ Here is the flags used for this example:
 </dev/tcp/192.11.11.11/8081 && echo Port open. || echo Port Closed.
 ```
 
+## Rename files with pattern
+
+```
+for f in *.jpg; do mv "$f" "$(echo "$f" | sed s/IMG/VACATION/)"; done
+for f in *.mp4; do mv "$f" "$(echo "$f" | sed s/IMG/VACATION/)"; done
+
+for f in *.mp4; do mv "$f" "$(echo "$f" | sed s/_1080p//)"; done
+for f in *.mp4; do mv "$f" "$(echo "$f" | sed s/'- '/-/)"; done
+
+
+rename 's/^/MyVacation2011_/g' *.jpg
+or
+
+rename <pattern> <replacement> <file-list>
+```
+
+
+
 
 
 ## 
