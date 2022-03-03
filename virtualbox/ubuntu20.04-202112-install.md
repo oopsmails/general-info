@@ -25,6 +25,19 @@ You probably need to install these 2 packets: virtualbox-guest-utils and virtual
 It will require few seconds through this terminal command:
 
 sudo apt install virtualbox-guest-utils virtualbox-guest-dkms
+
+if cannot find virtualbox-guest-dkms, then, 
+
+
+You don't need to install virtualbox-dkms.
+
+You do need to install dkms package, which is a part of standard Debian repository.
+
+I normally install it before installing VirtualBox, but the order might not matter:
+
+$ sudo aptitude install dkms <----------------- just sudo apt install dkms
+
+
 Then execute again sudo ./VBoxLinuxAdditions.run as you did and it should work fine
 
 Note, if after intall, still see some error ... just ignore and restart!
@@ -48,6 +61,19 @@ VirtualBox Guest Additions installer
 Removing installed version 6.1.18 of VirtualBox Guest Additions...
 
 ```
+
+- if "chrome ubuntu cannot satisfy dependencies", run below, and if necessary, chmod 777
+
+```
+sudo apt install ./home/albert/Downloads/google-chrome-stable_current_amd64.deb
+
+sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+- lubuntu, set chrome as default
+
+Preferences > Session settings > Default Application to /usr/bin/google-chrome
+
 
 - Hotkey, right ctrl + home, select "Scaled Mode", also, make sure Menu is showing
 - View, make sure Auto-resize guest display is checked. Then, test around display by resizing window.
