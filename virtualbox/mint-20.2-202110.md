@@ -90,6 +90,10 @@ rm ~/.local/share/keyrings/login.keyring
 
 Now open Chrome, if it asks you for your password, do not enter one choose Continue each time and ignore any warning.
 
+- linux mint chrome cannot resize, when using xfce
+
+at top of chrome window bar, right click, select "use system menu ???..."
+
 ### Enable snapd and install vscode
 
 - Ref:
