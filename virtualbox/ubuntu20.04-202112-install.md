@@ -62,6 +62,10 @@ Removing installed version 6.1.18 of VirtualBox Guest Additions...
 
 ```
 
+- lubuntu, during installation, if not seeing "Erase ..." option
+
+Need to "unmount" the local hard disk, then rerun ...
+
 - if "chrome ubuntu cannot satisfy dependencies", run below, and if necessary, chmod 777
 
 ```
