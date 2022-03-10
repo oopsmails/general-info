@@ -35,6 +35,12 @@ https://medium.com/@juliomacr/10-firebase-realtime-database-rule-templates-d4894
 }
 ```
 
+- Used in *github.com/oopsmails/react-sandbox*
+  
+  - *https://github.com/oopsmails/react-sandbox/blob/main/meetups/src/pages/AllMeetups.js*
+  - *https://github.com/oopsmails/react-sandbox/blob/main/meetups/src/pages/AllMeetups.js*
+
+
 
 ## Authentication
 
@@ -47,7 +53,21 @@ Provider:
 Email/Password: Enabled
 
 
+- Used in *https://github.com/oopsmails/sandbox/blob/main/reciclica-app-main/src/environments/environment.ts*
 
+```
+export const environment = {
+  firebaseConfig: {
+    apiKey: "AIzaSyBX8_dH-73_eKpbfrNVwXO7fYCiGwwmLRE",
+    authDomain: "oopsauth.firebaseapp.com",
+    projectId: "oopsauth",
+    storageBucket: "oopsauth.appspot.com",
+    messagingSenderId: "1004495272090",
+    appId: "1:1004495272090:web:3d817576a8e971e8eb8723"
+  },
+  production: false
+};
+```
 
 
 
