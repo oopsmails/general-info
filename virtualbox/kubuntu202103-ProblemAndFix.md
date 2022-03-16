@@ -57,6 +57,14 @@ CHROMIUM_FLAGS="--password-store=basic"
 
 - **This one working in Kubuntu 20.04**, I couldn't find a similar place on fedora, but I found **/opt/google/chrome/google-chrome** and added --password-store=basic to the exec command at the bottom of the script. Seems to work. Thanks very much! – jozxyqk Nov 3 '15 at 11:23
 
+```
+
+... ... ...
+
+# Note: exec -a below is a bashism.
+exec -a "$0" "$HERE/chrome" "$@" --password-store=basic
+```
+
 - On Debian Jessie (8) I installed this file to **/etc/chromium.d/no-kwallet** 
 
 - For vivaldi in /opt/vivaldi/vivaldi. – Zitrax May 3 '19 at 9:52 
