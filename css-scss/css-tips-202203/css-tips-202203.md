@@ -81,3 +81,12 @@ css-tips-202203-15.png
 
 css-tips-202203-16.png
 
+
+## Other Tips
+
+- scroll-padding-top, this is for anchor link, not for the header itself.
+
+Greatt video as always! Here's my favourite CSS Pro Tip: There's this obscure CSS property called *scroll-padding-top*. When you have a sticky / fixed header, and you click an **anchor link**, it gets hidden under the sticky header. To avoid this annoying bug, just give your body element *scroll-padding-top* equal to the header height. Along with scroll-behaviour: smooth, this will make it so that when you click an **anchor link**, it'll scroll to it, such that it starts right beneath the header instead of hidden under it, which is the intended behaviour!
+
+Mr web designer usually does this and I was wondering why he does that until I created one site like that and anytime I click on the **anchor links** it always display below the stick navbar
+
