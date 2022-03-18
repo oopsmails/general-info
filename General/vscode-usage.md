@@ -5,6 +5,9 @@
 
 ### vscode-live-sass-compiler relative path
 
+- Need to click *Watch Sass* on the Status Bar at the bottom, make it "Watching ...."
+
+
 - **Parallax**
 
 Notice how my *liveSassCompile.settings.formats* is formatted: I've written the save paths as */Parallax/css/* and */Parallax/dist/css*. This goes to the project root and saves the css files inside the folders called css and dist which are inside the Parallax directory. (image link)
@@ -50,6 +53,10 @@ In conclusion each time you want to change the save path all you have to do is m
         "~/dev/*.scss",
     ]
 ```
+
+### Live Server extension
+
+- Need to click *Go Live* on the Status Bar at the bottom, make it *Port: 5500*
 
 ### Move TS
 
