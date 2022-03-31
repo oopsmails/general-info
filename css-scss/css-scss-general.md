@@ -33,10 +33,62 @@ In here, the location of *<checkbox>*, is right before the *<nav>*, it is cleare
 
 ```
 
-### :focus
+### :focus :hover
 
+```
 .canbeusedmultipleclasses-italic:not(:focus) {
   font-style: italic;
 }
+
+
+li {
+        
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: .5em;
+            font-size: 1.3em;
+            text-align: right;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+    }
+```
+
+### > div, immidiate div after
+
+```
+. left-slide > div {
+  height: 100vh;
+  ...
+}
+
+
+20.1
+
+*first-child* and *nth-child(2)*
+
+```
+
+.features-main .card > i {
+  margin-right: 20px;
+}
+
+.features-main .grid {
+  padding: 30px;
+}
+
+.features-main .grid > *:first-child {
+  grid-column: 1 / span 3;
+}
+
+.features-main .grid > *:nth-child(2) {
+  grid-column: 1 / span 2;
+}
+
+```
 
 
