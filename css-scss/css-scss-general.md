@@ -71,7 +71,6 @@ li {
 
 *first-child* and *nth-child(2)*
 
-```
 
 .features-main .card > i {
   margin-right: 20px;
@@ -90,5 +89,42 @@ li {
 }
 
 ```
+
+
+## CSS 
+
+### font
+
+```
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+}
+
+font-family: inherit;
+
+```
+
+### font-awesome
+
+```
+in html:
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+
+<div class="action-buttons">
+  <button class="down-button">
+    <i class="fas fa-arrow-down"></i>
+  </button>
+  <button class="up-button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</div>
+
+```
+
 
 
