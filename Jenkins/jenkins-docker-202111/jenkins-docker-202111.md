@@ -12,14 +12,24 @@ https://digitalavenue.dev/Run-Jenkins-On-Docker-Compose/
 - version
 
 - Where is the Jenkins Data in Docker Container?
+```
 docker exec jenkins-server ls -l /var/jenkins_home
-
+```
 - Where is the Jenkins Data in Docker Host?
+```
 docker volume inspect jenkins-data
+```
 
 According to the output, You can see the “JENKINS_HOME” directory is mounted on “/var/lib/docker/volumes/jenkins-data/_data” docker volume. This means your data is persistent under that directory, and it is available even container is deleted. So, data will remain on the Docker host.
 
+```
+cd /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/
+
 docker-compose up -d
+
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml up -d
+
+```
 
 - First run using 8080:8080
 
