@@ -59,8 +59,24 @@ or
 rename <pattern> <replacement> <file-list>
 ```
 
+## SSH
+
+ssh albert@1.1.1.1 
+
+scp albert@1.1.1.1:/usr/share/abc.md /home/albert/Documents/abc-local.md
+
+scp /c/temp/111.jpg albert@1.1.1.1:/user/share/
 
 
+### SSH timeout
 
+/etc/ssh/ssh_config
 
-## 
+- To resolve permission, use VSCode, Save
+
+```
+Host *
+    ....
+    ServerAliveInterval 240
+```
+
