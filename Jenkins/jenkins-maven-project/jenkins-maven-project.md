@@ -1,3 +1,8 @@
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml up -d
+
+
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml start
+
 
 
 Maven project Github-oopsmails-02-maven-project

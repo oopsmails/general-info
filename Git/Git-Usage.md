@@ -92,6 +92,24 @@ Note on $GIT_DIR: This is a notation used all over the git manual simply to indi
 
 `git reset --hard origin/test/branchname`
 
+
+## bitbucket change tag name
+
+https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag
+
+Here is how I rename a tag old to new:
+
+```
+git tag new old
+git tag -d old
+git push origin new :old
+```
+
+The colon in the push command removes the tag from the remote repository. If you don't do this, Git will create the old tag on your machine when you pull. Finally, make sure that the other users remove the deleted tag. Please tell them (co-workers) to run the following command:
+
+git pull --prune --tags
+Note that if you are changing an annotated tag, you need ensure that the new tag name is referencing the underlying commit and not the old annotated tag object that you're about to delete. Therefore, use git tag -a new old^{} instead of git tag new old (this is because annotated tags are objects while lightweight tags are not, more info in this answer).
+
 ## git diff
 
 ```
