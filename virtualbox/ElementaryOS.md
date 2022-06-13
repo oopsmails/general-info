@@ -520,6 +520,17 @@ X-GNOME-UsesNotifications=false
 Categories=Development;
 ```
 
+```
+Download https://spring.io/tools latests
+Rename the extracted bundle as "sts"
+sudo mv sts /opt
+sudo chown -R root:root /opt/sts
+sudo chmod -R +r /opt/sts
+sudo cp /opt/sts/sts-3.9.12.RELEASE/icon.xpm /usr/share/pixmaps/sts.xpm [Your version can be different]
+sudo touch /usr/share/applications/sts.desktop
+
+<<EOF [Desktop Entry] Encoding=UTF-8 Name=Spring IDE Comment=Spring IDE Exec=/opt/sts/sts-3.9.12.RELEASE/STS Icon=/usr/share/pixmaps/sts.xpm Terminal=false Type=Application Categories=GNOME;Application;Development; StartupNotify=true EOF
+```
 
 
 
