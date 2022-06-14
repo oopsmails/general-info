@@ -530,6 +530,34 @@ sudo cp /opt/sts/sts-3.9.12.RELEASE/icon.xpm /usr/share/pixmaps/sts.xpm [Your ve
 sudo touch /usr/share/applications/sts.desktop
 
 <<EOF [Desktop Entry] Encoding=UTF-8 Name=Spring IDE Comment=Spring IDE Exec=/opt/sts/sts-3.9.12.RELEASE/STS Icon=/usr/share/pixmaps/sts.xpm Terminal=false Type=Application Categories=GNOME;Application;Development; StartupNotify=true EOF
+
+~/Downloads
+sudo mv sts-4.14.1.RELEASE /opt/sts
+
+cd /opt
+
+sudo chown -R root:root /opt/sts
+sudo chmod -R +r /opt/sts
+
+sudo cp /opt/sts/icon.xpm /usr/share/pixmaps/sts.xpm
+
+sudo cat >> /usr/share/applications/sts.desktop<<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Spring IDE
+Comment=Spring IDE
+Exec=/opt/sts/SpringToolSuite4
+Icon=/usr/share/pixmaps/sts.xpm
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Development;
+StartupNotify=true
+EOF
+
+sudo nano /usr/share/applications/eclipse.desktop
+
+Mint menu, search sts, right click, Add to panel ...
+
 ```
 
 
