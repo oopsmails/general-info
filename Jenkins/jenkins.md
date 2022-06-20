@@ -47,7 +47,16 @@ http://localhost:8081/repository/oopsmails-mvn-github/
 
 
 
+## jenkins extended choice parameter
+
+https://plugins.jenkins.io/extended-choice-parameter/
 
 
+>Using the GUI: From your Jenkins dashboard navigate to Manage Jenkins > Manage Plugins and select the Available tab. Locate this plugin by searching for extended-choice-parameter.
+
+>Using the CLI tool:
+jenkins-plugin-cli --plugins extended-choice-parameter:346.vd87693c5a_86c
+
+>Using direct upload. Download one of the releases and upload it to your Jenkins instance.
 
 
