@@ -14,6 +14,12 @@ https://digitalavenue.dev/Run-Jenkins-On-Docker-Compose/
 - Where is the Jenkins Data in Docker Container?
 ```
 docker exec jenkins-server ls -l /var/jenkins_home
+
+docker exec -it {CONTAINER_ID} sh
+
+docker exec -it jenkins-server sh
+docker exec -it jenkins-server bash
+
 ```
 - Where is the Jenkins Data in Docker Host?
 ```
