@@ -35,6 +35,12 @@ docker-compose up -d
 
 docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml up -d
 
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml down
+
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml start
+
+docker-compose -f /home/albert/Documents/sharing/github/general-info/Jenkins/jenkins-docker-202111/docker-compose.yml stop
+
 ```
 
 - First run using 8080:8080
