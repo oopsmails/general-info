@@ -40,6 +40,22 @@ pipeline {
         }
       }
     }
+
+    stage('Build') {
+        steps {
+            echo 'Building..'
+        }
+    }
+    stage('Test') {
+        steps {
+            echo 'Testing..'
+        }
+    }
+    stage('Deploy') {
+        steps {
+            echo 'Deploying....'
+        }
+    }
   }
 
   // All Stages and Pipeline can each have their own post section that is executed at different times
