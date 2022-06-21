@@ -80,3 +80,35 @@ Host *
     ServerAliveInterval 240
 ```
 
+### tar.gz
+
+
+> Linux create tar.gz file with tar command
+
+```
+The syntax for the tar command is as follows:
+tar -czvf filename.tar.gz /path/to/dir1
+tar -czvf filename.tar.gz /path/to/dir1 dir2 file1 file2
+# Create a tar.gz file from all pdf (".pdf") files
+tar -czvf archive.tgz *.pdf
+
+To create projects.tar.gz in the current working directory, run:
+$ tar -czvf projects.tar.gz $HOME/projects/
+```
+
+tar -cvf aa.tar dir-name
+gzip aa.tar 
+
+tar -czvf file.tar.gz directory
+
+> Unzipping gz File
+gzip -d file.gz
+
+To keep the compressed file pass the -k option to the command:
+
+gzip -dk file.gz
+
+> Extracting tar.gz File 
+tar -xf archive.tar.gz
+
+

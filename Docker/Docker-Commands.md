@@ -139,7 +139,30 @@ docker run -d -p
 docker push  
 docker rm  
 docker rmi  
+
+- removing all the unused Images
+docker rmi $(docker images | grep '^<none>' | awk '{print $3}')
+
+docker rmi $(docker images | awk '/^<none>/{print $3}')
+
+docker volume ls -qf dangling=true
+docker volume ls
+docker volume rm $(docker volume ls -qf dangling=true)
+
+
 docker volume prune  
+
+docker system prune
+
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N]
+
+
 
 docker container exec -it my_mysql /bin/bash
 docker container exec -it wiremock-docker_wiremock_1 /bin/bash
@@ -233,4 +256,10 @@ for example to clean up all your docker images and containers:
 - delete all stopped containers with docker rm $(docker ps -a -q)
 
 - delete all images with docker rmi $(docker images -q)
+
+
+### docker jenkins no space left on device
+
+https://jhooq.com/docker-error-no-space-left/
+
 
