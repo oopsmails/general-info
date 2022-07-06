@@ -175,3 +175,10 @@ else
 	echo "Path Not Defined in /c\sharing\cdto.sh"
 fi
 ##
+
+
+function log() {
+	current_time=$(date "+%F %T")
+	sudo echo "$current_time: $1"
+}
+
