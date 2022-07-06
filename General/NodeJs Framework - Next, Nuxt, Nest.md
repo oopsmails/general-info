@@ -69,8 +69,8 @@ Similar to Angular, Nest also has a decent command line tool, available through 
 
 ### Disadvantages
 
-The largest risk facing Nest users is the lack of documentation. The framework has great integrations with other frameworks but the documentation is minimal and doesn’t cover any issues that may arise.
-Nest does hold an edge in its use of TypeScript and relation to Angular, but it doesn’t have the backing power of a large enterprise behind it.
+> The largest risk facing Nest users is the lack of documentation. The framework has great integrations with other frameworks but the documentation is minimal and doesn’t cover any issues that may arise.
+> Nest does hold an edge in its use of TypeScript and relation to Angular, but it doesn’t have the backing power of a large enterprise behind it.
 Overall, Nest has a smaller community compared to other frameworks
 
 
@@ -140,13 +140,13 @@ Pre-processor: Sass, Less, Stylus, etc.
 
 
 ### Disadvantages
-It has a smaller community, which means fewer resources and potentially less extensive documentation
-Lack of some common solid plugins/components. (Google maps, calendar, vector maps). Some components for that exist, but they are generally not very well maintained.
-It is necessary to go deep in more complex components/plugins. If you want to develop something very flexible, you have to get down to render functions/jsx to do that. (e.g render the contents of a slot in another place/component).
-Props have to be specified explicitly. There might be cases when you want to transform some CSS classes to props; you’ll have to specify these props or use $attrs / render functions or jsx.
-Reactivity caveats like setting an item from an array directly this.items[key]=value or adding a new data property.
-High traffic may put strain on your server
-You can only query and manipulate the DOM in certain hooks
+> It has a smaller community, which means fewer resources and potentially less extensive documentation
+> Lack of some common solid plugins/components. (Google maps, calendar, vector maps). Some components for that exist, but they are generally not very well maintained.
+> It is necessary to go deep in more complex components/plugins. If you want to develop something very flexible, you have to get down to render functions/jsx to do that. (e.g render the contents of a slot in another place/component).
+> Props have to be specified explicitly. There might be cases when you want to transform some CSS classes to props; you’ll have to specify these props or use $attrs / render functions or jsx.
+> Reactivity caveats like setting an item from an array directly this.items[key]=value or adding a new data property.
+> High traffic may put strain on your server
+> You can only query and manipulate the DOM in certain hooks
 
 
 ### Performance
