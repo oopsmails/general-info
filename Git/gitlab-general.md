@@ -62,6 +62,14 @@ warning: You appear to have cloned an empty repository.
 $ git clone https://gitlab.com/albertmails/springbootdev.git
 ```
 
+## init and new repo
 
+echo "# gradle-tutorial" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/oopsmails/gradle-tutorial.git
+git push -u origin main
 
 
