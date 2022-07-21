@@ -12,6 +12,10 @@ https://stackoverflow.com/questions/22682870/how-can-i-undo-pushed-commits-using
 
 list all commits
 
+```
+git log
+git log --pretty=oneline
+```
 ## Temporarily switch to a different commit
 If you want to temporarily go back to it, fool around, then come back to where you are, all you have to do is check out the desired commit:
 
@@ -74,6 +78,14 @@ git commit
 
 ```
 
+## Important
+
+You know how to revert a merge commit, but it's **very important** you realize that in doing so
+
+"...declares that you will never want the tree changes brought in by the merge. As a result, later merges will only bring in tree changes introduced by commits that are not ancestors of the previously reverted merge. This may or may not be what you want." (git-merge man page).
+
+An article/mailing list message linked from the man page details the mechanisms and considerations that are involved. Just make sure you understand that **if you revert the merge commit, you can't just merge the branch again later and expect the same changes to come back.**
+
 ## Summary
 
 The git-revert manpage actually covers a lot of this in its description. Another useful link is this git-scm.com section discussing git-revert.
@@ -92,5 +104,53 @@ How can I move HEAD back to a previous location? (Detached head) & Undo commits
 
 > `git revert -m <number> <full SHA1>` worked fine for me! I prefer this over `git revert <commit SHA1>` – 
 
+
+### Other
+
+#### other 01
+
+Revert back without keeping the changes:
+
+```
+git reset --hard <commit>
+```
+
+Revert back with keeping the changes:
+
+```
+git reset --soft <commit>
+
+```
+
+#### other 02
+
+The best way is:
+```
+git reset --hard <commidId> && git push --force
+
+```
+This will reset the branch to the specific commit and then will upload the remote server with the same commits as you have in local.
+
+Be careful with the *--force* flag as it removes all the subsequent commits after the selected commit without the option to recover them.
+
+#### other 03
+
+For rollback (or to revert):
+
+1. git revert --no-commit "commit-code-to-remove" HEAD
+(e.g. git revert --no-commit d57a39d HEAD)
+2. git commit
+3. git push
+Try the above two steps, and if you find this is what you want then git push.
+
+If you find something wrong, do:
+
+git revert --abort
+
+
+## After all the changes, when you push all these commands, you might have to use:
+
+git push -f ...
+And not only git push
 
 
