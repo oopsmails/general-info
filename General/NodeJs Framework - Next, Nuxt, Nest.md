@@ -9,6 +9,9 @@
 
 The differences between three more very popular frameworks: Next, Nuxt, and Nest. These three frameworks are server-side rendering, and they are closely related to React, Vue, and Angular (the three most widely used front-end frameworks), respectively.
 
+React - Next
+Vue - Nust
+Angular - Nest
 
 ## Nest
 
