@@ -1,4 +1,8 @@
 
+# Singleton in Java
+
+## double-checked-locking
+
 http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html#dcl
 
 
@@ -51,14 +55,46 @@ that accesses that class.
 
 -------------------------------------------------------------
 
+## Enum Singleton
+
+https://www.baeldung.com/java-singleton
 
 
+```
+public enum EnumSingleton {
+    
+    INSTANCE("Initial class info"); 
+ 
+    private String info;
+ 
+    private EnumSingleton(String info) {
+        this.info = info;
+    }
+ 
+    public EnumSingleton getInstance() {
+        return INSTANCE;
+    }
+    
+    // getters and setters
+}
+
+```
 
 
+## More Examples
+
+https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples#enum-singleton
 
 
+> SerializedSingleton 
 
+The problem with serialized singleton class is that whenever we deserialize it, it will create a new instance of the class. Let’s see it with a simple program.
 
+```
+protected Object readResolve() {
+    return getInstance();
+}
+```
 
 
 
