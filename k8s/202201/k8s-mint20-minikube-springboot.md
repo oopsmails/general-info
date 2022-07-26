@@ -10,8 +10,34 @@ https://github.com/exoscale-labs/config-mgmt-springboot-kubernetes
 
 - To learn configMap
 
+> https://github.com/oopsmails/k8s-springboot-app-demo
 
-## Run
+> https://github.com/oopsmails/k8s-springboot-app-demo-config
+
+## Run in intellij, run application
+
+- jvm args
+
+```
+-Dspring.config.location=/home/albert/Documents/sharing/github/k8s-springboot-app-demo/src/main/config/
+-Dspring.profiles.active=stg
+```
+
+- test 
+
+In Virtual or outside, both using, http://localhost:8080/
+
+```
+2022-07-26 11:06:18.778  INFO 7289 --- [  restartedMain] c.o.configmgmt.demo.DemoApplication      : The following 1 profile is active: "stg"
+... ...
+2022-07-26 11:06:26.805  INFO 7289 --- [nio-8080-exec-1] c.o.configmgmt.demo.WelcomeController    : App logging, label = Staging, color = orange
+==========================
+2022-07-26 11:09:40.796  INFO 7413 --- [  restartedMain] c.o.configmgmt.demo.DemoApplication      : The following 1 profile is active: "dev"
+... ...
+2022-07-26 11:10:19.866  INFO 7413 --- [nio-8080-exec-1] c.o.configmgmt.demo.WelcomeController    : App logging, label = Development, color = yellow
+
+```
+
 
 
 [10.96.104.89](http://10.96.104.89:8080/)  
@@ -33,9 +59,11 @@ nodejs-simple-rest-service   NodePort    10.103.204.114   <none>        3000:301
 ```
 
 
-## Inspect docker image
+## Build and inspect docker image
 
-- docker image is created by maven
+### docker image created by maven, pom.xml
+
+**Note:** not preferred, need to investigate to add *Dspring.config.location* somehow ....
 
 ```
 <plugin>
@@ -63,7 +91,57 @@ nodejs-simple-rest-service   NodePort    10.103.204.114   <none>        3000:301
 </plugin>
 ```
 
-- docker inspect oopsmails/mockbackend:v1
+**Note:** every time mvn package, will create an image in local. So, sometimes need to clean up "none" images
+
+```
+albert@albert-mint20:~$ docker images
+REPOSITORY                                  TAG              IMAGE ID       CREATED          SIZE
+configmgmt                                  1.0.0            5bd13067f082   45 seconds ago   229MB
+<none>                                      <none>           08cc824664c1   10 minutes ago   229MB
+mongo                                       latest           ee13a1eacac9   6 months ago     696MB
+<none>                                      <none>           ce379a528416   7 months ago     228MB
+
+albert@albert-mint20:~$ docker rmi ce379a528416
+Error response from daemon: conflict: unable to delete ce379a528416 (must be forced) - image is being used by stopped container fb37e8b2dc8
+
+docker stop fb37e8b2dc8
+
+docker rmi ce379a528416
+
+docker rmi -f ce379a528416
+
+docker rmi configmgmt:1.0.0
+
+```
+
+
+### docker image created by Dockerfile
+
+```
+cd /home/albert/Documents/sharing/github/k8s-springboot-app-demo
+
+- examples
+docker build  -t demo:v1 .
+docker build  -t oopsmails/demo:v1 .
+docker build -t oopsmails/demo:v1 -f /home/albert/Documents/sharing/github/k8s-springboot-app-demo/Dockerfile .
+
+
+docker rmi -f configmgmt:1.0.0
+
+docker rm -f $(docker ps -a -q)
+
+- kind of not working .... as cannot see log on screen
+docker build --progress=plain --no-cache -t configmgmt:1.0.0 -f /home/albert/Documents/sharing/github/k8s-springboot-app-demo/Dockerfile .
+
+- working
+cd /home/albert/Documents/sharing/github/k8s-springboot-app-demo
+docker build --progress=plain --no-cache -t configmgmt:1.0.0 .
+
+```
+
+### Inspect docker image
+
+- docker inspect oopsmails/mockbackend:v1, another example
 
 ```
 "Entrypoint": [
@@ -76,14 +154,30 @@ nodejs-simple-rest-service   NodePort    10.103.204.114   <none>        3000:301
 
 - docker inspect configmgmt:1.0.0
 
-...
+```
+"Env": [
+    "PATH=/opt/openjdk-15/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "JAVA_HOME=/opt/openjdk-15",
+    "JAVA_VERSION=15-ea+31"
+],
+"Cmd": [
+    "/bin/sh",
+    "-c",
+    "#(nop) ",
+    "ENTRYPOINT [\"java\" \"-Dspring.config.location=/data/config/\" \"-jar\" \"/demo-1.0.0.jar\"]"
+],
+"Image": "sha256:4d4ad0acef4c2f095ff855924949d0da87fde1bd4aedcfacba3c9fdb9a556e57",
+"Volumes": {
+    "/tmp": {}
+},
+"WorkingDir": "",
 "Entrypoint": [
-                "java",
-                "-cp",
-                "/app/resources:/app/classes:/app/libs/*",
-                "com.exoscale.configmgmt.demo.DemoApplication"
-            ],
-...
+    "java",
+    "-Dspring.config.location=/data/config/", <----------------------------------- important
+    "-jar",
+    "/demo-1.0.0.jar"
+],
+```
 
 
 ## Run with Docker
@@ -94,18 +188,48 @@ Remember that the entry point is basically baked into the image, while arguments
 At this time, having *application-dev.yml* and *application-stg.yml* in src/main/resources
 
 ```
+- sample
 $ docker run -p8080:8080 nfrankel/configmgmt:0.0.1-SNAPSHOT --spring.profiles.active=dev
 
+- my commands
 
-docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev
-docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=stg
+docker ps -a
+
+docker rm <old-container-id>
 
 docker run -p8080:8080 configmgmt:1.0.0 --spring.config.location=your/config/dir/
 
--Dspring.config.location=your/config/dir/
+docker rmi -f configmgmt:1.0.0
 
-docker rmi configmgmt:1.0.0
+docker rm -f $(docker ps -a -q)
+
+- OK, but no location
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=stg
+
+- NOT working
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev --spring.config.location=/home/albert/Documents/sharing/github/k8s-springboot-app-demo/src/main/config/application-dev.yml
+
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev --spring.config.location=/home/albert/Documents/sharing/github/k8s-springboot-app-demo/src/main/config/
+
+
+- Working !!!!!!
+cd /home/albert/Documents/sharing/github/k8s-springboot-app-demo
+docker build --progress=plain --no-cache -t configmgmt:1.0.0 .
+docker inspect configmgmt:1.0.0
+docker run -p8080:8080 configmgmt:1.0.0 --spring.profiles.active=dev
+
+- Debugging
+
+docker exec -it  <container-name>  bash
+docker exec -it  <container-name>  sh
+
+
 ```
+
+- test 
+
+In Virtual or outside, both using, http://localhost:8080/
 
 ## Configuration management options with Kubernetes
 
