@@ -35,6 +35,34 @@ nodejs-simple-rest-service   NodePort    10.103.204.114   <none>        3000:301
 
 ## Inspect docker image
 
+- docker image is created by maven
+
+```
+<plugin>
+    <groupId>com.google.cloud.tools</groupId>
+    <artifactId>jib-maven-plugin</artifactId>
+    <version>0.10.1</version>
+    <configuration>
+        <to>
+            <image>configmgmt:${project.version}</image>
+        </to>
+        <container>
+            <mainClass>com.oopsmails.configmgmt.demo.DemoApplication</mainClass>
+            <useCurrentTimestamp>true</useCurrentTimestamp>
+        </container>
+    </configuration>
+    <executions>
+        <execution>
+            <id>docker-daemon</id>
+            <phase>compile</phase>
+            <goals>
+                <goal>dockerBuild</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
 - docker inspect oopsmails/mockbackend:v1
 
 ```
