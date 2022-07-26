@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: config-mgmt
-          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          image: configmgmt:1.0.0
           command:
             - "java"
             - "-Dapp.env.label=Pre-production"

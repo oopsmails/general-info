@@ -189,7 +189,7 @@ At this time, having *application-dev.yml* and *application-stg.yml* in src/main
 
 ```
 - sample
-$ docker run -p8080:8080 nfrankel/configmgmt:0.0.1-SNAPSHOT --spring.profiles.active=dev
+$ docker run -p8080:8080 oopsmails/configmgmt:1.0.0 --spring.profiles.active=dev
 
 - my commands
 
@@ -233,9 +233,30 @@ In Virtual or outside, both using, http://localhost:8080/
 
 ## Configuration management options with Kubernetes
 
+minikube start
+
+minikube dashboard
+
 eval $(minikube docker-env)
 
+
+- Error:
+
+Failed to pull image "configmgmt:1.0.0": rpc error: code = Unknown desc = Error response from daemon: pull access denied for configmgmt, repository does not exist or may require 'docker login': denied: requested access to the resource is denie
+
+Solution: need to run
+
+```
 minikube image load configmgmt:1.0.0
+```
+
+- if deleting all
+
+```
+kubectl delete -n default deployment config-mgmt-deploy <------------------------------ run this
+kubectl delete -n default service config-mgmt-service <--------------------------- will not delete pods
+kubectl delete -n default pod config-mgmt-deploy-5db77f654b-g9rxg <---------------------- will re-create new pods
+```
 
 ## Manipulate Deployment
 
@@ -255,7 +276,7 @@ kubectl apply -f 1.2.first-deploy-using-sys-properties.yml
     spec:
       containers:
         - name: config-mgmt
-          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          image: configmgmt:1.0.0
           command:
             - "java"
             - "-Dapp.env.label=Pre-production"
@@ -273,7 +294,7 @@ kubectl apply -f 1.3.first-deploy-using-env-variable.yml
     spec:
       containers:
         - name: config-mgmt
-          image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+          image: configmgmt:1.0.0
           env:
             - name: app.env.label
               value: Training
@@ -399,7 +420,7 @@ On the main container’s side:
 
 ```
 - name: config-mgmt
-  image: nfrankel/configmgmt:0.0.2-SNAPSHOT
+  image: configmgmt:1.0.0
   volumeMounts:
   - name: config
     mountPath: /config
