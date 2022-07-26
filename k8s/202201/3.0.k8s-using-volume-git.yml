@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clone-props
+  namespace: default
+data:
+  props.version: v1.0.0
+  props.env: dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-mgmt-deploy
+  labels:
+    app: config-mgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-mgmt
+  template:
+    metadata:
+      labels:
+        app: config-mgmt
+    spec:
+      containers:
+        - name: config-mgmt
+          image: configmgmt:1.0.0
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+          ports:
+            - containerPort: 8080
+      initContainers:
+        - name: git-clone
+          image: alpine/git:1.0.4
+          command: ["/bin/sh", "-c"]
+          args:
+            [
+              "git clone --branch $(props.version) https://github.com/oopsmails/k8s-springboot-app-demo-config.git && mv k8s-springboot-app-demo-config/$(props.env)/* /config"
+            ]
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          envFrom:
+            - configMapRef:
+                name: clone-props
+      volumes:
+        - name: config
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-mgmt-service
+spec:
+  selector:
+    app: config-mgmt
+  ports:
+    - port: 8080
+      nodePort: 30001
+  type: NodePort

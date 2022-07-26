@@ -117,6 +117,14 @@ docker rmi configmgmt:1.0.0
 
 ### docker image created by Dockerfile
 
+Dockerfile.dockerRunOnly, compare with Dockerfile, setting /config folder
+
+
+`ADD ./src/main/config /data/config`
+
+`ENTRYPOINT ["java","-Dspring.config.location=/data/config/","-jar","/demo-1.0.0.jar`
+
+
 ```
 cd /home/albert/Documents/sharing/github/k8s-springboot-app-demo
 
@@ -124,7 +132,6 @@ cd /home/albert/Documents/sharing/github/k8s-springboot-app-demo
 docker build  -t demo:v1 .
 docker build  -t oopsmails/demo:v1 .
 docker build -t oopsmails/demo:v1 -f /home/albert/Documents/sharing/github/k8s-springboot-app-demo/Dockerfile .
-
 
 docker rmi -f configmgmt:1.0.0
 
@@ -320,11 +327,21 @@ kubectl apply -f 1.3.first-deploy-using-env-variable.yml
 ```
 
 
-kubectl apply -f 2.using-configMap.yml
+kubectl apply -f 2.0.using-configMap.yml
+
+```
+albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 2.0.using-configMap.yml
+configmap/banner-config-preprod created
+deployment.apps/config-mgmt-deploy created
+service/config-mgmt-service created
+
+```
+
+- Testing
 
 http://192.168.49.2:30001/
 
-- Testing around
+- Testing around, in short, modify value in *Config Map*, then delete pod.
 
 Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to delete pods (preferred because non-stop even with one pod) or restart *Deploymnet* (non-stop only if multiple pods) to see the change taking effect.**
 
@@ -332,17 +349,41 @@ Note that while ConfigMaps can be mounted on volumes attached to Pods, Kubernete
 
 So far, this is a great way to handle configuration. But how does it handle versioning?
 
+
+
 ## Using volumes
+
+Using *Config Maps* to define props.env and props.version, using Config Git Repo to init container.
+
 
 - kubectl apply -f 3.1.k8s-using-volume-policy-never.yml
 
-kubectl apply -f 3.k8s-using-volume.yml <----------- also ok, without never because already run *minikube image load configmgmt:1.0.0 ...*
+kubectl apply -f 3.0.k8s-using-volume.yml <----------- also ok, without never because already run *minikube image load configmgmt:1.0.0 ...*
 
 ```
-albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 3.k8s-using-volume.yml
+albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 3.0.k8s-using-volume.yml
 deployment.apps/config-mgmt-deploy configured
 configmap/clone-props created
 service/config-mgmt-service unchanged
+
+check ENTRYPOINT ["java","-Dspring.config.location=/config/","-jar","/demo-1.0.0.jar"]
+
+
+- 20220726, Dockerfile defined /config
+albert@albert-mint20:~/Documents/sharing/github/k8s-springboot-app-demo$ docker build --progress=plain --no-cache -t configmgmt:1.0.0 .
+
+- 20220726, check following is fine
+
+git clone --branch v1.0.0 https://github.com/oopsmails/k8s-springboot-app-demo-config.git
+
+- 20220726, load and apply 3.0
+albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ minikube image load configmgmt:1.0.0
+albert@albert-mint20:~/Documents/sharing/github/general-info/k8s/202201$ kubectl apply -f 3.0.k8s-using-volume-git.yml
+
+- 20220726, DO NOT using following
+kubectl apply -f 3.1.k8s-using-volume-policy-never.yml
+kubectl apply -f 3.2.k8s-debugging-using-volume-policy-never.yml
+
 ```
 
 http://192.168.49.2:30001/
@@ -357,6 +398,8 @@ Change *Config Maps* in dashboard, e.g, as below .... But, **note, need to delet
 	"props.version": "v1.0.0"
 }
 ```
+
+> ------------- Below is from original article ------------------
 
 
 Imagine a new requirement popping-up to change the pre-production banner color from purple to red. If it were a business requirement, it would need to be versioned, with a relevant commit message. The exact same standard should apply to configuration changes as to code changes: this is one of the tenants of Infrastructure-as-Code.
@@ -536,6 +579,11 @@ git clone --branch v2.0.0 https://github.com/oopsmails/k8s-springboot-app-demo-c
 
 "git clone --branch $(props.version) https://github.com/oopsmails/k8s-springboot-app-demo-config.git && mv config-mgmt-properties/$(props.env)/* /config",
 
+
+
+git clone --branch v1.0.0 https://github.com/exoscale-labs/config-mgmt-properties.git
+
+
 - Try this: working
 
 git clone https://github.com/oopsmails/k8s-springboot-app-demo-config.git k8s-springboot-app-demo-config-v1.0.0
@@ -590,6 +638,9 @@ spec.containers{config-mgmt}
 Started container config-mgmt
 kubelet minikube
 spec.containers{config-mgmt}
+
+
+containers with incomplete status: [git-clone]
 
 ```
 
