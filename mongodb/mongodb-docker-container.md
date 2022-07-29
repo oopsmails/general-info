@@ -212,6 +212,7 @@ sudo docker ps -a
 
 Now, let’s go to the Mongo Express web interface using the server IP (http://10.10.10.60:8081).
 
+> http://localhost:8081/
 
 ## How to dump & restore a MongoDB database from a docker container
 
