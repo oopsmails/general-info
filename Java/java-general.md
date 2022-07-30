@@ -42,4 +42,10 @@ implementation 'javax.annotation:javax.annotation-api:1.3.2'
 annotationProcessor("javax.annotation:javax.annotation-api:1.3.2")
 ```
 
+## Generate json from java model class
+
+spring-boot-java-main/src/main/java/com/oopsmails/springboot/javamain/json/EasyRandomMain.java
+
+
+
 
