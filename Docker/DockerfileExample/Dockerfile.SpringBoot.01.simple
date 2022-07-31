@@ -21,8 +21,42 @@ EXPOSE 8080
 ENTRYPOINT exec java -jar /usr/opt/service/service.jar
 
 
-######################## 01 ########################
+######################## 04 ########################
+
+FROM openjdk:11 as mysqldoc
+EXPOSE 8084
+WORKDIR /app
+
+# Copy maven executable to the image
+COPY mvnw . <------------------------- using mvnw
+COPY .mvn .mvn
+
+# Copy the pom.xml file
+COPY pom.xml .
+
+# Copy the project source
+COPY ./src ./src
+COPY ./pom.xml ./pom.xml
+
+RUN chmod 755 /app/mvnw
+
+RUN ./mvnw dependency:go-offline -B
+
+RUN ./mvnw package -DskipTests
+RUN ls -al <-------------------------------- as debugging
+ENTRYPOINT ["java","-jar","target/springboot-demo-mysql-0.0.1-SNAPSHOT.jar"]
 
 ######################## 01 ########################
+
+FROM openjdk:8-jdk-alpine
+LABEL maintainer="author@javatodev.com"
+VOLUME /main-app
+ADD build/libs/spring-boot-mongodb-base-project-0.0.1-SNAPSHOT.jar app.jar <--------------- using ADD
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar","/app.jar"]
+
+-----------
+
+ENTRYPOINT ["java","-Dspring.config.location=/config/","-jar","/demo-1.0.0.jar"] <---------------- ??? VM args in Dockerfile ????
 
 ######################## 01 ########################
