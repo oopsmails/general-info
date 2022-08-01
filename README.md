@@ -1,53 +1,212 @@
-- [general-info](#general-info)
-  - [ElementaryOS](#elementaryos)
-    - [Run Docker images for Dev](#run-docker-images-for-dev)
+# Github Repos: Oopsmails
 
-# general-info
+## Repos: 20220801
 
-## ElementaryOS
+### Spring Boot
 
-### Run Docker images for Dev
+- springboot-dev-repo
+- general-info
+- spring-boot-mongodb-security-angular-frontend
 
-- MongoDB
+- spring-cloud-microservices-all
 
-docker run -it -v /dockerdata/mongodb:/data/db -p 27017:27017 --name mongodb -d mongo:4.2.2
+- springboot-app
 
-- Kafka
-   - bitnami/kafka:2
-   - nginx:alpine
-   - bitnami/zookeeper:3
-   - obsidiandynamics/kafdrop, to view kafka
-   - mailhog/mailhog
-   - spring-boot-kafka-ms-email
+- spring-boot-103-rest-mongodb
+- Zzz-spring-boot-mongodb-security-angular8-backend
+- springboot-microservices
+- spring-main
+- bootparent
 
-github/springboot-dev-repo/spring-boot-kafka-ms-email-files/docker-compose.yml
-
-- redis
-   - redis:alpine
-
-spring-boot-session-redis/docker-compose.yml
-
-- wiremock
-   - rodolpheche/wiremock
-
-github/dev-repo-backend/wiremock-docker/docker-compose.yml
-
-- nginx
-   - one is included in Kafka email ms
+- springboot-configs
+Spring boot and cloud configurations, microservices
 
 
+- playground: springboot-thymeleaf
 
-- sonarqube
-   - sonarqube:8.2-community
-   - postgres (latest)
 
-github/springboot-dev-repo/spring-boot-rest-sonarqube/docker/docker-compose.yaml
+- springboot-oauth2
+springbootoauth2-sso-auth-server
 
-- mysql
-   - mysql:8.0.17
-   - adminer
+- springboot-security 
 
-github/springboot-dev-repo/spring-boot-oauth2/spring-boot-oauth2-social-login/docker/docker-compose.yml
+- spring-rest-unit-test 
+
+- spring-boot-103-rest-mongodb
+
+
+### k8s: kubernetes
+
+
+- k8s-springboot-app-demo
+- k8s-springboot-app-demo-config
+### Gradle
+
+- gradle-tutorial
+- springboot-dev-repo-gradle
+
+
+
+### Angular
+
+- angular-dev-repo
+- angular-ngrx-store
+
+- angular-integration
+- angular-social-login
+
+- angular-ngrx-course Public
+Forked from angular-university/ngrx-course-v7
+Angular Ngrx Course - includes Store, Effects, Entity, Router Store, Schematics
+
+- angular04-http-ngrx
+
+### Spring boot backend and Angular frontend
+- skeleton
+Spring boot backend and Angular frontend
+
+- temp-holder
+Spring boot backend and Angular frontend, oauth2 !!!!
+
+- springboot-apps
+Spring boot backend and Angular frontend, oauth2 !!!!
+
+- angular-05
+Angular - integration, progress, learning
+
+### React
+- firebase-todolist
+
+
+- react-sandbox
+
+- reactredux-login
+### Ionic
+
+- ionic-angular-movieApp 
+- angular-ionic-newslisting
+- angular-ionic-recipe
+- ionic-loginsignup
+- sandbox
+- ionic-dev-repo
+
+### Html SCSS
+- html-scss-learning
+
+### Golang
+- golang-101
+
+### Nodejs
+- nodejs-simple-rest
+
+- nodejs102
+
+- nodejs101
+
+### Typescript and Rsjs
+- ts-workspace-rsjs-learning
+
+### Python
+- python-helloworld
+
+- python-rest-flask
+
+### Kotlin
+- springboot-kotlin
+
+- springkotlin-reactive Public
+Spring Kotlin Reactive MongoDB Docker
+
+### Jenkins
+- jenkins-test 
+
+### Android
+
+- android-ws
+
+## Before re-visit
+
+
+
+
+======> angular-01-v2Beta
+
+
+
+======> angular-02
+
+
+
+======> angular-03
+
+
+
+
+======> angular04-http-ngrx
+
+
+--> branch: ngrx-route-Bootstrap
+Bootstrap practice
+/c/Github/angular04-http-ngrx/src/app/components/bootstrap-css/bootstrap-css.component.html
+
+
+
+======> create-react-app-login
+
+
+
+======> general-info
+
+
+
+======> nodejs101
+
+
+
+======> nodejs102
+
+
+
+======> python-rest-flask
+
+
+
+======> reactredux-login
+
+
+
+======> spring-boot-101
+
+
+
+======> spring-boot-102
+
+
+
+======> spring-boot-103-rest-mongodb
+
+
+
+======> springboot-security
+
+
+
+======> spring-main
+
+--> JsonUtilBean
+--> producer/consumer
+--> keypair
+--> JMS: web-order, web-order-inventory
+--> Spring rest: web-spring-rest
+
+
+======> spring-rest-unit-test
+
+--> mockito, custom annotation
+
+
+https://help.github.com/articles/basic-writing-and-formatting-syntax/
+
 
 
 
