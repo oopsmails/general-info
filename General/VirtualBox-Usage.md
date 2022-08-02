@@ -77,3 +77,15 @@ VirtualBox 6 added a graphical option for resizing virtual disks. You can find i
 
 Go to File->Virtual Media Manager, properties. Then, increase the size
 
+
+## Trouble Shooting
+
+### restore bk.ova failed
+
+- if original vm still existing, then got error ...
+
+Try, "Mac Address Policy" drop down, use "Generate New ...."
+
+
+
+
