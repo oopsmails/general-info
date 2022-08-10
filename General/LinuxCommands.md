@@ -1,5 +1,5 @@
 
-# Unix Commands
+# Unix/Linux Commands
 
 ## Sed
 
@@ -80,7 +80,7 @@ Host *
     ServerAliveInterval 240
 ```
 
-### tar.gz
+## tar.gz
 
 
 > Linux create tar.gz file with tar command
@@ -110,5 +110,45 @@ gzip -dk file.gz
 
 > Extracting tar.gz File 
 tar -xf archive.tar.gz
+
+
+## linux search a string in all files
+
+- How do I find all files containing specific text on Linux?
+
+`grep -rnw '/path/to/somewhere/' -e 'pattern'`
+
+-r or -R is recursive,
+-n is line number, and
+-w stands for match the whole word.
+-l (lower-case L) can be added to just give the file name of matching files.
+-e is the pattern used during the search
+
+Along with these, --exclude, --include, --exclude-dir flags could be used for efficient searching:
+
+This will only search through those files which have .c or .h extensions:
+
+`grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"`
+
+This will exclude searching all the files ending with .o extension:
+
+`grep --exclude=\*.o -rnw '/path/to/somewhere/' -e "pattern"`
+
+For directories it's possible to exclude one or more directories using the --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:
+
+`grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"`
+
+
+> Used:
+
+grep -nr "TheStringToBeSearched" /home/albert/logs
+
+grep -nr "TheStringToBeSearched" /abc/appserver/logs > ~/20220808-abc.txt
+
+scp albert@1.1.1.1  ~/20220808-abc.txt /home/albert/Documents/logs
+
+
+
+
 
 
