@@ -1,6 +1,10 @@
 
 # VS Code Usage
 
+## Shortcuts
+
+Shift + Alt + down arrow: duplicate current line
+
 ## Extensions
 
 ### vscode-live-sass-compiler relative path

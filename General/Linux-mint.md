@@ -35,7 +35,11 @@ Choose the needed version, in this case 9.3.0-17ubuntu1~20.04, and install like 
 $ sudo apt-get install 10.3.0-1ubuntu1~20.04
 ```
 
+5. linux mint scp tool
 
+Try the "connect to server" function in the places menu in Ubuntu Mate. Other versions of ubuntu have the same function though I'm not sure where, per version. in your file manager, under "File" there should be a "Connect to server" option.
+
+Youll get a window like this, where you can supply user credentials, and set up book marks, to get back to the same locations.
 
 
 
