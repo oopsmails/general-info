@@ -76,7 +76,7 @@ class Foo {
   @Setter(onMethod=@__({@Autowired}))
   private Bar bar;
 }
-```int
+```
 
 
 ## ToString and @EqualsAndHashCode
@@ -90,4 +90,46 @@ class Foo {
 
 ```
 
+## @SneakyThrows
+
+- Ref: 
+
+https://stackoverflow.com/questions/64208790/application-of-sneaky-throws-in-lombok
+
+- example:
+
+```
+
+To add to the existing answers. I personally dislike checked exceptions. See for more info: https://phauer.com/2015/checked-exceptions-are-evil/
+
+To add insult to injury, the code gets bloated when avoiding the checked exceptions. Consider the usage of @SneakyThrows:
+
+ List<Instant> instantsSneaky = List.of("2020-09-28T12:30:08.797481Z")
+        .stream()
+        .map(Example::parseSneaky)
+        .collect(Collectors.toList());
+
+@SneakyThrows
+private static Instant parseSneaky(String queryValue) {
+    return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(queryValue).toInstant();
+}
+versus non-@SneakyThrows
+
+ private static Instant parseNonSneaky(String queryValue) throws ParseException {
+    return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(queryValue).toInstant();
+}
+
+List<Instant> instantsNonSneaky = List.of("2020-09-28T12:30:08.797481Z")
+        .stream()
+        .map(timeStamp -> {
+            try {
+                return parseNonSneaky(timeStamp);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        })
+        .collect(Collectors.toList());
+
+```
+Hence the applicance of @SneakyThrows enables much cleaner code.
 
