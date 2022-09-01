@@ -8,7 +8,7 @@ https://poanchen.github.io/blog/2017/11/12/How-to-create-a-GitHub-pull-request-w
 
 ## Cherry Picking in Github
 
-![git-cherrypick-01.png](git-cherrypick-01.png)
+![git-cherrypick-01](git-cherrypick-01.png)
 
 
 
