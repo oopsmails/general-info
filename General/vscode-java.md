@@ -5,6 +5,7 @@
 
 - Extension Pack for Java
 - Spring Boot Extension Pack
+- Lombok Annotations Support for VS Code
 
 ## Settings
 
