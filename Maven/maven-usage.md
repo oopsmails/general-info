@@ -45,3 +45,67 @@ Can exclude the folder from build into /target in intellij or Eclipse
 
 ```
 
+## Trouble Shooting
+
+### Fatal error compiling: invalid target release: 11
+
+- This normally happens when running *mvn clean install* in external Terminal, i.e, in IDE, could be fine.
+
+- Check pom.xml, at least add following for testing
+
+```
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+    </propertie>
+
+
+    ......
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+```
+
+- Check $JAVA_HOME
+
+```
+$ mvn -v
+Apache Maven 3.6.3
+Maven home: /usr/share/maven
+Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre <---------------- This is the problem
+Default locale: en_CA, platform encoding: UTF-8
+OS name: "linux", version: "5.4.0-58-generic", arch: "amd64", family: "unix"
+
+```
+
+Fix: change $JAVA_HOME in ~/.bashrc, then run `source ~/.bashrc`
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+# export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+
+```
+
+
+
+
+
+
+
+
+
+
