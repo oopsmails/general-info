@@ -13,6 +13,16 @@ This `<relativePath/>` should be a best practice whenever we inherit from extern
 
 That means, for IDE-internal resolution, the position of the parent POM doesn't matter as long as the parent project is registered as an IntelliJ Maven Project. This might be helpful to simply develop projects without explicitly building them (if they are not in the scope of the same Git repository). But if we try to build the project with an external Maven runtime, it will fail.
 
+- Quote
+
+In order to resolve the parent project, these possible sources are checked:
+
+relativePath
+local repository
+remote repositories
+
+The relative path, if not given explicitly, defaults to .., i.e. the pom in the parent directory of the current project. 
+
 ## Tricks
 
 ### Exclude a folder
