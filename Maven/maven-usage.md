@@ -1,6 +1,72 @@
 
 # Maven and pom.xml
 
+## Design Thinkings
+
+### 20220903:
+
+- If a independent single project, use Spring parent
+
+```
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.2</version>
+        <relativePath/>
+    </parent>
+```
+
+- If one layer parent children structure, means sub-projects are supposed to use libs with same versions, then,
+
+> parent, defined as *pom* and define *properties*
+
+```
+    <groupId>com.oopsmails.springboot.dev.repo</groupId>
+    <artifactId>spring-boot-simples</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring-boot-openapi-basic</module>
+        <module>spring-boot-exception-handling</module>
+        <module>spring-boot-playaround-jpa</module>
+        <module>spring-boot-jpa-mongodb</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <slf4j.version>1.7.26</slf4j.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <spring-boot-dependencies.version>2.7.3</spring-boot-dependencies.version>
+    </properties>
+
+```
+
+> child, set parent as parent and use *spring-boot-dependencies*
+
+```
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot-dependencies.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+```
+
+- If two or more layers ... first re-consider the structure and top layer and second layer will be pom, in two cases,
+
+> case 1, all projects are with same Spring Boot version, then define *properties* at top level, second level just working as a *collection*
+> case 2, top level working as a *collection* and at second level, define Spring Boot version and *properties*.
+
+
 ## Concepts
 
 ## *relativePath* Tag for a Parent POM
