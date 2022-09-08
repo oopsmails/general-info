@@ -63,6 +63,12 @@ C:\Program Files\Git\etc\profile
 PATH="/c/abc:${PATH}"
 export PATH
 
+### Show all opening apps on all desktops
+
+Settings :: System :: Multitasking :: Desktop
+
+On the taskbar, show all the open windows, drop down
+Show all open windows when I press Alt + Tab
 
 
 
