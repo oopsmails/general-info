@@ -3,6 +3,9 @@
 
 Java has introduced functional programming support in Java release version 8. This specific release has also introduced several new concepts notably lambda expressions, method reference and a plethora of functional interfaces. While discussing functional interfaces, there are few functional interfaces namely Consumer, Supplier, Predicate and Functions are most crucial. In this article, we will talk about these interfaces.
 
+- Quote:
+A supplier is any method which takes no arguments and returns a value. Its job is to supply an instance of an expected class. Whereas, a consumer is a method that consumes some value (as in method argument), and does some operations on them. So a Consumer is any method which takes arguments and returns nothing. Also, BiConsumer ...
+
 ## Consumer
 A Consumer is a functional interface that accepts a single input and returns no output. In layman’s language, as the name suggests the implementation of this interface consumes the input supplied to it. Consumer interface has two methods:
 
