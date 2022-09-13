@@ -2,6 +2,7 @@
   - [mockito mock test consumer method](#mockito-mock-test-consumer-method)
     - [Using ArgumentCaptor](#using-argumentcaptor)
     - [Using mock](#using-mock)
+    - [Difference between @Mock and @InjectMocks](#difference-between-mock-and-injectmocks)
   - [Setting private field value during Unit Test](#setting-private-field-value-during-unit-test)
     - [Using org.springframework.test.util.ReflectionTestUtils](#using-orgspringframeworktestutilreflectiontestutils)
     - [Using Java reflection, Java 8 and before](#using-java-reflection-java-8-and-before)
@@ -102,8 +103,29 @@ public class TestAppTest {
 
 ```
 
+### Difference between @Mock and @InjectMocks
 
+@Mock creates a mock. @InjectMocks creates an instance of the class and injects the mocks that are created with the @Mock (or @Spy) annotations into this instance.
 
+Note you must use @RunWith(MockitoJUnitRunner.class) or Mockito.initMocks(this) to initialize these mocks and inject them (JUnit 4).
+
+With JUnit 5, you must use @ExtendWith(MockitoExtension.class).
+
+```
+@RunWith(MockitoJUnitRunner.class) // JUnit 4
+// @ExtendWith(MockitoExtension.class) for JUnit 5
+public class SomeManagerTest {
+
+    @InjectMocks
+    private SomeManager someManager;
+
+    @Mock
+    private SomeDependency someDependency; // this will be injected into someManager
+ 
+     // tests...
+
+}
+```
 
 
 
