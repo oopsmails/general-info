@@ -41,6 +41,17 @@ Try the "connect to server" function in the places menu in Ubuntu Mate. Other ve
 
 Youll get a window like this, where you can supply user credentials, and set up book marks, to get back to the same locations.
 
+6. SoapUI: How to Install SOAPUI on Linux
+
+
+* Download open source SOAPUI – https://www.soapui.org/downloads/latest-release.html
+* Select “Linux Installer (64-bit)” – Adjust accordingly.
+* Click on Download.
+* Once it is download, chmod 755 SoapUI-x64-5.2.1.sh
+* Then run it: ./SoapUI-x64-5.2.1.sh
+* A pop-up will open. Accept all the defaults and follow the wizard to get it installed.
+* It will be installed by default under: $HOME/SmartBear/SoapUI-5.2.1/bin/SoapUI-5.2.1
+* Select to open it at the end or double click the “SoapUI 5.2.1.desktop” icon at the Desktop.
 
 
 
