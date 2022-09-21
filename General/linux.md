@@ -1,5 +1,10 @@
 
-## General Linux Knowledges
+# General Linux Knowledges
+
+## apt vs apt-get
+
+I hope I was able to explain the difference between apt and apt-get. In the end, to summarize the apt vs apt-get debate: apt is a subset of apt-get and apt-cache commands providing necessary commands for package management. while apt-get won't be deprecated, as a regular user, you should start using apt more often.
+
 
 ## Linux Service
 
