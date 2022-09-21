@@ -2,7 +2,7 @@
 
 # Typescript Syntax
 
-## typescript two exclamation marks
+## typescript: javascript double exclamation marks
 
 ### The !! ensures the resulting type is a boolean (true or false).
 
@@ -18,37 +18,9 @@ javascript:alert(!!null) --> false
 
 They do this to make sure $('row') isn't null.
 
-- Guarentee a boolean ... 
-
-- It converts Object to boolean. If it was falsey (e.g., 0, null, undefined, etc.), it would be false, otherwise, true.
-
-
-- ! is the logical negation or "not" operator. !! is ! twice. **It's a way of casting a "truthy" or "falsy" value to true or false, respectively.** Given a boolean, ! will negate the value, i.e. !true yields false and vice versa. Given something other than a boolean, the value will first be converted to a boolean and then negated. For example, !undefined will first convert undefined to false and then negate it, yielding true. Applying a second ! operator (!!undefined) yields false, so in effect !!undefined converts undefined to false.
-
-In JavaScript, the values false, null, undefined, 0, -0, NaN, and '' (empty string) are "falsy" values. All other values are "truthy."(1):7.1.2 Here's a truth table of ! and !! applied to various values:
-
-```
-
- value     │  !value  │  !!value
-━━━━━━━━━━━┿━━━━━━━━━━┿━━━━━━━━━━━
- false     │ ✔ true   │   false
- true      │   false  │ ✔ true
- null      │ ✔ true   │   false
- undefined │ ✔ true   │   false
- 0         │ ✔ true   │   false
- -0        │ ✔ true   │   false
- 1         │   false  │ ✔ true
- -5        │   false  │ ✔ true
- NaN       │ ✔ true   │   false
- ''        │ ✔ true   │   false
- 'hello'   │   false  │ ✔ true
-
-```
-
-
 **It's shorter to type than $('row') != null ? true : false.**
 
-## it's short way to cast a variable to be a boolean
+### it's short way to cast a variable to be a boolean
 
 - Ref:
 
@@ -77,7 +49,46 @@ Number other than zero: 3.14
 Date: new Date();
 
 
-### The type safe comparison operators are:
+### !! Guarentee a boolean ... 
+
+- It converts Object to boolean. If it was falsey (e.g., 0, null, undefined, etc.), it would be false, otherwise, true.
+
+
+- ! is the logical negation or "not" operator. !! is ! twice. **It's a way of casting a "truthy" or "falsy" value to true or false, respectively.** Given a boolean, ! will negate the value, i.e. !true yields false and vice versa. Given something other than a boolean, the value will first be converted to a boolean and then negated. For example, !undefined will first convert undefined to false and then negate it, yielding true. Applying a second ! operator (!!undefined) yields false, so in effect !!undefined converts undefined to false.
+
+In JavaScript, the values false, null, undefined, 0, -0, NaN, and '' (empty string) are "falsy" values. All other values are "truthy."(1):7.1.2 Here's a truth table of ! and !! applied to various values:
+
+```
+
+ value     │  !value  │  !!value
+━━━━━━━━━━━┿━━━━━━━━━━┿━━━━━━━━━━━
+ false     │ ✔ true   │   false
+ true      │   false  │ ✔ true
+ null      │ ✔ true   │   false
+ undefined │ ✔ true   │   false
+ 0         │ ✔ true   │   false
+ -0        │ ✔ true   │   false
+ 1         │   false  │ ✔ true
+ -5        │   false  │ ✔ true
+ NaN       │ ✔ true   │   false
+ ''        │ ✔ true   │   false
+ 'hello'   │   false  │ ✔ true
+
+```
+
+
+## javascript double question mark
+
+So, if the value of the first variable (the one on the left side of the nullish coalescing operator i.e. ??) is null, use the default value i.e. the one on the right side of the ?? operator.
+
+```
+const favoriteFruit = null;
+const result = favoriteFruit ?? 'You did not tell me';
+console.log(result); // "You did not tell me"
+
+```
+
+## The type safe comparison operators are:
 
 Strictly equal: ===
 Strictly unequal: !==
