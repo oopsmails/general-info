@@ -116,6 +116,60 @@ docker login
 docker push oopsmails/mssql2017fts:v1
 
 
+## Another way to get MSSQL with FTS
+
+- The docker image above is with one problem
+
+sometimes, after restarting VM, got error, "The file archive /opt/mssql/lib/sqlserver.sfp is invalid".
+
+My VM, if *docker stop mssql* before shutting down VM, then it is ok next time.
+
+But, other VMs, couldn't resolve the problem
+
+
+- Exploring add FTS on office MS SQL docker image
+
+```
+docker pull mcr.microsoft.com/mssql/server:2019-CU18-ubuntu-20.04
+
+
+docker run --name mssql2 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Test123!" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-CU18-ubuntu-20.04
+
+d exec -it mssql2 bash <--------------------- this will login as "mssql" user, NOT root
+
+docker exec -it --user root mssql2 "bash" <--------------------- this will login as "root" user
+
+--- following from Dockerfile
+RUN export DEBIAN_FRONTEND=noninteractive &&
+apt-get update --fix-missing &&
+apt-get install -y gnupg2 &&
+apt-get install -yq curl apt-transport-https &&
+curl https://packages.microsoft.com/keys/microsoft.asc | tac | tac | apt-key add - &&
+curl https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list | tac | tac | tee /etc/apt/sources.list.d/mssql-server.list &&
+apt-get update
+
+;# Install optional packages. Comment out the ones you don't need
+;# RUN apt-get install -y mssql-server-agent
+;# RUN apt-get install -y mssql-server-ha
+RUN apt-get install -y mssql-server-fts
+
+
+--- Run following in mssql server bash
+
+export DEBIAN_FRONTEND=noninteractive &&
+apt-get update --fix-missing &&
+apt-get install -y gnupg2 &&
+apt-get install -yq curl apt-transport-https &&
+curl https://packages.microsoft.com/keys/microsoft.asc | tac | tac | apt-key add - &&
+curl https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list | tac | tac | tee /etc/apt/sources.list.d/mssql-server.list &&
+apt-get update
+
+apt-get install -y mssql-server-fts
+
+```
+
+Then, restart ms sql, it will be with FTS package ....
+
 
 ## Refs
 
