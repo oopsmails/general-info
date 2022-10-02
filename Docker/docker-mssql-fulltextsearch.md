@@ -116,7 +116,7 @@ docker login
 docker push oopsmails/mssql2017fts:v1
 
 
-## Another way to get MSSQL with FTS
+## Another way to get MSSQL with FTS. 20221002: still cannot solve the problem
 
 - The docker image above is with one problem
 
@@ -169,6 +169,26 @@ apt-get install -y mssql-server-fts
 ```
 
 Then, restart ms sql, it will be with FTS package ....
+
+## Try docker-compose, though, still, 20221002: cannot solve the problem
+
+https://github.com/infinity-arc/mssql-docker-compose.git
+
+https://infinity-arc.github.io/mssql-docker-compose/
+
+
+- error: 
+
+"The repository 'http://security.ubuntu.com/ubuntu groovy-security Release' does not have a Release file"
+
+- solution: add following in Dockerfile
+
+```
+cp  /etc/apt/sources.list /etc/apt/sources.list.bak
+sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+```
+
+run `docker-compose up -d` in proper dir.
 
 
 ## Refs
