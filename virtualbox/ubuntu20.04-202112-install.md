@@ -238,7 +238,7 @@ source ~/.bashrc
 https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
 
 ```
-sudo apt install curl`
+sudo apt install curl
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
