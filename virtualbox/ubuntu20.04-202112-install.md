@@ -331,6 +331,16 @@ To remove an existing program from Ubuntu open Terminal and run:
 
 - sudo apt-get remove <program name>
 
+### Chinese input
+Need install "ibus-setup", if not installed.
 
+Ubuntu Software ::> Pinyin
+
+I'm using Ubuntu 22.04. Here are the steps:
+1. Open terminal, run "ibus-setup" to open ibus preferences.
+2. Go to "Input Method" tab and click "add". Choose "Chinese" - "Intelligent Pinyin". Close IBus Preferences
+3. In Activities, search "Settings" and open it. Go to Keyboard. Click "+" in "Input Sources". Choose "Chinese" - "Chinese (Intelligent Pinyin)".
+
+Now Pinyin should be available. You just need to change the keyboard by using **super key (windows key) + space key**
 
 
