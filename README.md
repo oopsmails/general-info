@@ -55,6 +55,9 @@ springbootoauth2-sso-auth-server
 - angular-integration
 - angular-social-login
 
+- angular-search: front end cache with time out refreshing; highlighter pipe
+- angular-test: small angular project for pure testing around
+
 - angular-ngrx-course Public
 Forked from angular-university/ngrx-course-v7
 Angular Ngrx Course - includes Store, Effects, Entity, Router Store, Schematics
