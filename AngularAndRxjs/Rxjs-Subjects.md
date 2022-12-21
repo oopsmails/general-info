@@ -1,11 +1,10 @@
 # RxJS Subjects and their internal state
 
-
 ## Subject vs BehaviorSubject vs ReplaySubject in Angular
 
 From: Randall Koutnik's book "Build Reactive Websites with RxJS." :
 
-A Subject is an object that’s a turbocharged observable. At its core, a Subject acts much like a regular observable, but each subscription is hooked into the same source. Subjects also are observers and have next, error, and done methods to send data to all subscribers at once. Because subjects are observers, they can be passed directly into a subscribe call, and all the events from the original observable will be sent through the subject to its subscribers.
+A Subject is an object that's a turbocharged observable. At its core, a Subject acts much like a regular observable, but each subscription is hooked into the same source. Subjects also are observers and have next, error, and done methods to send data to all subscribers at once. Because subjects are observers, they can be passed directly into a subscribe call, and all the events from the original observable will be sent through the subject to its subscribers.
 
 We can use the ReplaySubject to track history. A ReplaySubject records the last n events and plays them back to every new subscriber. For example in a chat applications. We can use it for tracking the record of previous chat history.
 
@@ -13,11 +12,12 @@ A BehaviorSubject is a simplified version of the ReplaySubject. The ReplaySubjec
 
 Let's start by talking about Subjects and their internal state and why is it so important to be aware of complete and error notifications. Then we'll move to more interesting examples with ReplaySubject and BehaviorSubject classes.
 
-- Ref: 
+- Ref:
 
 https://stackoverflow.com/questions/43118769/subject-vs-behaviorsubject-vs-replaysubject-in-angular
 
 ## Reusing a single instance of Subject
+
 All Subjects have an internal state that reflects the most basic principle of Rx. Every Observable emits zero or more next notifications and one complete or error notification but never both. In practise this means that when an instance of Subject receives a complete it should never ever emit anything. We can see this on the following example:
 
 ```
@@ -45,7 +45,7 @@ s.next(42);
 
 This prints only numbers 1 — 5 but what happened to 42?
 
-The *range(1, 5)* source Observable sends apart from nexts also the complete notification at the end. We usually subscribe to handle just next items and we don't care about the complete notification but in the case it's very important. So what happened should be obvious. The s Subject received the complete notification which made it mark itself as stopped and it's not going to ever emit anything again.
+The _range(1, 5)_ source Observable sends apart from nexts also the complete notification at the end. We usually subscribe to handle just next items and we don't care about the complete notification but in the case it's very important. So what happened should be obvious. The s Subject received the complete notification which made it mark itself as stopped and it's not going to ever emit anything again.
 
 So what if we want to receive all nexts but not the complete notification (nor error)? The easiest way is to manually call next() on the Subject:
 
@@ -59,11 +59,11 @@ Observable.range(1, 5)
 
 Now when we run this example again we get the number 42 as well.
 
-Note that all Subject classes have *isStopped* public boolean property where you can check their state. Also keep in mind that for error notifications it works the same way as with *complete*.
-
+Note that all Subject classes have _isStopped_ public boolean property where you can check their state. Also keep in mind that for error notifications it works the same way as with _complete_.
 
 ## Comparing BehaviorSubject and ReplaySubject
-Now when we're on the same page let's have a look at a more interesting example. We'll use *BehaviorSubject* and *ReplaySubject* because these can be often interchanged. However, **their behavior is not the same when it comes to the complete signal**.
+
+Now when we're on the same page let's have a look at a more interesting example. We'll use _BehaviorSubject_ and _ReplaySubject_ because these can be often interchanged. However, **their behavior is not the same when it comes to the complete signal**.
 
 We can have a look at the same example as above but this time we'll use ReplaySubject and subscribe after receiving the complete notification from range:
 
@@ -76,7 +76,7 @@ Observable.range(1, 5)
 s.subscribe(console.log); // should this print anything?
 ```
 
-This will print numbers 1 — 5. But why? Haven't we just learned that Subjects don't emit anything after receiving *complete* which is sent automatically by range as we saw previously?
+This will print numbers 1 — 5. But why? Haven't we just learned that Subjects don't emit anything after receiving _complete_ which is sent automatically by range as we saw previously?
 
 It's still true. **However, there are differences in Subject implementations.**
 
@@ -104,9 +104,7 @@ It comes down to the fact how each of them work internally on subscription after
 
 - BehaviorSubject marks itself as stopped and never ever emits anything. Basically, it'll return an "empty" Subscription object that doesn't represent any real subscription.
 
-
 - ReplaySubject first sends its entire buffer regardless of its internal state to the new subscriber and then returns an "empty" Subscription.
-
 
 For us this means that we can "complete" ReplaySubject and later receive its items anyway. That's in contrast to BehaviorSubject that once it completes it will never emit anything.
 
@@ -131,6 +129,7 @@ If we take the example from above with range(1, 5) yet again now it makes sense 
 But don't get fooled. **The ReplaySubject is "stopped" as well. It won't emit any new items, it just replays its buffer on subscription.**
 
 ## What is all this good for in practise?
+
 For example in Angular applications it's common to make an HTTP request and then cache the result during the entire application lifetime. A very straightforward approach is keeping the result in an object property and then just return it via Observable.of which allows us to consume it the same way is it was a real HTTP request:
 
 ```
@@ -165,7 +164,7 @@ o.getData().subscribe(console.log);
 o.getData().subscribe(console.log);
 ```
 
-This looks pretty weird, doesn't it? We could write this as a one-liner that merges our cache and the actual HTTP request and then always completes with *take(1)*.
+This looks pretty weird, doesn't it? We could write this as a one-liner that merges our cache and the actual HTTP request and then always completes with _take(1)_.
 
 Feel free to open the demo at http://jsbin.com/sutiwav/9/edit?js,console that simulates an HTTP request and you can see that this really works.
 
@@ -175,7 +174,6 @@ Feel free to open the demo at http://jsbin.com/sutiwav/9/edit?js,console that si
 
 - The second (and any other) subscriber receives an Observable that merges cache and http. When merge subscribes to cache it emits its buffer (it's a ReplaySubject(1) with a single item). This emission is propagated **immediately further where take(1) re-emits it and adds complete notification which disposes the chain. In other words, merge never subscribes to http which means we never make another HTTP request.**
 
-
 There's one very interesting thing about this example. Our cache **never** receives the complete notification even though we're using do that sends complete as well. Anyway, this has no effect on the functionality of this code and it's related to the synchronous nature of RxJS internals.
 
 That's why in the next article we'll talk about synchronous and asynchronous emissions in RxJS. We'll have a look at a few general examples and then come back to this demo and see what actually happened inside.
@@ -183,4 +181,3 @@ That's why in the next article we'll talk about synchronous and asynchronous emi
 ## Refs:
 
 https://medium.com/@martin.sikora/rxjs-subjects-and-their-internal-state-7cfdee905156
-
