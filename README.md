@@ -44,10 +44,15 @@
 
 ### Angular
 
-- angular-dev-repo
-- angular-ngrx-store
+- angular-test: can be used as ONLY testing
+- angular-ngb-ngx-ngxb
+- angular-material
+- angular-all: all testing around, ngrx-store
+- angular-ngrx-store: might be removed later, or just store testing around
 
-- angular-integration
+- angular-dev-repo: similar to angular-all
+
+- angular-integration: old version of angular-all
 - angular-social-login
 
 - angular-search: front end cache with time out refreshing; highlighter pipe
