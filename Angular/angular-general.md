@@ -74,3 +74,19 @@ npm ERR! Unexpected token '.'
 
 Sometimes, if the project was build by using yarn before, then there is yarn.lock, similarly, if npm, then there is package-lock.json.
 So, we may need to delete those files and do _npm i_ again ...
+
+### routerLink in SharedModule is not working, i.e, not a link
+
+> Solutions
+
+In SharedModule, forgot adding/import *RouterModule*.
+
+### Fixing ERROR TypeError: Cannot read properties of undefined (reading 'onDestroy')
+
+> Solutions
+- You did not add a provider to your pipes
+- If you specified a new angular pipe, you should add it to declarations, exports AND providers. I got this error when I forgot about the providers.
+
+> Other possible solutions
+- Try to remove the .angular directory
+- You did a faulty import of a module. e.g, HelloComponent is using SharedModule and async pipe, but it wasn't declared in AppModule.
