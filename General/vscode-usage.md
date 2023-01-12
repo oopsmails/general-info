@@ -93,3 +93,31 @@ Just use workspace settings, in VS Code you have User settings that are used for
 If you want to share workspace settings with others you can commit .vscode/settings.json.
 
 You can edit both settings directly on the .json files, or through the VS Code settings editor (Files->Preferences->Settings).
+
+> How to ignore?
+- see https://prettier.io/docs/en/ignore.html
+- Single line: 
+```
+// prettier-ignore
+
+/* prettier-ignore */
+
+
+<!-- prettier-ignore -->
+<div         class="x"       >hello world</div            >
+
+<!-- prettier-ignore-attribute -->
+<div
+  (mousedown)="       onStart    (    )         "
+  (mouseup)="         onEnd      (    )         "
+></div>
+
+<!-- prettier-ignore-attribute (mouseup) -->
+<div
+  (mousedown)="onStart()"
+  (mouseup)="         onEnd      (    )         "
+></div>
+
+```
+- Files: .prettierignore
+- 
