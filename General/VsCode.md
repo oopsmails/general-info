@@ -37,7 +37,7 @@ Settings, search "telemetry"
 
 Terminal, drop down, "Select Default Shell"
 
-or, Settings, search "default shell",
+or, Settings, search "default shell", "Edited in settings.json"
 
 ```
 {
@@ -45,7 +45,8 @@ or, Settings, search "default shell",
     "window.openFoldersInNewWindow": "on",
     "extensions.ignoreRecommendations": true,
     "window.newWindowDimensions": "inherit",
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe", <-------- here
+    "terminal.integrated.defaultProfile.windows": "Git Bash", <-------------------- use this, 20230110
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe", <-------- here, deperated
     "explorer.openEditors.sortOrder": "alphabetical",
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
     "terminal.integrated.shell.osx": ""
