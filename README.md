@@ -1,5 +1,23 @@
 # Github Repos: Oopsmails
 
+drwxr-xr-x 1 liu 197121    0 Jan 15 10:34 001-angular-oops-lib/
+drwxr-xr-x 1 liu 197121    0 Jan  9 12:47 01-angular-test-oopsmails/
+drwxr-xr-x 1 liu 197121    0 Jan 12 10:37 02-angular-all-oopsmails/
+drwxr-xr-x 1 liu 197121    0 Dec 29 09:10 03-angular-ngb-ngx-ngxb/
+drwxr-xr-x 1 liu 197121    0 Dec 30 09:32 04-angular-material-oopsmails/
+drwxr-xr-x 1 liu 197121    0 Jan 20 09:28 05-angular-dev-repo/
+drwxr-xr-x 1 liu 197121    0 Dec 23 13:27 06-angular-05/
+drwxr-xr-x 1 liu 197121    0 Jan 12 10:49 07-angular-temp/
+drwxr-xr-x 1 liu 197121    0 Jan 15 11:32 08-angular-shared-components/
+drwxr-xr-x 1 liu 197121    0 Jan 15 10:05 09-angular-oops-lib/
+drwxr-xr-x 1 liu 197121    0 Jan 20 09:29 10-angular-integration/
+-rw-r--r-- 1 liu 197121 1993 Oct 26  1985 angular-oops-shared-components-0.0.1.tgz
+drwxr-xr-x 1 liu 197121    0 Oct 14 22:26 spring-boot-hibernate-search/
+drwxr-xr-x 1 liu 197121    0 Nov 21 21:53 springboot-dev-repo/
+drwxr-xr-x 1 liu 197121    0 Dec 10 10:25 springboot-fts/
+
+
+
 ## Repos: 20220801
 
 ### Spring Boot
