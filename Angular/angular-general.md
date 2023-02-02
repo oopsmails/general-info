@@ -47,6 +47,9 @@ SHOULD do,
 
 ### Create new app with different Angular version other than global
 
+
+#### Old
+
 ```
 create a new folder, e.g, /c/oopsmails/999-workspace
 
@@ -58,11 +61,16 @@ $ ng new 002-oopsmails-angular-lib-a14 --skip-install
 
 Note: following NOT working, with error "Error: Unknown command. Did you mean g?"
 
-npx @angular/cli@14 ng new my-app
+npx @angular/cli@14 ng 002-oopsmails-angular-lib-a14 --skip-install
 
 npx @angular/cli/bin ng new 002-oopsmails-angular-lib-a14 --skip-install
 
+```
 
+#### New, 20230202
+
+```
+npx -p @angular/cli@14 ng new 002-oopsmails-angular-lib-a14 --skip-install
 ```
 
 ## Install, uninstall and upgrade
