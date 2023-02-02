@@ -43,6 +43,24 @@ node_modules/.bin/ng new angular-marterial-test <--------------- will error, fil
 
 SHOULD do,
 
+```
+
+### Create new app with different Angular version other than global
+
+```
+create a new folder, e.g, /c/oopsmails/999-workspace
+
+npm install @angular/cli@14
+
+liu@lenovo-small MINGW64 /c/oopsmails/999-workspace
+$ ng new 002-oopsmails-angular-lib-a14 --skip-install
+
+
+Note: following NOT working, with error "Error: Unknown command. Did you mean g?"
+
+npx @angular/cli@14 ng new my-app
+
+npx @angular/cli/bin ng new 002-oopsmails-angular-lib-a14 --skip-install
 
 
 ```
