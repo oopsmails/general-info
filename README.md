@@ -1,20 +1,27 @@
 # Github Repos: Oopsmails
 
+liu@lenovo-small MINGW64 /c/oopsmails
+$ ll
+total 84
 drwxr-xr-x 1 liu 197121    0 Jan 15 10:34 001-angular-oops-lib/
-drwxr-xr-x 1 liu 197121    0 Jan  9 12:47 01-angular-test-oopsmails/
-drwxr-xr-x 1 liu 197121    0 Jan 12 10:37 02-angular-all-oopsmails/
-drwxr-xr-x 1 liu 197121    0 Dec 29 09:10 03-angular-ngb-ngx-ngxb/
-drwxr-xr-x 1 liu 197121    0 Dec 30 09:32 04-angular-material-oopsmails/
-drwxr-xr-x 1 liu 197121    0 Jan 20 09:28 05-angular-dev-repo/
-drwxr-xr-x 1 liu 197121    0 Dec 23 13:27 06-angular-05/
-drwxr-xr-x 1 liu 197121    0 Jan 12 10:49 07-angular-temp/
-drwxr-xr-x 1 liu 197121    0 Jan 15 11:32 08-angular-shared-components/
-drwxr-xr-x 1 liu 197121    0 Jan 15 10:05 09-angular-oops-lib/
-drwxr-xr-x 1 liu 197121    0 Jan 20 09:29 10-angular-integration/
+drwxr-xr-x 1 liu 197121    0 Feb  2 13:25 001-oopsmails-angular-lib-test/
+drwxr-xr-x 1 liu 197121    0 Jan 30 09:59 001-oopsmails-angular-lib-test-dist/
+drwxr-xr-x 1 liu 197121    0 Feb  2 16:10 002-oopsmails-angular-lib-a14/
+drwxr-xr-x 1 liu 197121    0 Feb  3 17:46 010-angular-base/
+drwxr-xr-x 1 liu 197121    0 Feb  3 20:41 011-angular-test/
+drwxr-xr-x 1 liu 197121    0 Feb  4 07:47 012-angular-all/
+drwxr-xr-x 1 liu 197121    0 Feb  5 09:03 013-angular-ngb-ngx-ngxb/
+drwxr-xr-x 1 liu 197121    0 Feb  4 08:42 014-angular-material/
+drwxr-xr-x 1 liu 197121    0 Feb  4 09:07 015-angular-05/
+drwxr-xr-x 1 liu 197121    0 Feb  5 09:29 016-angular-dev-repo/
+drwxr-xr-x 1 liu 197121    0 Feb  5 09:30 017-angular-temp/
+drwxr-xr-x 1 liu 197121    0 Feb  5 09:32 018-angular-integration/
+drwxr-xr-x 1 liu 197121    0 Feb  3 16:18 999-workspace/
 -rw-r--r-- 1 liu 197121 1993 Oct 26  1985 angular-oops-shared-components-0.0.1.tgz
 drwxr-xr-x 1 liu 197121    0 Oct 14 22:26 spring-boot-hibernate-search/
 drwxr-xr-x 1 liu 197121    0 Nov 21 21:53 springboot-dev-repo/
 drwxr-xr-x 1 liu 197121    0 Dec 10 10:25 springboot-fts/
+
 
 
 
