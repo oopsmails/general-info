@@ -94,6 +94,81 @@ npm ERR! Unexpected token '.'
 
 ```
 
+## From Angular 11, ng serve - Option "sourceMap" is deprecated
+
+That means, when debugging, there is NO source can debug ...
+
+- Solution, ref, https://stackoverflow.com/questions/66919289/angular-11-ng-serve-option-sourcemap-is-deprecated
+
+
+In angular.json, add this configuration to `projects.[NAME_OF_YOUR_PROJECT].architect.serve.configurations` :
+
+```
+"dev": {
+  "browserTarget": "[NAME_OF_YOUR_PROJECT]:build:dev"
+}
+
+```
+
+Like that :
+
+```
+"architect": {
+  "serve": {
+    ...
+    "configurations": {
+      "production": {
+        ...
+      },
+      "dev": {
+        "browserTarget": "[NAME_OF_YOUR_PROJECT]:build:dev"
+      }
+    }
+  },
+  ...
+
+```
+Then, add the corresponding "dev" configuration in `projects.[NAME_OF_YOUR_PROJECT].architect.build.configurations` :
+
+```
+"dev": {
+  "optimization": false,
+  "sourceMap": true
+}
+```
+
+like this example :
+
+```
+...
+"architect": {
+  "build": {
+    ...
+    "configurations": {
+      "production": {
+        ...
+      },
+      "dev": {
+        "optimization": false,
+        "sourceMap": true
+      }
+    }
+  },
+...
+
+```
+
+Now you just have to edit the "start" script command in package.json :
+
+```
+...
+"scripts": {
+  "start": "ng serve --configuration=dev",
+...
+
+```
+and you should retrieve sources map files in your favorite browser !
+
 ## Error:
 
 ### @angular/platform-browser-dynamic@"^14.0.4" from the root project
@@ -116,3 +191,7 @@ In SharedModule, forgot adding/import *RouterModule*.
 > Other possible solutions
 - Try to remove the .angular directory
 - You did a faulty import of a module. e.g, HelloComponent is using SharedModule and async pipe, but it wasn't declared in AppModule.
+
+
+
+
