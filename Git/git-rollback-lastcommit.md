@@ -1,4 +1,3 @@
-
 # git rollback last commit
 
 - Refs:
@@ -6,7 +5,6 @@
 https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit
 
 https://stackoverflow.com/questions/22682870/how-can-i-undo-pushed-commits-using-git
-
 
 ## git log
 
@@ -16,7 +14,9 @@ list all commits
 git log
 git log --pretty=oneline
 ```
+
 ## Temporarily switch to a different commit
+
 If you want to temporarily go back to it, fool around, then come back to where you are, all you have to do is check out the desired commit:
 
 ```
@@ -30,8 +30,8 @@ git checkout -b old-state 0d1d7fc32
 
 To go back to where you were, just check out the branch you were on again. (If you've made changes, as always when switching branches, you'll have to deal with them as appropriate. You could reset to throw them away; you could stash, checkout, stash pop to take them with you; you could commit them to a branch there if you want a branch there.)
 
-
 ## Hard delete unpublished commits
+
 If, on the other hand, you want to really get rid of everything you've done since then, there are two possibilities. One, if you haven't published any of these commits, simply reset:
 
 ```
@@ -48,9 +48,11 @@ git stash pop
 # changed since the commit you reset to.
 
 ```
+
 If you mess up, you've already thrown away your local changes, but you can at least get back to where you were before by resetting again.
 
 ## Undo published commits with new commits
+
 On the other hand, if you've published the work, you probably don't want to reset the branch, since that's effectively rewriting history. In that case, you could indeed revert the commits. With Git, revert has a very specific meaning: create a commit with the reverse patch to cancel it out. This way you don't rewrite any history.
 
 ```
@@ -97,13 +99,11 @@ How can I move HEAD back to a previous location? (Detached head) & Undo commits
 
 ### comments
 
-> @Rod's comment on *git revert HEAD~3* as the best wat to revert back 3 commits is am important convention. – 
+> @Rod's comment on _git revert HEAD~3_ as the best wat to revert back 3 commits is am important convention. –
 
-> You can use git revert --no-commit hash1 hash2 ... and after this just commit every single revert in one commit git commit -m "Message" – 
+> You can use git revert --no-commit hash1 hash2 ... and after this just commit every single revert in one commit git commit -m "Message" –
 
-
-> `git revert -m <number> <full SHA1>` worked fine for me! I prefer this over `git revert <commit SHA1>` – 
-
+> `git revert -m <number> <full SHA1>` worked fine for me! I prefer this over `git revert <commit SHA1>` –
 
 ### Other
 
@@ -115,7 +115,7 @@ Revert back without keeping the changes:
 git reset --hard <commit>
 ```
 
-Revert back with keeping the changes:
+Revert back with keeping the changes: good for git undo commit
 
 ```
 git reset --soft <commit>
@@ -125,32 +125,70 @@ git reset --soft <commit>
 #### other 02
 
 The best way is:
+
 ```
 git reset --hard <commidId> && git push --force
 
 ```
+
 This will reset the branch to the specific commit and then will upload the remote server with the same commits as you have in local.
 
-Be careful with the *--force* flag as it removes all the subsequent commits after the selected commit without the option to recover them.
+Be careful with the _--force_ flag as it removes all the subsequent commits after the selected commit without the option to recover them.
 
 #### other 03
 
 For rollback (or to revert):
 
 1. git revert --no-commit "commit-code-to-remove" HEAD
-(e.g. git revert --no-commit d57a39d HEAD)
+   (e.g. git revert --no-commit d57a39d HEAD)
 2. git commit
 3. git push
-Try the above two steps, and if you find this is what you want then git push.
+   Try the above two steps, and if you find this is what you want then git push.
 
 If you find something wrong, do:
 
 git revert --abort
-
 
 ## After all the changes, when you push all these commands, you might have to use:
 
 git push -f ...
 And not only git push
 
+## Undo commit on local
 
+```
+git log
+git reset --soft <commit-id>
+git status // got "Your branch and ... have diverged"
+git pull // may need merge ...
+git status
+git push
+```
+
+- reset --soft, git pull, git puth
+
+If you use `git reset --soft` to "uncommit" a specific commit, and then do a git pull that results in a "diverged branches" error, this means that there are conflicting changes between your local branch and the remote branch. You can resolve the conflict by merging the changes from the remote branch into your local branch, resolving any conflicts that arise, and then committing and pushing the changes.
+
+Here are the steps to resolve the conflict:
+
+Open a terminal or command prompt and navigate to your local repository.
+
+Run the following command to merge the changes from the remote branch into your local branch:
+
+`git merge origin/<remote-branch-name>`
+
+This will merge the changes from the remote branch into your local branch. If there are any conflicts, you will need to resolve them manually.
+
+Resolve any conflicts that arise. Use git status to see which files have conflicts, and then edit the files to resolve the conflicts.
+
+After resolving the conflicts, use git add to stage the changes, and then use git commit to create a new commit with the merged changes.
+
+```
+git add .
+git commit -m "Merge changes from remote branch"
+```
+
+Finally, use `git push` to push the changes to the remote branch:
+
+`git push`
+This should resolve the conflict and allow you to push the changes to the remote branch. Note that if you do not want to preserve the changes from the undone commit, you can use git reset --hard instead of git reset --soft to remove the changes from the working directory before doing the git pull.
