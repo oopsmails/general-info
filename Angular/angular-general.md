@@ -47,8 +47,15 @@ SHOULD do,
 
 ### Create new app with different Angular version other than global
 
+#### New Way: very simple, 20230202
 
-#### Old
+```
+npx -p @angular/cli@14 ng new 002-oopsmails-angular-lib-a14 --skip-install
+```
+
+This will also generate with git repo, i.e, .git folder will also be generated, which means, can generate Angular application first, then create remote github repository after.
+
+#### Old Way
 
 ```
 create a new folder, e.g, /c/oopsmails/999-workspace
@@ -65,12 +72,6 @@ npx @angular/cli@14 ng 002-oopsmails-angular-lib-a14 --skip-install
 
 npx @angular/cli/bin ng new 002-oopsmails-angular-lib-a14 --skip-install
 
-```
-
-#### New, 20230202
-
-```
-npx -p @angular/cli@14 ng new 002-oopsmails-angular-lib-a14 --skip-install
 ```
 
 ## Install, uninstall and upgrade
@@ -100,7 +101,6 @@ That means, when debugging, there is NO source can debug ...
 
 - Solution, ref, https://stackoverflow.com/questions/66919289/angular-11-ng-serve-option-sourcemap-is-deprecated
 
-
 In angular.json, add this configuration to `projects.[NAME_OF_YOUR_PROJECT].architect.serve.configurations` :
 
 ```
@@ -128,6 +128,7 @@ Like that :
   ...
 
 ```
+
 Then, add the corresponding "dev" configuration in `projects.[NAME_OF_YOUR_PROJECT].architect.build.configurations` :
 
 ```
@@ -167,6 +168,7 @@ Now you just have to edit the "start" script command in package.json :
 ...
 
 ```
+
 and you should retrieve sources map files in your favorite browser !
 
 ## Error:
@@ -180,18 +182,16 @@ So, we may need to delete those files and do _npm i_ again ...
 
 > Solutions
 
-In SharedModule, forgot adding/import *RouterModule*.
+In SharedModule, forgot adding/import _RouterModule_.
 
 ### Fixing ERROR TypeError: Cannot read properties of undefined (reading 'onDestroy')
 
 > Solutions
+
 - You did not add a provider to your pipes
 - If you specified a new angular pipe, you should add it to declarations, exports AND providers. I got this error when I forgot about the providers.
 
 > Other possible solutions
+
 - Try to remove the .angular directory
 - You did a faulty import of a module. e.g, HelloComponent is using SharedModule and async pipe, but it wasn't declared in AppModule.
-
-
-
-
