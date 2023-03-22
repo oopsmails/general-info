@@ -32,3 +32,25 @@ Privacy ::> Screen Lock
 
 grep -rnw '/path/to/somewhere/' -e 'pattern'
 grep -rnw . -e 'restart-multiple-users'
+
+## ubuntu set font size
+
+- You can configure the font size in Ubuntu using the following steps:
+
+Open the "Settings" application by clicking on the gear icon in the top-right corner of the screen.
+
+Click on "Universal Access" in the left-hand sidebar.
+
+Scroll down to the "Text and Display" section and click on "Large Text."
+
+Toggle the "Large Text" switch to the "On" position.
+
+Use the slider to adjust the font size to your desired level.
+
+- If you are using an older version of Ubuntu that does not have the Universal Access option in the Settings app, you can still adjust the font size using the following steps:
+
+Replace <scaling_factor> with the value you want to set for the font size. For example, if you want to increase the font size by 50%, you can set the scaling factor to 1.5.
+
+gsettings set org.gnome.desktop.interface text-scaling-factor <scaling_factor>
+
+gsettings set org.gnome.desktop.interface text-scaling-factor 0.75
