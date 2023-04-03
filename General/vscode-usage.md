@@ -4,6 +4,10 @@
 
 Shift + Alt + down arrow: duplicate current line
 
+Ctrl + d: multi-select same word
+
+Alt + click: multi locations to modify
+
 ## Extensions
 
 ### vscode-live-sass-compiler relative path
@@ -95,8 +99,10 @@ If you want to share workspace settings with others you can commit .vscode/setti
 You can edit both settings directly on the .json files, or through the VS Code settings editor (Files->Preferences->Settings).
 
 > How to ignore?
+
 - see https://prettier.io/docs/en/ignore.html
-- Single line: 
+- Single line:
+
 ```
 // prettier-ignore
 
@@ -119,5 +125,6 @@ You can edit both settings directly on the .json files, or through the VS Code s
 ></div>
 
 ```
+
 - Files: .prettierignore
-- 
+-
