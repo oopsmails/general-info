@@ -2,11 +2,15 @@
 
 ## Shortcuts
 
-Shift + Alt + down arrow: duplicate current line
-
-Ctrl + d: multi-select same word
-
-Alt + click: multi locations to modify
+- Shift + Alt + down arrow: duplicate current line
+- Ctrl + d: multi-select same word
+- Alt + click: multi locations to modify
+- Ctrl + +: change font size bigger, -, smaller
+- Ctrl + Alt + up (or down), Add cursor above or below
+- Undo last cursor operation Ctrl+U
+- Insert cursor at end of each line selected Shift+Alt+I
+- Select all occurrences of current selection Ctrl+Shift+L
+- Select all occurrences of current word Ctrl+F2
 
 ## Extensions
 
