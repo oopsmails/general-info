@@ -12,6 +12,9 @@
 - Select all occurrences of current selection Ctrl+Shift+L
 - Select all occurrences of current word Ctrl+F2
 
+- wheel click + drag, to select
+- ctrl + g, go to line
+
 - Settings, search zoom, put -0.3 for smaller, try around -0.5 or -0.2....
 
 ## Extensions
