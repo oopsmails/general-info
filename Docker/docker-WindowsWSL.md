@@ -89,6 +89,8 @@ Go back to Ununtu, docker is now available.
 mkdir node
 cd node
 
-.code
+explorer.exe .
+
+code node/
 
 Choose VS code Terminal type ... wsl ...
