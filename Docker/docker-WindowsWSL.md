@@ -94,3 +94,100 @@ explorer.exe .
 code node/
 
 Choose VS code Terminal type ... wsl ...
+
+## Run MySql Docker Image
+
+sudo docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -p 3306:3306 -v /path/to/mysql_data:/var/lib/mysql mysql
+
+- will NOT work
+  sudo docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -p 3306:3306 -v /c/docker-data/mysql:/var/lib/mysql mysql
+
+C:\docker-data\mysql
+
+- will work
+
+in Ubuntu bash, mkdir, /home/albert/docker-data/mysql, this is actually, \\wsl.localhost\Ubuntu\home\albert\docker-data\mysql
+
+### USE THIS
+
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v /home/albert/docker-data/mysql:/var/lib/mysql mysql
+
+```
+albert@lenovo-small:~/docker-data/mysql$ docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v /home/albert/docker-data/mysql:/var/lib/mysql mysql
+
+albert@lenovo-small:~/docker-data/mysql$ d ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                               NAMES
+944f95c2c99d   mysql     "docker-entrypoint.s…"   59 seconds ago   Up 58 seconds   0.0.0.0:3306->3306/tcp, 33060/tcp   mysql-container
+
+
+```
+
+### Connect to container
+
+sudo docker exec -it mysql mysql -uroot -p
+
+### DBeaver
+
+- need allowPublicKeyRetrieval
+
+jdbc:mysql://localhost:3306/?allowPublicKeyRetrieval=true
+
+### Clean up
+
+d stop mysql-container
+
+d ps -a
+
+d rm mysql-container
+
+d rmi mysql
+
+## Run MSSQL Docker
+
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=sa' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server
+
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrongPassword' -p 1433:1433 --name sql_server_container -v $(pwd)/mssql-data:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+### Setup Trying
+
+- Don't use too simple password.
+
+```
+Debugging, NOT use -d option to see logs .....
+
+2023-07-04 14:30:07.77 spid35s     ERROR: Unable to set system administrator password: Password validation failed. The password does not meet SQL Server password policy requirements because it is too short. The password must be at least 8 characters..
+
+```
+
+---- docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Test123!' -p 1433:1433 --name mssql -v /home/albert/docker-data/mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+---- **no volume? data still persist after restarting container** ... default saved in container ... but not recommanded!
+
+docker run --name mssql -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test123!" -e "MSSQL_AGENT_ENABLED=true" -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+---- with volume, error, even using sudo ...
+docker run --name mssql -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test123!" -e "MSSQL_AGENT_ENABLED=true" -p 1433:1433 -v /home/albert/docker-data/mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+sudo docker run --name mssql -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test123!" -e "MSSQL_AGENT_ENABLED=true" -p 1433:1433 -v /home/albert/docker-data/mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+```
+/opt/mssql/bin/sqlservr: Error: The system directory [/.system] could not be created. File: LinuxDirectory.cpp:420 [Status: 0xC0000022 Access Denied errno = 0xD(13) Permission denied]
+
+
+albert@lenovo-small:~/docker-data$ chmod 777 mssql/
+
+```
+
+### USE THIS
+
+--- Using this after chmod
+
+docker run --name mssql -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test123!" -e "MSSQL_AGENT_ENABLED=true" -p 1433:1433 -v /home/albert/docker-data/mssql:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+
+### DBeaver
+
+jdbc:sqlserver://;serverName=localhost;databaseName=master
+
+### Connect to container
+
+sudo docker exec -it mssql bash
