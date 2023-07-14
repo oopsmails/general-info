@@ -30,6 +30,11 @@ PS C:\> wsl --update
 Installing: Windows Subsystem for Linux
 Windows Subsystem for Linux has been installed.
 
+
+wsl.exe --shutdown Ubuntu
+
+wsl.exe --list
+
 ```
 
 - Login
@@ -95,6 +100,18 @@ code node/
 
 Choose VS code Terminal type ... wsl ...
 
+## Ubuntu bash
+
+\\wsl.localhost\Ubuntu\home\albert\.profile
+
+```
+
+alias d="docker "
+alias dc="docker-compose "
+alias lsa="ls -all"
+
+```
+
 ## Run MySql Docker Image
 
 sudo docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -p 3306:3306 -v /path/to/mysql_data:/var/lib/mysql mysql
@@ -103,6 +120,8 @@ sudo docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -
   sudo docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -p 3306:3306 -v /c/docker-data/mysql:/var/lib/mysql mysql
 
 C:\docker-data\mysql
+
+it is actually as "/mnt/c/...", not "/c/"
 
 - will work
 
