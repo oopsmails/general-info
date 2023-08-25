@@ -1,5 +1,30 @@
 # Install Docker Desktop on Windows
 
+## Switching Between WSL2 and Virtual Box
+
+Running both VirtualBox and WSL 2 on the same system can sometimes lead to compatibility issues due to conflicts in virtualization technologies. WSL 2 uses Hyper-V for virtualization, and VirtualBox also uses its own virtualization technology. Enabling Hyper-V for WSL 2 can interfere with the functioning of VirtualBox.
+
+Here are a few steps you can take to potentially resolve the issue:
+
+1. Disable Hyper-V to Use VirtualBox:
+
+Open PowerShell as an administrator.
+Run the following command to disable Hyper-V:
+
+```
+bcdedit /set hypervisorlaunchtype off
+```
+
+Restart your computer.
+After restarting, VirtualBox should work, but keep in mind that WSL 2 won't be able to run until you re-enable Hyper-V.
+Re-enable Hyper-V to Use WSL 2:
+
+2. If you need to use WSL 2 again and have disabled Hyper-V, you can re-enable it by opening PowerShell as an administrator and running:
+
+```
+bcdedit /set hypervisorlaunchtype auto
+```
+
 ## Before Install
 
 ### Check if Vertualization is enabled
