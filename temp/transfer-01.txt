@@ -1,0 +1,55 @@
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.sql.Clob;
+import java.sql.SQLException;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Service
+public class MyService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
+    public void processLargeJsonColumn(Long id) {
+        // Load the entity with the large JSON column
+        MyEntity entity = entityManager.find(MyEntity.class, id);
+        
+        // Get the InputStream from the large JSON column
+        try {
+            InputStream inputStream = getInputStreamFromClob(entity.getLargeJsonColumn());
+            
+            // Process the InputStream using Jackson's JsonParser or any other streaming library
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonParser jsonParser = objectMapper.getFactory().createParser(inputStream);
+            // Process the JSON data using the JsonParser
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Utility method to get an InputStream from a Clob
+    private InputStream getInputStreamFromClob(Clob clob) throws SQLException, IOException {
+        Reader reader = clob.getCharacterStream();
+        // Convert the Reader to InputStream
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        InputStream inputStream = new InputStream() {
+            @Override
+            public int read() throws IOException {
+                return reader.read();
+            }
+        };
+        return inputStream;
+    }
+}
+
+
