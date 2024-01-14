@@ -1,4 +1,3 @@
-
 # Windows Tips
 
 ## General
@@ -47,7 +46,6 @@ wait for 100 persent ... then ready to go!
 
 search around, e.g, "linux disk partition", or using mkusb ....
 
-
 ### windows 10 bluetooth check the pin and try connecting again
 
 Use Divice Pariing Wizard:
@@ -70,5 +68,12 @@ Settings :: System :: Multitasking :: Desktop
 On the taskbar, show all the open windows, drop down
 Show all open windows when I press Alt + Tab
 
+### Windows keeps adding Xbox icon to the taskbar
 
+Windows Key+R and write %userprofile%\AppData\Local\Microsoft\Windows\Shell.
 
+Edit the file named LayoutModification.xml.
+
+Delete the following line that has the terms taskbar and Microsoft.Xbox.App
+
+or "MSI Center" icon.
