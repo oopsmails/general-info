@@ -1,4 +1,3 @@
-
 # Install Ubuntu on USB Stike
 
 - Ref:
@@ -8,7 +7,6 @@ NOT using
 https://www.youtube.com/watch?v=cHF1ByFKtZo
 
 Install Ubuntu 20.04 On LIVE USB / SSD With Persistent Storage (Plug & Play)
-
 
 - Ref: This is the BEST!
 
@@ -26,19 +24,18 @@ Rufus - https://rufus.ie/
 
 - What if rufus is not showing my External ssd???
 
-Solution: If RUFUS doesn't show your external ssd try ALT+F, below you will see  a message like "Hard disk detection" is ON/OFF.............It has stolen me a big amount of minutes
-
+Solution: If RUFUS doesn't show your external ssd try ALT+F, below you will see a message like "Hard disk detection" is ON/OFF.............It has stolen me a big amount of minutes
 
 ### Installation: Key points
 
 - Step 2: Disable ESP flags from the ESP partition
-Press the Windows key and type Gparted. This will open the Gparted partition manager which is (usually) already present on the Ubuntu ISO.
+  Press the Windows key and type Gparted. This will open the Gparted partition manager which is (usually) already present on the Ubuntu ISO.
 
 In Gparted, make sure that you have selected the system's disk. Look for the partition of around 100-500 MB in size and flagged as ESP. Right click on this partition and select 'Manage Flags':
 
-#### Summary, in Gpartedwill 
+#### Summary, in Gpartedwill
 
-- Should see "Windows SSD", 'Manage Flags', it should show esp and boot flags. If there are more flags set, take a screenshot so that you can revert to the same set of flags after the installation is complete. 
+- Should see "Windows SSD", 'Manage Flags', it should show esp and boot flags. If there are more flags set, take a screenshot so that you can revert to the same set of flags after the installation is complete.
 
 Deselecting the flags usually adds a msftdata flag and you can leave it like that. Changes take into effect immediately.
 
@@ -62,26 +59,23 @@ ubuntu-portable-usb-03.png
 
 ubuntu-portable-usb-04.png
 
-
 ### Run after installation
 
 ```
-sudo apt update && sudo apt upgrade -y 
+sudo apt update && sudo apt upgrade -y
 
-sudo add-apt-repository universe 
+sudo add-apt-repository universe
 
 sudo add-apt-repository multiverse
 ```
 
 ## Softwares
 
-
 ### Virtual Box
 
 - Ref:
 
 https://www.itzgeek.com/post/how-to-install-virtualbox-on-ubuntu-20-04/
-
 
 - Install Virtual Box
 
@@ -113,26 +107,26 @@ May 28 17:54:42 ubuntu2004 systemd[1]: Started VirtualBox Linux kernel module.
 
 ```
 
-- Install VirtualBox Extension Pack
+- Install VirtualBox Extension Pack, v6.xx
 
 1. Download Oracle VM VirtualBox Extension Pack
 
 2. Graphical Mode  
-To install the extension pack, go to VirtualBox >> Preference >> Extensions >> browse for extension pack by clicking on the + icon.
+   To install the extension pack, go to VirtualBox >> Preference >> Extensions >> browse for extension pack by clicking on the + icon.
 
 Oracle_VM_VirtualBox_Extension_Pack-6.1.32.vbox-extpack
 
-
 sudo apt-get remove --purge virtualbox
 
+- For v7.xx, 20240114
+
+Step 3: Open your Oracle VM VirtualBox Manager. Go to File > Tools > Extension Pack Manager.
 
 - NOTE:
 
-removing previous version installed by useing *apt-get*
+removing previous version installed by useing _apt-get_
 
-
-sudo apt-get autoremove 'virtualbox*'
-
+sudo apt-get autoremove 'virtualbox\*'
 
 ### Virtual Box, Failed
 
@@ -141,7 +135,6 @@ sudo apt-get autoremove 'virtualbox*'
 https://phoenixnap.com/kb/install-virtualbox-on-ubuntu
 
 Option 1: Install VirtualBox from Ubuntu Repositories
-
 
 The easiest way to install VirtualBox is by using the official Ubuntu repositories.
 
@@ -157,11 +150,9 @@ sudo apt-get install virtualbox
 DKMS: install completed.
 ```
 
-
 3. Next, install the VirtualBox Extension Pack:
 
 sudo apt-get install virtualbox-ext-pack
-
 
 ```
 The file will be downloaded into /usr/share/virtualbox-ext-pack
@@ -170,30 +161,24 @@ License accepted.
 Successfully installed "Oracle VM VirtualBox Extension Pack"
 ```
 
-
 ## Issues Notes
 
 - install portable ubuntu on usb from windows
 
 https://askubuntu.com/questions/1217832/how-to-create-a-full-install-of-ubuntu-20-04-to-usb-device-step-by-step
 
-
-
 - VB error
-
 
 https://askubuntu.com/questions/900794/virtualbox-rtr3initex-failed-with-rc-1912-rc-1912
 
 ---- Good to remove
 
-sudo apt-get autoremove 'virtualbox*'
+sudo apt-get autoremove 'virtualbox\*'
 
 ---- Not used
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get install nvidia-375 nvidia-settings
-
-
 
 - ubuntu black screen before login
 
@@ -202,7 +187,6 @@ For my HP, boot order, don't put "USB ..." as first, instead, make "OS boot mana
 ----- Not used but could be useful
 
 https://itsfoss.community/t/black-screen-when-trying-to-login/4738/19
-
 
 Did you make some changes to settings lately? Maybe your desktop somehow got corrupted.
 
@@ -216,7 +200,7 @@ And then reinstall the gnome desktop using this command:
 
 sudo apt install --reinstall ubuntu-gnome-desktop
 
-----
+---
 
 There are several ways to remedy this:
 
@@ -224,16 +208,10 @@ Check your ~/.config/monitor.xml settings and change any value occurring between
 Reset the fractional scaling setting to off by executing
 gsettings reset org.gnome.mutter experimental-features
 
-
-------
+---
 
 At the login screen, bring up the terminal using one of the key combinations mentioned in this thread (ctrl+alt+f2 worked for me). Login via the terminal and install the nvidia driver version 4.5.0:
 
 sudo apt install nvidia-driver-450
 
 Reboot your machine and login via the GUI. The screen may go blank for a while but it should come back up soon after.
-
-
-
-
-
