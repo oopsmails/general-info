@@ -1,18 +1,16 @@
-
 # Ubuntu
 
 ## VB create ubuntu
 
 - Download ubuntu iso image
-https://ubuntu.com/download/desktop
-
+  https://ubuntu.com/download/desktop
 
 - Create Virtual Machine in VB
 
 As linux ubuntu 64 bits  
-Change the vdi location!!! 
+Change the vdi location!!!
 Insert in iso  
-Enable 3D accelerate  
+Enable 3D accelerate
 
 - Start and install ubuntu
 - install updates and VB Guest Addition, restart
@@ -21,7 +19,7 @@ Enable 3D accelerate
 - Restart, to change root password. Shift ??+ Esc, recovery mode, advanced options, drop root ..., passwd ...
 - Restart, terminal, 150x40
 - Make a snapshot and realy to install softwares
-- Shared Folder: 
+- Shared Folder:
 
 ```
 C:\sharing
@@ -46,8 +44,9 @@ restart vm
 - Full mode, can select show vb menu bar.
 
 - root
-    - During boot, press and hold Shift (for BIOS) or ESC (for UEFI). In my case, it is Shift.
-    - Start with Recovery mode, then root terminal, run *passwd* to change root password
+
+  - During boot, press and hold Shift (for BIOS) or ESC (for UEFI). In my case, it is Shift.
+  - Start with Recovery mode, then root terminal, run _passwd_ to change root password
 
 - multiple workspaces
 
@@ -94,9 +93,9 @@ open the terminal, select Edit->Profile Preferences -> General tab and change th
 ### Shared Folder
 
 - Need to insert Guest Additional CD, then install it. Otherwise, there is no content
-C:\sharing
-sharing
-/home/albert/Documents/sharing
+  C:\sharing
+  sharing
+  /home/albert/Documents/sharing
 
 ### vs code
 
@@ -112,7 +111,7 @@ PATH="$HOME/Documents/programs:$PATH"
 
 ### java
 
-- install openjdk, 
+- install openjdk,
 
 ```
 
@@ -161,9 +160,9 @@ https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
 
 `sudo apt install curl`
 
-- This is NOT working, see ElementaryOS.md, 
+- This is NOT working, see ElementaryOS.md,
 
-Using: 
+Using:
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
 
 not use!
@@ -215,45 +214,45 @@ then go "Show Applications" and "Add to Favorites"
 
 Here we will see the steps to install Postman on Ubuntu 20.04 or 18.04 LTS Linux operating system. You can also use this guide for Linux Mint, CentOS, RHEL, Debian, and other Linux distros.
 
-  - Download and install
-  
-  wget https://dl.pstmn.io/download/latest/linux64
+- Download and install
 
-  sudo tar -xvf linux64 -C /usr/bin
+wget https://dl.pstmn.io/download/latest/linux64
 
-  export PATH=$PATH:/usr/bin/Postman
+sudo tar -xvf linux64 -C /usr/bin
 
-  run as "Postman"
+export PATH=$PATH:/usr/bin/Postman
 
-  - Create Desktop & Launcher Shortcut
+run as "Postman"
 
-  sudo nano /usr/share/applications/Postman.desktop
+- Create Desktop & Launcher Shortcut
 
-  ```
-  [Desktop Entry]
-  Name=Postman API Tool
-  GenericName=Postman
-  Comment=Testing API
-  Exec=/usr/bin/Postman/Postman
-  Terminal=false
-  X-MultipleArgs=false
-  Type=Application
-  Icon=/usr/bin/Postman/app/resources/app/assets/icon.png
-  StartupWMClass=Postman
-  StartupNotify=true
+sudo nano /usr/share/applications/Postman.desktop
 
-  ```
+```
+[Desktop Entry]
+Name=Postman API Tool
+GenericName=Postman
+Comment=Testing API
+Exec=/usr/bin/Postman/Postman
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/bin/Postman/app/resources/app/assets/icon.png
+StartupWMClass=Postman
+StartupNotify=true
 
-  - Save the file with Ctrl + O and Enter and close editor with Ctrl + X.
-  - (MAY) already be able to see it in "Show Applications", bottom left conver ..., and then right click the icon and "Add Favorite"
+```
 
-  - Copy the created shortcut to desktop as well:
+- Save the file with Ctrl + O and Enter and close editor with Ctrl + X.
+- (MAY) already be able to see it in "Show Applications", bottom left conver ..., and then right click the icon and "Add Favorite"
 
-  cp /usr/share/applications/Postman.desktop ~/Desktop/
+- Copy the created shortcut to desktop as well:
 
-  - Allow launching
+cp /usr/share/applications/Postman.desktop ~/Desktop/
 
-  Right-click on the created shortcut of Postman on Desktop and select the “Allow launching” option.
+- Allow launching
+
+Right-click on the created shortcut of Postman on Desktop and select the “Allow launching” option.
 
 ### intellij
 
@@ -274,8 +273,8 @@ OR
 $ intellij-idea-educational
 
 ```
-then go "Show Applications" and "Add to Favorites"
 
+then go "Show Applications" and "Add to Favorites"
 
 ### Docker
 
@@ -286,6 +285,7 @@ see ubuntu20-installDocker.md
 ### Screen shot
 
 Use existing
+
 ### Meld
 
 - installed from Software Manager
@@ -299,14 +299,11 @@ Use existing
 
 - list any services launched at startup by opening Terminal and running the command:
 
-service --status-all 
+service --status-all
+
 - To stop a running service, enter the command:
 
 - sudo service <name> stop
-To remove an existing program from Ubuntu open Terminal and run:
+  To remove an existing program from Ubuntu open Terminal and run:
 
 - sudo apt-get remove <program name>
-
-
-
-
