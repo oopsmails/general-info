@@ -110,3 +110,9 @@ source ~/.bashrc
 ### intellij
 
 sudo snap install intellij-idea-community --classic
+
+## Error
+
+### Failed to load module "canberra-gtk-module", when running 'arun here'
+
+sudo apt-get install libcanberra-gtk-module
