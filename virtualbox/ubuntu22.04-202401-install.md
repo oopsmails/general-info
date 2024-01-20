@@ -111,6 +111,25 @@ source ~/.bashrc
 
 sudo snap install intellij-idea-community --classic
 
+### Chinese Input
+
+- Ref: https://askubuntu.com/questions/1408873/ubuntu-22-04-chinese-simplified-pinyin-input-support
+
+Note: These instructions are ONLY meant for vanilla Ubuntu and ONLY for 22.04 for basic pinyin input for simplified characters.
+
+Ubuntu has never provided an easy, well-documented option for adding pinyin input support. However, to get basic pinyin support in 22.04 you can simply:
+
+Open Settings, go to Region & Language -> Manage Installed Languages -> Install / Remove languages.
+Select Chinese (Simplified). Make sure Keyboard Input method system has Ibus selected. Apply.
+Reboot
+Log back in, reopen Settings, go to Keyboard.
+Click on the "+" sign under Input sources.
+Select Chinese (China) and then Chinese (Intelligent Pinyin).
+
+You should now have a little "en" (or whatever the language code of your Ubuntu install is) at the top right of your main screen which you can click on and get a list of available input methods, including Chinese (Intelligent pinyin). Open anything that can receive text (like gedit, openoffice, vim, FF,...) and try it out. You can also change between them with Super/Win + space.
+
+Reboot to make sure it is still there after a reboot.
+
 ## Error
 
 ### Failed to load module "canberra-gtk-module", when running 'arun here'
