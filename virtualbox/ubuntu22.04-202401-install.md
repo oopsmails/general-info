@@ -49,7 +49,7 @@ git config --global --get user.name
 
 ### Chrome
 
-Installed from Ubuntu Software, all fine.
+Installed from google-chrome-stable_current_amd64.deb, manual local.
 
 ### VSCode
 
