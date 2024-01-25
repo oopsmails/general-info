@@ -41,7 +41,7 @@ Deselecting the flags usually adds a msftdata flag and you can leave it like tha
 
 - Great! Now your live system does not see the ESP partition and thus the existing boot settings of the computer. Now is the time to start installing Ubuntu on the other USB.
 
-- Then start installation, on "Installation Type" page, select Something Else ...
+- Then start installation, on "Installation Type" page, select **Something Else** ...
 
 ubuntu-portable-usb-01.png
 

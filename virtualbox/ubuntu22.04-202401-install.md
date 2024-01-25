@@ -30,7 +30,8 @@ alias java11="source $bashScripts/java11.sh"
 
 See ubuntu20.04-20221006-timeshift.md.
 
-sudo apt install timeshift
+NO: sudo apt install timeshift
+Yes: install from Ubuntu Software.
 
 ### Git
 
@@ -111,6 +112,10 @@ source ~/.bashrc
 
 sudo snap install intellij-idea-community --classic
 
+### Terminal
+
+160 x 40
+
 ### Chinese Input
 
 - Ref: https://askubuntu.com/questions/1408873/ubuntu-22-04-chinese-simplified-pinyin-input-support
@@ -129,6 +134,19 @@ Select Chinese (China) and then Chinese (Intelligent Pinyin).
 You should now have a little "en" (or whatever the language code of your Ubuntu install is) at the top right of your main screen which you can click on and get a list of available input methods, including Chinese (Intelligent pinyin). Open anything that can receive text (like gedit, openoffice, vim, FF,...) and try it out. You can also change between them with Super/Win + space.
 
 Reboot to make sure it is still there after a reboot.
+
+### unbutu shutdown shortcut
+
+- Ref: https://amitness.com/2015/06/ubuntu-keyboard-shortcut/
+
+Open a terminal and enter the following command. You will be asked for the password.
+sudo chmod u+s /sbin/shutdown
+
+Then goto System Settings > Keyboard and in the shortcuts tab, click Custom Shortcuts
+
+Then click the “Add custom shortcut” button and a popup will open. In it add name as “Shutdown” and command as “shutdown -h now” . Then click add.
+
+After adding, you will get a list of shortcuts as shown below. In that click shutdown and below it, there will be three unassigned. Click the first unassigned and it will change into “Pick an accelerator“. Then click Ctrl+Alt+K at the same time. This will be our shortcut for shutdown.
 
 ## Error
 
