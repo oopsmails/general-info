@@ -91,6 +91,12 @@ source ~/.bashrc
 
 nvm list
 
+nvm use 16.13.1 ## only working for current terminal
+
+nvm alias default 16.13.1 ## working globally!
+
+which node ## to chedk where is the linked folder, might be permission issue
+
 ### Java
 
 - install openjdk,
