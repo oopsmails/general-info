@@ -54,7 +54,19 @@ Installed from google-chrome-stable_current_amd64.deb, manual local.
 
 ### VSCode
 
-Installed from Ubuntu Software, all fine.
+NO: not working after TimeShift! Installed from Ubuntu Software, all fine.
+
+- Need install Git before VS Code
+
+sudo apt update
+sudo apt install git
+
+git --version
+
+- download and installed
+- sudo apt install ./code_1.60.2-1632313585_amd64.deb, or Open using Application Installer
+- Sync-ed using Github
+- If after opening general-info, seeing all file as "modified" in VS Code git, then run `git config --global core.autocrlf input` and should be fine after restart
 
 ### NVM and Node
 
