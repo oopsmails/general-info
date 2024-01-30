@@ -148,8 +148,50 @@ Then click the “Add custom shortcut” button and a popup will open. In it add
 
 After adding, you will get a list of shortcuts as shown below. In that click shutdown and below it, there will be three unassigned. Click the first unassigned and it will change into “Pick an accelerator“. Then click Ctrl+Alt+K at the same time. This will be our shortcut for shutdown.
 
+### VirtualBox
+
+- Download latest deb
+
+virtualbox-7.0_7.0.14-161095~Ubuntu~jammy_amd64.deb
+
+Oracle_VM_VirtualBox_Extension_Pack-7.0.14.vbox-extpack
+
+- Open with Application Installer
+- User group: vboxusers, otherwise, vb cannot access USB
+
+NO: not exist for virtualbox v7+, sudo usermod -a -G vboxsf albert
+
+YES: sudo usermod -a -G vboxusers albert
+
+- Double click on vbox-extpack ...
+
+Will open VirtualBox and install.
+
 ## Error
 
 ### Failed to load module "canberra-gtk-module", when running 'arun here'
 
 sudo apt-get install libcanberra-gtk-module
+
+### VirtualBox error: linux kernal not configured ....
+
+```
+Kernel driver not installed (rc=-1908)
+
+The VirtualBox Linux kernel driver is either not loaded or not set up correctly. Please try setting it up again by executing
+
+'/sbin/vboxconfig'
+
+as root
+```
+
+- Terminal
+  sudo su root ## now as root user
+  passwd ## change root user password
+  exit
+
+- Using root user
+  su root
+  input password
+
+- Still not resolved ....
