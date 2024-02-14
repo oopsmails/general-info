@@ -77,3 +77,7 @@ Edit the file named LayoutModification.xml.
 Delete the following line that has the terms taskbar and Microsoft.Xbox.App
 
 or "MSI Center" icon.
+
+### why I installed input simplified chinese but it is traditional chinese?
+
+The Simplified Chinese Microsoft Pinyin IME is capable of both simplified and traditional characters. When you install it, it will be set for simplified characters. It is set up to toggle between simplified and traditional with the keybinding ctrl shift F
