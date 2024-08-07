@@ -83,6 +83,11 @@ Search "previous change"
 
 Ctrl + Shift + Backspace
 
+- Set copy "Path from repository"
+
+File :::> Settings :::> Keymap, search copy, select "Path from repository", Edit, Ctrl + Shift + G
+
+
 ## intellij shortcuts on Mac
 
 Double ⇧
