@@ -66,6 +66,26 @@ File > Project Structure > Project > Project Name
 
 File > Settings > Appearance & Behavior > Appearance > check box, Always show full path in window header
 
+### Import all
+
+Please try to set "Add unambiguous imports on the fly" (jetbrains.com/help/idea/…), then right click on project root and select "Optimize imports
+
+- from jetbrains doc
+https://www.jetbrains.com/help/idea/creating-and-optimizing-imports.html#automatically-add-import-statements
+
+```
+Automatically add import statements
+You can configure the IDE to automatically add import statements if there are no options to choose from.
+
+Press CtrlAlt
+0S
+ to open settings and then select Editor | General | Auto Import.
+
+Select the Add unambiguous imports on the fly checkbox, and apply the changes.
+
+When you are pasting blocks of code that contain references to classes or static methods and fields that are not yet imported, the IDE automatically inserts the missing import statements. If you want to change that, from the Insert imports on paste list, select Ask to confirm every insertion or Never to insert import statements manually.
+```
+
 ## intellij shortcuts
 
 - Previous, Next cursor location
