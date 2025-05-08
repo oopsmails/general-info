@@ -153,3 +153,8 @@ Show all places where a code element is used across your project.
 Focus the Project tool window
 ⎋
 Focus the editor
+
+## intellij maven dependency analyzer
+
+Maven on side bar, tool bar, Analyze Dependencies ... 
+
