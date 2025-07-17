@@ -418,3 +418,86 @@ Simple to adapt for different chunk sizes
 
 
 
+
+SELECT TOP (CEILING(LEN(@largeData) * 1.0 / @chunkSize)), this line gives error, row count parameter must be an integer
+You're right - the TOP clause requires an integer value, and CEILING() returns a numeric type. Here's the corrected version:
+
+Fixed Simple Chunked Data Viewer
+sql
+DECLARE @id INT = 123;  -- Replace with your row ID
+DECLARE @chunkSize INT = 4000; -- Characters per chunk
+
+-- Get the data once
+DECLARE @largeData NVARCHAR(MAX);
+SELECT @largeData = largeColumn FROM YourTable WHERE id = @id;
+
+-- Calculate chunk count as integer
+DECLARE @chunkCount INT = CEILING(LEN(@largeData) * 1.0 / @chunkSize);
+
+-- Display chunks
+SELECT 
+    n AS chunk_number,
+    ((n - 1) * @chunkSize + 1) AS start_position,
+    CASE 
+        WHEN n * @chunkSize > LEN(@largeData) THEN LEN(@largeData)
+        ELSE n * @chunkSize
+    END AS end_position,
+    SUBSTRING(@largeData, (n - 1) * @chunkSize + 1, @chunkSize) AS data_chunk
+FROM (
+    SELECT TOP (@chunkCount) -- Now using the pre-calculated integer
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
+    FROM sys.objects
+    CROSS JOIN sys.columns -- Ensures enough rows for large data
+) AS numbers;
+Even Better Version (With Progress Indicator):
+sql
+DECLARE @id INT = 123;
+DECLARE @chunkSize INT = 4000;
+
+DECLARE @largeData NVARCHAR(MAX);
+DECLARE @totalLen INT;
+DECLARE @chunkCount INT;
+
+SELECT 
+    @largeData = largeColumn,
+    @totalLen = LEN(largeColumn),
+    @chunkCount = CEILING(LEN(largeColumn) * 1.0 / @chunkSize)
+FROM YourTable 
+WHERE id = @id;
+
+-- Show summary first
+SELECT 
+    @id AS row_id,
+    @totalLen AS total_characters,
+    @chunkCount AS total_chunks,
+    @chunkSize AS chunk_size;
+
+-- Show chunks with progress percentage
+SELECT 
+    n AS chunk_number,
+    ((n - 1) * @chunkSize + 1) AS start_position,
+    CASE WHEN n * @chunkSize > @totalLen THEN @totalLen ELSE n * @chunkSize END AS end_position,
+    ROUND((n * @chunkSize * 100.0) / NULLIF(@totalLen, 0), 1) AS progress_percent,
+    SUBSTRING(@largeData, (n - 1) * @chunkSize + 1, @chunkSize) AS data_chunk
+FROM (
+    SELECT TOP (@chunkCount)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
+    FROM sys.objects a
+    CROSS JOIN sys.objects b -- Generates enough rows
+) AS numbers;
+Key improvements:
+
+Fixed the TOP clause issue by pre-calculating the integer chunk count
+
+Added a progress percentage column
+
+Better row generation with CROSS JOIN
+
+Summary information displayed first
+
+NULLIF handles potential division by zero
+
+Just replace the table name, column name, and row ID as before.
+
+
+
